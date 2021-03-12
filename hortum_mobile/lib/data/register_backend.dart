@@ -1,4 +1,4 @@
-import 'package:hortum_mobile/models/user.dart';
+import 'package:hortum_mobile/model/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
