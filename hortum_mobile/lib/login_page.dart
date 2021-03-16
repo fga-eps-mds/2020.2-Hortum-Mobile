@@ -164,8 +164,6 @@ class _LoginPageState extends State<LoginPage> {
     print(email);
     print(password);
 
-    ApiHttp api = new ApiHttp();
-    final json = await api.fetch();
-    print(json);
+    var response = await LoginApi.login(email, password);
   }
 }
