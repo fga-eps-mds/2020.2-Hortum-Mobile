@@ -6,9 +6,6 @@
 <!-- Nome do Projeto -->
 <h1 align="center"> Hortum </h1>
 
-## Sobre este Repositorio
-<p align="justify"> Repositorio resposável por agrupar e comandar todo o front end do projeto usando como API o repositorio padrão do app, 2020.2-Hortum.</p>
-
 <!-- Badges -->
 <!-- (TODO) Adicionar as Badges de DevOps -->
 <p align="center">
@@ -57,14 +54,45 @@
 <!-- Instalação -->
 ## Instalação
 
-[Flutter](https://flutter.dev/docs/get-started/install), neste link vc conseguira baixar o Flutter SDK, após baixado voce deverá extrair os conteudos deste arquivo em uma pasta com o nome **flutter** , nota: não é recomendado colocar na \Program Files\ .
+<!-- Pré-Requisitos -->
+### Pré-Requisitos
+#### Obrigatórias
+|Tecnologias|Descrição|
+|-|-|
+|[Git](https://git-scm.com/)|`git` é uma ferramenta de versionamento de código `gratuito` e `open source`, capaz de lidar com tudo desde pequenos até projetos gigantes, com `velocidade` e `eficiência`.|
+|[Flutter](https://flutter.dev/docs/get-started/install)| `flutter` é UI toolkit da Google de criação de bonitas aplicações compiladas nativamente, em mobile, web e desktop, de um simples código base, em linguagem `dart`.|
 
-Se não deseja fazer todo este processo, voce pode usar um clone do repositorio do flutter
-    
-    git clone https://github.com/flutter/flutter.git -b stable
-neste mesmo link colocado acima terá o tutorial para baixar o **Android studio**, o qual no caso é opcional ja que editores de texto como Visual Studio Code conseguem ajudar no desenvolvimento em dart, está ferramenta seria para simular seu código em tempo real, pórem não é obrigatorio ter o Android studio para conseguir usar o **Flutter**.
+<!-- Backend -->
+### Baixando e rodando o Backend
+Para rodar o backend acesse o repositório [API](https://github.com/fga-eps-mds/2020.2-Hortum) e siga o passo a passo da instalação.
 
-Após a instalação, atualizar o PATH do sistema adicionando a 'flutter\bin'.
+<!-- Frontend -->
+### Baixando e rodando o Frontend
+```bash
+# Clone o Frontend
+$ git clone https://github.com/fga-eps-mds/2020.2-Hortum-Mobile
 
-Para checar se a atualização foi correta, basta digitar no prompt de comando, o comando: 'flutter doctor' . Se tudo estiver correto terá um campo com um certo em verde antes de flutter confirmando a correta intalação do proprio, se estiver sem Android Studio avisará sobre isso, mas como falado acima este não é necessario.
+# Entre na pasta do projeto
+$ cd 2020.2-Hortum-Mobile/hortum_mobile/
 
+# Rodando o Flutter
+$ flutter run
+```
+
+<!-- Contributing -->
+## Desenvolvedores
+<table>
+	<tr>
+		<td align="center"><a href="https://github.com/brenno-silva"><img src="https://avatars.githubusercontent.com/u/54643530?s=460&u=35993e065c3b56710145bc3bdb13b40d36b2d433&v=4" width="100px;" alt=""/><br /><sub><b>Brenno Oliveira Silva</b></sub></a><br /><a href="https://github.com/brenno-silva"></a></td>
+		<td align="center"><a href="https://github.com/CarlosFiuza"><img src="" width="100px;" alt=""/><br /><sub><b>Carlos Eduardo de Sousa Fiuza</b></sub></a><br /><a href="https://github.com/CarlosFiuza"></a></td>
+		<td align="center"><a href="https://github.com/Joao-Moura"><img src="https://avatars.githubusercontent.com/u/46077033?s=460&u=f32654cf2f096598e9eca3e48b040641fcff3009&v=4" width="100px;" alt=""/><br /><sub><b>João Pedro Moura Oliveira</b></sub></a><br /><a href="https://github.com/Joao-Moura"></a></td>
+		<td align="center"><a href="https://github.com/LucasBraunX"><img src="" width="100px;" alt=""/><br /><sub><b>Lucas Braun Vieira Xavier</b></sub></a><br /><a href="https://github.com/LucasBraunX"></a></td>
+		<td align="center"><a href="https://github.com/matheuscvp"><img src="" width="100px;" alt=""/><br /><sub><b>Matheus Calixto Vaz Pinheiro</b></sub></a><br /><a href="https://github.com/matheuscvp"></a></td>
+		<td align="center"><a href="https://github.com/vital14"><img src="https://avatars.githubusercontent.com/u/54643459?s=460&u=d1761ee486cfc4cf7ac0a36adb98572d3db35e32&v=4" width="100px;" alt=""/><br /><sub><b>Victor Souza Dantas Martins Lima</b></sub></a><br /><a href="https://github.com/vital14"></a></td>
+		<td align="center"><a href="https://github.com/VitorLamego"><img src="https://avatars.githubusercontent.com/u/54643464?s=460&u=43a46df920c57476dfe9abe953eba2b89f8f7ca0&v=4" width="100px;" alt=""/><br /><sub><b>Vitor Magalhães Lamego</b></sub></a><br /><a href="https://github.com/VitorLamego"></a></td>
+	</tr>
+</table>
+
+<!-- License -->
+## License
+GPLv3 © Hortum. Para demais informações acesse nossa [LICENSE](./LICENSE).
