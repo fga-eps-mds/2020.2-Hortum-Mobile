@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.2
+  splashscreen: ^1.2.0
   
   adaptive_theme: ^2.0.0
 

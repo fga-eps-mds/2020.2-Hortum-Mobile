@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/view/features/login/login_page.dart';
+import 'package:hortum_mobile/view/features/introScreen_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       builder: (theme, darkTheme) => MaterialApp(
         theme: theme,
         darkTheme: darkTheme,
-        home: LoginPage(),
+        home: IntroScreenPage(),
       ),
     );
   }
