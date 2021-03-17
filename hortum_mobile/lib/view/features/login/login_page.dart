@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hortum_mobile/data/api_http.dart';
+import 'package:hortum_mobile/data/login_backend.dart';
 
 class LoginPage extends StatefulWidget {
   //LoginPage({Key key) : super(key: key);
@@ -206,9 +206,9 @@ class _LoginPageState extends State<LoginPage> {
     print(email);
     print(password);
 
-    var response = await LoginApi.login(email, password);
+    var user = await LoginApi.login(email, password);
 
-    if (!response) {
+    if (user == null) {
       showDialog(
         context: context,
         builder: (context) {
