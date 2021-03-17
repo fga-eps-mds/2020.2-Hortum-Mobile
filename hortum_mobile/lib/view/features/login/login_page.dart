@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
+import 'package:hortum_mobile/view/features/introScreen_page.dart';
 
 class LoginPage extends StatefulWidget {
   //LoginPage({Key key) : super(key: key);
@@ -182,6 +183,57 @@ class _LoginPageState extends State<LoginPage> {
       child: TextButton(
         //Botão não tenho conta
         onPressed: () {
+          showDialog(
+            context: context,
+            barrierDismissible: true, // user must tap button!
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Não tenho uma conta:'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      Text('Informe seu perfil de usuário:'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => IntroScreenPage()));
+                    },
+                    child: Text(
+                      "Produtor",
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 19,
+                        color: Color.fromARGB(0xFF, 244, 156, 0),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => IntroScreenPage()));
+                    },
+                    child: Text(
+                      "Comprador",
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 19,
+                        color: Color.fromARGB(0xFF, 244, 156, 0),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+
           print("Não tenho uma conta");
         },
         child: Text(
