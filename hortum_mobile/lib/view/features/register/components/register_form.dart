@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/view/features/register/components/form_field..dart';
 
 class RegisterForm extends StatefulWidget {
   @override
   _RegisterFormState createState() => _RegisterFormState();
-  String _name = '';
-  String _email = '';
-  String _password = '';
-  String _confirm_password = '';
 }
 
 class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -50,6 +52,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               CustomFormField(
+                                controller: _name,
                                 obscureText: false,
                                 labelText: 'Nome',
                                 icon: Icon(Icons.face, color: Colors.black),
@@ -64,59 +67,56 @@ class _RegisterFormState extends State<RegisterForm> {
 
                                   return null;
                                 },
-                                onChanged: (String val) {
-                                  widget._name = val;
+                              ),
+                              CustomFormField(
+                                obscureText: false,
+                                labelText: 'E-mail',
+                                controller: _email,
+                                icon: Icon(Icons.email_outlined,
+                                    color: Colors.black),
+                                validator: (value) {
+                                  String patttern =
+                                      r"(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$)";
+                                  RegExp regExp = new RegExp(patttern);
+                                  if (value.length == 0) {
+                                    return "Informe o email";
+                                  } else if (!regExp.hasMatch(value)) {
+                                    return "Email inválido";
+                                  }
+
+                                  return null;
                                 },
                               ),
                               CustomFormField(
-                                  obscureText: false,
-                                  labelText: 'E-mail',
-                                  icon: Icon(Icons.email_outlined,
-                                      color: Colors.black),
-                                  validator: (value) {
-                                    String patttern =
-                                        r"(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$)";
-                                    RegExp regExp = new RegExp(patttern);
-                                    if (value.length == 0) {
-                                      return "Informe o email";
-                                    } else if (!regExp.hasMatch(value)) {
-                                      return "Email inválido";
-                                    }
+                                obscureText: true,
+                                labelText: 'Senha',
+                                controller: _password,
+                                icon:
+                                    Icon(Icons.lock_open, color: Colors.black),
+                                validator: (value) {
+                                  if (value.isEmpty)
+                                    return ' o campo é obrigatório';
 
-                                    return null;
-                                  },
-                                  onChanged: (value) =>
-                                      setState(() => widget._email = value)),
+                                  if (value.length > 30)
+                                    return "A senha deve conter menos de 30 dígitos";
+
+                                  return null;
+                                },
+                              ),
                               CustomFormField(
-                                  obscureText: true,
-                                  labelText: 'Senha',
-                                  icon: Icon(Icons.lock_open,
-                                      color: Colors.black),
-                                  validator: (value) {
-                                    if (value.isEmpty)
-                                      return ' o campo é obrigatório';
-
-                                    if (value.length > 30)
-                                      return "A senha deve conter menos de 30 dígitos";
-
-                                    return null;
-                                  },
-                                  onChanged: (value) =>
-                                      setState(() => widget._password = value)),
-                              CustomFormField(
-                                  obscureText: true,
-                                  labelText: 'Confirmar Senha',
-                                  icon: Icon(Icons.lock_open,
-                                      color: Colors.black),
-                                  validator: (value) {
-                                    if (value.isEmpty)
-                                      return ' o campo é obrigatório';
-                                    if (widget._password.compareTo(value) != 0)
-                                      return "A senha deve ser igual";
-                                    return null;
-                                  },
-                                  onChanged: (value) => setState(
-                                      () => widget._confirm_password = value)),
+                                obscureText: true,
+                                labelText: 'Confirmar Senha',
+                                controller: _confirmPassword,
+                                icon:
+                                    Icon(Icons.lock_open, color: Colors.black),
+                                validator: (value) {
+                                  if (value.isEmpty)
+                                    return ' o campo é obrigatório';
+                                  if (_password.text.compareTo(value) != 0)
+                                    return "A senha deve ser igual";
+                                  return null;
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -125,7 +125,10 @@ class _RegisterFormState extends State<RegisterForm> {
                           height: size.height * 0.05,
                           child: MaterialButton(
                               onPressed: () {
-                                if (_formKey.currentState.validate()) {}
+                                if (_formKey.currentState.validate()) {
+                                  registerUser(
+                                      _name.text, _email.text, _password.text);
+                                }
                               },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(80.0)),
