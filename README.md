@@ -39,7 +39,7 @@
 <!-- Ideias e Incentivos -->
 ## Ideias e Incentivos
 
-<p align="justify">&emsp; &emsp; A ideia do projeto surgiu relacionada ao site <a href="https://dfrural.emater.df.gov.br/poenacesta/"> PõeNaCesta </a> da EMATER-DF, que tem como princípio promover o contato direto entre produtor e consumidor sem a necessidade de intervenções e intermediações de mercados. Dessa forma, a plataforma Hortum incentivada pelo PõeNaCesta busca seguir com os mesmo princípios em um aplicativo de fácil utilização para todos os seus usuários. </p>
+<p align="justify">&emsp; &emsp; A ideia do projeto surgiu relacionada ao site <a href="https://dfrural.emater.df.gov.br/poenacesta/"> PõeNaCesta </a> da EMATER-DF, que tem como princípio promover o contato direto entre produtor e consumidor sem a necessidade de intervenções e intermediações de mercados. Dessa forma, a plataforma Hortum incentivada pelo PõeNaCesta busca seguir com os mesmos princípios em um aplicativo de fácil utilização para todos os seus usuários. </p>
 
 <!-- Funcionalidades Principais -->
 ## Principais Funcionalidades
@@ -59,7 +59,7 @@
 #### Obrigatórias
 |Tecnologias|Descrição|
 |-|-|
-|[Git](https://git-scm.com/)|`git` é uma ferramenta de versionamento de código `gratuito` e `open source`, capaz de lidar com tudo desde pequenos até projetos gigantes, com `velocidade` e `eficiência`.|
+|[Git](https://git-scm.com/)|`git` é uma ferramenta de versionamento de código `gratuito` e `open source`, capaz de lidar com tudo desde pequenos até grandes projetos, com `velocidade` e `eficiência`.|
 |[Flutter](https://flutter.dev/docs/get-started/install)| `flutter` é UI toolkit da Google de criação de bonitas aplicações compiladas nativamente, em mobile, web e desktop, de um simples código base, em linguagem `dart`.|
 
 <!-- Backend -->
