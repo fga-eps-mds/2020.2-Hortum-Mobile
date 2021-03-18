@@ -23,7 +23,7 @@ Widget _introScreen(context) {
   return Stack(
     children: <Widget>[
       SplashScreen(
-        seconds: 5,
+        seconds: 3,
         backgroundColor: Color.fromARGB(0xFF, 129, 182, 34),
         navigateAfterSeconds: LoginPage(),
         loaderColor: Colors.transparent,

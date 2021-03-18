@@ -24,12 +24,10 @@ dependencies:
   dio: ^3.0.10
   flutter:
     sdk: flutter
+  image_picker: ^0.6.7+22  
   http: ^0.12.2
   splashscreen: ^1.2.0
-  image_picker: ^0.6.7+22  
   adaptive_theme: ^2.0.0
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -58,23 +56,28 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    # - family: Comfortaa
+    #   fonts:
+    #     - asset: assets/fonts/Comfortaa-Regular.ttf
+    #     - asset: assets/fonts/Comfortaa-Light.ttf
+    #     - asset: assets/fonts/Comfortaa-Bold.ttf
+    #     - asset: assets/fonts/Comfortaa-Medium.ttf
+    #     - asset: assets/fonts/Comfortaa-SemiBold.ttf
+
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
         - asset: assets/fonts/Roboto-Light.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
         - asset: assets/fonts/Roboto-Medium.ttf  
-        - asset: assets/fonts/Roboto-Black.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

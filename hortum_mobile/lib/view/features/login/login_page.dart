@@ -201,7 +201,8 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                              builder: (context) =>
+                                  IntroScreenPage())); //substituir IntroPage pela RegisterPage()
                     },
                     child: Text(
                       "Produtor",
@@ -217,7 +218,8 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                              builder: (context) =>
+                                  IntroScreenPage())); //substituir IntroPage pela RegisterPage()
                     },
                     child: Text(
                       "Comprador",
@@ -251,9 +253,6 @@ class _LoginPageState extends State<LoginPage> {
 
     final email = emailController.text;
     final password = passwordController.text;
-
-    print(email);
-    print(password);
 
     var user = await LoginApi.login(email, password);
 
