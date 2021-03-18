@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class LoginApi {
   static Future<UserLogin> login(String email, String password) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var url = 'http://IPLOCAL:8000/api/token/';
+    var url = 'http://IPLOCAL:8000/login/';
     var header = {"Content-Type": "application/json"};
 
     Map params = {
