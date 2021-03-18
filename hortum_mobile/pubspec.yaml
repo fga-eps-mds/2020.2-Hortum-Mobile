@@ -21,11 +21,12 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  dio: ^3.0.10
   flutter:
     sdk: flutter
   http: ^0.12.2
   splashscreen: ^1.2.0
-  
+  image_picker: ^0.6.7+22  
   adaptive_theme: ^2.0.0
 
 
@@ -50,7 +51,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/logo.png
+    - assets/fonts/
+    - assets/images/logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -68,8 +70,11 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: fonts/Roboto/Roboto-Regular.ttf
-        - asset: fonts/Roboto/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf  
+        - asset: assets/fonts/Roboto-Black.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

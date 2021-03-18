@@ -33,7 +33,7 @@ Widget _introScreen(context) {
           height: MediaQuery.of(context).size.height / 3,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("images/logo.png"),
+              image: AssetImage("assets/images/logo.png"),
               fit: BoxFit.contain,
             ),
           ),

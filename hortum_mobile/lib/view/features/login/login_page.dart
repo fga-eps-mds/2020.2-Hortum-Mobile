@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         height: MediaQuery.of(context).size.height / 4,
         child: Align(
           alignment: Alignment.center,
-          child: Image.asset("images/logo.png"),
+          child: Image.asset("assets/images/logo.png"),
         ),
       ),
     );
@@ -188,7 +188,6 @@ class _LoginPageState extends State<LoginPage> {
             barrierDismissible: true, // user must tap button!
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text('Não tenho uma conta:'),
                 content: SingleChildScrollView(
                   child: ListBody(
                     children: <Widget>[
@@ -202,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => IntroScreenPage()));
+                              builder: (context) => RegisterPage()));
                     },
                     child: Text(
                       "Produtor",
@@ -218,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => IntroScreenPage()));
+                              builder: (context) => RegisterPage()));
                     },
                     child: Text(
                       "Comprador",
@@ -233,8 +232,6 @@ class _LoginPageState extends State<LoginPage> {
               );
             },
           );
-
-          print("Não tenho uma conta");
         },
         child: Text(
           "Não tenho uma conta",
