@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:hortum_mobile/model/userLogin.dart';
+import 'package:hortum_mobile/model/userToken.dart';
 import 'package:http/http.dart' as http;
 
 class LoginApi {
-  static Future<UserLogin> login(String email, String password) async {
+  static Future<UserToken> login(String email, String password) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     var url = 'http://IPLOCAL:8000/login/';
     var header = {"Content-Type": "application/json"};
@@ -17,14 +17,16 @@ class LoginApi {
     var response = await http.post(url, headers: header, body: _body);
     Map mapResponse = json.decode(response.body);
 
-    UserLogin user;
+    UserToken tokens;
 
     if (response.statusCode == 200) {
-      user = UserLogin.fromJson(mapResponse);
+      tokens = UserToken.fromJson(mapResponse);
+      tokens.writeSecureData('token_refresh', tokens.tokenRefresh);
+      tokens.writeSecureData('token_access', tokens.tokenAccess);
     } else {
-      user = null;
+      tokens = null;
     }
 
-    return user;
+    return tokens;
   }
 }
