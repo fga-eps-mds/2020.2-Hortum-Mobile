@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
-import 'package:hortum_mobile/view/features/introScreen_page.dart';
 
 import '../register/page/register_page.dart';
 
 class LoginPage extends StatefulWidget {
-  //LoginPage({Key key) : super(key: key);
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -203,8 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  RegisterPage())); //substituir IntroPage pela RegisterPage()
+                              builder: (context) => RegisterPage()));
                     },
                     child: Text(
                       "Produtor",
@@ -220,8 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  RegisterPage())); //substituir IntroPage pela RegisterPage()
+                              builder: (context) => RegisterPage()));
                     },
                     child: Text(
                       "Comprador",
@@ -272,8 +267,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             actions: [
-              // ignore: deprecated_member_use
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },

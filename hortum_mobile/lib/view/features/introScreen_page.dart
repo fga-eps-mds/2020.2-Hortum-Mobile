@@ -5,9 +5,6 @@ import 'package:splashscreen/splashscreen.dart';
 import 'login/login_page.dart';
 
 class IntroScreenPage extends StatefulWidget {
-  //IntroScreenPage({Key key, this.title}) : super(key: key);
-  //final String title;
-
   @override
   _IntroScreenPageState createState() => _IntroScreenPageState();
 }
