@@ -126,7 +126,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           child: MaterialButton(
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
-                                  registerUser(
+                                  RegisterApi.register(
                                       _name.text, _email.text, _password.text);
                                 }
                               },
