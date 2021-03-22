@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/view/features/register/components/register_form.dart';
+import 'package:hortum_mobile/views/register/components/register_form.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterPage extends StatefulWidget {
