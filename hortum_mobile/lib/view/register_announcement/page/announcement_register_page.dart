@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/components/photo_select.dart';
+import 'package:hortum_mobile/view/register_announcement/components/announ_register_form.dart';
 
 class RegisterAnnounPage extends StatefulWidget {
   @override
@@ -16,12 +17,10 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: size.height * 0.06),
+          margin: EdgeInsets.only(top: size.height * 0.01),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              PhotoSelecter(),
-            ],
+            children: <Widget>[PhotoSelecter(), AnnounRegisterForm()],
           ),
         ),
       ),
