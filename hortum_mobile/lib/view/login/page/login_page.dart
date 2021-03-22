@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
-
-import '../register/page/register_page.dart';
+import '../../register/page/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override

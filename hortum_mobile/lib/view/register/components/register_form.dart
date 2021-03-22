@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/register_backend.dart';
-import 'package:hortum_mobile/view/features/register/components/form_field.dart';
+import 'package:hortum_mobile/components/form_field.dart';
 
 class RegisterForm extends StatefulWidget {
   @override

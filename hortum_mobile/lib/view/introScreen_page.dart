@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
-
-import 'login/login_page.dart';
+import 'login/page/login_page.dart';
 
 class IntroScreenPage extends StatefulWidget {
   @override
