@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/register_backend.dart';
-import 'package:hortum_mobile/view/features/register/components/form_field..dart';
+import 'package:hortum_mobile/view/features/register/components/form_field.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -126,7 +126,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           child: MaterialButton(
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
-                                  registerUser(
+                                  RegisterApi.register(
                                       _name.text, _email.text, _password.text);
                                 }
                               },

@@ -1,5 +1,6 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/view/features/register/page/register_page.dart';
+import 'package:hortum_mobile/view/features/introScreen_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,14 +9,22 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Roboto-Regular',
-        primarySwatch: Colors.blue,
+    return AdaptiveTheme(
+      // Adapta o tema
+      light: ThemeData(
+        brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: RegisterPage(),
+      dark: ThemeData(
+        brightness: Brightness.dark,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      initial: AdaptiveThemeMode.system, //inicia o app com o tema do sistema
+      builder: (theme, darkTheme) => MaterialApp(
+        theme: theme,
+        darkTheme: darkTheme,
+        home: IntroScreenPage(),
+      ),
     );
   }
 }
