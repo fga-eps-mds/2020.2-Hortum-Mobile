@@ -10,7 +10,7 @@ class CustomFormField extends StatefulWidget {
       {@required this.labelText,
       @required this.icon,
       @required this.validator,
-      @required this.obscureText,
+      this.obscureText,
       @required this.controller,
       Key key})
       : super(key: key);
@@ -22,7 +22,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: widget.obscureText,
+      obscureText: (widget.obscureText == null ? false : widget.obscureText),
       decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 1.5)),

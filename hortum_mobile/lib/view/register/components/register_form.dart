@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 
@@ -53,7 +54,6 @@ class _RegisterFormState extends State<RegisterForm> {
                             children: [
                               CustomFormField(
                                 controller: _name,
-                                obscureText: false,
                                 labelText: 'Nome',
                                 icon: Icon(Icons.face, color: Colors.black),
                                 validator: (value) {
@@ -69,7 +69,6 @@ class _RegisterFormState extends State<RegisterForm> {
                                 },
                               ),
                               CustomFormField(
-                                obscureText: false,
                                 labelText: 'E-mail',
                                 controller: _email,
                                 icon: Icon(Icons.email_outlined,
@@ -120,47 +119,15 @@ class _RegisterFormState extends State<RegisterForm> {
                             ],
                           ),
                         ),
-                        Container(
-                          width: size.width * 0.44,
-                          height: size.height * 0.05,
-                          child: MaterialButton(
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  RegisterApi.register(
-                                      _name.text, _email.text, _password.text);
-                                }
-                              },
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80.0)),
-                              elevation: 0.0,
-                              padding: EdgeInsets.all(0.0),
-                              child: Ink(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF81B622),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.25),
-                                        spreadRadius: 0,
-                                        blurRadius: 4.0,
-                                        offset: Offset(0, 4))
-                                  ],
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                      maxWidth: 300.0, minHeight: 50.0),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "CADASTRAR",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Roboto-Bold',
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              )),
-                        ),
+                        ConfirmButton(
+                            labelButton: "CADASTRAR",
+                            colorButton: Color(0xFF81B622),
+                            onClickAction: () {
+                              if (_formKey.currentState.validate()) {
+                                RegisterApi.register(
+                                    _name.text, _email.text, _password.text);
+                              }
+                            }),
                       ],
                     ),
                   )))),
