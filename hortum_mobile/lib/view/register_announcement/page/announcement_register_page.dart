@@ -18,18 +18,16 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            margin: EdgeInsets.only(top: size.height * 0.01),
-            child: ListView(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    PhotoSelecter(),
-                    AnnounRegisterForm(),
-                  ],
-                )
-              ],
+          SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.only(top: size.height * 0.01),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  PhotoSelecter(),
+                  AnnounRegisterForm(),
+                ],
+              ),
             ),
           ),
           Footer(),

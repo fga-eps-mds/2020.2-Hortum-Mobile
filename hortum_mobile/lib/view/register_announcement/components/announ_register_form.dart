@@ -70,6 +70,12 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       Icons.filter_alt_outlined,
                       color: Colors.black,
                     ),
+                    validator: (value) {
+                      if (value == null) {
+                        return "Informe a categoria do produto";
+                      }
+                      return null;
+                    },
                   ),
                   CustomFormField(
                       labelText: 'Preço',
@@ -83,7 +89,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         if (value.length == 0) {
                           return "Informe o preço";
                         } else if (!regExp.hasMatch(value)) {
-                          return "O preço deve possuir caracters de 0-9 separados por . caso necessário";
+                          return "O preço deve possuir caracters de 0-9 separados por .";
                         }
                         return null;
                       },
