@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
+  bool _isProductor = false;
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -197,10 +198,12 @@ class _LoginPageState extends State<LoginPage> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
+                      _isProductor = true;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                              builder: (context) =>
+                                  RegisterPage(_isProductor)));
                     },
                     child: Text(
                       "Produtor",
@@ -213,10 +216,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
+                      _isProductor = false;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                              builder: (context) =>
+                                  RegisterPage(_isProductor)));
                     },
                     child: Text(
                       "Comprador",
