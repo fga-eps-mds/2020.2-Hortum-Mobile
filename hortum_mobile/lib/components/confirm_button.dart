@@ -18,10 +18,10 @@ class _ConfirmButtonState extends State<ConfirmButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(85, 8, 85, 8),
+      padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 56, vertical: 8),
           primary: widget.colorButton,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15))),
