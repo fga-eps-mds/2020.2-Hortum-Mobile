@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
+import 'package:hortum_mobile/view/register_announcement/components/select_field.dart';
 
 class AnnounRegisterForm extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _titulo = TextEditingController();
   final TextEditingController _localizacao = TextEditingController();
+  final TextEditingController _categoria = TextEditingController();
   final TextEditingController _preco = TextEditingController();
   final TextEditingController _descricao = TextEditingController();
 
@@ -26,7 +28,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
             key: _formKey,
             child: Container(
               height: size.height * 0.58,
-              margin: EdgeInsets.only(bottom: size.height * 0.02),
+              margin: EdgeInsets.only(bottom: size.height * 0.15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -62,6 +64,13 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         return null;
                       },
                       controller: _localizacao),
+                  SelectFormField(
+                    labelText: 'Categoria',
+                    icon: Icon(
+                      Icons.filter_alt_outlined,
+                      color: Colors.black,
+                    ),
+                  ),
                   CustomFormField(
                       labelText: 'Preço',
                       icon: Icon(
