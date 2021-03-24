@@ -46,7 +46,7 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
                     borderRadius: BorderRadius.circular(70)),
                 child: Icon(
                   Icons.add_a_photo,
-                  size: 40,
+                  size: size.height * 0.05,
                 ),
                 onPressed: () async {
                   final pickedFile =

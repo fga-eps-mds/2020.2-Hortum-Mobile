@@ -29,7 +29,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
           child: Form(
             key: _formKey,
             child: Container(
-              height: size.height * 0.58,
+              height: size.height * 0.60,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
