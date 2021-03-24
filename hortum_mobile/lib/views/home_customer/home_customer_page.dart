@@ -9,6 +9,8 @@ class CustomerHomePage extends StatefulWidget {
 }
 
 class _CustomerHomePageState extends State<CustomerHomePage> {
+  final TextEditingController _filter = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -79,6 +81,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                         contentPadding:
                             EdgeInsets.only(bottom: size.height * 0.018)),
                     cursorColor: Colors.black.withOpacity(0.2),
+                    controller: _filter,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
                   )),
               Container(
                 height: size.height * 0.45,
@@ -89,13 +95,19 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   itemCount: announcements.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
-                    return AnnouncementBox(
-                        profilePic: announcements[index]['profilePic'],
-                        name: announcements[index]['name'],
-                        title: announcements[index]['title'],
-                        localization: announcements[index]['localization'],
-                        price: announcements[index]['price'],
-                        productPic: announcements[index]['productPic']);
+                    if (announcements[index]['title']
+                        .toString()
+                        .toLowerCase()
+                        .contains(_filter.text.toLowerCase())) {
+                      return AnnouncementBox(
+                          profilePic: announcements[index]['profilePic'],
+                          name: announcements[index]['name'],
+                          title: announcements[index]['title'],
+                          localization: announcements[index]['localization'],
+                          price: announcements[index]['price'],
+                          productPic: announcements[index]['productPic']);
+                    }
+                    return Container();
                   },
                 ),
               ),
