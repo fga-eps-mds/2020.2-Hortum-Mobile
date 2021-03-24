@@ -5,11 +5,15 @@ import 'package:hortum_mobile/view/register/components/register_form.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterPage extends StatefulWidget {
+  final bool _isProductor;
+  RegisterPage(this._isProductor);
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterPageState createState() => _RegisterPageState(_isProductor);
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final bool _isProductor;
+  _RegisterPageState(this._isProductor);
   final picker = ImagePicker();
   File _image;
   Widget build(BuildContext context) {
@@ -74,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   )),
-              RegisterForm(),
+              RegisterForm(_isProductor),
             ],
           ),
         ),
