@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/data/announ_register_backend.dart';
@@ -76,7 +77,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       }
                       return null;
                     },
-                    listValues: ['Linguiça artesanal e defumados'],
+                    listValues: announcementsCategories,
                     controller: _categoria,
                   ),
                   CustomFormField(
