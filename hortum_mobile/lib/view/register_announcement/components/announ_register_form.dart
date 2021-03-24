@@ -111,18 +111,21 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         return null;
                       },
                       controller: _descricao),
-                  ConfirmButton(
-                      labelButton: "CRIAR",
-                      colorButton: Color(0xFFF49C00),
-                      onClickAction: () {
-                        if (_formKey.currentState.validate()) {
-                          RegisterAnnounApi.registerAnnoun(
-                              _titulo.text,
-                              _descricao.text,
-                              double.parse(_preco.text),
-                              _categoria.text);
-                        }
-                      }),
+                  Container(
+                    margin: EdgeInsets.only(bottom: size.height * 0.05),
+                    child: ConfirmButton(
+                        labelButton: "CRIAR",
+                        colorButton: Color(0xFFF49C00),
+                        onClickAction: () {
+                          if (_formKey.currentState.validate()) {
+                            RegisterAnnounApi.registerAnnoun(
+                                _titulo.text,
+                                _descricao.text,
+                                double.parse(_preco.text),
+                                _categoria.text);
+                          }
+                        }),
+                  )
                 ],
               ),
             ),

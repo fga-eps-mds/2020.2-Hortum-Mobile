@@ -25,10 +25,12 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
                 height: size.height,
                 child: Column(
                   children: <Widget>[
-                    PhotoSelecter(),
                     Container(
-                        height: size.height * 0.43,
-                        child: ListView(children: [AnnounRegisterForm()])),
+                        height: size.height * 0.9,
+                        child: ListView(children: [
+                          PhotoSelecter(),
+                          AnnounRegisterForm(),
+                        ])),
                   ],
                 ),
               ),

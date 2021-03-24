@@ -20,7 +20,7 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
       decoration: BoxDecoration(color: Colors.white),
       child: Container(
         width: double.infinity,
-        height: 300,
+        height: size.height * 0.4,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
