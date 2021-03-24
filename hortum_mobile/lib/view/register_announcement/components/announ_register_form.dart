@@ -22,16 +22,15 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(40, 8, 40, 0),
+      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
       child: Container(
         child: Center(
           child: Form(
             key: _formKey,
             child: Container(
               height: size.height * 0.58,
-              margin: EdgeInsets.only(bottom: size.height * 0.15),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomFormField(
                       labelText: 'Titulo',

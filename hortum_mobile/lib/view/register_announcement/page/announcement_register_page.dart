@@ -16,22 +16,26 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.only(top: size.height * 0.01),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  PhotoSelecter(),
-                  AnnounRegisterForm(),
-                ],
+      body: SingleChildScrollView(
+        child: Container(
+          height: size.height,
+          child: Stack(
+            children: [
+              Container(
+                height: size.height,
+                child: Column(
+                  children: <Widget>[
+                    PhotoSelecter(),
+                    Container(
+                        height: size.height * 0.43,
+                        child: ListView(children: [AnnounRegisterForm()])),
+                  ],
+                ),
               ),
-            ),
+              Footer(),
+            ],
           ),
-          Footer(),
-        ],
+        ),
       ),
     );
   }
