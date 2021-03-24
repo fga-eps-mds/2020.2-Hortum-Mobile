@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/view/features/introScreen_page.dart';
+import 'package:hortum_mobile/view/introScreen_page.dart';
 
 void main() {
   runApp(MyApp());
