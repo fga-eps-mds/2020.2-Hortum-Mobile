@@ -13,6 +13,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(children: [
         SingleChildScrollView(
           child: Column(
@@ -81,6 +82,8 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   )),
               Container(
                 height: size.height * 0.45,
+                padding: EdgeInsets.only(
+                    right: size.width * 0.05, left: size.width * 0.05),
                 margin: EdgeInsets.only(top: size.height * 0.06),
                 child: ListView.builder(
                   itemCount: announcements.length,
