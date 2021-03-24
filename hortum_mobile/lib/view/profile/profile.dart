@@ -17,6 +17,7 @@ class _UserProfileState extends State<UserProfile> {
   final TextEditingController _email =
       TextEditingController(text: "fernando@gmail.com");
   final picker = ImagePicker();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,93 +64,99 @@ class _UserProfileState extends State<UserProfile> {
                     Container(
                       height: size.height * 0.5,
                       child: ListView(
-                        children: [
+                        children: <Widget>[
                           Container(
-                            height: size.height * 0.4,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomFormField(
-                                  controller: _name,
-                                  obscureText: false,
-                                  labelText: 'Nome',
-                                  icon: Icon(Icons.face, color: Colors.black),
-                                  validator: (value) {
-                                    String patttern = r'(^[a-zA-Z ]*$)';
-                                    RegExp regExp = new RegExp(patttern);
-                                    if (value.length == 0) {
-                                      return "Informe o nome";
-                                    } else if (!regExp.hasMatch(value)) {
-                                      return "O nome deve conter caracteres de a-z ou A-Z";
-                                    }
+                            height: size.height * 0.35,
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomFormField(
+                                    controller: _name,
+                                    obscureText: false,
+                                    labelText: 'Nome',
+                                    icon: Icon(Icons.face, color: Colors.black),
+                                    validator: (value) {
+                                      String patttern = r'(^[a-zA-Z ]*$)';
+                                      RegExp regExp = new RegExp(patttern);
+                                      if (value.length == 0) {
+                                        return "Informe o nome";
+                                      } else if (!regExp.hasMatch(value)) {
+                                        return "O nome deve conter caracteres de a-z ou A-Z";
+                                      }
 
-                                    return null;
-                                  },
-                                ),
-                                CustomFormField(
-                                  obscureText: false,
-                                  labelText: 'E-mail',
-                                  controller: _email,
-                                  icon: Icon(Icons.email_outlined,
-                                      color: Colors.black),
-                                  validator: (value) {
-                                    String patttern =
-                                        r"(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$)";
-                                    RegExp regExp = new RegExp(patttern);
-                                    if (value.length == 0) {
-                                      return "Informe o email";
-                                    } else if (!regExp.hasMatch(value)) {
-                                      return "Email inválido";
-                                    }
+                                      return null;
+                                    },
+                                  ),
+                                  CustomFormField(
+                                    obscureText: false,
+                                    labelText: 'E-mail',
+                                    controller: _email,
+                                    icon: Icon(Icons.email_outlined,
+                                        color: Colors.black),
+                                    validator: (value) {
+                                      String patttern =
+                                          r"(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$)";
+                                      RegExp regExp = new RegExp(patttern);
+                                      if (value.length == 0) {
+                                        return "Informe o email";
+                                      } else if (!regExp.hasMatch(value)) {
+                                        return "Email inválido";
+                                      }
 
-                                    return null;
-                                  },
-                                ),
-                                CustomFormField(
-                                  obscureText: true,
-                                  labelText: 'Senha',
-                                  controller: _password,
-                                  icon: Icon(Icons.lock_open,
-                                      color: Colors.black),
-                                  validator: (value) {
-                                    if (value.isEmpty)
-                                      return ' o campo é obrigatório';
+                                      return null;
+                                    },
+                                  ),
+                                  CustomFormField(
+                                    obscureText: true,
+                                    labelText: 'Senha',
+                                    controller: _password,
+                                    icon: Icon(Icons.lock_open,
+                                        color: Colors.black),
+                                    validator: (value) {
+                                      if (value.isEmpty)
+                                        return ' o campo é obrigatório';
 
-                                    if (value.length > 30)
-                                      return "A senha deve conter menos de 30 dígitos";
+                                      if (value.length > 30)
+                                        return "A senha deve conter menos de 30 dígitos";
 
-                                    return null;
-                                  },
-                                ),
-                                CustomFormField(
-                                  obscureText: true,
-                                  labelText: 'Confirmar Senha',
-                                  controller: _confirmPassword,
-                                  icon: Icon(Icons.lock_open,
-                                      color: Colors.black),
-                                  validator: (value) {
-                                    if (value.isEmpty)
-                                      return ' o campo é obrigatório';
-                                    if (_password.text.compareTo(value) != 0)
-                                      return "A senha deve ser igual";
-                                    return null;
-                                  },
-                                ),
-                              ],
+                                      return null;
+                                    },
+                                  ),
+                                  CustomFormField(
+                                    obscureText: true,
+                                    labelText: 'Confirmar Senha',
+                                    controller: _confirmPassword,
+                                    icon: Icon(Icons.lock_open,
+                                        color: Colors.black),
+                                    validator: (value) {
+                                      if (value.isEmpty)
+                                        return ' o campo é obrigatório';
+                                      if (_password.text.compareTo(value) != 0)
+                                        return "A senha deve ser igual";
+                                      return null;
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           MaterialButton(
                               onPressed: () {
-                                print(_name.text);
-                                print(_email.text);
-                                print(_password.text);
-                                print(_confirmPassword.text);
+                                if (_formKey.currentState.validate()) {
+                                  print(_name.text);
+                                  print(_email.text);
+                                  print(_password.text);
+                                  print(_confirmPassword.text);
+                                }
                               },
                               child: Container(
                                 width: size.width * 0.5,
                                 height: size.height * 0.04,
                                 margin:
-                                    EdgeInsets.only(top: size.height * 0.06),
+                                    EdgeInsets.only(top: size.height * 0.04),
                                 decoration: BoxDecoration(
                                   color: Color(0xff75CE90),
                                   borderRadius:
@@ -164,10 +171,13 @@ class _UserProfileState extends State<UserProfile> {
                                 ),
                               )),
                           MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              print("Sair");
+                            },
                             child: Text(
                               "Sair",
                               style: TextStyle(
+                                  fontSize: 15.0,
                                   decoration: TextDecoration.underline,
                                   color: Color(0xff219653)),
                             ),
