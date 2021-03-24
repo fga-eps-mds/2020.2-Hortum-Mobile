@@ -23,13 +23,13 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+      padding: const EdgeInsets.fromLTRB(40, 0, 40, 80),
       child: Container(
         child: Center(
           child: Form(
             key: _formKey,
             child: Container(
-              height: size.height * 0.60,
+              height: size.height * 0.62,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
