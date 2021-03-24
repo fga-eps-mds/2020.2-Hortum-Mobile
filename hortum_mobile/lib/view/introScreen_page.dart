@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/view/profile/profile.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 import 'login/login_page.dart';
