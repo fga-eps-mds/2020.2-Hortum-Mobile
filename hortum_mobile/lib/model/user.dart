@@ -1,15 +1,27 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class UserToken {
+class User {
   String tokenRefresh;
   String tokenAccess;
+  String email;
+  String username;
+  bool isProductor;
   final _storage = new FlutterSecureStorage();
 
-  UserToken({this.tokenRefresh, this.tokenAccess});
+  User(
+      {this.tokenRefresh,
+      this.tokenAccess,
+      this.email,
+      this.username,
+      this.isProductor});
 
-  factory UserToken.fromJson(Map<String, dynamic> json) {
-    return UserToken(
-        tokenRefresh: json['refresh'], tokenAccess: json['access']);
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        tokenRefresh: json['refresh'],
+        tokenAccess: json['access'],
+        email: json['email'],
+        username: json['username'],
+        isProductor: json['is_productor']);
   }
 
   Future writeSecureData(String key, String value) async {
