@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 
 class SelectFormField extends StatefulWidget {
   final String labelText;
+  final List<String> listValues;
   final Icon icon;
   final Function validator;
+  final TextEditingController controller;
   const SelectFormField(
       {@required this.labelText,
+      @required this.listValues,
       @required this.icon,
       @required this.validator,
+      @required this.controller,
       Key key})
       : super(key: key);
   @override
@@ -16,7 +20,6 @@ class SelectFormField extends StatefulWidget {
 
 class _SelectFormFieldState extends State<SelectFormField> {
   String _currentSelectedValue = '';
-  var _teste = ['fvdvss', 'vbvdb', 'fasfasf'];
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,10 @@ class _SelectFormFieldState extends State<SelectFormField> {
       onChanged: (String newValue) {
         setState(() {
           _currentSelectedValue = newValue;
+          widget.controller.text = newValue;
         });
       },
-      items: _teste.map<DropdownMenuItem<String>>((String value) {
+      items: widget.listValues.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),

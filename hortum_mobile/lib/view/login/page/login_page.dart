@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
-import '../../register/page/register_page.dart';
+import 'package:hortum_mobile/view/register/page/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 8, 40, 0),
       child: TextFormField(
-        //TextFiled password
+        //TextField password
         obscureText: _isObscure,
         controller: passwordController,
         validator: _validaPassword,

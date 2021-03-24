@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
+import 'package:hortum_mobile/data/announ_register_backend.dart';
 import 'package:hortum_mobile/view/register_announcement/components/select_field.dart';
 
 class AnnounRegisterForm extends StatefulWidget {
@@ -76,6 +77,8 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       }
                       return null;
                     },
+                    listValues: ['Linguiça artesanal e defumados'],
+                    controller: _categoria,
                   ),
                   CustomFormField(
                       labelText: 'Preço',
@@ -114,7 +117,11 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       colorButton: Color(0xFFF49C00),
                       onClickAction: () {
                         if (_formKey.currentState.validate()) {
-                          print("valido");
+                          RegisterAnnounApi.registerAnnoun(
+                              _titulo.text,
+                              _descricao.text,
+                              double.parse(_preco.text),
+                              _categoria.text);
                         }
                       }),
                 ],

@@ -3,13 +3,16 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class UserToken {
   String tokenRefresh;
   String tokenAccess;
+  String userEmail;
   final _storage = new FlutterSecureStorage();
 
-  UserToken({this.tokenRefresh, this.tokenAccess});
+  UserToken();
 
   factory UserToken.fromJson(Map<String, dynamic> json) {
-    return UserToken(
-        tokenRefresh: json['refresh'], tokenAccess: json['access']);
+    UserToken userToken = new UserToken();
+    userToken.tokenRefresh = json['refresh'];
+    userToken.tokenAccess = json['access'];
+    return userToken;
   }
 
   Future writeSecureData(String key, String value) async {

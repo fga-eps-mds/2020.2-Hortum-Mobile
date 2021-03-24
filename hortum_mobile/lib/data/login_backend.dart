@@ -21,6 +21,7 @@ class LoginApi {
 
     if (response.statusCode == 200) {
       tokens = UserToken.fromJson(mapResponse);
+      tokens.writeSecureData('email', email);
       tokens.writeSecureData('token_refresh', tokens.tokenRefresh);
       tokens.writeSecureData('token_access', tokens.tokenAccess);
     } else {
