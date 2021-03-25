@@ -17,6 +17,7 @@ class LoginApi {
     String _body = json.encode(params);
     var response = await http.post(url, headers: header, body: _body);
     Map mapResponse = json.decode(response.body);
+    mapResponse['password'] = password;
 
     if (response.statusCode == 200) {
       actualUser = User.fromJson(mapResponse);
