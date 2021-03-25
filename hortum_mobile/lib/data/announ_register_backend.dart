@@ -1,19 +1,19 @@
 import 'dart:convert';
-import 'package:hortum_mobile/model/userToken.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterAnnounApi {
   static Future registerAnnoun(
       String name, String description, double price, String category) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    String userAccessToken = await UserToken().readSecureData('token_access');
+    String userAccessToken = await actualUser.readSecureData('token_access');
     var url = 'http://IPLOCAL:8000/announcement/create';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
     };
 
-    String email = await UserToken().readSecureData('email');
+    String email = await actualUser.readSecureData('email');
     Map params = {
       "email": email,
       "name": name,

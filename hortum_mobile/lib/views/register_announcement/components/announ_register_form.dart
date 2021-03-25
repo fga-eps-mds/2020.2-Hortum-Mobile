@@ -3,7 +3,7 @@ import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/data/announ_register_backend.dart';
-import 'package:hortum_mobile/view/register_announcement/components/select_field.dart';
+import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
 
 class AnnounRegisterForm extends StatefulWidget {
   @override
