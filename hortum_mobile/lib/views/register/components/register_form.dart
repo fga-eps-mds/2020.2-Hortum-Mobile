@@ -4,11 +4,15 @@ import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 
 class RegisterForm extends StatefulWidget {
+  final bool _isProductor;
+  RegisterForm(this._isProductor);
   @override
-  _RegisterFormState createState() => _RegisterFormState();
+  _RegisterFormState createState() => _RegisterFormState(_isProductor);
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final bool _isProductor;
+  _RegisterFormState(this._isProductor);
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _confirmPassword = TextEditingController();
