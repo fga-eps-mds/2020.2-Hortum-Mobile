@@ -47,7 +47,7 @@ class _UserProfileState extends State<UserProfile> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(
-                          top: size.height * 0.15, bottom: size.height * 0.05),
+                          top: size.height * 0.05, bottom: size.height * 0.05),
                       width: size.width * 0.3,
                       height: size.width * 0.3,
                       child: ClipRRect(
@@ -62,11 +62,11 @@ class _UserProfileState extends State<UserProfile> {
                       ),
                     ),
                     Container(
-                      height: size.height * 0.5,
+                      height: size.height * 0.6,
                       child: Column(
                         children: <Widget>[
                           Container(
-                            height: size.height * 0.35,
+                            height: size.height * 0.4,
                             child: Form(
                               key: _formKey,
                               child: Column(
@@ -156,7 +156,7 @@ class _UserProfileState extends State<UserProfile> {
                                 width: size.width * 0.5,
                                 height: size.height * 0.04,
                                 margin:
-                                    EdgeInsets.only(top: size.height * 0.04),
+                                    EdgeInsets.only(top: size.height * 0.03),
                                 decoration: BoxDecoration(
                                   color: Color(0xff75CE90),
                                   borderRadius:
@@ -192,7 +192,7 @@ class _UserProfileState extends State<UserProfile> {
                 alignment: Alignment.topCenter,
                 child: Container(
                   margin: EdgeInsets.only(
-                      top: size.height * 0.25, left: size.width * 0.25),
+                      top: size.height * 0.15, left: size.width * 0.25),
                   width: size.width * 0.12,
                   height: size.width * 0.12,
                   decoration: BoxDecoration(
