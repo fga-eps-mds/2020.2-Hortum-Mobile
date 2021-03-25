@@ -129,7 +129,11 @@ class _RegisterFormState extends State<RegisterForm> {
                             onClickAction: () {
                               if (_formKey.currentState.validate()) {
                                 RegisterApi.register(
-                                    _name.text, _email.text, _password.text);
+                                  _name.text,
+                                  _email.text,
+                                  _password.text,
+                                  _isProductor,
+                                );
                               }
                             }),
                       ],

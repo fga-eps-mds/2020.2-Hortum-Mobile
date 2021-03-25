@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
-import 'package:hortum_mobile/views/register/page/register_page.dart';
+import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
+import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
+import '../../register/page/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
+  bool _isProductor = false;
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -81,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 8, 40, 0),
       child: TextFormField(
-        //TextField password
+        //TextFiled password
         obscureText: _isObscure,
         controller: passwordController,
         validator: _validaPassword,
@@ -196,10 +199,12 @@ class _LoginPageState extends State<LoginPage> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
+                      _isProductor = true;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                              builder: (context) =>
+                                  RegisterPage(_isProductor)));
                     },
                     child: Text(
                       "Produtor",
@@ -212,10 +217,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
+                      _isProductor = false;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                              builder: (context) =>
+                                  RegisterPage(_isProductor)));
                     },
                     child: Text(
                       "Comprador",
@@ -283,6 +290,16 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       );
+    } else {
+      if (user.isProductor) {
+        return Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return ProductorHomePage();
+        }));
+      } else {
+        return Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return CustomerHomePage();
+        }));
+      }
     }
   }
 }
