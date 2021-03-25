@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
+import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
+import 'package:hortum_mobile/views/profile/profile.dart';
 
 class Footer extends StatelessWidget {
   @override
@@ -27,12 +31,7 @@ class Footer extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(left: size.width * 0.08),
                     child: MaterialButton(
-                      onPressed: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return null;
-                        // }));
-                      },
+                      onPressed: () {},
                       child: Container(
                         padding: EdgeInsets.only(right: size.width * 0.2),
                         child: Column(
@@ -62,10 +61,10 @@ class Footer extends StatelessWidget {
                     margin: EdgeInsets.only(right: size.width * 0.08),
                     child: MaterialButton(
                       onPressed: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return null;
-                        // }));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return UserProfile();
+                        }));
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -112,9 +111,12 @@ class Footer extends StatelessWidget {
                       color: Colors.white, size: 30),
                 ),
                 onPressed: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //   return null;
-                  // }));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    if (actualUser.isProductor)
+                      return ProductorHomePage();
+                    else
+                      return CustomerHomePage();
+                  }));
                 },
               ),
             ),

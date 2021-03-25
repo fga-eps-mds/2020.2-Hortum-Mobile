@@ -5,6 +5,7 @@ class User {
   String tokenAccess;
   String email;
   String username;
+  String password;
   bool isProductor;
   final _storage = new FlutterSecureStorage();
 
@@ -13,6 +14,7 @@ class User {
       this.tokenAccess,
       this.email,
       this.username,
+      this.password,
       this.isProductor});
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -21,6 +23,7 @@ class User {
         tokenAccess: json['access'],
         email: json['email'],
         username: json['username'],
+        password: json['password'],
         isProductor: json['is_productor']);
   }
 
