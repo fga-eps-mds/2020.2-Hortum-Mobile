@@ -24,6 +24,7 @@ class _SelectFormFieldState extends State<SelectFormField> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      isExpanded: true,
       decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 1.5)),
