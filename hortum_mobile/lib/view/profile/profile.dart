@@ -63,7 +63,7 @@ class _UserProfileState extends State<UserProfile> {
                     ),
                     Container(
                       height: size.height * 0.5,
-                      child: ListView(
+                      child: Column(
                         children: <Widget>[
                           Container(
                             height: size.height * 0.35,
