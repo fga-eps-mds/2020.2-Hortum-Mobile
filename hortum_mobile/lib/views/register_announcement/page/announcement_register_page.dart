@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-// import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/photo_select.dart';
 import 'package:hortum_mobile/views/register_announcement/components/announ_register_form.dart';
 
@@ -26,7 +26,7 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                        height: size.height,
+                        height: size.height * 0.9,
                         child: ListView(children: [
                           PhotoSelecter(),
                           AnnounRegisterForm(),
@@ -34,7 +34,7 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
                   ],
                 ),
               ),
-              // Footer(),
+              Footer(),
             ],
           ),
         ),
