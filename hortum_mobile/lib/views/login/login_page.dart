@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
-
 import '../register/register_page.dart';
 
 class LoginPage extends StatefulWidget {
