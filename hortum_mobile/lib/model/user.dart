@@ -30,6 +30,7 @@ class User {
   void deleteUser() {
     deleteSecureData('token_refresh');
     deleteSecureData('token_access');
+    deleteSecureData('email');
     tokenAccess = null;
     tokenRefresh = null;
     email = null;
