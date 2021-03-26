@@ -133,13 +133,13 @@ class Footer extends StatelessWidget {
       ),
     );
   }
+}
 
-  String definirTextoEsquerdo() {
-    if (actualUser.isProductor) {
-      return 'Criar Anúncio';
-    } else {
-      return 'Favoritos';
-    }
+String definirTextoEsquerdo() {
+  if (actualUser.isProductor) {
+    return 'Criar Anúncio';
+  } else {
+    return 'Favoritos';
   }
 }
 
