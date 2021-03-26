@@ -3,6 +3,7 @@ import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 import 'package:hortum_mobile/views/profile/profile.dart';
+import 'package:hortum_mobile/views/register_announcement/page/announcement_register_page.dart';
 
 class Footer extends StatelessWidget {
   @override
@@ -31,7 +32,14 @@ class Footer extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(left: size.width * 0.08),
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (actualUser.isProductor) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return RegisterAnnounPage();
+                          }));
+                        } else {}
+                      },
                       child: Container(
                         padding: EdgeInsets.only(right: size.width * 0.2),
                         child: Column(
@@ -41,14 +49,14 @@ class Footer extends StatelessWidget {
                                 margin:
                                     EdgeInsets.only(top: size.height * 0.005),
                                 child: Icon(
-                                  Icons.favorite,
+                                  definirIconEsquerdo(),
                                   size: 35,
                                   color: Colors.white,
                                 )),
                             Container(
                               margin: EdgeInsets.only(top: size.height * 0.005),
                               child: Text(
-                                'Favoritos',
+                                definirTextoEsquerdo(),
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -124,5 +132,21 @@ class Footer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String definirTextoEsquerdo() {
+    if (actualUser.isProductor) {
+      return 'Criar Anúncio';
+    } else {
+      return 'Favoritos';
+    }
+  }
+}
+
+IconData definirIconEsquerdo() {
+  if (actualUser.isProductor) {
+    return Icons.note_add_rounded;
+  } else {
+    return Icons.favorite;
   }
 }
