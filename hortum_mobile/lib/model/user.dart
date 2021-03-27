@@ -27,6 +27,18 @@ class User {
         isProductor: json['is_productor']);
   }
 
+  void deleteUser() {
+    deleteSecureData('token_refresh');
+    deleteSecureData('token_access');
+    deleteSecureData('email');
+    tokenAccess = null;
+    tokenRefresh = null;
+    email = null;
+    username = null;
+    password = null;
+    isProductor = null;
+  }
+
   Future writeSecureData(String key, String value) async {
     var writeData = await _storage.write(key: key, value: value);
     return writeData;

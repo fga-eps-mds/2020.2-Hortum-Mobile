@@ -4,6 +4,9 @@ import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/register/components/form_field.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../globals.dart';
+import '../login/login_page.dart';
+
 class UserProfile extends StatefulWidget {
   @override
   _UserProfileState createState() => _UserProfileState();
@@ -174,7 +177,12 @@ class _UserProfileState extends State<UserProfile> {
                               )),
                           MaterialButton(
                             onPressed: () {
-                              print("Sair");
+                              actualUser.deleteUser();
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()),
+                                  (route) => route.isCurrent);
                             },
                             child: Text(
                               "Sair",
