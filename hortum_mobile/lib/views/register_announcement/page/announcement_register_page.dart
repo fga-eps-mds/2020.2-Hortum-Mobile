@@ -28,7 +28,9 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
                     Container(
                         height: size.height * 0.9,
                         child: ListView(children: [
-                          PhotoSelecter(),
+                          PhotoSelecter(
+                            title: 'CRIAR ANÚNCIO',
+                          ),
                           AnnounRegisterForm(),
                         ])),
                   ],

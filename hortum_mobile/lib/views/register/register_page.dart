@@ -21,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              PhotoSelecter(),
+              PhotoSelecter(title: 'CADASTRO'),
               RegisterForm(_isProductor),
             ],
           ),
