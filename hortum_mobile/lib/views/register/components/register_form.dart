@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
+import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/components/form_field.dart';
-import 'package:hortum_mobile/views/register/services/register_services.dart';
 
 class RegisterForm extends StatefulWidget {
   final bool _isProductor;

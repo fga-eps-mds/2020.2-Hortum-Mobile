@@ -56,17 +56,3 @@ Future login(String emailForm, String passwordForm, BuildContext context,
     }
   }
 }
-
-String validatePassword(String value) {
-  if (value.isEmpty) {
-    return "Digite a senha";
-  }
-  return null;
-}
-
-String validateEmail(String value) {
-  if (value.isEmpty) {
-    return "Digite o email";
-  }
-  return null;
-}

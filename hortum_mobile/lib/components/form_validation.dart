@@ -24,7 +24,7 @@ String validateEmail(String value) {
 }
 
 String validatePassword(String value) {
-  if (value.isEmpty) return ' o campo é obrigatório';
+  if (value.isEmpty) return ' O campo é obrigatório';
 
   if (value.length > 30) return "A senha deve conter menos de 30 dígitos";
 
