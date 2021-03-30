@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/login/components/dialog_account_type.dart';
+import 'package:hortum_mobile/views/login/components/forget_password.dart';
 import 'package:hortum_mobile/views/login/components/form_field_login.dart';
 import './services/login_services.dart';
 
@@ -51,22 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                 });
               },
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(180, 0, 0, 0),
-              child: TextButton(
-                onPressed: () {
-                  print("esqueci minha senha");
-                },
-                child: Text(
-                  "Esqueci minha senha",
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 12,
-                    color: Color.fromARGB(0xFF, 244, 156, 0),
-                  ),
-                ),
-              ),
-            ),
+            ForgetPassword(),
             Padding(
               padding: EdgeInsets.fromLTRB(85, 8, 85, 8),
               child: ElevatedButton(
