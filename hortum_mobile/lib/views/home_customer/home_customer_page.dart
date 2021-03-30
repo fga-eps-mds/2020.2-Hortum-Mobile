@@ -3,6 +3,8 @@ import 'package:hortum_mobile/components/announcement_box.dart';
 import 'package:hortum_mobile/components/announcements_data.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
+import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
+import 'package:hortum_mobile/views/home_productor/components/list_announcements.dart';
 
 import 'components/search.dart';
 
@@ -39,31 +41,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   child: Search(
                     controller: _filter,
                   )),
-              Container(
-                height: size.height * 0.45,
-                padding: EdgeInsets.only(
-                    right: size.width * 0.05, left: size.width * 0.05),
-                margin: EdgeInsets.only(top: size.height * 0.06),
-                child: ListView.builder(
-                  itemCount: announcements.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    if (announcements[index]['title']
-                        .toString()
-                        .toLowerCase()
-                        .contains(_filter.text.toLowerCase())) {
-                      return AnnouncementBox(
-                          profilePic: announcements[index]['profilePic'],
-                          name: announcements[index]['name'],
-                          title: announcements[index]['title'],
-                          localization: announcements[index]['localization'],
-                          price: announcements[index]['price'],
-                          productPic: announcements[index]['productPic']);
-                    }
-                    return Container();
-                  },
-                ),
-              ),
+              AnnouncementsList(filter: _filter)
             ],
           ),
         ),
