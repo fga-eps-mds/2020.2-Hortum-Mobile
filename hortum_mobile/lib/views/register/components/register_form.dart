@@ -25,7 +25,7 @@ class _RegisterFormState extends State<RegisterForm> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-          height: size.height * 0.55,
+          height: size.height * 0.6,
           decoration: new BoxDecoration(
               gradient: LinearGradient(
                   begin: FractionalOffset.bottomCenter,
