@@ -4,6 +4,7 @@ import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/data/announ_register_backend.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
+import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 
 class AnnounRegisterForm extends StatefulWidget {
   @override
@@ -39,17 +40,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.title_outlined,
                         color: Colors.black,
                       ),
-                      validator: (value) {
-                        String patttern =
-                            r'(^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$)';
-                        RegExp regExp = new RegExp(patttern);
-                        if (value.length == 0) {
-                          return "Informe o titulo do anúncio";
-                        } else if (!regExp.hasMatch(value)) {
-                          return "O titulo não deve conter números";
-                        }
-                        return null;
-                      },
+                      validator: validateTitle,
                       controller: _titulo),
                   CustomFormField(
                       labelText: 'Localização',
@@ -57,13 +48,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.location_on_outlined,
                         color: Colors.black,
                       ),
-                      validator: (value) {
-                        if (value.length == 0) {
-                          return "Informe a localização";
-                        }
-                        // Adicionar validação de Localização
-                        return null;
-                      },
+                      validator: validateLocalization,
                       controller: _localizacao),
                   SelectFormField(
                     labelText: 'Categoria',
@@ -71,12 +56,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       Icons.filter_alt_outlined,
                       color: Colors.black,
                     ),
-                    validator: (value) {
-                      if (value == null) {
-                        return "Informe a categoria do produto";
-                      }
-                      return null;
-                    },
+                    validator: validateCategory,
                     listValues: announcementsCategories,
                     controller: _categoria,
                   ),
@@ -86,16 +66,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.attach_money_outlined,
                         color: Colors.black,
                       ),
-                      validator: (value) {
-                        String patttern = r'(^[0-9.]*$)';
-                        RegExp regExp = new RegExp(patttern);
-                        if (value.length == 0) {
-                          return "Informe o preço";
-                        } else if (!regExp.hasMatch(value)) {
-                          return "O preço deve possuir caracters de 0-9 separados por .";
-                        }
-                        return null;
-                      },
+                      validator: validatePrice,
                       controller: _preco),
                   CustomFormField(
                       labelText: 'Descrição',
@@ -103,14 +74,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.insert_comment_outlined,
                         color: Colors.black,
                       ),
-                      validator: (value) {
-                        if (value.length == 0) {
-                          return "Informe uma descrição para o produto";
-                        } else if (value.length > 200) {
-                          return "A descrição deve conter no máximo 200 caracteres";
-                        }
-                        return null;
-                      },
+                      validator: validateDescription,
                       controller: _descricao),
                   Container(
                     margin: EdgeInsets.only(bottom: size.height * 0.05),
