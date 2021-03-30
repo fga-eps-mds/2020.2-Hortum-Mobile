@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 class PhotoSelecter extends StatefulWidget {
   @override
   _PhotoSelecterState createState() => _PhotoSelecterState();
+  final String title;
+  const PhotoSelecter({@required this.title, Key key}) : super(key: key);
 }
 
 class _PhotoSelecterState extends State<PhotoSelecter> {
@@ -29,7 +31,7 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
               margin: EdgeInsets.only(
                   bottom: size.height * 0.05, top: size.height * 0.02),
               child: Text(
-                'CRIAR ANÚNCIO',
+                widget.title,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 40,
