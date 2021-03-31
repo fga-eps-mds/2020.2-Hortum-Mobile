@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/components/announcement_box.dart';
-import 'package:hortum_mobile/components/announcements_data.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
 import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
-import 'package:hortum_mobile/views/home_productor/components/list_announcements.dart';
 
 import 'components/search.dart';
 
