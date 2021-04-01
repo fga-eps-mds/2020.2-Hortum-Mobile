@@ -41,14 +41,23 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
               ),
             ),
             Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black.withOpacity(0.25)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 4,
+                        spreadRadius: 0,
+                        offset: Offset(0, 4),
+                        color: Colors.black.withOpacity(0.25))
+                  ]),
               child: MaterialButton(
                 height: size.height * 0.15,
                 minWidth: size.width * 0.3,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(70)),
                 child: Icon(
                   Icons.add_a_photo,
-                  size: size.height * 0.05,
+                  size: size.height * 0.06,
                 ),
                 onPressed: () async {
                   final pickedFile =
@@ -62,7 +71,6 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
                     }
                   });
                 },
-                color: Colors.grey.withOpacity(0.5),
               ),
             )
           ],
