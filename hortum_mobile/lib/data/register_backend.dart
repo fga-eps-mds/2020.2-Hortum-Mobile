@@ -1,12 +1,13 @@
 import 'dart:convert';
+import 'package:hortum_mobile/globals.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterApi {
   static Future register(
       String username, String email, String password, bool isProductor) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var urlCustomer = 'http://IPLOCAL:8000/signup/customer/';
-    var urlProductor = 'http://IPLOCAL:8000/signup/productor/';
+    var urlCustomer = 'http://$ip:8000/signup/customer/';
+    var urlProductor = 'http://$ip:8000/signup/productor/';
     var header = {"Content-Type": "application/json"};
 
     Map params = {

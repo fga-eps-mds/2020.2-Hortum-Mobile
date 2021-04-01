@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/components/announcement_box.dart';
 import 'package:hortum_mobile/components/footer.dart';
-import 'package:hortum_mobile/views/home_productor/components/categories.dart';
+import 'package:hortum_mobile/views/home_productor/components/list_announcements.dart';
 
 class ProductorHomePage extends StatefulWidget {
   @override
@@ -30,74 +29,9 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
                 ),
               ),
               Container(
-                height: size.height * 0.75,
-                margin: EdgeInsets.only(bottom: size.height * 0.05),
-                child: ListView.builder(
-                  itemCount: announcements.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    return Column(children: [
-                      Container(
-                        color: Color(0xFFECF87F).withOpacity(0.4),
-                        height: size.height * 0.03,
-                        width: size.width * 0.26,
-                        margin: EdgeInsets.only(left: size.width * 0.55),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: size.height * 0.03,
-                              width: size.width * 0.06,
-                              child: MaterialButton(
-                                padding: EdgeInsets.all(0),
-                                child: Icon(
-                                  Icons.edit,
-                                  size: 25,
-                                  color: Color(0xFF478C5C),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                            Container(
-                              height: size.height * 0.03,
-                              width: size.width * 0.06,
-                              child: MaterialButton(
-                                padding: EdgeInsets.all(0),
-                                child: Icon(
-                                  Icons.visibility_off,
-                                  size: 25,
-                                  color: Color(0xFF478C5C),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                            Container(
-                              height: size.height * 0.03,
-                              width: size.width * 0.06,
-                              child: MaterialButton(
-                                padding: EdgeInsets.all(0),
-                                child: Icon(
-                                  Icons.delete,
-                                  size: 25,
-                                  color: Color(0xFF478C5C),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      AnnouncementBox(
-                          profilePic: announcements[index]['profilePic'],
-                          name: announcements[index]['name'],
-                          title: announcements[index]['title'],
-                          localization: announcements[index]['localization'],
-                          price: announcements[index]['price'],
-                          productPic: announcements[index]['productPic'])
-                    ]);
-                  },
-                ),
-              ),
+                  height: size.height * 0.75,
+                  margin: EdgeInsets.only(bottom: size.height * 0.05),
+                  child: ListAnnouncement()),
             ],
           ),
         ),

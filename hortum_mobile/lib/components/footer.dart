@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
-import 'package:hortum_mobile/views/profile/profile.dart';
-import 'package:hortum_mobile/views/register_announcement/page/announcement_register_page.dart';
+import 'package:hortum_mobile/views/profile/profile_page.dart';
+import 'package:hortum_mobile/views/register_announcement/announcement_register_page.dart';
 
 class Footer extends StatelessWidget {
   @override
