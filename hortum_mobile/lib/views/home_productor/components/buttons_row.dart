@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/views/home_productor/components/dialog_confirm_delete.dart';
 
 class ButtonsRow extends StatelessWidget {
   @override
@@ -43,7 +44,9 @@ class ButtonsRow extends StatelessWidget {
               size: 25,
               color: Color(0xFF478C5C),
             ),
-            onPressed: () {},
+            onPressed: () {
+              dialogDeleteConfirm(context);
+            },
           ),
         ),
       ],
