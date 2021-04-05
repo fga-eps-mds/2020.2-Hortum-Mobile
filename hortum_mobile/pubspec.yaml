@@ -26,7 +26,6 @@ dependencies:
   image_picker: ^0.6.7+22  
   http: ^0.12.2
   splashscreen: ^1.2.0
-  adaptive_theme: ^2.0.0
   flutter_secure_storage: ^4.1.0
   
   # The following adds the Cupertino Icons font to your application.
