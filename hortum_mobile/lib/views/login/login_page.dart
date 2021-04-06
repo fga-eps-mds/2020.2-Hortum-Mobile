@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
               isObscure: false,
               label: 'Email',
               icon: Icons.email,
-              validator: validateEmail,
+              validator: FormValidation.validateEmail,
             ),
             FormFieldLogin(
               suffixIcon: true,
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
               isObscure: _isObscure,
               label: 'Senha',
               icon: Icons.lock,
-              validator: validatePassword,
+              validator: FormValidation.validatePassword,
               onPressed: () {
                 setState(() {
                   this._isObscure = !_isObscure;
