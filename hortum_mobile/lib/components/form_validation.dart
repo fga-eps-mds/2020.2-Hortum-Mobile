@@ -31,4 +31,12 @@ class FormValidation {
 
     return null;
   }
+
+  static String validateConfirmPassword(
+      String password, String confirmPassword) {
+    if (confirmPassword.isEmpty) return 'O campo é obrigatório';
+    if (password.compareTo(confirmPassword) != 0)
+      return "A senha deve ser igual";
+    return null;
+  }
 }

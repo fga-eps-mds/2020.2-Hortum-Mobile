@@ -53,4 +53,27 @@ void main() {
       expect(result, null);
     });
   });
+
+  group('Confirm Password Validator', () {
+    test('Given an empty value return an error', () {
+      String result = FormValidation.validateConfirmPassword('12345', '');
+      expect(result, "O campo é obrigatório");
+    });
+
+    test(
+        'Given a different value between password and confirmPassword return an error',
+        () {
+      String result =
+          FormValidation.validateConfirmPassword('Teste1234', 'teste1234');
+      expect(result, 'A senha deve ser igual');
+    });
+
+    test(
+        'Given the correct value for both: password and confirmPassword return null',
+        () {
+      String result =
+          FormValidation.validateConfirmPassword('Teste1234', 'Teste1234');
+      expect(result, null);
+    });
+  });
 }
