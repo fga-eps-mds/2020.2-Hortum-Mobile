@@ -22,9 +22,12 @@ class _IntroScreenPageState extends State<IntroScreenPage> {
   void initState() {
     actualUser.readSecureData('token_access').then((value) {
       tokenAccess = value;
-    });
-    AutomaticLoginAPI.automaticLogin().then((value) {
-      isProductor = value;
+
+      if (tokenAccess != null) {
+        AutomaticLoginAPI.automaticLogin().then((value) {
+          isProductor = value;
+        });
+      }
     });
 
     Timer(
