@@ -49,14 +49,18 @@ class Footer extends StatelessWidget {
                                 margin:
                                     EdgeInsets.only(top: size.height * 0.005),
                                 child: Icon(
-                                  definirIconEsquerdo(),
+                                  actualUser.isProductor
+                                      ? Icons.note_add_rounded
+                                      : Icons.favorite,
                                   size: 35,
                                   color: Colors.white,
                                 )),
                             Container(
                               margin: EdgeInsets.only(top: size.height * 0.005),
                               child: Text(
-                                definirTextoEsquerdo(),
+                                actualUser.isProductor
+                                    ? 'Criar Anúncio'
+                                    : 'Favoritos',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -132,21 +136,5 @@ class Footer extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-String definirTextoEsquerdo() {
-  if (actualUser.isProductor) {
-    return 'Criar Anúncio';
-  } else {
-    return 'Favoritos';
-  }
-}
-
-IconData definirIconEsquerdo() {
-  if (actualUser.isProductor) {
-    return Icons.note_add_rounded;
-  } else {
-    return Icons.favorite;
   }
 }
