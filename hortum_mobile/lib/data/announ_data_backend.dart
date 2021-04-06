@@ -25,14 +25,16 @@ class AnnounDataApi {
       String name = element['user']['username'].toString().split(" ")[0];
       String profilePic = element['idPicture'];
       element['announcements'].forEach((element) {
-        Map<String, String> announcement = Map();
-        announcement['name'] = name;
-        announcement['profilePic'] = profilePic;
-        announcement['title'] = element['name'];
-        announcement['price'] =
-            "R\$${element['price'].toStringAsFixed(2).replaceFirst('.', ',')}";
-        announcement['productPicture'] = element['idPicture'];
-        this.announcements.add(announcement);
+        if (element['inventory'] == true) {
+          Map<String, String> announcement = Map();
+          announcement['name'] = name;
+          announcement['profilePic'] = profilePic;
+          announcement['title'] = element['name'];
+          announcement['price'] =
+              "R\$${element['price'].toStringAsFixed(2).replaceFirst('.', ',')}";
+          announcement['productPicture'] = element['idPicture'];
+          this.announcements.add(announcement);
+        }
       });
     });
   }
