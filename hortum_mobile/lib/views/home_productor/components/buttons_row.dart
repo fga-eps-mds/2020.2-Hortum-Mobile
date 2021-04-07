@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'EditPage.dart';
+import 'edit_page.dart';
 
 class ButtonsRow extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/views/profile/components/add_picture.dart';
-import 'package:hortum_mobile/views/profile/components/profile_picture.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 
@@ -40,6 +39,7 @@ class _EditPageState extends State<EditPage> {
                       Padding(
                         padding: EdgeInsets.all(8.0),
                         child: CustomFormField(
+                            suffixIcon: false,
                             labelText: 'Titulo',
                             icon: Icon(
                               Icons.title_outlined,
@@ -51,7 +51,9 @@ class _EditPageState extends State<EditPage> {
                       Column(
                         children: [
                           CustomFormField(
-                              labelText: 'Localização',
+                              suffixIcon: true,
+                              onPressed: () {},
+                              labelText: 'Localizacao',
                               icon: Icon(Icons.location_on_outlined,
                                   color: Colors.black),
                               validator: validateLocalization,
@@ -71,7 +73,8 @@ class _EditPageState extends State<EditPage> {
                       ),
                       Row(children: [
                         Container(
-                          width: size.width * 0.355,
+                          padding: EdgeInsets.only(right: 15),
+                          width: size.width * 0.4,
                           child: SelectFormField(
                             labelText: 'Categoria',
                             icon: Icon(
@@ -84,8 +87,10 @@ class _EditPageState extends State<EditPage> {
                           ),
                         ),
                         Container(
-                          width: size.width * 0.355,
+                          padding: EdgeInsets.only(left: 15),
+                          width: size.width * 0.4,
                           child: CustomFormField(
+                              suffixIcon: false,
                               labelText: 'Preço',
                               icon: Icon(
                                 Icons.attach_money_outlined,
@@ -96,6 +101,7 @@ class _EditPageState extends State<EditPage> {
                         )
                       ]),
                       CustomFormField(
+                          suffixIcon: false,
                           labelText: 'Descrição',
                           icon: Icon(
                             Icons.insert_comment_outlined,

@@ -35,6 +35,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomFormField(
+                      suffixIcon: false,
                       labelText: 'Titulo',
                       icon: Icon(
                         Icons.title_outlined,
@@ -43,6 +44,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       validator: validateTitle,
                       controller: _titulo),
                   CustomFormField(
+                      suffixIcon: false,
                       labelText: 'Localização',
                       icon: Icon(
                         Icons.location_on_outlined,
@@ -61,6 +63,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                     controller: _categoria,
                   ),
                   CustomFormField(
+                      suffixIcon: false,
                       labelText: 'Preço',
                       icon: Icon(
                         Icons.attach_money_outlined,
@@ -69,6 +72,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       validator: validatePrice,
                       controller: _preco),
                   CustomFormField(
+                      suffixIcon: false,
                       labelText: 'Descrição',
                       icon: Icon(
                         Icons.insert_comment_outlined,

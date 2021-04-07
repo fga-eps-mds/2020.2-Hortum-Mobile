@@ -38,6 +38,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomFormField(
+                    suffixIcon: false,
                     controller: _name,
                     obscureText: false,
                     labelText: 'Nome',
@@ -45,6 +46,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     validator: validateName,
                   ),
                   CustomFormField(
+                    suffixIcon: false,
                     obscureText: false,
                     labelText: 'E-mail',
                     controller: _email,
@@ -52,6 +54,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     validator: validateEmail,
                   ),
                   CustomFormField(
+                    suffixIcon: false,
                     obscureText: true,
                     labelText: 'Senha',
                     controller: _password,
@@ -59,6 +62,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     validator: validatePassword,
                   ),
                   CustomFormField(
+                    suffixIcon: false,
                     obscureText: true,
                     labelText: 'Confirmar Senha',
                     controller: _confirmPassword,
