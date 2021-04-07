@@ -68,6 +68,7 @@ class Footer extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: size.width * 0.08),
                     child: MaterialButton(
+                      key: Key('profileButton'),
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -105,6 +106,7 @@ class Footer extends StatelessWidget {
                 bottom: size.height * 0.05,
               ),
               child: MaterialButton(
+                key: Key('homeButton'),
                 child: Container(
                   height: size.width * 0.18,
                   width: size.width * 0.18,
