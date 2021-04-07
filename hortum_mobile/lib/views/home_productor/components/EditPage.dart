@@ -50,67 +50,59 @@ class _EditPageState extends State<EditPage> {
                       ),
                       Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CustomFormField(
-                                labelText: 'Localização',
-                                icon: Icon(
-                                  Icons.location_on_outlined,
-                                  color: Colors.black,
-                                ),
-                                validator: validateLocalization,
-                                controller: widget.localizacao),
-                          ),
+                          CustomFormField(
+                              labelText: 'Localização',
+                              icon: Icon(Icons.location_on_outlined,
+                                  color: Colors.black),
+                              validator: validateLocalization,
+                              controller: widget.localizacao),
                           Container(
-                            margin: EdgeInsets.only(top: 0),
+                            decoration: new BoxDecoration(
+                              color: Color(0XFFC4C4C4),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: const Radius.circular(15.0),
+                                bottomRight: const Radius.circular(15.0),
+                              ),
+                            ),
                             height: size.height * 0.15,
-                            color: Colors.red,
+                            width: size.width * 0.8,
                           )
                         ],
                       ),
                       Row(children: [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Container(
-                            width: size.width * 0.355,
-                            child: SelectFormField(
-                              labelText: 'Categoria',
-                              icon: Icon(
-                                Icons.filter_alt_outlined,
-                                color: Colors.black,
-                              ),
-                              validator: validateCategory,
-                              listValues: announcementsCategories,
-                              controller: widget.categoria,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Container(
-                            width: size.width * 0.355,
-                            child: CustomFormField(
-                                labelText: 'Preço',
-                                icon: Icon(
-                                  Icons.attach_money_outlined,
-                                  color: Colors.black,
-                                ),
-                                validator: validatePrice,
-                                controller: widget.preco),
-                          ),
-                        ),
-                      ]),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: CustomFormField(
-                            labelText: 'Descrição',
+                        Container(
+                          width: size.width * 0.355,
+                          child: SelectFormField(
+                            labelText: 'Categoria',
                             icon: Icon(
-                              Icons.insert_comment_outlined,
+                              Icons.filter_alt_outlined,
                               color: Colors.black,
                             ),
-                            validator: validateDescription,
-                            controller: widget.descricao),
-                      ),
+                            validator: validateCategory,
+                            listValues: announcementsCategories,
+                            controller: widget.categoria,
+                          ),
+                        ),
+                        Container(
+                          width: size.width * 0.355,
+                          child: CustomFormField(
+                              labelText: 'Preço',
+                              icon: Icon(
+                                Icons.attach_money_outlined,
+                                color: Colors.black,
+                              ),
+                              validator: validatePrice,
+                              controller: widget.preco),
+                        )
+                      ]),
+                      CustomFormField(
+                          labelText: 'Descrição',
+                          icon: Icon(
+                            Icons.insert_comment_outlined,
+                            color: Colors.black,
+                          ),
+                          validator: validateDescription,
+                          controller: widget.descricao),
                       MaterialButton(
                           onPressed: () {
                             if (widget.formKey.currentState.validate()) {
