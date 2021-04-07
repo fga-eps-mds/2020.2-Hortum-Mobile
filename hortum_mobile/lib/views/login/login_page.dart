@@ -4,6 +4,7 @@ import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/login/components/dialog_account_type.dart';
 import 'package:hortum_mobile/views/login/components/forget_password.dart';
 import 'package:hortum_mobile/views/login/components/form_field_login.dart';
+import 'package:http/http.dart' as http;
 import './services/login_services.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    http.Client client;
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -32,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Image.asset("assets/images/logo.png"),
             ),
             FormFieldLogin(
+              keyIdentifier: Key('emailField'),
               suffixIcon: false,
               controller: emailController,
               isObscure: false,
@@ -40,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               validator: FormValidation.validateEmail,
             ),
             FormFieldLogin(
+              keyIdentifier: Key('passwordField'),
               suffixIcon: true,
               controller: passwordController,
               isObscure: _isObscure,
@@ -62,11 +66,14 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(15))),
                 ),
                 onPressed: () {
-                  login(emailController.text, passwordController.text, context,
-                      _formKey);
+                  if (_formKey.currentState.validate()) {
+                    LoginServices.login(emailController.text,
+                        passwordController.text, context, client);
+                  }
                 },
                 child: Text(
                   "ENTRAR",
+                  key: Key('signIn'),
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontSize: 22,
