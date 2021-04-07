@@ -12,7 +12,5 @@ class DeleteAnnounApi {
     };
 
     var response = await http.delete(url, headers: header);
-    Map mapResponse = json.decode(response.body);
-    print(mapResponse.values);
   }
 }

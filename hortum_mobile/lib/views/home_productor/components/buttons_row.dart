@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/components/announcements_data.dart';
-import 'package:hortum_mobile/data/announ_delete_backend.dart';
+import 'package:hortum_mobile/views/home_productor/components/dialog_confirm_delete.dart';
 
 class ButtonsRow extends StatefulWidget {
   final String title;
@@ -59,51 +58,7 @@ class _ButtonRowState extends State<ButtonsRow> {
                 color: Color(0xFF478C5C),
               ),
               onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Deseja excluir esse anúncio?'),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: <Widget>[
-                            Text('Essa ação não pode ser desfeita.'),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            DeleteAnnounApi.deleteAnnoun(widget.title);
-                            Navigator.of(context).pop(false);
-                          },
-                          child: Text(
-                            "Sim",
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 19,
-                              color: Color.fromARGB(0xFF, 244, 156, 0),
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: Text(
-                            "Não",
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 19,
-                              color: Color.fromARGB(0xFF, 244, 156, 0),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
+                dialogDeleteConfirm(context, widget.title);
               },
             ),
           ),
