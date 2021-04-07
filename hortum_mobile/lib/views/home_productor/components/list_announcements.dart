@@ -12,12 +12,7 @@ class ListAnnouncement extends StatelessWidget {
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         return Column(children: [
-          Container(
-              color: Color(0xFFECF87F).withOpacity(0.4),
-              height: size.height * 0.03,
-              width: size.width * 0.26,
-              margin: EdgeInsets.only(left: size.width * 0.55),
-              child: ButtonsRow()),
+          ButtonsRow(title: announcements[index]['title']),
           AnnouncementBox(
               profilePic: announcements[index]['profilePic'],
               name: announcements[index]['name'],
