@@ -13,6 +13,7 @@ class DialogAccountType extends StatelessWidget {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
+                key: Key('typeUser'),
                 content: SingleChildScrollView(
                   child: ListBody(
                     children: <Widget>[
@@ -60,6 +61,7 @@ class DialogAccountType extends StatelessWidget {
         },
         child: Text(
           "Não tenho uma conta",
+          key: Key('newAccount'),
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 12,

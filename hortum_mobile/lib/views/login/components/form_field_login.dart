@@ -8,6 +8,7 @@ class FormFieldLogin extends StatefulWidget {
   final IconData icon;
   final bool suffixIcon;
   final Function validator;
+  final Key keyIdentifier;
   const FormFieldLogin(
       {@required this.controller,
       @required this.isObscure,
@@ -15,6 +16,7 @@ class FormFieldLogin extends StatefulWidget {
       @required this.icon,
       @required this.validator,
       @required this.suffixIcon,
+      @required this.keyIdentifier,
       this.onPressed,
       Key key})
       : super(key: key);
@@ -29,6 +31,7 @@ class _FormFieldLoginState extends State<FormFieldLogin> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 8, 40, 0),
       child: TextFormField(
+        key: widget.keyIdentifier,
         obscureText: obscure,
         controller: widget.controller,
         validator: widget.validator,
