@@ -16,15 +16,15 @@ jobs:
       with:
         java-version: '12.x'
     
-    - name: sets up a Flutter environment for use in actions.
+    - name: sets up a Flutter environment for use in actions
       - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '2.0.1.x'
+          with:
+            flutter-version: '2.0.1.x'
     
-    - name: Getting the dependencies for the Flutter project.
+    - name: Getting the dependencies for the Flutter project
         run: flutter pub get
           working-directory: ./hortum_mobile
     
-    - name: Run tests for Flutter.
+    - name: Run tests for Flutter
         run: flutter test
           working-directory: ./hortum_mobile
