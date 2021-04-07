@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
-import 'package:hortum_mobile/components/announcements_data.dart';
+import 'package:hortum_mobile/data/announ_data_backend.dart';
 
 class AnnouncementsList extends StatefulWidget {
   final TextEditingController filter;
+  final AnnounDataApi announData;
 
-  const AnnouncementsList({@required this.filter, Key key}) : super(key: key);
+  const AnnouncementsList(
+      {@required this.filter, @required this.announData, Key key})
+      : super(key: key);
 
   @override
   _AnnouncementsListState createState() => _AnnouncementsListState();
@@ -15,6 +18,7 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    List announcements = widget.announData.announcements;
     return Container(
       height: size.height * 0.45,
       padding:
@@ -29,12 +33,12 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
               .toLowerCase()
               .contains(widget.filter.text.toLowerCase())) {
             return AnnouncementBox(
-                profilePic: announcements[index]['profilePic'],
+                profilePic: 'assets/images/perfil.jpg',
                 name: announcements[index]['name'],
                 title: announcements[index]['title'],
-                localization: announcements[index]['localization'],
+                localization: 'Asa Norte, 404 Feira Da Tarde',
                 price: announcements[index]['price'],
-                productPic: announcements[index]['productPic']);
+                productPic: 'assets/images/banana.jpg');
           }
           return Container();
         },
