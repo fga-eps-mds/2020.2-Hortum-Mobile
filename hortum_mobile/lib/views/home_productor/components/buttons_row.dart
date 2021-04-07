@@ -1,64 +1,66 @@
 import 'package:flutter/material.dart';
 
-import 'edit_page.dart';
+class ButtonsRow extends StatefulWidget {
+  final String title;
 
-class ButtonsRow extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _titulo = TextEditingController();
-  final TextEditingController _localizacao = TextEditingController();
-  final TextEditingController _categoria = TextEditingController();
-  final TextEditingController _preco = TextEditingController();
-  final TextEditingController _descricao = TextEditingController();
+  const ButtonsRow({@required this.title, Key key}) : super(key: key);
+  @override
+  _ButtonRowState createState() => _ButtonRowState();
+}
 
+class _ButtonRowState extends State<ButtonsRow> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Container(
-          height: size.height * 0.03,
-          width: size.width * 0.06,
-          child: MaterialButton(
-            padding: EdgeInsets.all(0),
-            child: Icon(
-              Icons.edit,
-              size: 25,
-              color: Color(0xFF478C5C),
+    return Container(
+      color: Color(0xFFECF87F).withOpacity(0.4),
+      height: size.height * 0.03,
+      width: size.width * 0.26,
+      margin: EdgeInsets.only(left: size.width * 0.55),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            height: size.height * 0.03,
+            width: size.width * 0.06,
+            child: MaterialButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(
+                Icons.edit,
+                size: 25,
+                color: Color(0xFF478C5C),
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => EditPage()));
-            },
           ),
-        ),
-        Container(
-          height: size.height * 0.03,
-          width: size.width * 0.06,
-          child: MaterialButton(
-            padding: EdgeInsets.all(0),
-            child: Icon(
-              Icons.visibility_off,
-              size: 25,
-              color: Color(0xFF478C5C),
+          Container(
+            height: size.height * 0.03,
+            width: size.width * 0.06,
+            child: MaterialButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(
+                Icons.visibility_off,
+                size: 25,
+                color: Color(0xFF478C5C),
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
           ),
-        ),
-        Container(
-          height: size.height * 0.03,
-          width: size.width * 0.06,
-          child: MaterialButton(
-            padding: EdgeInsets.all(0),
-            child: Icon(
-              Icons.delete,
-              size: 25,
-              color: Color(0xFF478C5C),
+          Container(
+            height: size.height * 0.03,
+            width: size.width * 0.06,
+            child: MaterialButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(
+                Icons.delete,
+                size: 25,
+                color: Color(0xFF478C5C),
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

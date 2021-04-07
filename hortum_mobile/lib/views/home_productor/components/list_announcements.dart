@@ -17,7 +17,7 @@ class ListAnnouncement extends StatelessWidget {
               height: size.height * 0.03,
               width: size.width * 0.26,
               margin: EdgeInsets.only(left: size.width * 0.55),
-              child: ButtonsRow()),
+              child: ButtonsRow(title: announcements[index]['title'])),
           AnnouncementBox(
               profilePic: announcements[index]['profilePic'],
               name: announcements[index]['name'],
