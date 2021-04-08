@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/views/edit/edit_page.dart';
+import 'package:hortum_mobile/views/home_productor/components/dialog_confirm_delete.dart';
 
 class ButtonsRow extends StatefulWidget {
   final String title;
-
-  const ButtonsRow({@required this.title, Key key}) : super(key: key);
+  final String description;
+  final String localization;
+  final String price;
+  final String category;
+  const ButtonsRow(
+      {@required this.title,
+      @required this.description,
+      @required this.price,
+      @required this.localization,
+      @required this.category,
+      Key key})
+      : super(key: key);
   @override
   _ButtonRowState createState() => _ButtonRowState();
 }
@@ -30,7 +42,17 @@ class _ButtonRowState extends State<ButtonsRow> {
                 size: 25,
                 color: Color(0xFF478C5C),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return EditPage(
+                    title: widget.title,
+                    description: widget.description,
+                    price: widget.price,
+                    localization: widget.localization,
+                    category: widget.category,
+                  );
+                }));
+              },
             ),
           ),
           Container(
@@ -56,7 +78,9 @@ class _ButtonRowState extends State<ButtonsRow> {
                 size: 25,
                 color: Color(0xFF478C5C),
               ),
-              onPressed: () {},
+              onPressed: () {
+                dialogDeleteConfirm(context, widget.title);
+              },
             ),
           ),
         ],

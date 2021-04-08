@@ -10,6 +10,25 @@ import 'package:hortum_mobile/views/register_announcement/services/register_anno
 import 'components/edit_picture.dart';
 
 class EditPage extends StatefulWidget {
+  final String title;
+  final String description;
+  final String localization;
+  final String price;
+  final String category;
+
+  const EditPage(
+      {@required this.title,
+      @required this.description,
+      @required this.price,
+      @required this.localization,
+      @required this.category,
+      Key key})
+      : super(key: key);
+  @override
+  _EditPageState createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController titulo = TextEditingController();
   final TextEditingController localizacao = TextEditingController();
@@ -17,12 +36,13 @@ class EditPage extends StatefulWidget {
   final TextEditingController preco = TextEditingController();
   final TextEditingController descricao = TextEditingController();
   @override
-  _EditPageState createState() => _EditPageState();
-}
-
-class _EditPageState extends State<EditPage> {
-  @override
   Widget build(BuildContext context) {
+    String tituloAntigo = widget.title;
+    titulo.text = widget.title;
+    localizacao.text = widget.localization;
+    descricao.text = widget.description;
+    preco.text = widget.price;
+    categoria.text = widget.category;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -32,7 +52,7 @@ class _EditPageState extends State<EditPage> {
               padding: EdgeInsets.only(
                   right: size.width * 0.1, left: size.width * 0.1),
               child: Form(
-                key: widget.formKey,
+                key: formKey,
                 child: Column(
                   children: [
                     EditPicture(),
@@ -44,7 +64,7 @@ class _EditPageState extends State<EditPage> {
                           color: Colors.black,
                         ),
                         validator: validateTitle,
-                        controller: widget.titulo),
+                        controller: titulo),
                     Column(
                       children: [
                         CustomFormField(
@@ -54,7 +74,7 @@ class _EditPageState extends State<EditPage> {
                             icon: Icon(Icons.location_on_outlined,
                                 color: Colors.black),
                             validator: validateLocalization,
-                            controller: widget.localizacao),
+                            controller: localizacao),
                         Container(
                           decoration: new BoxDecoration(
                             color: Color(0XFFC4C4C4),
@@ -64,7 +84,7 @@ class _EditPageState extends State<EditPage> {
                             ),
                           ),
                           height: size.height * 0.15,
-                          width: size.width * 0.8,
+                          width: size.width * 0.7,
                         )
                       ],
                     ),
@@ -80,7 +100,7 @@ class _EditPageState extends State<EditPage> {
                           ),
                           validator: validateCategory,
                           listValues: announcementsCategories,
-                          controller: widget.categoria,
+                          controller: categoria,
                         ),
                       ),
                       Container(
@@ -94,7 +114,7 @@ class _EditPageState extends State<EditPage> {
                               color: Colors.black,
                             ),
                             validator: validatePrice,
-                            controller: widget.preco),
+                            controller: preco),
                       )
                     ]),
                     Column(
@@ -114,12 +134,21 @@ class _EditPageState extends State<EditPage> {
                         ]),
                         CustomDescField(
                             validator: validateDescription,
-                            controller: widget.descricao),
+                            controller: descricao),
                       ],
                     ),
                     MaterialButton(
                         onPressed: () {
-                          if (widget.formKey.currentState.validate()) {}
+                          if (formKey.currentState.validate()) {
+                            double precoDouble = double.parse(preco.text);
+                            print(tituloAntigo);
+                            print(titulo.text);
+                            EditAnnounApi.editAnnoun(tituloAntigo,
+                                name: titulo.text,
+                                price: precoDouble,
+                                category: categoria.text,
+                                description: descricao.text);
+                          }
                         },
                         child: Container(
                           width: size.width * 0.5,
