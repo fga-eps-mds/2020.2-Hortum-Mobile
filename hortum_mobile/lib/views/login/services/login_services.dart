@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
-import 'package:http/http.dart';
 
 class LoginServices {
-  static Future login(String emailForm, String passwordForm,
-      BuildContext context, Client http) async {
+  static Future login(
+      String emailForm, String passwordForm, BuildContext context) async {
     final email = emailForm;
     final password = passwordForm;
 
-    var user = await LoginApi.login(email, password, http);
+    var user = await LoginApi.login(email, password);
     if (user == null) {
       showDialog(
         context: context,

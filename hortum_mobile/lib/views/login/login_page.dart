@@ -21,7 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    http.Client client;
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -67,8 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    LoginServices.login(emailController.text,
-                        passwordController.text, context, client);
+                    LoginServices.login(
+                        emailController.text, passwordController.text, context);
                   }
                 },
                 child: Text(

@@ -4,8 +4,7 @@ import 'package:hortum_mobile/model/user.dart';
 import 'package:http/http.dart' as http;
 
 class LoginApi {
-  static Future<User> login(
-      String email, String password, http.Client client) async {
+  static Future<User> login(String email, String password) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     var url = 'http://$ip:8000/login/';
     var header = {"Content-Type": "application/json"};
@@ -16,7 +15,7 @@ class LoginApi {
     };
 
     String _body = json.encode(params);
-    var response = await client.post(url, headers: header, body: _body);
+    var response = await http.post(url, headers: header, body: _body);
     Map mapResponse = json.decode(response.body);
     mapResponse['password'] = password;
 
