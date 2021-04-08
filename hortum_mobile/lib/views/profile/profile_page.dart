@@ -25,6 +25,7 @@ class _UserProfileState extends State<UserProfile> {
                 padding: EdgeInsets.only(
                     right: size.width * 0.1, left: size.width * 0.1),
                 child: Column(
+                  key: Key('profileContent'),
                   children: [ProfilePicture(), ProfileForm()],
                 ),
               ),

@@ -65,4 +65,15 @@ class User {
     var deleteData = await _storage.delete(key: key);
     return deleteData;
   }
+
+  @override
+  bool operator ==(other) {
+    return (other is User) &&
+        other.tokenRefresh == tokenRefresh &&
+        other.tokenAccess == tokenAccess &&
+        other.email == email &&
+        other.username == username &&
+        other.password == password &&
+        other.isProductor == isProductor;
+  }
 }

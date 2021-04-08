@@ -30,6 +30,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
               child: Column(
                 children: [
                   Container(
+                      key: Key('categoryCarr'),
                       margin: EdgeInsets.only(top: size.height * 0.08),
                       padding: EdgeInsets.only(left: 10),
                       height: size.height * 0.25,
