@@ -1,3 +1,5 @@
+include: package:lint/analysis_options.yaml
+
 linter:
   rules:
     - always_declare_return_types
@@ -150,4 +152,4 @@ linter:
     - use_string_buffers
     - use_to_and_as_if_applicable
     - valid_regexps
-    - void_checks
+    - void_checksgit 
