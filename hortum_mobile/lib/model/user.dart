@@ -39,6 +39,18 @@ class User {
     isProductor = null;
   }
 
+  void updateToken(String newToken) {
+    writeSecureData('token_access', newToken);
+    this.tokenAccess = newToken;
+  }
+
+  void initAutoLogin(bool isProductor, String username) async {
+    this.isProductor = isProductor;
+    this.username = username;
+    this.email = await this.readSecureData('email');
+    this.tokenAccess = await this.readSecureData('token_access');
+  }
+
   Future writeSecureData(String key, String value) async {
     var writeData = await _storage.write(key: key, value: value);
     return writeData;
