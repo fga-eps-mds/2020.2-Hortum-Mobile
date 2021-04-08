@@ -15,7 +15,13 @@ class EditAnnounApi {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
     };
-    Map params;
+    Map params = {
+      "name": "dedu bom",
+      "description": description,
+      "price": price,
+      "type_of_product": category,
+      "inventory": inventory
+    };
     params.removeWhere((key, value) => value == null);
 
     /*if (name != null) params.addAll({"name": name});
@@ -27,6 +33,7 @@ class EditAnnounApi {
     String _body = json.encode(params);
 
     var response = await http.patch(url, headers: header, body: _body);
+    print(response.body);
     Map mapResponse = json.decode(response.body);
     print(mapResponse.values);
   }
