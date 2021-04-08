@@ -7,6 +7,7 @@ Future<void> dialogDeleteConfirm(context, title) async {
     barrierDismissible: true,
     builder: (BuildContext context) {
       return AlertDialog(
+        key: Key('removeAnnoun'),
         title: Text('Deseja excluir esse anúncio?'),
         content: SingleChildScrollView(
           child: ListBody(
