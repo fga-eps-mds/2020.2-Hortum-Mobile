@@ -34,7 +34,7 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
               .contains(widget.filter.text.toLowerCase())) {
             return AnnouncementBox(
                 profilePic: 'assets/images/perfil.jpg',
-                name: announcements[index]['idProductor']['username'],
+                name: announcements[index]['username'],
                 title: announcements[index]['name'],
                 localization: 'Asa Norte, 404 Feira Da Tarde',
                 price: announcements[index]['price'],

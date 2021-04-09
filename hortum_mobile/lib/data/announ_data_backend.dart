@@ -26,8 +26,7 @@ class AnnounDataApi {
     this.announcements.forEach((element) {
       element['price'] =
           "R\$ ${element['price'].toStringAsFixed(2).replaceFirst('.', ',')}";
-      element['idProductor']['username'] =
-          element['idProductor']['username'].toString().split(" ")[0];
+      element['username'] = element['username'].toString().split(" ")[0];
     });
   }
 }
