@@ -6,7 +6,7 @@ import 'package:hortum_mobile/views/home_productor/components/buttons_row.dart';
 class ListAnnouncement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     return ListView.builder(
       itemCount: announcements.length,
       scrollDirection: Axis.vertical,

@@ -1,5 +1,4 @@
-import 'dart:io';
-
+//import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -11,7 +10,7 @@ class PhotoSelecter extends StatefulWidget {
 }
 
 class _PhotoSelecterState extends State<PhotoSelecter> {
-  File _image;
+  //File _image;
   final picker = ImagePicker();
 
   @override
@@ -65,7 +64,7 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
 
                   setState(() {
                     if (pickedFile != null) {
-                      _image = File(pickedFile.path);
+                      //  _image = File(pickedFile.path);
                     } else {
                       print('No image selected.');
                     }
