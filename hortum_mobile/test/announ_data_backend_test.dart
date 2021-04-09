@@ -5,7 +5,8 @@ main() {
   test('Given a list of announcements manipulate correctly the data', () {
     AnnounDataApi annouData = new AnnounDataApi();
     dynamic element = {
-      "idProductor": {"username": "Usuário Teste", "idPicture": null},
+      "username": "Usuário Teste",
+      "idPictureProductor": null,
       "name": "Anúncio Teste",
       "type_of_product": "Banana",
       "description": "Descrição teste",
@@ -17,7 +18,8 @@ main() {
 
     annouData.manipulateData();
     dynamic result = {
-      "idProductor": {"username": "Usuário", "idPicture": null},
+      "username": "Usuário",
+      "idPictureProductor": null,
       "name": "Anúncio Teste",
       "type_of_product": "Banana",
       "description": "Descrição teste",
