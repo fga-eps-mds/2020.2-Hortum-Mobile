@@ -4,7 +4,6 @@ import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/login/components/dialog_account_type.dart';
 import 'package:hortum_mobile/views/login/components/forget_password.dart';
 import 'package:hortum_mobile/views/login/components/form_field_login.dart';
-//import 'package:http/http.dart' as http;
 import './services/login_services.dart';
 
 class LoginPage extends StatefulWidget {
