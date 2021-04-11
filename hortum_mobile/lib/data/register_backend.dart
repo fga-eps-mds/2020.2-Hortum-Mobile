@@ -20,10 +20,9 @@ class RegisterApi {
 
     String _body = json.encode(params);
     if (isProductor == false) {
-      var response = await http.post(urlCustomer, headers: header, body: _body);
+      await http.post(urlCustomer, headers: header, body: _body);
     } else {
-      var response =
-          await http.post(urlProductor, headers: header, body: _body);
+      await http.post(urlProductor, headers: header, body: _body);
     }
     // Exemplo de código para depois que a conta for criada
     // if (response.statusCode == 201) {}

@@ -1,0 +1,27 @@
+include: package:flint/analysis_options.dart.dev.yaml
+
+analyzer: 
+  strong-mode:
+    implicit-casts: true
+
+linter:
+  rules:
+    always_declare_return_typescd
+    prefer_const_constructors
+    unused_local_variable
+    always_specify_types
+    avoid_as
+    avoid_returning_null
+    avoid_setters_without_getters
+    close_sinks
+    diagnostic_describe_all_properties
+    empty_statements
+    empty_catches
+    empty_constructor_bodies
+    file_names
+    hash_and_equals
+    join_return_with_assignment
+    only_throw_errors
+    void_checks
+    usused_field
+    unused_import
