@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/data/announ_data_backend.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
+import 'package:hortum_mobile/views/home_customer/components/home_type.dart';
 import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
 
 import 'components/search.dart';
@@ -14,6 +15,7 @@ class CustomerHomePage extends StatefulWidget {
 
 class _CustomerHomePageState extends State<CustomerHomePage> {
   final TextEditingController _filter = TextEditingController();
+  bool isAnnouncements = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
     AnnounDataApi announData = new AnnounDataApi();
 
     return FutureBuilder(
-      future: announData.getAnnoun(),
+      future: announData.getAnnoun(_filter.text),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -42,13 +44,23 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                           left: size.width * 0.02, right: size.width * 0.05),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey.withOpacity(0.4)),
+                          border: Border.all(color: Color(0xff59981A)),
+                          color: Colors.transparent),
                       child: Search(
                         controller: _filter,
                       )),
+                  HomeType(
+                    isAnnouncements: isAnnouncements,
+                    onPressed: () {
+                      this.isAnnouncements = !this.isAnnouncements;
+                      setState(() {});
+                    },
+                  ),
                   snapshot.connectionState == ConnectionState.done
-                      ? AnnouncementsList(
-                          filter: _filter, announData: announData)
+                      ? this.isAnnouncements
+                          ? AnnouncementsList(
+                              filter: _filter, announData: announData)
+                          : Container()
                       : Container(
                           margin: EdgeInsets.only(top: size.height * 0.25),
                           child: SpinKitCircle(
