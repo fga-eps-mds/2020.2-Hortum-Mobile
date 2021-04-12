@@ -20,29 +20,31 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
     Size size = MediaQuery.of(context).size;
     List announcements = widget.announData.announcements;
     return Container(
-      height: size.height * 0.45,
-      padding:
-          EdgeInsets.only(right: size.width * 0.05, left: size.width * 0.05),
-      margin: EdgeInsets.only(top: size.height * 0.06),
-      child: ListView.builder(
-        itemCount: announcements.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          if (announcements[index]['title']
-              .toString()
-              .toLowerCase()
-              .contains(widget.filter.text.toLowerCase())) {
-            return AnnouncementBox(
-                profilePic: 'assets/images/perfil.jpg',
-                name: announcements[index]['username'],
-                title: announcements[index]['name'],
-                localization: 'Asa Norte, 404 Feira Da Tarde',
-                price: announcements[index]['price'],
-                productPic: 'assets/images/banana.jpg');
-          }
-          return Container();
-        },
-      ),
-    );
+        height: size.height * 0.43,
+        padding:
+            EdgeInsets.only(right: size.width * 0.05, left: size.width * 0.05),
+        child: announcements.length != 0
+            ? ListView.builder(
+                itemCount: announcements.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  return AnnouncementBox(
+                      profilePic: 'assets/images/perfil.jpg',
+                      name: announcements[index]['username'],
+                      title: announcements[index]['name'],
+                      localization: 'Asa Norte, 404 Feira Da Tarde',
+                      price: announcements[index]['price'],
+                      productPic: 'assets/images/banana.jpg');
+                },
+              )
+            : Container(
+                margin: EdgeInsets.only(top: size.height * 0.15),
+                width: size.width * 0.6,
+                child: Text(
+                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Color(0xff1D8E40), fontSize: 15),
+                ),
+              ));
   }
 }
