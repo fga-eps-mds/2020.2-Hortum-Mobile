@@ -21,7 +21,6 @@ class AnnounDataApi {
     };
 
     var response = await http.get(url, headers: header);
-    this.announcements = [];
     this.announcements = json.decode(response.body);
 
     manipulateData();
