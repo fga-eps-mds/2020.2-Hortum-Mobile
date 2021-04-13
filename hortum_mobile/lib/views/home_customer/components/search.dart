@@ -13,7 +13,7 @@ class _SearchState extends State<Search> {
     Size size = MediaQuery.of(context).size;
     return TextFormField(
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: Icon(Icons.search, color: Color(0xff59981A)),
           hintText: "Pesquisar",
           border: InputBorder.none,
           contentPadding: EdgeInsets.only(bottom: size.height * 0.018)),
