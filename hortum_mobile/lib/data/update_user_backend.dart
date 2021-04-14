@@ -20,10 +20,7 @@ class UpdateUserAPI {
     String _body = json.encode(params);
     var response = await http.put(url, headers: header, body: _body);
     String strResponse = json.decode(response.body);
-    if (response.statusCode == 200) {
-      return strResponse;
-    } else {
-      return null;
-    }
+
+    return strResponse;
   }
 }
