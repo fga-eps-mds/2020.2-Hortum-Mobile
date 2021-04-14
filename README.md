@@ -9,16 +9,17 @@
 <!-- Badges -->
 <!-- (TODO) Adicionar as Badges de DevOps -->
 <p align="center">
-	<a href="https://codecov.io/gh/fga-eps-mds/2020.2-Hortum-Mobile">
-    	<img alt="" src="https://codecov.io/gh/fga-eps-mds/2020.2-Hortum-Mobile/branch/main/graph/badge.svg">
+	<a href="https://codecov.io/gh/fga-eps-mds/2020.2-Hortum">
+		<img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/fga-aps-mds/2020.2-Hortum/main?label=codecov?style=flat&logo=appveyor">
+	</a>
 	<a href="https://github.com/fga-eps-mds/2020.2-Hortum/issues?q=is%3Aissue+is%3Aclosed">
-        	 <img style="border-radius: 50%;" alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/fga-eps-mds/2020.2-Hortum?style=flat-square">
+        	 <img style="border-radius: 50%;" alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/fga-eps-mds/2020.2-Hortum?style=flat&logo=appveyor">
 	</a>
 	<a href="https://github.com/fga-eps-mds/2020.2-Hortum/pulls?q=is%3Apr+is%3Aclosed">
-		<img style="border-radius: 50%;" alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/fga-eps-mds/2020.2-Hortum?style=flat-square">
+		<img style="border-radius: 50%;" alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/fga-eps-mds/2020.2-Hortum?style=flat&logo=appveyor">
         </a>
 	<a href="https://github.com/fga-eps-mds/2020.2-Hortum/blob/main/LICENSE">
-		<img style="border-radius: 50%;" alt="GitHub" src="https://img.shields.io/github/license/fga-eps-mds/2020.2-Hortum?style=flat-square">
+		<img style="border-radius: 50%;" alt="GitHub" src="https://img.shields.io/github/license/fga-eps-mds/2020.2-Hortum?style=flat&logo=appveyor">
 	</a>
 </p>
 
