@@ -30,19 +30,14 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController titulo = TextEditingController();
-  final TextEditingController localizacao = TextEditingController();
-  final TextEditingController categoria = TextEditingController();
-  final TextEditingController preco = TextEditingController();
-  final TextEditingController descricao = TextEditingController();
+  TextEditingController titulo;
+  TextEditingController localizacao;
+  TextEditingController categoria;
+  TextEditingController preco;
+  TextEditingController descricao;
   @override
   Widget build(BuildContext context) {
     String tituloAntigo = widget.title;
-    titulo.text = widget.title;
-    localizacao.text = widget.localization;
-    descricao.text = widget.description;
-    preco.text = widget.price;
-    categoria.text = widget.category;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -64,7 +59,8 @@ class _EditPageState extends State<EditPage> {
                           color: Colors.black,
                         ),
                         validator: validateTitle,
-                        controller: titulo),
+                        controller: titulo =
+                            TextEditingController(text: widget.title)),
                     Column(
                       children: [
                         CustomFormField(
@@ -74,7 +70,8 @@ class _EditPageState extends State<EditPage> {
                             icon: Icon(Icons.location_on_outlined,
                                 color: Colors.black),
                             validator: validateLocalization,
-                            controller: localizacao),
+                            controller: localizacao = TextEditingController(
+                                text: widget.localization)),
                         Container(
                           decoration: new BoxDecoration(
                             color: Color(0XFFC4C4C4),
@@ -100,7 +97,8 @@ class _EditPageState extends State<EditPage> {
                           ),
                           validator: validateCategory,
                           listValues: announcementsCategories,
-                          controller: categoria,
+                          controller: categoria =
+                              TextEditingController(text: widget.category),
                         ),
                       ),
                       Container(
@@ -114,7 +112,8 @@ class _EditPageState extends State<EditPage> {
                               color: Colors.black,
                             ),
                             validator: validatePrice,
-                            controller: preco),
+                            controller: preco =
+                                TextEditingController(text: widget.price)),
                       )
                     ]),
                     Column(
@@ -134,7 +133,8 @@ class _EditPageState extends State<EditPage> {
                         ]),
                         CustomDescField(
                             validator: validateDescription,
-                            controller: descricao),
+                            controller: descricao = TextEditingController(
+                                text: widget.description)),
                       ],
                     ),
                     MaterialButton(
