@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
 //import 'package:hortum_mobile/components/announcements_data.dart';
 import 'package:hortum_mobile/views/home_productor/components/buttons_row.dart';
-import 'package:hortum_mobile/lib/data/prod_log_data_backend.dart';
+import 'package:hortum_mobile/data/prod_log_data_backend.dart';
 
 class ListAnnouncement extends StatelessWidget {
-  List<dynamic> announcements = getAnnounProd();
+  List<dynamic> announcements = ProdLoggedAnnounDataApi().returnData();
 
   @override
   Widget build(BuildContext context) {

@@ -8,9 +8,8 @@ class ProdLoggedAnnounDataApi {
   var productor;
 
   Future getAnnounProd() async {
-    
     String userAccessToken = await actualUser.readSecureData('token_access');
-    String encodedEmail = codec_string.encodeString(actualUser.email); 
+    String encodedEmail = encodeString(actualUser.email);
     String url = 'https://$ip:8000/productor/retrieve/${encodedEmail}';
 
     var header = {
@@ -21,6 +20,10 @@ class ProdLoggedAnnounDataApi {
     var response = await http.get(url, headers: header);
     this.productor = json.decode(response.body);
     this.announcements = json.decode(this.productor['announcements']);
+    returnData();
+  }
+
+  List<dynamic> returnData() {
     return this.announcements;
   }
 }

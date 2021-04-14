@@ -7,6 +7,6 @@ String encodeString(String str) {
 }
 
 String decodeString(String str) {
-  var strInt = base64.decode(strInt)
-  return utf8.decode(str);
+  var strInt = base64.decode(str);
+  return utf8.decode(strInt);
 }
