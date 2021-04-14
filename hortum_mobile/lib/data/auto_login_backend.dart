@@ -6,8 +6,8 @@ class AutomaticLoginAPI {
   static Future<bool> automaticLogin() async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String userAccessToken = await actualUser.readSecureData('token_access');
-    var urlTest = 'http://$ip:8000/api/test_token/';
-    var urlRefresh = 'http://$ip:8000/login/refresh/';
+    var urlTest = 'http://$ip:8000/api/test_token/' as Uri;
+    var urlRefresh = 'http://$ip:8000/login/refresh/' as Uri;
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,

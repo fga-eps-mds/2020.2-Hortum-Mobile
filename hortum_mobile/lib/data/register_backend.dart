@@ -6,8 +6,8 @@ class RegisterApi {
   static Future register(
       String username, String email, String password, bool isProductor) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var urlCustomer = 'http://$ip:8000/signup/customer/';
-    var urlProductor = 'http://$ip:8000/signup/productor/';
+    var urlCustomer = 'http://$ip:8000/signup/customer/' as Uri;
+    var urlProductor = 'http://$ip:8000/signup/productor/' as Uri;
     var header = {"Content-Type": "application/json"};
 
     Map params = {
