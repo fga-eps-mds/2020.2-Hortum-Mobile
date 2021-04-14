@@ -27,8 +27,8 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    AnnounDataApi announData = new AnnounDataApi();
-    ProductorsDataApi productorsData = new ProductorsDataApi();
+    AnnounDataApi announData = new AnnounDataApi(widget.dio);
+    ProductorsDataApi productorsData = new ProductorsDataApi(widget.dio);
 
     return FutureBuilder(
       future: HomeCustomerServices.populateData(
