@@ -16,7 +16,6 @@ class AnnounDataApi {
 
   Future getAnnoun(String filter) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    // String userAccessToken = await actualUser.readSecureData('token_access');
     String url;
     if (filter.isEmpty)
       url = 'http://$ip:8000/announcement/list';
@@ -25,12 +24,11 @@ class AnnounDataApi {
 
     var header = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + 'token',
+      "Authorization": "Bearer " + actualUser.tokenAccess
     };
-
-    var response = await this.dio.get(url, options: Options(headers: header));
+    Response response =
+        await this.dio.get(url, options: Options(headers: header));
     this.announcements = response.data;
-
     manipulateData();
   }
 
