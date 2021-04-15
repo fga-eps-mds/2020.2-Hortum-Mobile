@@ -23,7 +23,7 @@ main() {
     expect(find.byKey(Key('removeAnnoun')), findsOneWidget);
   });
 
-  test('Testing the informations of the productor logged', () {
+  test('Testing the information of the productor logged', () {
     ProdLoggedAnnounDataApi announProd = ProdLoggedAnnounDataApi();
     dynamic element = {
       "username": "victor",
