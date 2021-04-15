@@ -19,7 +19,7 @@ class ProdLoggedAnnounDataApi {
 
     var response = await http.get(url, headers: header);
     this.productor = json.decode(response.body);
-    this.announcements = json.decode(this.productor['announcements']);
+    this.announcements = this.productor['announcements'];
     manipulateData();
   }
 

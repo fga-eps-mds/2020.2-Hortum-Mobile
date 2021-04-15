@@ -15,23 +15,22 @@ class ListAnnouncement extends StatefulWidget {
 }
 
 class _ListAnnouncementState extends State<ListAnnouncement> {
-  List<Map> announcements = [];
-
   @override
   Widget build(BuildContext context) {
+    List announcements = widget.announProd.announcements;
     return ListView.builder(
       itemCount: announcements.length,
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         return Column(children: [
-          ButtonsRow(title: announcements[index]['title']),
+          ButtonsRow(title: announcements[index]['name']),
           AnnouncementBox(
-              profilePic: announcements[index]['profilePic'],
-              name: announcements[index]['name'],
-              title: announcements[index]['title'],
-              localization: announcements[index]['localization'],
+              profilePic: 'assets/images/perfil.jpg',
+              name: announcements[index]['username'],
+              title: announcements[index]['name'],
+              localization: 'Asa Norte, 404 Feira Da Tarde',
               price: announcements[index]['price'],
-              productPic: announcements[index]['productPic'])
+              productPic: 'assets/images/banana.jpg')
         ]);
       },
     );

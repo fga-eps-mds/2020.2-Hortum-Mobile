@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 class AutomaticLoginAPI {
   static Future<bool> automaticLogin() async {
+    actualUser.deleteUser();
     //Trocar o IPLOCAL pelo ip de sua máquina
     String userAccessToken = await actualUser.readSecureData('token_access');
     var urlTest = 'http://$ip:8000/api/test_token/';
