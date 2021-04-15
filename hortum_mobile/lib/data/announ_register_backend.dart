@@ -7,7 +7,7 @@ class RegisterAnnounApi {
       String name, String description, double price, String category) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String userAccessToken = await actualUser.readSecureData('token_access');
-    var url = 'http://$ip:8000/announcement/create';
+    Uri url = Uri.parse('http://$ip:8000/announcement/create');
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
