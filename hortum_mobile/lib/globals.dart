@@ -1,5 +1,4 @@
 import 'package:hortum_mobile/model/user.dart';
-import 'dart:convert';
 
 User actualUser = User();
-String ip = 'IPLOCAL';
+String ip = '172.31.119.92';
