@@ -1,16 +1,25 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
 
 class ChangePasswordAPI {
-  static Future changePassword(
-      String actualPassword, String newPassword) async {
+  Dio dio;
+
+  ChangePasswordAPI([Dio client]) {
+    if (client == null) {
+      this.dio = Dio();
+    } else {
+      this.dio = client;
+    }
+  }
+
+  Future changePassword(String actualPassword, String newPassword) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     var url = 'http://$ip:8000/users/change-password/';
-    String userAccessToken = await actualUser.readSecureData('token_access');
+    // String userAccessToken = await actualUser.readSecureData('token_access');
     var header = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + userAccessToken,
+      "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
     Map params = {
@@ -19,9 +28,27 @@ class ChangePasswordAPI {
     };
 
     String _body = json.encode(params);
-    var response = await http.put(url, headers: header, body: _body);
-    String strResponse = json.decode(response.body);
-
-    return strResponse;
+    Response response = await dio.patch(url,
+        data: _body,
+        options: Options(
+          headers: header,
+          validateStatus: (status) {
+            return status <= 500;
+          },
+        ));
+    return response.statusCode;
   }
 }
+
+// Response response = await dio
+//         .put(url,
+//             data: _body,
+//             options: Options(
+//               headers: header,
+//               validateStatus: (status) {
+//                 return status <= 500;
+//               },
+//             ))
+//         .then((value) {
+//       return value;
+//     });

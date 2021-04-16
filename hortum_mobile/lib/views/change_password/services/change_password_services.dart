@@ -11,9 +11,9 @@ class ChangeServices {
     final newPassword = newPasswordForm;
     final user = actualUser;
 
-    var response =
-        await ChangePasswordAPI.changePassword(actualPassword, newPassword);
-    if (response == 'Senha incorreta!') {
+    ChangePasswordAPI changeData = new ChangePasswordAPI();
+    var response = await changeData.changePassword(actualPassword, newPassword);
+    if (response == 400) {
       showDialog(
         context: context,
         builder: (context) {

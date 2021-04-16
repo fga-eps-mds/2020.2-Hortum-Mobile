@@ -1,11 +1,20 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
 
 class UpdateUserAPI {
-  static Future updateUser(String username, String email) async {
+  Dio dio;
+
+  UpdateUserAPI([Dio client]) {
+    if (client == null) {
+      this.dio = Dio();
+    } else {
+      this.dio = client;
+    }
+  }
+  Future updateUser(String username, String email) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var url = 'http://$ip:8000/users/update/';
+    String url = 'http://$ip:8000/users/update/';
     String userAccessToken = await actualUser.readSecureData('token_access');
     var header = {
       "Content-Type": "application/json",
@@ -18,9 +27,14 @@ class UpdateUserAPI {
     };
 
     String _body = json.encode(params);
-    var response = await http.put(url, headers: header, body: _body);
-    String strResponse = json.decode(response.body);
-
-    return strResponse;
+    Response response = await dio.patch(url,
+        data: _body,
+        options: Options(
+          headers: header,
+          validateStatus: (status) {
+            return status <= 500;
+          },
+        ));
+    return response.statusCode;
   }
 }

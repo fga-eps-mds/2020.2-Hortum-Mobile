@@ -11,8 +11,9 @@ class ProfileServices {
     final email = emailForm;
     final user = actualUser;
 
-    var response = await UpdateUserAPI.updateUser(username, email);
-    if (response == "Email ja registrado!") {
+    UpdateUserAPI updateData = new UpdateUserAPI();
+    var response = await updateData.updateUser(username, email);
+    if (response == 400) {
       showDialog(
         context: context,
         builder: (context) {
