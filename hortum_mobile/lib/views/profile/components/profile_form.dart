@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/data/update_user_backend.dart';
 import 'package:hortum_mobile/views/profile/components/change_password_button.dart';
 import 'package:hortum_mobile/views/profile/components/logout_button.dart';
 import 'package:hortum_mobile/views/profile/services/profile_services.dart';

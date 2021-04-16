@@ -39,16 +39,3 @@ class ChangePasswordAPI {
     return response.statusCode;
   }
 }
-
-// Response response = await dio
-//         .put(url,
-//             data: _body,
-//             options: Options(
-//               headers: header,
-//               validateStatus: (status) {
-//                 return status <= 500;
-//               },
-//             ))
-//         .then((value) {
-//       return value;
-//     });
