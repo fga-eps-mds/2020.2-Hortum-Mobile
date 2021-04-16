@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
@@ -9,6 +10,9 @@ import 'package:image_picker/image_picker.dart';
 import '../../../globals.dart';
 
 class ProfileForm extends StatefulWidget {
+  final Dio dio;
+
+  const ProfileForm({this.dio, Key key}) : super(key: key);
   @override
   _ProfileFormState createState() => _ProfileFormState();
 }
@@ -62,9 +66,11 @@ class _ProfileFormState extends State<ProfileForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  ProfileServices.updateUser(_name.text, _email.text, context);
+                  ProfileServices.updateUser(
+                      widget.dio, _name.text, _email.text, context);
                 }
               },
+              key: Key('salvarButton'),
               child: Container(
                 width: size.width * 0.5,
                 height: size.height * 0.04,

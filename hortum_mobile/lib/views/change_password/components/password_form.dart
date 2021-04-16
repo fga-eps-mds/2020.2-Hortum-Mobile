@@ -1,17 +1,27 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/change_password/services/change_password_services.dart';
 
 class PasswordForm extends StatefulWidget {
+  final Dio dio;
+  final TextEditingController actualPassword;
+  final TextEditingController password;
+  final TextEditingController confirmPassword;
+
+  const PasswordForm(
+      {this.dio,
+      this.actualPassword,
+      this.confirmPassword,
+      this.password,
+      Key key})
+      : super(key: key);
   @override
   _PasswordFormState createState() => _PasswordFormState();
 }
 
 class _PasswordFormState extends State<PasswordForm> {
-  final TextEditingController _actualPassword = TextEditingController();
-  final TextEditingController _password = TextEditingController();
-  final TextEditingController _confirmPassword = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -33,7 +43,7 @@ class _PasswordFormState extends State<PasswordForm> {
                     child: CustomFormField(
                       obscureText: true,
                       labelText: 'Senha atual',
-                      controller: _actualPassword,
+                      controller: widget.actualPassword,
                       icon: Icon(Icons.lock_open, color: Colors.black),
                       validator: FormValidation.validatePassword,
                     ),
@@ -43,7 +53,7 @@ class _PasswordFormState extends State<PasswordForm> {
                     child: CustomFormField(
                       obscureText: true,
                       labelText: 'Nova senha',
-                      controller: _password,
+                      controller: widget.password,
                       icon: Icon(Icons.lock_open, color: Colors.black),
                       validator: FormValidation.validatePassword,
                     ),
@@ -53,11 +63,11 @@ class _PasswordFormState extends State<PasswordForm> {
                     child: CustomFormField(
                       obscureText: true,
                       labelText: 'Confirme a senha',
-                      controller: _confirmPassword,
+                      controller: widget.confirmPassword,
                       icon: Icon(Icons.lock_open, color: Colors.black),
                       validator: (value) {
                         return FormValidation.validateConfirmPassword(
-                            _password.text, value);
+                            widget.password.text, value);
                       },
                     ),
                   ),
@@ -69,7 +79,10 @@ class _PasswordFormState extends State<PasswordForm> {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   ChangeServices.changePassword(
-                      _actualPassword.text, _password.text, context);
+                      widget.dio,
+                      widget.actualPassword.text,
+                      widget.password.text,
+                      context);
                 }
               },
               child: Container(

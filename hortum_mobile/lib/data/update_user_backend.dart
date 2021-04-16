@@ -15,10 +15,10 @@ class UpdateUserAPI {
   Future updateUser(String username, String email) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url = 'http://$ip:8000/users/update/';
-    String userAccessToken = await actualUser.readSecureData('token_access');
+
     var header = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + userAccessToken,
+      "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
     Map params = {

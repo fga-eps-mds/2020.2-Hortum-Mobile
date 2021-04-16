@@ -16,7 +16,6 @@ class ChangePasswordAPI {
   Future changePassword(String actualPassword, String newPassword) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     var url = 'http://$ip:8000/users/change-password/';
-    // String userAccessToken = await actualUser.readSecureData('token_access');
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,

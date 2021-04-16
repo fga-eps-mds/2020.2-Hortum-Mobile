@@ -1,9 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/views/change_password/components/password_form.dart';
 import 'package:hortum_mobile/views/profile/components/circle_style.dart';
 
 class ChangePasswordPage extends StatefulWidget {
+  final Dio dio;
+
+  const ChangePasswordPage({this.dio, Key key}) : super(key: key);
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
 }
@@ -11,6 +15,9 @@ class ChangePasswordPage extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
+    final actualPassword = TextEditingController();
+    final password = TextEditingController();
+    final confirmPassword = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -37,7 +44,11 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
                           letterSpacing: -0.33,
                           fontWeight: FontWeight.w300),
                     ),
-                    PasswordForm()
+                    PasswordForm(
+                        dio: widget.dio,
+                        actualPassword: actualPassword,
+                        password: password,
+                        confirmPassword: confirmPassword)
                   ],
                 ),
               ),

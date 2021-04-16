@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/change_password_backend.dart';
 import 'package:hortum_mobile/globals.dart';
@@ -5,13 +6,12 @@ import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class ChangeServices {
-  static Future changePassword(String actualPasswordForm,
+  static Future changePassword(Dio dio, String actualPasswordForm,
       String newPasswordForm, BuildContext context) async {
     final actualPassword = actualPasswordForm;
     final newPassword = newPasswordForm;
     final user = actualUser;
-
-    ChangePasswordAPI changeData = new ChangePasswordAPI();
+    ChangePasswordAPI changeData = new ChangePasswordAPI(dio);
     var response = await changeData.changePassword(actualPassword, newPassword);
     if (response == 400) {
       showDialog(
