@@ -18,11 +18,20 @@ class PasswordForm extends StatefulWidget {
       Key key})
       : super(key: key);
   @override
-  _PasswordFormState createState() => _PasswordFormState();
+  _PasswordFormState createState() => _PasswordFormState(
+      actualPassword: actualPassword,
+      password: password,
+      confirmPassword: confirmPassword);
 }
 
 class _PasswordFormState extends State<PasswordForm> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController actualPassword;
+  final TextEditingController password;
+  final TextEditingController confirmPassword;
+
+  _PasswordFormState(
+      {this.actualPassword, this.confirmPassword, this.password});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +52,7 @@ class _PasswordFormState extends State<PasswordForm> {
                     child: CustomFormField(
                       obscureText: true,
                       labelText: 'Senha atual',
-                      controller: widget.actualPassword,
+                      controller: actualPassword,
                       icon: Icon(Icons.lock_open, color: Colors.black),
                       validator: FormValidation.validatePassword,
                     ),
@@ -53,7 +62,7 @@ class _PasswordFormState extends State<PasswordForm> {
                     child: CustomFormField(
                       obscureText: true,
                       labelText: 'Nova senha',
-                      controller: widget.password,
+                      controller: password,
                       icon: Icon(Icons.lock_open, color: Colors.black),
                       validator: FormValidation.validatePassword,
                     ),
@@ -63,11 +72,11 @@ class _PasswordFormState extends State<PasswordForm> {
                     child: CustomFormField(
                       obscureText: true,
                       labelText: 'Confirme a senha',
-                      controller: widget.confirmPassword,
+                      controller: confirmPassword,
                       icon: Icon(Icons.lock_open, color: Colors.black),
                       validator: (value) {
                         return FormValidation.validateConfirmPassword(
-                            widget.password.text, value);
+                            password.text, value);
                       },
                     ),
                   ),
@@ -79,10 +88,7 @@ class _PasswordFormState extends State<PasswordForm> {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   ChangeServices.changePassword(
-                      widget.dio,
-                      widget.actualPassword.text,
-                      widget.password.text,
-                      context);
+                      widget.dio, actualPassword.text, password.text, context);
                 }
               },
               child: Container(

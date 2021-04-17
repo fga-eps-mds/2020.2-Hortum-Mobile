@@ -13,15 +13,21 @@ class ProfileForm extends StatefulWidget {
   final Dio dio;
   final TextEditingController email;
   final TextEditingController username;
+
   const ProfileForm({this.dio, this.email, this.username, key})
       : super(key: key);
+
   @override
-  _ProfileFormState createState() => _ProfileFormState();
+  _ProfileFormState createState() =>
+      _ProfileFormState(email: email, username: username);
 }
 
 class _ProfileFormState extends State<ProfileForm> {
   final picker = ImagePicker();
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController email;
+  final TextEditingController username;
+  _ProfileFormState({this.email, this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: CustomFormField(
-                      controller: widget.username,
+                      controller: username,
                       obscureText: false,
                       labelText: 'Nome',
                       icon: Icon(Icons.face, color: Colors.black),
@@ -52,7 +58,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     child: CustomFormField(
                       obscureText: false,
                       labelText: 'E-mail',
-                      controller: widget.email,
+                      controller: email,
                       icon: Icon(Icons.email_outlined, color: Colors.black),
                       validator: FormValidation.validateEmail,
                     ),
@@ -64,10 +70,10 @@ class _ProfileFormState extends State<ProfileForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  if (actualUser.username != widget.username.text ||
-                      actualUser.email != widget.email.text) {
-                    ProfileServices.updateUser(widget.dio, widget.username.text,
-                        widget.email.text, context);
+                  if (actualUser.username != username.text ||
+                      actualUser.email != email.text) {
+                    ProfileServices.updateUser(
+                        widget.dio, username.text, email.text, context);
                   }
                 }
               },

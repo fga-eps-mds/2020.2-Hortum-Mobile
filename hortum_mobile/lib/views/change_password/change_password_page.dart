@@ -15,9 +15,9 @@ class ChangePasswordPage extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
-    final actualPassword = TextEditingController();
-    final password = TextEditingController();
-    final confirmPassword = TextEditingController();
+    final TextEditingController actualPassword = new TextEditingController();
+    final TextEditingController password = new TextEditingController();
+    final TextEditingController confirmPassword = new TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
