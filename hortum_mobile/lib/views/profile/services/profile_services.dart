@@ -11,9 +11,15 @@ class ProfileServices {
     final username = nameForm;
     final email = emailForm;
     final user = actualUser;
-
+    var response;
     UpdateUserAPI updateData = new UpdateUserAPI(dio);
-    var response = await updateData.updateUser(username, email);
+    if (actualUser.email == email) {
+      response = await updateData.updateUser(username: username);
+    } else if (actualUser.username == username) {
+      response = await updateData.updateUser(email: email);
+    } else {
+      response = await updateData.updateUser(username: username, email: email);
+    }
     if (response == 400) {
       showDialog(
         context: context,

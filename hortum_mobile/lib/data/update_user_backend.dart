@@ -12,7 +12,7 @@ class UpdateUserAPI {
       this.dio = client;
     }
   }
-  Future updateUser(String username, String email) async {
+  Future updateUser({String username, String email}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url = 'http://$ip:8000/users/update/';
 
@@ -25,6 +25,7 @@ class UpdateUserAPI {
       "username": username,
       "email": email,
     };
+    params.removeWhere((key, value) => value == null);
 
     String _body = json.encode(params);
     Response response = await dio.patch(url,

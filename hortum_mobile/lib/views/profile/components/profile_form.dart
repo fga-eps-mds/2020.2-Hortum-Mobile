@@ -11,17 +11,15 @@ import '../../../globals.dart';
 
 class ProfileForm extends StatefulWidget {
   final Dio dio;
-
-  const ProfileForm({this.dio, Key key}) : super(key: key);
+  final TextEditingController email;
+  final TextEditingController username;
+  const ProfileForm({this.dio, this.email, this.username, key})
+      : super(key: key);
   @override
   _ProfileFormState createState() => _ProfileFormState();
 }
 
 class _ProfileFormState extends State<ProfileForm> {
-  final TextEditingController _name =
-      TextEditingController(text: actualUser.username);
-  final TextEditingController _email =
-      TextEditingController(text: actualUser.email);
   final picker = ImagePicker();
   final _formKey = GlobalKey<FormState>();
 
@@ -42,7 +40,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: CustomFormField(
-                      controller: _name,
+                      controller: widget.username,
                       obscureText: false,
                       labelText: 'Nome',
                       icon: Icon(Icons.face, color: Colors.black),
@@ -54,7 +52,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     child: CustomFormField(
                       obscureText: false,
                       labelText: 'E-mail',
-                      controller: _email,
+                      controller: widget.email,
                       icon: Icon(Icons.email_outlined, color: Colors.black),
                       validator: FormValidation.validateEmail,
                     ),
@@ -66,8 +64,11 @@ class _ProfileFormState extends State<ProfileForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  ProfileServices.updateUser(
-                      widget.dio, _name.text, _email.text, context);
+                  if (actualUser.username != widget.username.text ||
+                      actualUser.email != widget.email.text) {
+                    ProfileServices.updateUser(widget.dio, widget.username.text,
+                        widget.email.text, context);
+                  }
                 }
               },
               key: Key('salvarButton'),

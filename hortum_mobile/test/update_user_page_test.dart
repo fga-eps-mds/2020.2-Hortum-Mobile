@@ -25,7 +25,7 @@ main() {
               data: jsonEncode(responseMatcher),
               requestOptions: null,
               statusCode: 200));
-      int responseActual = await updateUser.updateUser('', '');
+      int responseActual = await updateUser.updateUser(email: '', username: '');
 
       expect(responseActual, 200);
     });
@@ -47,8 +47,13 @@ main() {
   });
 
   group('Testing Service:', () {
+    TextEditingController email =
+        TextEditingController(text: 'teste@email.com');
+    TextEditingController username = TextEditingController(text: 'Nome');
     Widget makeTestable() {
-      return MaterialApp(home: Scaffold(body: ProfileForm(dio: dio)));
+      return MaterialApp(
+          home: Scaffold(
+              body: ProfileForm(dio: dio, email: email, username: username)));
     }
 
     testWidgets('CustomFormFields e MaterialButton',
@@ -56,8 +61,8 @@ main() {
       actualUser.tokenAccess = 'token';
       actualUser.isProductor = true;
       String responseMatcher = "Email já registrado!";
-      actualUser.email = "teste@example.com";
-      actualUser.username = "teste";
+      actualUser.email = 'user@user.com';
+      actualUser.username = null;
 
       when(dio.patch(url, data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async => Response(
