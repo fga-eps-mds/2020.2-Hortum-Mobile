@@ -77,7 +77,7 @@ class _EditPageState extends State<EditPage> {
                           Icons.title_outlined,
                           color: Colors.black,
                         ),
-                        validator: validateTitle,
+                        validator: AnnouncementsFormValidation.validateTitle,
                         controller: title),
                     Column(
                       children: [
@@ -87,7 +87,8 @@ class _EditPageState extends State<EditPage> {
                             labelText: 'Localizacao',
                             icon: Icon(Icons.location_on_outlined,
                                 color: Colors.black),
-                            validator: validateLocalization,
+                            validator: AnnouncementsFormValidation
+                                .validateLocalization,
                             controller: localization),
                         Container(
                           decoration: new BoxDecoration(
@@ -113,7 +114,8 @@ class _EditPageState extends State<EditPage> {
                               Icons.filter_alt_outlined,
                               color: Colors.black,
                             ),
-                            validator: validateCategory,
+                            validator:
+                                AnnouncementsFormValidation.validateCategory,
                             listValues: announcementsCategories,
                             controller: category),
                       ),
@@ -127,7 +129,8 @@ class _EditPageState extends State<EditPage> {
                               Icons.attach_money_outlined,
                               color: Colors.black,
                             ),
-                            validator: validatePrice,
+                            validator:
+                                AnnouncementsFormValidation.validatePrice,
                             controller: price),
                       )
                     ]),
@@ -147,7 +150,8 @@ class _EditPageState extends State<EditPage> {
                           ),
                         ]),
                         CustomDescField(
-                            validator: validateDescription,
+                            validator:
+                                AnnouncementsFormValidation.validateDescription,
                             controller: description),
                       ],
                     ),
