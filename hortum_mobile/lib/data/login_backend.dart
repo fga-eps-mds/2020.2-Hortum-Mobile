@@ -27,7 +27,6 @@ class LoginApi {
     } else {
       actualUser = null;
     }
-
     return actualUser;
   }
 }

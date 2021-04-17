@@ -41,7 +41,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.title_outlined,
                         color: Colors.black,
                       ),
-                      validator: validateTitle,
+                      validator: AnnouncementsFormValidation.validateTitle,
                       controller: _titulo),
                   CustomFormField(
                       suffixIcon: false,
@@ -50,7 +50,8 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.location_on_outlined,
                         color: Colors.black,
                       ),
-                      validator: validateLocalization,
+                      validator:
+                          AnnouncementsFormValidation.validateLocalization,
                       controller: _localizacao),
                   SelectFormField(
                     labelText: 'Categoria',
@@ -58,7 +59,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       Icons.filter_alt_outlined,
                       color: Colors.black,
                     ),
-                    validator: validateCategory,
+                    validator: AnnouncementsFormValidation.validateCategory,
                     listValues: announcementsCategories,
                     controller: _categoria,
                   ),
@@ -69,7 +70,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.attach_money_outlined,
                         color: Colors.black,
                       ),
-                      validator: validatePrice,
+                      validator: AnnouncementsFormValidation.validatePrice,
                       controller: _preco),
                   CustomFormField(
                       suffixIcon: false,
@@ -78,7 +79,8 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         Icons.insert_comment_outlined,
                         color: Colors.black,
                       ),
-                      validator: validateDescription,
+                      validator:
+                          AnnouncementsFormValidation.validateDescription,
                       controller: _descricao),
                   Container(
                     margin: EdgeInsets.only(bottom: size.height * 0.05),

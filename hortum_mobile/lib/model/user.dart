@@ -39,6 +39,18 @@ class User {
     isProductor = null;
   }
 
+  void updateToken(String newToken) {
+    writeSecureData('token_access', newToken);
+    this.tokenAccess = newToken;
+  }
+
+  void initAutoLogin(bool isProductor, String username) async {
+    this.isProductor = isProductor;
+    this.username = username;
+    this.email = await this.readSecureData('email');
+    this.tokenAccess = await this.readSecureData('token_access');
+  }
+
   Future writeSecureData(String key, String value) async {
     var writeData = await _storage.write(key: key, value: value);
     return writeData;
@@ -52,5 +64,16 @@ class User {
   Future deleteSecureData(String key) async {
     var deleteData = await _storage.delete(key: key);
     return deleteData;
+  }
+
+  @override
+  bool operator ==(other) {
+    return (other is User) &&
+        other.tokenRefresh == tokenRefresh &&
+        other.tokenAccess == tokenAccess &&
+        other.email == email &&
+        other.username == username &&
+        other.password == password &&
+        other.isProductor == isProductor;
   }
 }

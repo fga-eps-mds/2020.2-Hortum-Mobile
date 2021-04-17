@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:hortum_mobile/globals.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +10,6 @@ class DeleteAnnounApi {
       "Authorization": "Bearer " + userAccessToken,
     };
 
-    var response = await http.delete(url, headers: header);
+    await http.delete(url, headers: header);
   }
 }

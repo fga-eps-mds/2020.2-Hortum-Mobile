@@ -32,20 +32,22 @@ class _LoginPageState extends State<LoginPage> {
               child: Image.asset("assets/images/logo.png"),
             ),
             FormFieldLogin(
+              keyIdentifier: Key('emailField'),
               suffixIcon: false,
               controller: emailController,
               isObscure: false,
               label: 'Email',
               icon: Icons.email,
-              validator: validateEmail,
+              validator: FormValidation.validateEmail,
             ),
             FormFieldLogin(
+              keyIdentifier: Key('passwordField'),
               suffixIcon: true,
               controller: passwordController,
               isObscure: _isObscure,
               label: 'Senha',
               icon: Icons.lock,
-              validator: validatePassword,
+              validator: FormValidation.validatePassword,
               onPressed: () {
                 setState(() {
                   this._isObscure = !_isObscure;
@@ -62,11 +64,14 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(15))),
                 ),
                 onPressed: () {
-                  login(emailController.text, passwordController.text, context,
-                      _formKey);
+                  if (_formKey.currentState.validate()) {
+                    LoginServices.login(
+                        emailController.text, passwordController.text, context);
+                  }
                 },
                 child: Text(
                   "ENTRAR",
+                  key: Key('signIn'),
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontSize: 22,

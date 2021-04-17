@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
+import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 
@@ -61,17 +62,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 controller: _name,
                                 labelText: 'Nome',
                                 icon: Icon(Icons.face, color: Colors.black),
-                                validator: (value) {
-                                  String patttern = r'(^[a-zA-Z ]*$)';
-                                  RegExp regExp = new RegExp(patttern);
-                                  if (value.length == 0) {
-                                    return "Informe o nome";
-                                  } else if (!regExp.hasMatch(value)) {
-                                    return "O nome deve conter caracteres de a-z ou A-Z";
-                                  }
-
-                                  return null;
-                                },
+                                validator: FormValidation.validateName,
                               ),
                               CustomFormField(
                                 suffixIcon: false,
@@ -79,18 +70,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 controller: _email,
                                 icon: Icon(Icons.email_outlined,
                                     color: Colors.black),
-                                validator: (value) {
-                                  String patttern =
-                                      r"(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$)";
-                                  RegExp regExp = new RegExp(patttern);
-                                  if (value.length == 0) {
-                                    return "Informe o email";
-                                  } else if (!regExp.hasMatch(value)) {
-                                    return "Email inválido";
-                                  }
-
-                                  return null;
-                                },
+                                validator: FormValidation.validateEmail,
                               ),
                               CustomFormField(
                                 suffixIcon: false,
@@ -99,15 +79,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 controller: _password,
                                 icon:
                                     Icon(Icons.lock_open, color: Colors.black),
-                                validator: (value) {
-                                  if (value.isEmpty)
-                                    return ' o campo é obrigatório';
-
-                                  if (value.length > 30)
-                                    return "A senha deve conter menos de 30 dígitos";
-
-                                  return null;
-                                },
+                                validator: FormValidation.validatePassword,
                               ),
                               CustomFormField(
                                 suffixIcon: false,
@@ -117,11 +89,8 @@ class _RegisterFormState extends State<RegisterForm> {
                                 icon:
                                     Icon(Icons.lock_open, color: Colors.black),
                                 validator: (value) {
-                                  if (value.isEmpty)
-                                    return ' o campo é obrigatório';
-                                  if (_password.text.compareTo(value) != 0)
-                                    return "A senha deve ser igual";
-                                  return null;
+                                  FormValidation.validateConfirmPassword(
+                                      _password.text, value);
                                 },
                               ),
                             ],

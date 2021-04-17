@@ -49,14 +49,18 @@ class Footer extends StatelessWidget {
                                 margin:
                                     EdgeInsets.only(top: size.height * 0.005),
                                 child: Icon(
-                                  definirIconEsquerdo(),
+                                  actualUser.isProductor
+                                      ? Icons.note_add_rounded
+                                      : Icons.favorite,
                                   size: 35,
                                   color: Colors.white,
                                 )),
                             Container(
                               margin: EdgeInsets.only(top: size.height * 0.005),
                               child: Text(
-                                definirTextoEsquerdo(),
+                                actualUser.isProductor
+                                    ? 'Criar Anúncio'
+                                    : 'Favoritos',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -68,6 +72,7 @@ class Footer extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: size.width * 0.08),
                     child: MaterialButton(
+                      key: Key('profileButton'),
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -105,6 +110,7 @@ class Footer extends StatelessWidget {
                 bottom: size.height * 0.05,
               ),
               child: MaterialButton(
+                key: Key('homeButton'),
                 child: Container(
                   height: size.width * 0.18,
                   width: size.width * 0.18,
@@ -132,21 +138,5 @@ class Footer extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-String definirTextoEsquerdo() {
-  if (actualUser.isProductor) {
-    return 'Criar Anúncio';
-  } else {
-    return 'Favoritos';
-  }
-}
-
-IconData definirIconEsquerdo() {
-  if (actualUser.isProductor) {
-    return Icons.note_add_rounded;
-  } else {
-    return Icons.favorite;
   }
 }
