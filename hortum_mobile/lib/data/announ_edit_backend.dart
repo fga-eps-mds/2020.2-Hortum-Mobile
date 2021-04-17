@@ -16,7 +16,7 @@ class EditAnnounApi {
       "Authorization": "Bearer " + userAccessToken,
     };
     Map params = {
-      "name": "dedu bom",
+      "name": name,
       "description": description,
       "price": price,
       "type_of_product": category,
@@ -24,17 +24,9 @@ class EditAnnounApi {
     };
     params.removeWhere((key, value) => value == null);
 
-    /*if (name != null) params.addAll({"name": name});
-    if (description != null) params.addAll({"description": description});
-    if (price != null) params.addAll({"price": price});
-    if (category != null) params.addAll({"category": category});
-    if (inventory != null) params.addAll({"inventory": inventory});*/
-
     String _body = json.encode(params);
 
     var response = await http.patch(url, headers: header, body: _body);
-    print(response.body);
     Map mapResponse = json.decode(response.body);
-    print(mapResponse.values);
   }
 }

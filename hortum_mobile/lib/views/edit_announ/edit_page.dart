@@ -44,7 +44,7 @@ class _EditPageState extends State<EditPage> {
   final TextEditingController localization;
   final TextEditingController price;
   final TextEditingController category;
-  final String originalTitle;
+  String originalTitle;
 
   _EditPageState(
       {this.title,
@@ -107,6 +107,7 @@ class _EditPageState extends State<EditPage> {
                         padding: EdgeInsets.only(right: 15),
                         width: size.width * 0.4,
                         child: SelectFormField(
+                            initialValue: widget.category.text,
                             labelText: 'Categoria',
                             icon: Icon(
                               Icons.filter_alt_outlined,
@@ -154,14 +155,13 @@ class _EditPageState extends State<EditPage> {
                         onPressed: () {
                           if (formKey.currentState.validate()) {
                             double precoDouble = double.parse(price.text);
-                            print(originalTitle);
-                            print(title.text);
                             EditAnnounApi.editAnnoun(originalTitle,
                                 name: title.text,
                                 price: precoDouble,
                                 category: category.text,
                                 description: description.text);
                           }
+                          originalTitle = title.text;
                         },
                         child: Container(
                           width: size.width * 0.5,
