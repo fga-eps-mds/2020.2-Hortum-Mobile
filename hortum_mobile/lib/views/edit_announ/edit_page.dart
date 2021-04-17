@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
-import 'package:hortum_mobile/data/announ_edit_backend.dart';
+import 'package:hortum_mobile/views/edit_announ/services/edit_announ_services.dart';
 import 'package:hortum_mobile/views/profile/components/add_picture.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
@@ -57,7 +57,6 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -159,11 +158,13 @@ class _EditPageState extends State<EditPage> {
                         onPressed: () {
                           if (formKey.currentState.validate()) {
                             double precoDouble = double.parse(price.text);
-                            EditAnnounApi.editAnnoun(originalTitle,
-                                name: title.text,
-                                price: precoDouble,
-                                category: category.text,
-                                description: description.text);
+                            ChangeServices.editAnnoun(
+                                originalTitle,
+                                widget.title.text,
+                                precoDouble,
+                                widget.category.text,
+                                widget.description.text,
+                                context);
                           }
                           originalTitle = title.text;
                         },

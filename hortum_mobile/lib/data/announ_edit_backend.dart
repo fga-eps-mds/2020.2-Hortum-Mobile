@@ -1,20 +1,31 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
 
 class EditAnnounApi {
-  static Future editAnnoun(String nomeOriginal,
+  Dio dio;
+
+  EditAnnounApi([Dio client]) {
+    if (client == null) {
+      this.dio = Dio();
+    } else {
+      this.dio = client;
+    }
+  }
+
+  Future editAnnoun(String nomeOriginal,
       {String name,
       String description,
       double price,
       String category,
       bool inventory}) async {
-    String userAccessToken = await actualUser.readSecureData('token_access');
-    var url = 'http://$ip:8000/announcement/update/$nomeOriginal';
+    String url = 'http://$ip:8000/announcement/update/$nomeOriginal';
+
     var header = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + userAccessToken,
+      "Authorization": "Bearer " + actualUser.tokenAccess,
     };
+
     Map params = {
       "name": name,
       "description": description,
@@ -26,7 +37,14 @@ class EditAnnounApi {
 
     String _body = json.encode(params);
 
-    var response = await http.patch(url, headers: header, body: _body);
-    Map mapResponse = json.decode(response.body);
+    var response = await dio.patch(url,
+        data: _body,
+        options: Options(
+          headers: header,
+          validateStatus: (status) {
+            return status <= 500;
+          },
+        ));
+    return response;
   }
 }
