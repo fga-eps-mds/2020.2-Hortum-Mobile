@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class SelectFormField extends StatefulWidget {
   final String labelText;
+  final String initialValue;
   final List<String> listValues;
   final Icon icon;
   final Function validator;
@@ -12,6 +13,7 @@ class SelectFormField extends StatefulWidget {
       @required this.icon,
       @required this.validator,
       @required this.controller,
+      this.initialValue,
       Key key})
       : super(key: key);
   @override
@@ -19,6 +21,7 @@ class SelectFormField extends StatefulWidget {
 }
 
 class _SelectFormFieldState extends State<SelectFormField> {
+  // ignore: unused_field
   String _currentSelectedValue = '';
 
   @override
@@ -31,7 +34,7 @@ class _SelectFormFieldState extends State<SelectFormField> {
           prefixIcon: widget.icon,
           labelText: widget.labelText,
           contentPadding: EdgeInsets.only(top: 2)),
-      value: (_currentSelectedValue == '' ? null : _currentSelectedValue),
+      value: (widget.initialValue == null ? null : widget.initialValue),
       isDense: true,
       validator: widget.validator,
       onChanged: (String newValue) {
