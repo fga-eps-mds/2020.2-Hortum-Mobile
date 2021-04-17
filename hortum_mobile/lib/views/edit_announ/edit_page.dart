@@ -10,11 +10,12 @@ import 'package:hortum_mobile/views/register_announcement/services/register_anno
 import 'components/edit_picture.dart';
 
 class EditPage extends StatefulWidget {
-  final String title;
-  final String description;
-  final String localization;
-  final String price;
-  final String category;
+  final TextEditingController title;
+  final TextEditingController description;
+  final TextEditingController localization;
+  final TextEditingController price;
+  final TextEditingController category;
+  final String originalTitle;
 
   const EditPage(
       {@required this.title,
@@ -22,23 +23,41 @@ class EditPage extends StatefulWidget {
       @required this.price,
       @required this.localization,
       @required this.category,
+      @required this.originalTitle,
       Key key})
       : super(key: key);
+
   @override
-  _EditPageState createState() => _EditPageState();
+  _EditPageState createState() => _EditPageState(
+      title: title,
+      description: description,
+      price: price,
+      localization: localization,
+      category: category,
+      originalTitle: originalTitle);
 }
 
 class _EditPageState extends State<EditPage> {
   final formKey = GlobalKey<FormState>();
-  TextEditingController titulo;
-  TextEditingController localizacao;
-  TextEditingController categoria;
-  TextEditingController preco;
-  TextEditingController descricao;
+  final TextEditingController title;
+  final TextEditingController description;
+  final TextEditingController localization;
+  final TextEditingController price;
+  final TextEditingController category;
+  final String originalTitle;
+
+  _EditPageState(
+      {this.title,
+      this.description,
+      this.price,
+      this.localization,
+      this.category,
+      this.originalTitle});
+
   @override
   Widget build(BuildContext context) {
-    String tituloAntigo = widget.title;
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -59,8 +78,7 @@ class _EditPageState extends State<EditPage> {
                           color: Colors.black,
                         ),
                         validator: validateTitle,
-                        controller: titulo =
-                            TextEditingController(text: widget.title)),
+                        controller: title),
                     Column(
                       children: [
                         CustomFormField(
@@ -70,8 +88,7 @@ class _EditPageState extends State<EditPage> {
                             icon: Icon(Icons.location_on_outlined,
                                 color: Colors.black),
                             validator: validateLocalization,
-                            controller: localizacao = TextEditingController(
-                                text: widget.localization)),
+                            controller: localization),
                         Container(
                           decoration: new BoxDecoration(
                             color: Color(0XFFC4C4C4),
@@ -90,16 +107,14 @@ class _EditPageState extends State<EditPage> {
                         padding: EdgeInsets.only(right: 15),
                         width: size.width * 0.4,
                         child: SelectFormField(
-                          labelText: 'Categoria',
-                          icon: Icon(
-                            Icons.filter_alt_outlined,
-                            color: Colors.black,
-                          ),
-                          validator: validateCategory,
-                          listValues: announcementsCategories,
-                          controller: categoria =
-                              TextEditingController(text: widget.category),
-                        ),
+                            labelText: 'Categoria',
+                            icon: Icon(
+                              Icons.filter_alt_outlined,
+                              color: Colors.black,
+                            ),
+                            validator: validateCategory,
+                            listValues: announcementsCategories,
+                            controller: category),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15),
@@ -112,8 +127,7 @@ class _EditPageState extends State<EditPage> {
                               color: Colors.black,
                             ),
                             validator: validatePrice,
-                            controller: preco =
-                                TextEditingController(text: widget.price)),
+                            controller: price),
                       )
                     ]),
                     Column(
@@ -133,21 +147,20 @@ class _EditPageState extends State<EditPage> {
                         ]),
                         CustomDescField(
                             validator: validateDescription,
-                            controller: descricao = TextEditingController(
-                                text: widget.description)),
+                            controller: description),
                       ],
                     ),
                     MaterialButton(
                         onPressed: () {
                           if (formKey.currentState.validate()) {
-                            double precoDouble = double.parse(preco.text);
-                            print(tituloAntigo);
-                            print(titulo.text);
-                            EditAnnounApi.editAnnoun(tituloAntigo,
-                                name: titulo.text,
+                            double precoDouble = double.parse(price.text);
+                            print(originalTitle);
+                            print(title.text);
+                            EditAnnounApi.editAnnoun(originalTitle,
+                                name: title.text,
                                 price: precoDouble,
-                                category: categoria.text,
-                                description: descricao.text);
+                                category: category.text,
+                                description: description.text);
                           }
                         },
                         child: Container(
