@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
@@ -10,6 +11,7 @@ import 'package:hortum_mobile/views/register_announcement/services/register_anno
 import 'components/edit_picture.dart';
 
 class EditPage extends StatefulWidget {
+  final Dio dio;
   final TextEditingController title;
   final TextEditingController description;
   final TextEditingController localization;
@@ -24,6 +26,7 @@ class EditPage extends StatefulWidget {
       @required this.localization,
       @required this.category,
       @required this.originalTitle,
+      this.dio,
       Key key})
       : super(key: key);
 
@@ -155,10 +158,12 @@ class _EditPageState extends State<EditPage> {
                       ],
                     ),
                     MaterialButton(
+                        key: Key('salvarAnnoun'),
                         onPressed: () {
                           if (formKey.currentState.validate()) {
                             double precoDouble = double.parse(price.text);
                             ChangeServices.editAnnoun(
+                                widget.dio,
                                 originalTitle,
                                 widget.title.text,
                                 precoDouble,

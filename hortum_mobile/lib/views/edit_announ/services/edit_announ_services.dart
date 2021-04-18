@@ -1,24 +1,25 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_edit_backend.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class ChangeServices {
   static Future editAnnoun(
+      Dio dio,
       String originalTitle,
       String title,
       double precoDouble,
       String category,
       String description,
       BuildContext context) async {
-    final EditAnnounApi changeData = new EditAnnounApi();
+    final EditAnnounApi changeData = new EditAnnounApi(dio);
     if (title == originalTitle) title = null;
     var response = await changeData.editAnnoun(originalTitle,
         name: title,
         price: precoDouble,
         category: category,
         description: description);
-
-    if (response.statusCode == 400) {
+    if (response.statusCode != 200) {
       showDialog(
         context: context,
         builder: (context) {
