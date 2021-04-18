@@ -87,7 +87,7 @@ class _PasswordFormState extends State<PasswordForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  ChangeServices.changePassword(
+                  ChangePasswordServices.changePassword(
                       widget.dio, actualPassword.text, password.text, context);
                 }
               },
