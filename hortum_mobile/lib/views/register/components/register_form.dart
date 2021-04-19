@@ -85,7 +85,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 icon:
                                     Icon(Icons.lock_open, color: Colors.black),
                                 validator: (value) {
-                                  FormValidation.validateConfirmPassword(
+                                  return FormValidation.validateConfirmPassword(
                                       _password.text, value);
                                 },
                               ),
