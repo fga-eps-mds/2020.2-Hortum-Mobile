@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 
