@@ -4,7 +4,6 @@ import 'package:hortum_mobile/services/codec_string.dart';
 
 class ProdLoggedAnnounDataApi {
   List<dynamic> announcements = [];
-  var productor;
   Dio dio;
 
   ProdLoggedAnnounDataApi([Dio client]) {
@@ -27,8 +26,7 @@ class ProdLoggedAnnounDataApi {
     Response response =
         await this.dio.get(url, options: Options(headers: header));
 
-    this.productor = response.data;
-    this.announcements = this.productor['announcements'];
+    this.announcements = response.data['announcements'];
     manipulateData();
   }
 
