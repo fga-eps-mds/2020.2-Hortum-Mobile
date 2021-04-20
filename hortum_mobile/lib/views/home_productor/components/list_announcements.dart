@@ -14,6 +14,7 @@ class ListAnnouncement extends StatelessWidget {
           ButtonsRow(title: announcements[index]['title']),
           AnnouncementBox(
               profilePic: announcements[index]['profilePic'],
+              email: announcements[index]['email'],
               name: announcements[index]['name'],
               title: announcements[index]['title'],
               localization: announcements[index]['localization'],
