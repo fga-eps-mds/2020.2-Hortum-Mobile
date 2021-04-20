@@ -28,7 +28,6 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 itemCount: announcements.length,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
-                  print(announcements[index]['email'].toString());
                   return AnnouncementBox(
                       profilePic: 'assets/images/perfil.jpg',
                       name: announcements[index]['username'],

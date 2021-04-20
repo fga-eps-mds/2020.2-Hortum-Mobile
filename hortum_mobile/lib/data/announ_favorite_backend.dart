@@ -19,8 +19,6 @@ class AnnounFavAPI {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
-    print(email);
-    print(announcementName);
     Map params = {"email": email, "announcementName": announcementName};
 
     String _body = json.encode(params);

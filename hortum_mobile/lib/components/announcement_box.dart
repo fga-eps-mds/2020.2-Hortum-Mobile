@@ -85,7 +85,12 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                       ),
                       icon: Icon(Icons.favorite_border_outlined, size: 22),
                       onPressed: () {
-                        print("Cor");
+                        changeData.favAnnoun(widget.email, widget.title);
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FavAnnounPage()),
+                            (route) => true);
                       },
                     ),
                     IconButton(
@@ -96,14 +101,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                         minHeight: 3,
                       ),
                       icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
-                      onPressed: () {
-                        changeData.favAnnoun(widget.email, widget.title);
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FavAnnounPage()),
-                            (route) => route.isCurrent);
-                      },
+                      onPressed: () {},
                     )
                   ],
                 ),
