@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/data/announ_favorite_backend.dart';
+import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
 
 class AnnouncementBox extends StatefulWidget {
   final String profilePic;
@@ -7,6 +10,8 @@ class AnnouncementBox extends StatefulWidget {
   final String localization;
   final String price;
   final String productPic;
+  final String email;
+  final Dio dio;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -15,6 +20,8 @@ class AnnouncementBox extends StatefulWidget {
       @required this.localization,
       @required this.price,
       @required this.productPic,
+      this.email,
+      this.dio,
       Key key})
       : super(key: key);
   @override
@@ -25,6 +32,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    AnnounFavAPI changeData = new AnnounFavAPI(widget.dio);
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       width: size.width * 0.9,
@@ -89,7 +97,12 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                       ),
                       icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
                       onPressed: () {
-                        print("Cur");
+                        changeData.favAnnoun(widget.email, widget.title);
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FavAnnounPage()),
+                            (route) => route.isCurrent);
                       },
                     )
                   ],

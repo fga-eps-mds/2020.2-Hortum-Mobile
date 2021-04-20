@@ -28,12 +28,14 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 itemCount: announcements.length,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
+                  print(announcements[index]['email'].toString());
                   return AnnouncementBox(
                       profilePic: 'assets/images/perfil.jpg',
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
                       localization: 'Asa Norte, 404 Feira Da Tarde',
                       price: announcements[index]['price'],
+                      email: announcements[index]['email'],
                       productPic: 'assets/images/banana.jpg');
                 },
               )
