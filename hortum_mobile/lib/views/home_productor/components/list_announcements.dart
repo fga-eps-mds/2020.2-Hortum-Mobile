@@ -22,7 +22,12 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         return Column(children: [
-          ButtonsRow(title: announcements[index]['name']),
+          ButtonsRow(
+              title: announcements[index]['title'],
+              localization: announcements[index]['localization'],
+              price: announcements[index]['price'],
+              description: announcements[index]['description'],
+              category: announcements[index]['category']),
           AnnouncementBox(
               profilePic: 'assets/images/perfil.jpg',
               name: announcements[index]['username'],
