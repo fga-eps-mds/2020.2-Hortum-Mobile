@@ -1,9 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/data/prod_log_data_backend.dart';
 import 'package:hortum_mobile/views/home_productor/components/list_announcements.dart';
 
 class ProductorHomePage extends StatefulWidget {
+  final Dio dio;
+
+  const ProductorHomePage({this.dio, Key key}) : super(key: key);
   @override
   _ProductorHomePageState createState() => _ProductorHomePageState();
 }
