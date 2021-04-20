@@ -23,12 +23,15 @@ class _FavSelectButtonState extends State<FavSelectButton> {
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Padding(
           padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: ElevatedButton(
+          child: OutlinedButton(
             style: ElevatedButton.styleFrom(
               primary: widget.isAnnouncement
                   ? Color.fromARGB(0xFF, 189, 225, 183)
                   : Colors.white,
+              side: BorderSide(
+                  width: 1.2, color: Color.fromARGB(0xFF, 89, 152, 26)),
               shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Color.fromARGB(0xFF, 89, 152, 26)),
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(15),
                       topLeft: Radius.circular(15))),
@@ -46,12 +49,15 @@ class _FavSelectButtonState extends State<FavSelectButton> {
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: ElevatedButton(
+          child: OutlinedButton(
             style: ElevatedButton.styleFrom(
               primary: !widget.isAnnouncement
                   ? Color.fromARGB(0xFF, 189, 225, 183)
                   : Colors.white,
+              side: BorderSide(
+                  width: 1.2, color: Color.fromARGB(0xFF, 89, 152, 26)),
               shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Color.fromARGB(0xFF, 89, 152, 26)),
                   borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(15),
                       topRight: Radius.circular(15))),

@@ -61,9 +61,12 @@ class _FavAnnounPageState extends State<FavAnnounPage> {
                             ? AnnouncementsList(
                                 announData: announData,
                                 textNotFound:
-                                    "Nenhum favorito adicionado.\nAdicione tocando no coração de alguma postagem!",
+                                    "Nenhum favorito adicionado.\nAdicione tocando no curtir de alguma postagem!",
                               )
-                            : ProductorsList(productorsData: productorsData)
+                            : ProductorsList(
+                                textNotFound:
+                                    "Nenhum produtor favorito adicionado.\nAdicione tocando no favoritar de alguma postagem!",
+                                productorsData: productorsData)
                         : Container(
                             margin: EdgeInsets.only(top: size.height * 0.25),
                             child: SpinKitCircle(

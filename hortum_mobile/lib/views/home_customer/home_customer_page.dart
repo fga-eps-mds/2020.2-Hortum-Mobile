@@ -70,8 +70,12 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                           ? AnnouncementsList(
                               announData: announData,
                               textNotFound:
-                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca")
-                          : ProductorsList(productorsData: productorsData)
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                            )
+                          : ProductorsList(
+                              textNotFound:
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                              productorsData: productorsData)
                       : Container(
                           margin: EdgeInsets.only(top: size.height * 0.25),
                           child: SpinKitCircle(
