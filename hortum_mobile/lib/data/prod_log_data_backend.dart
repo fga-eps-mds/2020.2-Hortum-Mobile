@@ -26,7 +26,7 @@ class ProdLoggedAnnounDataApi {
 
     Response response =
         await this.dio.get(url, options: Options(headers: header));
-    //var response = await http.get(urli, headers: header);
+
     this.productor = response.data;
     this.announcements = this.productor['announcements'];
     manipulateData();

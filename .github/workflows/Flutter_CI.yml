@@ -29,7 +29,7 @@ jobs:
     
  
     - name: Run tests for Flutter
-      run: flutter test -- coverage
+      run: flutter test --coverage
       working-directory: ./hortum_mobile
       
     - name: Sending the results to codecov
