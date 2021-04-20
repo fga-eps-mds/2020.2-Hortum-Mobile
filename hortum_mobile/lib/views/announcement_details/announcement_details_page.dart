@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class AnnouncementDetails extends StatefulWidget {
@@ -27,6 +28,7 @@ class AnnouncementDetails extends StatefulWidget {
 class _AnnouncementDetailsState extends State<AnnouncementDetails> {
   @override
   Widget build(BuildContext context) {
+    CarouselController buttonCarrouselContoller = CarouselController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -259,31 +261,77 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                   ],
                 ),
                 CarouselSlider(
-                  options: CarouselOptions(height: size.height * 0.2),
+                  carouselController: buttonCarrouselContoller,
+                  options: CarouselOptions(
+                      height: size.height * 0.2, viewportFraction: 1),
                   items: [1, 2, 3, 4, 5].map((i) {
                     return Builder(
                       builder: (BuildContext context) {
                         return Container(
-                            child: InkWell(
-                                child: Image.asset(widget.productPic,
-                                    fit: BoxFit.fill,
-                                    height: size.height * 0.2,
-                                    width: size.height * 0.9)),
-                            width: size.width * 0.9,
-                            height: size.height * 0.15,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
+                          width: size.width * 0.9,
+                          height: size.height * 0.15,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              border: Border.all(
+                                  color: Colors.black.withOpacity(0.25)),
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 4,
+                                    color: Colors.black.withOpacity(0.35),
+                                    spreadRadius: 0,
+                                    offset: Offset(0, 4))
+                              ]),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15)),
-                                border: Border.all(
-                                    color: Colors.black.withOpacity(0.25)),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 4,
-                                      color: Colors.black.withOpacity(0.35),
-                                      spreadRadius: 0,
-                                      offset: Offset(0, 4))
-                                ]));
+                                child: Material(
+                                  child: InkWell(
+                                      child: Image.asset(widget.productPic,
+                                          fit: BoxFit.fill,
+                                          height: size.height * 0.2,
+                                          width: size.width * 0.9)),
+                                ),
+                              ),
+                              Container(
+                                height: size.height * 0.03,
+                                width: size.width * 0.06,
+                                margin:
+                                    EdgeInsets.only(top: size.height * 0.07),
+                                child: MaterialButton(
+                                  padding: EdgeInsets.all(0),
+                                  child: Icon(
+                                      Icons.keyboard_arrow_left_outlined,
+                                      size: 35,
+                                      color: Colors.grey),
+                                  onPressed: () {
+                                    buttonCarrouselContoller.previousPage();
+                                  },
+                                ),
+                              ),
+                              Container(
+                                height: size.height * 0.03,
+                                width: size.width * 0.06,
+                                margin: EdgeInsets.only(
+                                    top: size.height * 0.07,
+                                    left: size.width * 0.8),
+                                child: MaterialButton(
+                                  padding: EdgeInsets.all(0),
+                                  child: Icon(
+                                      Icons.keyboard_arrow_right_outlined,
+                                      size: 35,
+                                      color: Colors.grey),
+                                  onPressed: () {
+                                    buttonCarrouselContoller.nextPage();
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                     );
                   }).toList(),
