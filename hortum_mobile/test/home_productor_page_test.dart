@@ -13,18 +13,18 @@ main() {
   final dioMock = DioMock();
 
   dynamic response = {
-    "username": "victor",
-    "email": "victor@gmail.com",
-    "idPicture": "uma ai",
+    "username": "Usuário Teste",
+    "email": "usuário@gmail.com",
+    "idPicture": null,
     "announcements": [
       {
-        "username": "victor",
-        "idPictureProductor": "uma ai",
-        "name": "folha Verde",
+        "username": "Usuário Teste",
+        "idPictureProductor": null,
+        "name": "Folha Verde",
         "type_of_product": "Alface",
-        "description": "nao aguento mais",
+        "description": "Alface plantado na fazenda",
         "price": 5.0,
-        "idPicture": "uma ai"
+        "idPicture": null
       }
     ]
   };
