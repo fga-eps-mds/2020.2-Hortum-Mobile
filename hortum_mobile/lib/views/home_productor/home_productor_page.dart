@@ -46,13 +46,15 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
                             child: ListAnnouncement(
                               announProd: announProd,
                             ))
-                        : Text('Nenhum Anuncio Cadastrado',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontFamily: 'Roboto-Regular',
-                                letterSpacing: -0.33,
-                                fontWeight: FontWeight.w300))
+                        : Container(
+                            margin: EdgeInsets.only(top: size.height * 0.16),
+                            child: Text('Nenhum Anuncio Cadastrado',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontFamily: 'Roboto-Regular',
+                                    letterSpacing: -0.33,
+                                    fontWeight: FontWeight.w300)))
                   ],
                 ),
               ),
