@@ -27,7 +27,7 @@ class ChangeServices {
             key: Key('erroAoEditar'),
             title: Text("Erro!"),
             content: Text(
-              response.data.toString(),
+              "Este nome de anúncio já foi utilizado.",
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 16,

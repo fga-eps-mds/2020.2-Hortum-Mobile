@@ -171,7 +171,6 @@ class _EditPageState extends State<EditPage> {
                                 widget.description.text,
                                 context);
                           }
-                          originalTitle = title.text;
                         },
                         child: Container(
                           width: size.width * 0.5,
