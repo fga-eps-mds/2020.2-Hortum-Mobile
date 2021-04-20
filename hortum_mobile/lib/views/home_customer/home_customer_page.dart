@@ -6,7 +6,7 @@ import 'package:hortum_mobile/data/announ_data_backend.dart';
 import 'package:hortum_mobile/data/productors_data_backend.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
 import 'package:hortum_mobile/views/home_customer/components/home_type.dart';
-import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
+import 'package:hortum_mobile/components/list_announcements.dart';
 import 'package:hortum_mobile/views/home_customer/components/list_productors.dart';
 import 'package:hortum_mobile/views/home_customer/services/home_customer_services.dart';
 
@@ -67,7 +67,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   ),
                   snapshot.connectionState == ConnectionState.done
                       ? this.isAnnouncements
-                          ? AnnouncementsList(announData: announData)
+                          ? AnnouncementsList(
+                              announData: announData,
+                              textNotFound:
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca")
                           : ProductorsList(productorsData: productorsData)
                       : Container(
                           margin: EdgeInsets.only(top: size.height * 0.25),

@@ -68,9 +68,30 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.favorite_border_outlined, size: 14),
-                    SizedBox(width: size.width * 0.01),
-                    Icon(Icons.thumb_up_alt_outlined, size: 14)
+                    IconButton(
+                      key: Key('favProd'),
+                      padding: EdgeInsets.all(6),
+                      constraints: BoxConstraints(
+                        minWidth: 3,
+                        minHeight: 3,
+                      ),
+                      icon: Icon(Icons.favorite_border_outlined, size: 22),
+                      onPressed: () {
+                        print("Cor");
+                      },
+                    ),
+                    IconButton(
+                      key: Key('favAnnoun'),
+                      padding: EdgeInsets.all(6),
+                      constraints: BoxConstraints(
+                        minWidth: 3,
+                        minHeight: 3,
+                      ),
+                      icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
+                      onPressed: () {
+                        print("Cur");
+                      },
+                    )
                   ],
                 ),
               ],
