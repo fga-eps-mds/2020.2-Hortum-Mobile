@@ -39,12 +39,20 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
                             fontWeight: FontWeight.w300),
                       ),
                     ),
-                    Container(
-                        height: size.height * 0.75,
-                        margin: EdgeInsets.only(bottom: size.height * 0.05),
-                        child: ListAnnouncement(
-                          announProd: announProd,
-                        )),
+                    snapshot.connectionState == ConnectionState.done
+                        ? Container(
+                            height: size.height * 0.75,
+                            margin: EdgeInsets.only(bottom: size.height * 0.05),
+                            child: ListAnnouncement(
+                              announProd: announProd,
+                            ))
+                        : Text('Nenhum Anuncio Cadastrado',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontFamily: 'Roboto-Regular',
+                                letterSpacing: -0.33,
+                                fontWeight: FontWeight.w300))
                   ],
                 ),
               ),
