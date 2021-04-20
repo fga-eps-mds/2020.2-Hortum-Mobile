@@ -50,6 +50,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: CustomFormField(
+                      suffixIcon: false,
                       obscureText: true,
                       labelText: 'Senha atual',
                       controller: actualPassword,
@@ -60,6 +61,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: CustomFormField(
+                      suffixIcon: false,
                       obscureText: true,
                       labelText: 'Nova senha',
                       controller: password,
@@ -70,6 +72,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: CustomFormField(
+                      suffixIcon: false,
                       obscureText: true,
                       labelText: 'Confirme a senha',
                       controller: confirmPassword,

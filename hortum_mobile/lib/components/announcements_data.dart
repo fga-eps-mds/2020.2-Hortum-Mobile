@@ -15,23 +15,29 @@ List<Map> announcements = [
     'name': 'Fábio',
     'title': 'Uma dúzia de banana',
     'localization': 'Asa Norte, 404 Feira Da Tarde',
-    'price': 'R\$ 15,00',
-    'productPic': 'assets/images/banana.jpg'
+    'price': '15.00',
+    'productPic': 'assets/images/banana.jpg',
+    'description': 'nao aguento mais',
+    'category': 'Banana'
   },
   {
     'profilePic': 'assets/images/perfil.jpg',
     'name': 'Carlos',
     'title': 'Brocolis Fresco',
     'localization': 'Feira de Taguatinga',
-    'price': 'R\$ 25,00',
-    'productPic': 'assets/images/brocolis.jpg'
+    'price': '25.00',
+    'productPic': 'assets/images/brocolis.jpg',
+    'description': 'nao aguento mais',
+    'category': 'Banana'
   },
   {
     'profilePic': 'assets/images/perfil.jpg',
     'name': 'Eduardo',
     'title': 'Cenoura Laranja',
     'localization': 'SQSR 300, Domingo',
-    'price': 'R\$ 5,00',
-    'productPic': 'assets/images/cenoura.jpeg'
+    'price': '5.00',
+    'productPic': 'assets/images/cenoura.jpeg',
+    'description': 'nao aguento mais',
+    'category': 'Banana'
   }
 ];

@@ -58,12 +58,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               CustomFormField(
+                                suffixIcon: false,
                                 controller: _name,
                                 labelText: 'Nome',
                                 icon: Icon(Icons.face, color: Colors.black),
                                 validator: FormValidation.validateName,
                               ),
                               CustomFormField(
+                                suffixIcon: false,
                                 labelText: 'E-mail',
                                 controller: _email,
                                 icon: Icon(Icons.email_outlined,
@@ -71,6 +73,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 validator: FormValidation.validateEmail,
                               ),
                               CustomFormField(
+                                suffixIcon: false,
                                 obscureText: true,
                                 labelText: 'Senha',
                                 controller: _password,
@@ -79,6 +82,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 validator: FormValidation.validatePassword,
                               ),
                               CustomFormField(
+                                suffixIcon: false,
                                 obscureText: true,
                                 labelText: 'Confirmar Senha',
                                 controller: _confirmPassword,

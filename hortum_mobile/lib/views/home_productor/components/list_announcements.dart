@@ -11,7 +11,12 @@ class ListAnnouncement extends StatelessWidget {
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         return Column(children: [
-          ButtonsRow(title: announcements[index]['title']),
+          ButtonsRow(
+              title: announcements[index]['title'],
+              localization: announcements[index]['localization'],
+              price: announcements[index]['price'],
+              description: announcements[index]['description'],
+              category: announcements[index]['category']),
           AnnouncementBox(
               profilePic: announcements[index]['profilePic'],
               name: announcements[index]['name'],
