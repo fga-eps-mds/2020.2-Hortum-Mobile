@@ -14,19 +14,19 @@ class ProdLoggedAnnounDataApi {
       this.dio = client;
     }
   }
+
   Future getAnnounProd() async {
-    String userAccessToken = await actualUser.readSecureData('token_access');
     String encodedEmail = encodeString(actualUser.email);
     //Uri urli =
     //Uri.http('http://$ip:8000/productor/retrieve/${encodedEmail}', "");
     String url = 'http://$ip:8000/productor/retrieve/${encodedEmail}';
-
     var header = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + userAccessToken,
+      "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
-    var response = await this.dio.get(url, options: Options(headers: header));
+    Response response =
+        await this.dio.get(url, options: Options(headers: header));
     //var response = await http.get(urli, headers: header);
     this.productor = response.data;
     this.announcements = this.productor['announcements'];

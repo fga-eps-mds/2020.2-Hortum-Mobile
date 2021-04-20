@@ -16,7 +16,8 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    ProdLoggedAnnounDataApi announProd = new ProdLoggedAnnounDataApi();
+    ProdLoggedAnnounDataApi announProd =
+        new ProdLoggedAnnounDataApi(widget.dio);
 
     return FutureBuilder(
         future: announProd.getAnnounProd(),

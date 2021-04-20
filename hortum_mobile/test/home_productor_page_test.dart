@@ -16,15 +16,17 @@ main() {
     "username": "victor",
     "email": "victor@gmail.com",
     "idPicture": "uma ai",
-    "announcements": {
-      "username": "victor",
-      "idPictureProductor": "uma ai",
-      "name": "folha Verde",
-      "type_of_product": "Alface",
-      "description": "nao aguento mais",
-      "price": 5.0,
-      "idPicture": "uma ai"
-    }
+    "announcements": [
+      {
+        "username": "victor",
+        "idPictureProductor": "uma ai",
+        "name": "folha Verde",
+        "type_of_product": "Alface",
+        "description": "nao aguento mais",
+        "price": 5.0,
+        "idPicture": "uma ai"
+      }
+    ]
   };
 
   Widget makeTestable() {
@@ -37,35 +39,40 @@ main() {
       (WidgetTester tester) async {
     actualUser.isProductor = true;
     actualUser.tokenAccess = 'token';
+    actualUser.email = 'productor@email.com';
     when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
         (_) async => Response(data: response, requestOptions: null));
     await tester.pumpWidget(makeTestable());
-    await tester.tap(find.byIcon(Icons.delete));
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.delete).first);
     await tester.pump();
 
     expect(find.byKey(Key('removeAnnoun')), findsOneWidget);
   });
 
-  test('Testing the information of the productor logged', () {
+  test('Testing the method manipulateData on ProdLoggedAnnounDataApi', () {
     ProdLoggedAnnounDataApi announProd = ProdLoggedAnnounDataApi();
     dynamic element = {
-      "username": "victor",
-      "email": "victor@gmail.com",
-      "idPicture": "uma ai",
-      "announcements": {
-        "username": "victor",
-        "idPictureProductor": "uma ai",
-        "name": "folha Verde",
-        "type_of_product": "Alface",
-        "description": "nao aguento mais",
-        "price": 5.0,
-        "idPicture": "uma ai"
-      }
+      "username": "Usuário Teste",
+      "email": "usuário@gmail.com",
+      "idPicture": null,
+      "announcements": [
+        {
+          "username": "Usuário Teste",
+          "idPictureProductor": null,
+          "name": "Folha Verde",
+          "type_of_product": "Alface",
+          "description": "Alface plantado na fazenda",
+          "price": 5.0,
+          "idPicture": null
+        }
+      ]
     };
-    announProd.productor = element;
+    announProd.announcements = element['announcements'];
 
     announProd.manipulateData();
 
-    expect(response, announProd.productor);
+    expect(announProd.announcements[0]['price'], "R\$ 5,00");
+    expect(announProd.announcements[0]['username'], "Usuário");
   });
 }
