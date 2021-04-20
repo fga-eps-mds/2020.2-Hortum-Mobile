@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/spin.dart';
 import 'package:hortum_mobile/data/announ_data_backend.dart';

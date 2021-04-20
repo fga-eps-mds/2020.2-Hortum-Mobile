@@ -4,6 +4,7 @@ import 'package:hortum_mobile/components/announcement_box.dart';
 class ProductorDetaislService {
   static Widget completeAnnouncements(List<dynamic> announcements) {
     return Column(
+        key: Key('columnAnnoun'),
         children: announcements
             .map<Widget>((dynamic announcement) => AnnouncementBox(
                 profilePic: 'assets/images/perfil.jpg',
