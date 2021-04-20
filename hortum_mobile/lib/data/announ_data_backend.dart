@@ -32,6 +32,20 @@ class AnnounDataApi {
     manipulateData();
   }
 
+  Future getFavAnnoun() async {
+    String url = 'http://$ip:8000/customer/favorites/announcements';
+
+    var header = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + actualUser.tokenAccess
+    };
+
+    Response response =
+        await this.dio.get(url, options: Options(headers: header));
+    this.announcements = response.data['idAnunFav'];
+    manipulateData();
+  }
+
   manipulateData() {
     this.announcements.forEach((element) {
       element['price'] =
