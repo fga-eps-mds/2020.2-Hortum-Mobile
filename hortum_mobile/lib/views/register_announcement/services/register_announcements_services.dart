@@ -1,5 +1,5 @@
 class AnnouncementsFormValidation {
-  static String validateTitle(String value) {
+  static String validateName(String value) {
     String patttern = r'(^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9 ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {

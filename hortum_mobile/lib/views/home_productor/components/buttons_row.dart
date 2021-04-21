@@ -3,14 +3,14 @@ import 'package:hortum_mobile/views/edit_announ/edit_page.dart';
 import 'package:hortum_mobile/views/home_productor/components/dialog_confirm_delete.dart';
 
 class ButtonsRow extends StatefulWidget {
-  final String title;
+  final String name;
   final String description;
   final String localization;
   final String price;
   final String category;
 
   const ButtonsRow(
-      {@required this.title,
+      {@required this.name,
       @required this.description,
       @required this.price,
       @required this.localization,
@@ -20,7 +20,7 @@ class ButtonsRow extends StatefulWidget {
 
   @override
   _ButtonRowState createState() => _ButtonRowState(
-      title: title,
+      name: name,
       description: description,
       price: price,
       localization: localization,
@@ -28,14 +28,14 @@ class ButtonsRow extends StatefulWidget {
 }
 
 class _ButtonRowState extends State<ButtonsRow> {
-  final String title;
+  final String name;
   final String description;
   final String localization;
   final String price;
   final String category;
 
   _ButtonRowState(
-      {this.title,
+      {this.name,
       this.description,
       this.localization,
       this.price,
@@ -43,8 +43,7 @@ class _ButtonRowState extends State<ButtonsRow> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController title =
-        TextEditingController(text: widget.title);
+    final TextEditingController name = TextEditingController(text: widget.name);
     final TextEditingController description =
         TextEditingController(text: widget.description);
     final TextEditingController localization =
@@ -76,12 +75,12 @@ class _ButtonRowState extends State<ButtonsRow> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return EditPage(
-                    title: title,
+                    name: name,
                     description: description,
                     price: price,
                     localization: localization,
                     category: category,
-                    originalTitle: widget.title,
+                    originalname: widget.name,
                   );
                 }));
               },
@@ -111,7 +110,7 @@ class _ButtonRowState extends State<ButtonsRow> {
                 color: Color(0xFF478C5C),
               ),
               onPressed: () {
-                dialogDeleteConfirm(context, widget.title);
+                dialogDeleteConfirm(context, widget.name);
               },
             ),
           ),

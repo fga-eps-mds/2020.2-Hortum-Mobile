@@ -48,13 +48,12 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
                             ))
                         : Container(
                             margin: EdgeInsets.only(top: size.height * 0.16),
-                            child: Text('Nenhum Anuncio Cadastrado',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontFamily: 'Roboto-Regular',
-                                    letterSpacing: -0.33,
-                                    fontWeight: FontWeight.w300)))
+                            child: Text(
+                              "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Color(0xff1D8E40), fontSize: 15),
+                            ))
                   ],
                 ),
               ),
