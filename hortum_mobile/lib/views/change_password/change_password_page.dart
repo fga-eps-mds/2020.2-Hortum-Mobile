@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/views/change_password/components/password_form.dart';
-import 'package:hortum_mobile/views/profile/components/circle_style.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   final Dio dio;
