@@ -15,7 +15,7 @@ class ProductorsDetailsApi {
   Future getDetails(String email) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url;
-    url = 'http://$ip:8000/productor/retrieve/${email}';
+    url = 'http://$ip:8000/announcement/retrieve/${email}';
 
     var header = {
       "Content-Type": "application/json",
