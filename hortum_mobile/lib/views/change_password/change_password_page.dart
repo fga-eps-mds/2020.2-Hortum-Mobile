@@ -25,7 +25,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
           height: size.height,
           child: Stack(
             children: [
-              CircleStyle(),
+              CircleStyle(color: Color(0xff478C5C).withOpacity(0.2)),
               Container(
                 padding: EdgeInsets.only(
                   right: size.width * 0.1,
