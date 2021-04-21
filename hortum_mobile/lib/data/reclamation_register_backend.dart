@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
 
-class ReclamationAPI {
+class RegisterReclamationAPI {
   Dio dio;
 
-  ReclamationAPI([Dio client]) {
+  RegisterReclamationAPI([Dio client]) {
     if (client == null) {
       this.dio = Dio();
     } else {
@@ -14,7 +14,7 @@ class ReclamationAPI {
   }
 
   Future registerReclamation(
-      String name, String description, String emailProductor) async {
+      {String name, String description, String emailProductor}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     var url = 'http://$ip:8000/reclamation/create/';
     var header = {

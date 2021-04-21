@@ -31,11 +31,10 @@ class _ReclamationFormState extends State<ReclamationForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.7,
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.45,
+            height: size.height * 0.6,
             child: Form(
               key: _formKey,
               child: Column(
@@ -77,8 +76,9 @@ class _ReclamationFormState extends State<ReclamationForm> {
             ),
           ),
           Container(
-            height: size.height * 0.2,
+            height: size.height * 0.05,
             child: MaterialButton(
+              key: Key('entrarButton'),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   ReclamationServices.registerReclamation(widget.dio, name.text,

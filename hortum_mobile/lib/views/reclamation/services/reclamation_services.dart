@@ -6,9 +6,9 @@ import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 class ReclamationServices {
   static Future registerReclamation(Dio dio, String name, String description,
       String emailProductor, BuildContext context) async {
-    ReclamationAPI registerReclam = new ReclamationAPI(dio);
+    RegisterReclamationAPI registerReclam = new RegisterReclamationAPI(dio);
     var response = await registerReclam.registerReclamation(
-        name, description, emailProductor);
+        name: name, description: description, emailProductor: emailProductor);
 
     if (response == 400) {
       showDialog(

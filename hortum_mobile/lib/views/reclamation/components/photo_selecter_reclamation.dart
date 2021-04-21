@@ -21,7 +21,7 @@ class _PhotoSelecterReclamationState extends State<PhotoSelecterReclamation> {
       decoration: BoxDecoration(),
       child: Container(
         width: double.infinity,
-        height: size.height * 0.1,
+        height: size.height * 0.118,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
