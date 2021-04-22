@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/data/prod_log_data_backend.dart';
 import 'package:hortum_mobile/views/home_productor/components/list_announcements.dart';
@@ -47,13 +48,10 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
                               announProd: announProd,
                             ))
                         : Container(
-                            margin: EdgeInsets.only(top: size.height * 0.16),
-                            child: Text(
-                              "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Color(0xff1D8E40), fontSize: 15),
-                            ))
+                            margin: EdgeInsets.only(top: size.height * 0.25),
+                            child: SpinKitCircle(
+                                key: Key('spin'),
+                                color: Color(0xff47CC70).withOpacity(0.7)))
                   ],
                 ),
               ),

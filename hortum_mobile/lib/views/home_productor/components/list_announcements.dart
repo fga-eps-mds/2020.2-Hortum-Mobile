@@ -17,26 +17,42 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
   @override
   Widget build(BuildContext context) {
     List announcements = widget.announProd.announcements;
-    return ListView.builder(
-      itemCount: announcements.length,
-      scrollDirection: Axis.vertical,
-      itemBuilder: (context, index) {
-        return Column(children: [
-          ButtonsRow(
-              title: announcements[index]['name'],
-              localization: announcements[index]['localization'],
-              price: announcements[index]['price'],
-              description: announcements[index]['description'],
-              category: announcements[index]['type_of_product']),
-          AnnouncementBox(
-              profilePic: 'assets/images/perfil.jpg',
-              name: announcements[index]['username'],
-              title: announcements[index]['name'],
-              localization: 'Asa Norte, 404 Feira Da Tarde',
-              price: announcements[index]['price'],
-              productPic: 'assets/images/banana.jpg')
-        ]);
-      },
-    );
+    Size size = MediaQuery.of(context).size;
+    return Container(
+        alignment: Alignment.topCenter,
+        height: size.height * 0.43,
+        padding:
+            EdgeInsets.only(right: size.width * 0.05, left: size.width * 0.05),
+        child: announcements.length != 0
+            ? ListView.builder(
+                itemCount: announcements.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  return Column(children: [
+                    ButtonsRow(
+                        title: announcements[index]['name'],
+                        localization: announcements[index]['localization'],
+                        price: announcements[index]['price'],
+                        description: announcements[index]['description'],
+                        category: announcements[index]['type_of_product']),
+                    AnnouncementBox(
+                        profilePic: 'assets/images/perfil.jpg',
+                        name: announcements[index]['username'],
+                        title: announcements[index]['name'],
+                        localization: 'Asa Norte, 404 Feira Da Tarde',
+                        price: announcements[index]['price'],
+                        productPic: 'assets/images/banana.jpg')
+                  ]);
+                },
+              )
+            : Container(
+                margin: EdgeInsets.only(top: size.height * 0.15),
+                width: size.width * 0.6,
+                child: Text(
+                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Color(0xff1D8E40), fontSize: 15),
+                ),
+              ));
   }
 }
