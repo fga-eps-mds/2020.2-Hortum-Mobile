@@ -23,7 +23,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
       itemBuilder: (context, index) {
         return Column(children: [
           ButtonsRow(
-              title: announcements[index]['title'],
+              title: announcements[index]['name'],
               localization: announcements[index]['localization'],
               price: announcements[index]['price'],
               description: announcements[index]['description'],

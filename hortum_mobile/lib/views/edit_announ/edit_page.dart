@@ -12,50 +12,50 @@ import 'components/edit_picture.dart';
 
 class EditPage extends StatefulWidget {
   final Dio dio;
-  final TextEditingController name;
+  final TextEditingController title;
   final TextEditingController description;
   final TextEditingController localization;
   final TextEditingController price;
   final TextEditingController category;
-  final String originalname;
+  final String originaltitle;
 
   const EditPage(
-      {@required this.name,
+      {@required this.title,
       @required this.description,
       @required this.price,
       @required this.localization,
       @required this.category,
-      @required this.originalname,
+      @required this.originaltitle,
       this.dio,
       Key key})
       : super(key: key);
 
   @override
   _EditPageState createState() => _EditPageState(
-      name: name,
+      title: title,
       description: description,
       price: price,
       localization: localization,
       category: category,
-      originalname: originalname);
+      originaltitle: originaltitle);
 }
 
 class _EditPageState extends State<EditPage> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController name;
+  final TextEditingController title;
   final TextEditingController description;
   final TextEditingController localization;
   final TextEditingController price;
   final TextEditingController category;
-  String originalname;
+  String originaltitle;
 
   _EditPageState(
-      {this.name,
+      {this.title,
       this.description,
       this.price,
       this.localization,
       this.category,
-      this.originalname});
+      this.originaltitle});
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +79,8 @@ class _EditPageState extends State<EditPage> {
                           Icons.title_outlined,
                           color: Colors.black,
                         ),
-                        validator: AnnouncementsFormValidation.validatename,
-                        controller: name),
+                        validator: AnnouncementsFormValidation.validateTitle,
+                        controller: title),
                     Column(
                       children: [
                         CustomFormField(
@@ -164,8 +164,8 @@ class _EditPageState extends State<EditPage> {
                             double precoDouble = double.parse(price.text);
                             ChangeServices.editAnnoun(
                                 widget.dio,
-                                originalname,
-                                widget.name.text,
+                                originaltitle,
+                                widget.title.text,
                                 precoDouble,
                                 widget.category.text,
                                 widget.description.text,
