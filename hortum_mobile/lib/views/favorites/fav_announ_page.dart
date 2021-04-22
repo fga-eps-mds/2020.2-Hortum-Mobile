@@ -11,6 +11,7 @@ import 'package:hortum_mobile/views/home_customer/components/list_productors.dar
 
 class FavAnnounPage extends StatefulWidget {
   final Dio dio;
+
   const FavAnnounPage({Key key, this.dio}) : super(key: key);
   @override
   _FavAnnounPageState createState() => _FavAnnounPageState();

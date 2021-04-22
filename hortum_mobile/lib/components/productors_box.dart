@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
+import 'package:hortum_mobile/services/codec_string.dart';
+import 'package:hortum_mobile/views/productor_details/productor_details.dart';
 
 class ProductorsBox extends StatefulWidget {
   final String name;
@@ -43,7 +45,11 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                 offset: Offset(0, 4))
           ]),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return ProductorDetails(email: encodeString(widget.email));
+          }));
+        },
         child: Row(
           children: [
             Container(

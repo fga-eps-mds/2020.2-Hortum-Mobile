@@ -46,6 +46,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: CustomFormField(
+                      suffixIcon: false,
                       controller: username,
                       obscureText: false,
                       labelText: 'Nome',
@@ -56,6 +57,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: CustomFormField(
+                      suffixIcon: false,
                       obscureText: false,
                       labelText: 'E-mail',
                       controller: email,

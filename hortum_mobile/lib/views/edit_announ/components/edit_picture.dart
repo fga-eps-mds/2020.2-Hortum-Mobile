@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProfilePicture extends StatelessWidget {
+class EditPicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -10,11 +10,11 @@ class ProfilePicture extends StatelessWidget {
       width: size.width * 0.3,
       height: size.width * 0.3,
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(50)),
+        borderRadius: BorderRadius.all(Radius.circular(16.8)),
         child: Material(
           child: InkWell(
               child: Image.asset(
-            'assets/images/perfil.jpg',
+            'assets/images/banana.jpg',
             fit: BoxFit.fill,
           )),
         ),

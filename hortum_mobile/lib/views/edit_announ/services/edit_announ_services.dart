@@ -1,26 +1,33 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/data/change_password_backend.dart';
-import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
+import 'package:hortum_mobile/data/announ_edit_backend.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
-class ChangePasswordServices {
-  static Future changePassword(Dio dio, String actualPasswordForm,
-      String newPasswordForm, BuildContext context) async {
-    ChangePasswordAPI changeData = new ChangePasswordAPI(dio);
-    var response =
-        await changeData.changePassword(actualPasswordForm, newPasswordForm);
-
-    if (response == 400) {
+class ChangeServices {
+  static Future editAnnoun(
+      Dio dio,
+      String originalTitle,
+      String title,
+      double precoDouble,
+      String category,
+      String description,
+      BuildContext context) async {
+    final EditAnnounApi changeData = new EditAnnounApi(dio);
+    if (title == originalTitle) title = null;
+    var response = await changeData.editAnnoun(originalTitle,
+        name: title,
+        price: precoDouble,
+        category: category,
+        description: description);
+    if (response.statusCode != 200) {
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            key: Key('senhaIncorreta'),
+            key: Key('erroAoEditar'),
             title: Text("Erro!"),
             content: Text(
-              "Senha atual incorreta",
+              "Este nome de anúncio já foi utilizado.",
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 16,
@@ -45,15 +52,9 @@ class ChangePasswordServices {
         },
       );
     } else {
-      if (actualUser.isProductor) {
-        return Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return ProductorHomePage();
-        }));
-      } else {
-        return Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return CustomerHomePage();
-        }));
-      }
+      return Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return ProductorHomePage();
+      }));
     }
   }
 }

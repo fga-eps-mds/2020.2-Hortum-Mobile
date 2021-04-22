@@ -30,11 +30,11 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 itemBuilder: (context, index) {
                   return AnnouncementBox(
                       profilePic: 'assets/images/perfil.jpg',
+                      email: announcements[index]['email'],
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
                       localization: 'Asa Norte, 404 Feira Da Tarde',
                       price: announcements[index]['price'],
-                      email: announcements[index]['email'],
                       productPic: 'assets/images/banana.jpg');
                 },
               )
