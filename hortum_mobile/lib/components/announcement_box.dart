@@ -8,6 +8,7 @@ class AnnouncementBox extends StatefulWidget {
   final String localization;
   final String price;
   final String productPic;
+  final String email;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -16,6 +17,7 @@ class AnnouncementBox extends StatefulWidget {
       @required this.localization,
       @required this.price,
       @required this.productPic,
+      @required this.email,
       Key key})
       : super(key: key);
   @override
@@ -116,7 +118,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(top: size.height * 0.02),
-                        padding: EdgeInsets.only(left: size.width * 0.03),
+                        padding: EdgeInsets.only(left: size.width * 0.02),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -164,7 +166,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                       ),
                       Container(
                         margin: EdgeInsets.only(
-                            right: size.width * 0.03, top: size.height * 0.01),
+                            right: size.width * 0.02, top: size.height * 0.01),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Material(

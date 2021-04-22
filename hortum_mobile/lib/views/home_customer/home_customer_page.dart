@@ -1,14 +1,21 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/components/spin.dart';
 import 'package:hortum_mobile/data/announ_data_backend.dart';
+import 'package:hortum_mobile/data/productors_data_backend.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
 import 'package:hortum_mobile/views/home_customer/components/home_type.dart';
 import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
+import 'package:hortum_mobile/views/home_customer/components/list_productors.dart';
+import 'package:hortum_mobile/views/home_customer/services/home_customer_services.dart';
 
 import 'components/search.dart';
 
 class CustomerHomePage extends StatefulWidget {
+  final Dio dio;
+
+  const CustomerHomePage({this.dio, Key key}) : super(key: key);
   @override
   _CustomerHomePageState createState() => _CustomerHomePageState();
 }
@@ -20,10 +27,12 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    AnnounDataApi announData = new AnnounDataApi();
+    AnnounDataApi announData = new AnnounDataApi(widget.dio);
+    ProductorsDataApi productorsData = new ProductorsDataApi(widget.dio);
 
     return FutureBuilder(
-      future: announData.getAnnoun(_filter.text),
+      future: HomeCustomerServices.populateData(
+          isAnnouncements, _filter.text, announData, productorsData),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -58,13 +67,9 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   ),
                   snapshot.connectionState == ConnectionState.done
                       ? this.isAnnouncements
-                          ? AnnouncementsList(
-                              filter: _filter, announData: announData)
-                          : Container()
-                      : Container(
-                          margin: EdgeInsets.only(top: size.height * 0.25),
-                          child: SpinKitCircle(
-                              color: Color(0xff47CC70).withOpacity(0.7))),
+                          ? AnnouncementsList(announData: announData)
+                          : ProductorsList(productorsData: productorsData)
+                      : SpinWidget(margin: size.height * 0.25),
                 ],
               ),
             ),

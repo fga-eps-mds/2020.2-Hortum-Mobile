@@ -3,11 +3,9 @@ import 'package:hortum_mobile/components/announcement_box.dart';
 import 'package:hortum_mobile/data/announ_data_backend.dart';
 
 class AnnouncementsList extends StatefulWidget {
-  final TextEditingController filter;
   final AnnounDataApi announData;
 
-  const AnnouncementsList(
-      {@required this.filter, @required this.announData, Key key})
+  const AnnouncementsList({@required this.announData, Key key})
       : super(key: key);
 
   @override
@@ -30,9 +28,10 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 itemBuilder: (context, index) {
                   return AnnouncementBox(
                       profilePic: 'assets/images/perfil.jpg',
+                      email: announcements[index]['email'],
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
-                      localization: 'Asa Norte, 404 Feira Da Tarde',
+                      localization: 'Asa Norte,404 Feira Da Tarde',
                       price: announcements[index]['price'],
                       productPic: 'assets/images/banana.jpg');
                 },

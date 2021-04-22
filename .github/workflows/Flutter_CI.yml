@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -24,8 +27,13 @@ jobs:
       run: flutter pub get
       working-directory: ./hortum_mobile
     
+ 
     - name: Run tests for Flutter
-      run: flutter test
+      run: flutter test --coverage
+      working-directory: ./hortum_mobile
+      
+    - name: Sending the results to codecov
+      run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
       working-directory: ./hortum_mobile
 
     - name: Running lint
