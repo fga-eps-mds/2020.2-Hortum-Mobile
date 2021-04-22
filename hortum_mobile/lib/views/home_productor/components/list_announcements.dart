@@ -27,7 +27,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
               localization: announcements[index]['localization'],
               price: announcements[index]['price'],
               description: announcements[index]['description'],
-              category: announcements[index]['category']),
+              category: announcements[index]['type_of_product']),
           AnnouncementBox(
               profilePic: 'assets/images/perfil.jpg',
               name: announcements[index]['username'],
