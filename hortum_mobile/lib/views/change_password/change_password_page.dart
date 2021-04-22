@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/views/change_password/components/password_form.dart';
-import 'package:hortum_mobile/views/profile/components/circle_style.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   final Dio dio;
@@ -25,7 +25,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
           height: size.height,
           child: Stack(
             children: [
-              CircleStyle(color: Color(0xff478C5C).withOpacity(0.2)),
+              CircleStyle(color: Color(0xff478C5C), opacity: 0.2),
               Container(
                 padding: EdgeInsets.only(
                   right: size.width * 0.1,

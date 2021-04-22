@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CircleStyle extends StatelessWidget {
+class CircleStyle extends StatefulWidget {
   final Color color;
+  final double opacity;
 
-  const CircleStyle({this.color});
+  const CircleStyle({@required this.color, @required this.opacity, Key key})
+      : super(key: key);
+  @override
+  _CircleStyleState createState() => _CircleStyleState();
+}
 
+class _CircleStyleState extends State<CircleStyle> {
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -14,7 +20,7 @@ class CircleStyle extends StatelessWidget {
         width: 100,
         decoration: BoxDecoration(
             shape: BoxShape.rectangle,
-            color: color,
+            color: widget.color.withOpacity(widget.opacity),
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(250))),
       ),
     );

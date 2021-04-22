@@ -17,7 +17,7 @@ class EditPage extends StatefulWidget {
   final TextEditingController localization;
   final TextEditingController price;
   final TextEditingController category;
-  final String originalTitle;
+  final String originaltitle;
 
   const EditPage(
       {@required this.title,
@@ -25,7 +25,7 @@ class EditPage extends StatefulWidget {
       @required this.price,
       @required this.localization,
       @required this.category,
-      @required this.originalTitle,
+      @required this.originaltitle,
       this.dio,
       Key key})
       : super(key: key);
@@ -37,7 +37,7 @@ class EditPage extends StatefulWidget {
       price: price,
       localization: localization,
       category: category,
-      originalTitle: originalTitle);
+      originaltitle: originaltitle);
 }
 
 class _EditPageState extends State<EditPage> {
@@ -47,7 +47,7 @@ class _EditPageState extends State<EditPage> {
   final TextEditingController localization;
   final TextEditingController price;
   final TextEditingController category;
-  String originalTitle;
+  String originaltitle;
 
   _EditPageState(
       {this.title,
@@ -55,7 +55,7 @@ class _EditPageState extends State<EditPage> {
       this.price,
       this.localization,
       this.category,
-      this.originalTitle});
+      this.originaltitle});
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +164,7 @@ class _EditPageState extends State<EditPage> {
                             double precoDouble = double.parse(price.text);
                             ChangeServices.editAnnoun(
                                 widget.dio,
-                                originalTitle,
+                                originaltitle,
                                 widget.title.text,
                                 precoDouble,
                                 widget.category.text,

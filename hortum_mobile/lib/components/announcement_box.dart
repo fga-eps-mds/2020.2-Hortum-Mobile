@@ -7,6 +7,7 @@ class AnnouncementBox extends StatefulWidget {
   final String localization;
   final String price;
   final String productPic;
+  final String email;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -15,6 +16,7 @@ class AnnouncementBox extends StatefulWidget {
       @required this.localization,
       @required this.price,
       @required this.productPic,
+      @required this.email,
       Key key})
       : super(key: key);
   @override

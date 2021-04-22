@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
-import 'package:hortum_mobile/views/profile/components/circle_style.dart';
 
 import 'components/reclamation_form.dart';
 
@@ -28,7 +28,10 @@ class _ReclamationPageState extends State<ReclamationPage> {
           height: size.height,
           child: Stack(
             children: [
-              CircleStyle(color: Color(0xfff46a6a).withOpacity(0.2)),
+              CircleStyle(
+                color: Color(0xfff46a6a),
+                opacity: 0.2,
+              ),
               Container(
                 padding: EdgeInsets.only(
                   right: size.width * 0.1,

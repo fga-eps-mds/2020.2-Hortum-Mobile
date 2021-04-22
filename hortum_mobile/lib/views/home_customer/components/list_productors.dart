@@ -29,6 +29,7 @@ class _ProductorsListState extends State<ProductorsList> {
                   return ProductorsBox(
                       key: Key(productors[index]['username'] + " key"),
                       name: productors[index]['username'],
+                      email: productors[index]['email'],
                       imageAsset: productors[index]['idPicture']);
                 },
               )
