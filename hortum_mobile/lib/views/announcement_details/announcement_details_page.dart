@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
-import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
+import 'package:hortum_mobile/views/announcement_details/components/custom_carrousel.dart';
+import 'package:hortum_mobile/views/announcement_details/components/localization_container.dart';
+import 'package:hortum_mobile/views/announcement_details/components/price_container.dart';
+import 'package:hortum_mobile/views/announcement_details/components/title_buttons_row.dart';
 
 class AnnouncementDetails extends StatefulWidget {
   final String profilePic;
@@ -28,7 +29,6 @@ class AnnouncementDetails extends StatefulWidget {
 class _AnnouncementDetailsState extends State<AnnouncementDetails> {
   @override
   Widget build(BuildContext context) {
-    CarouselController buttonCarrouselContoller = CarouselController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -37,203 +37,9 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
           child: Stack(
             children: [
               Column(children: [
-                Container(
-                    margin: EdgeInsets.only(top: size.height * 0.026),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            height: size.height * 0.03,
-                            width: size.width * 0.06,
-                            child: MaterialButton(
-                              padding: EdgeInsets.all(0),
-                              child: Icon(
-                                Icons.arrow_back,
-                                size: 25,
-                                color: Colors.black,
-                              ),
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return ProductorHomePage();
-                                }));
-                              },
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              widget.title,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 30,
-                                  fontFamily: 'Roboto-Regular',
-                                  letterSpacing: -0.33,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ),
-                          Container(
-                            height: size.height * 0.03,
-                            width: size.width * 0.06,
-                            child: MaterialButton(
-                              padding: EdgeInsets.all(0),
-                              child: Icon(
-                                Icons.near_me_outlined,
-                                size: 30,
-                                color: Colors.black,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ])),
-                Container(
-                  margin: EdgeInsets.only(
-                      bottom: size.height * 0.04, top: size.height * 0.01),
-                  width: size.width * 0.9,
-                  height: size.height * 0.04,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(color: Colors.black.withOpacity(0.25)),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 4,
-                            color: Colors.black.withOpacity(0.35),
-                            spreadRadius: 0,
-                            offset: Offset(0, 4))
-                      ]),
-                  child: Row(children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: size.width * 0.05, right: size.width * 0.02),
-                      height: size.height * 0.03,
-                      width: size.width * 0.06,
-                      child: Icon(
-                        Icons.credit_card_outlined,
-                        size: 25,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        "Preço:",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                            fontFamily: 'Comfortaa-Regular',
-                            letterSpacing: -0.33,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: size.width * 0.02, right: size.width * 0.02),
-                      child: Text(
-                        widget.price,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                            fontFamily: 'Comfortaa-Regular',
-                            letterSpacing: -0.33,
-                            fontWeight: FontWeight.w300),
-                      ),
-                    )
-                  ]),
-                ),
-                Container(
-                    margin: EdgeInsets.only(bottom: size.height * 0.03),
-                    width: size.width * 0.9,
-                    height: size.height * 0.1496,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        border:
-                            Border.all(color: Colors.black.withOpacity(0.25)),
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 4,
-                              color: Colors.black.withOpacity(0.35),
-                              spreadRadius: 0,
-                              offset: Offset(0, 4))
-                        ]),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                left: size.width * 0.05,
-                              ),
-                              height: size.height * 0.03,
-                              width: size.width * 0.06,
-                              child: Icon(
-                                Icons.place,
-                                size: 25,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                "Localização",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontFamily: 'Comfortaa-Regular',
-                                    letterSpacing: -0.33,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            )
-                          ],
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: size.width * 0.2),
-                          child: Text(
-                            widget.localization,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontFamily: 'Comfortaa-Regular',
-                                letterSpacing: -0.33,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: size.width * 0.2),
-                          child: Text(
-                            widget.localization,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontFamily: 'Comfortaa-Regular',
-                                letterSpacing: -0.33,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: size.width * 0.2),
-                          child: Text(
-                            widget.localization,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontFamily: 'Comfortaa-Regular',
-                                letterSpacing: -0.33,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: size.width * 0.2),
-                          child: Text(
-                            widget.localization,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontFamily: 'Comfortaa-Regular',
-                                letterSpacing: -0.33,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
-                      ],
-                    )),
+                TitleButtonsRow(title: widget.title),
+                PriceContainer(price: widget.price),
+                LocalizationContainer(localization: widget.localization),
                 Row(
                   children: [
                     Container(
@@ -260,84 +66,9 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                     ),
                   ],
                 ),
-                CarouselSlider(
-                  carouselController: buttonCarrouselContoller,
-                  options: CarouselOptions(
-                      height: size.height * 0.2, viewportFraction: 1),
-                  items: [1, 2, 3, 4, 5].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: size.width * 0.9,
-                          height: size.height * 0.15,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                              border: Border.all(
-                                  color: Colors.black.withOpacity(0.25)),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 4,
-                                    color: Colors.black.withOpacity(0.35),
-                                    spreadRadius: 0,
-                                    offset: Offset(0, 4))
-                              ]),
-                          child: Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                child: Material(
-                                  child: InkWell(
-                                      child: Image.asset(widget.productPic,
-                                          fit: BoxFit.fill,
-                                          height: size.height * 0.2,
-                                          width: size.width * 0.9)),
-                                ),
-                              ),
-                              Container(
-                                height: size.height * 0.03,
-                                width: size.width * 0.06,
-                                margin:
-                                    EdgeInsets.only(top: size.height * 0.07),
-                                child: MaterialButton(
-                                  padding: EdgeInsets.all(0),
-                                  child: Icon(
-                                      Icons.keyboard_arrow_left_outlined,
-                                      size: 35,
-                                      color: Colors.grey),
-                                  onPressed: () {
-                                    buttonCarrouselContoller.previousPage();
-                                  },
-                                ),
-                              ),
-                              Container(
-                                height: size.height * 0.03,
-                                width: size.width * 0.06,
-                                margin: EdgeInsets.only(
-                                    top: size.height * 0.07,
-                                    left: size.width * 0.8),
-                                child: MaterialButton(
-                                  padding: EdgeInsets.all(0),
-                                  child: Icon(
-                                      Icons.keyboard_arrow_right_outlined,
-                                      size: 35,
-                                      color: Colors.grey),
-                                  onPressed: () {
-                                    buttonCarrouselContoller.nextPage();
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
+                CustomCarrousel(productPic: widget.productPic),
                 Container(
-                    margin: EdgeInsets.only(top: size.height * 0.03),
+                    margin: EdgeInsets.only(top: size.height * 0.025),
                     width: size.width * 0.9,
                     height: size.height * 0.15,
                     decoration: BoxDecoration(
