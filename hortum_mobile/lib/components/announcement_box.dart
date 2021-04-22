@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_favorite_backend.dart';
+import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
 
@@ -34,6 +35,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     AnnounFavAPI changeData = new AnnounFavAPI(widget.dio);
+    ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       width: size.width * 0.9,
@@ -104,7 +106,14 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           minHeight: 3,
                         ),
                         icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await favProductor.favProductor(widget.email);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FavAnnounPage()),
+                              (route) => true);
+                        },
                       )
                     ],
                   ),

@@ -29,6 +29,7 @@ class _ProductorsListState extends State<ProductorsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ProductorsBox(
+                      email: productors[index]['email'],
                       key: Key(productors[index]['username'] + " key"),
                       name: productors[index]['username'],
                       imageAsset: productors[index]['idPicture']);

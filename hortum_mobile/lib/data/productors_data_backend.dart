@@ -28,4 +28,16 @@ class ProductorsDataApi {
     Response response = await dio.get(url, options: Options(headers: header));
     this.productors = response.data;
   }
+
+  Future getFavProductors() async {
+    //Trocar o IPLOCAL pelo ip de sua máquina
+    String url = 'http://$ip:8000/customer/favorites/productors';
+
+    var header = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + actualUser.tokenAccess,
+    };
+    Response response = await dio.get(url, options: Options(headers: header));
+    this.productors = response.data['idProdFav'];
+  }
 }

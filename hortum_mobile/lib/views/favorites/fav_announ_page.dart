@@ -11,7 +11,6 @@ import 'package:hortum_mobile/views/home_customer/components/list_productors.dar
 
 class FavAnnounPage extends StatefulWidget {
   final Dio dio;
-
   const FavAnnounPage({Key key, this.dio}) : super(key: key);
   @override
   _FavAnnounPageState createState() => _FavAnnounPageState();
@@ -26,7 +25,8 @@ class _FavAnnounPageState extends State<FavAnnounPage> {
     AnnounDataApi announData = new AnnounDataApi(widget.dio);
     ProductorsDataApi productorsData = new ProductorsDataApi(widget.dio);
     return FutureBuilder(
-        future: FavPageServices.populateData(isAnnouncement, announData),
+        future: FavPageServices.populateData(isAnnouncement, announData,
+            productorsData: productorsData),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return Scaffold(
             body: Stack(children: [

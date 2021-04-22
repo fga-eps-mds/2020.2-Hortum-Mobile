@@ -1,10 +1,20 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/data/productor_favorite_backend.dart';
+import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
 
 class ProductorsBox extends StatefulWidget {
   final String name;
   final String imageAsset;
+  final String email;
+  final Dio dio;
 
-  const ProductorsBox({@required this.name, this.imageAsset, Key key})
+  const ProductorsBox(
+      {@required this.name,
+      this.imageAsset,
+      @required this.email,
+      this.dio,
+      Key key})
       : super(key: key);
   @override
   _ProductorsBoxState createState() => _ProductorsBoxState();
@@ -13,6 +23,7 @@ class ProductorsBox extends StatefulWidget {
 class _ProductorsBoxState extends State<ProductorsBox> {
   @override
   Widget build(BuildContext context) {
+    ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width * 0.77,
@@ -51,7 +62,26 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                 ),
               ),
             ),
-            Text(widget.name, style: TextStyle(fontSize: 20))
+            Text(widget.name, style: TextStyle(fontSize: 20)),
+            Container(
+              width: size.width * 0.1,
+              height: size.height * 0.03,
+              margin: EdgeInsets.only(left: size.width * 0.4),
+              decoration: BoxDecoration(shape: BoxShape.circle),
+              child: MaterialButton(
+                child: Icon(
+                  Icons.cancel_outlined,
+                  color: Colors.red,
+                ),
+                onPressed: () async {
+                  await favProductor.favProductor(widget.email);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => FavAnnounPage()),
+                      (route) => true);
+                },
+              ),
+            )
           ],
         ),
       ),

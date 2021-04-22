@@ -7,7 +7,7 @@ class FavPageServices {
     if (isAnnouncements) {
       await announData.getFavAnnoun();
     } else {
-      //await productorsData.getProductors(filter);
+      await productorsData.getFavProductors();
     }
   }
 }
