@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_favorite_backend.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
 
 class AnnouncementBox extends StatefulWidget {
@@ -73,38 +74,40 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                   ),
                 ),
                 Text(widget.name, style: TextStyle(fontSize: 12)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      key: Key('favProd'),
-                      padding: EdgeInsets.all(6),
-                      constraints: BoxConstraints(
-                        minWidth: 3,
-                        minHeight: 3,
+                if (!actualUser.isProductor)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        key: Key('favProd'),
+                        padding: EdgeInsets.all(6),
+                        constraints: BoxConstraints(
+                          minWidth: 3,
+                          minHeight: 3,
+                        ),
+                        icon: Icon(Icons.favorite_border_outlined, size: 22),
+                        onPressed: () async {
+                          await changeData.favAnnoun(
+                              widget.email, widget.title);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FavAnnounPage()),
+                              (route) => true);
+                        },
                       ),
-                      icon: Icon(Icons.favorite_border_outlined, size: 22),
-                      onPressed: () {
-                        changeData.favAnnoun(widget.email, widget.title);
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FavAnnounPage()),
-                            (route) => true);
-                      },
-                    ),
-                    IconButton(
-                      key: Key('favAnnoun'),
-                      padding: EdgeInsets.all(6),
-                      constraints: BoxConstraints(
-                        minWidth: 3,
-                        minHeight: 3,
-                      ),
-                      icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
+                      IconButton(
+                        key: Key('favAnnoun'),
+                        padding: EdgeInsets.all(6),
+                        constraints: BoxConstraints(
+                          minWidth: 3,
+                          minHeight: 3,
+                        ),
+                        icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
               ],
             ),
           ),

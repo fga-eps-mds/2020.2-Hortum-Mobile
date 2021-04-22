@@ -58,15 +58,23 @@ class _FavAnnounPageState extends State<FavAnnounPage> {
                     ),
                     snapshot.connectionState == ConnectionState.done
                         ? this.isAnnouncement
-                            ? AnnouncementsList(
-                                announData: announData,
-                                textNotFound:
-                                    "Nenhum favorito adicionado.\nAdicione tocando no curtir de alguma postagem!",
-                              )
-                            : ProductorsList(
-                                textNotFound:
-                                    "Nenhum produtor favorito adicionado.\nAdicione tocando no favoritar de alguma postagem!",
-                                productorsData: productorsData)
+                            ? Container(
+                                height: size.height * 0.75,
+                                margin:
+                                    EdgeInsets.only(bottom: size.height * 0.55),
+                                child: AnnouncementsList(
+                                  announData: announData,
+                                  textNotFound:
+                                      "Nenhum favorito adicionado.\nAdicione tocando no curtir de alguma postagem!",
+                                ))
+                            : Container(
+                                height: size.height * 0.75,
+                                margin:
+                                    EdgeInsets.only(bottom: size.height * 0.05),
+                                child: ProductorsList(
+                                    textNotFound:
+                                        "Nenhum produtor favorito adicionado.\nAdicione tocando no favoritar de alguma postagem!",
+                                    productorsData: productorsData))
                         : Container(
                             margin: EdgeInsets.only(top: size.height * 0.25),
                             child: SpinKitCircle(
