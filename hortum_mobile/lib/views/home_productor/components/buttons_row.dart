@@ -81,7 +81,7 @@ class _ButtonRowState extends State<ButtonsRow> {
                     price: price,
                     localization: localization,
                     category: category,
-                    originalTitle: widget.title,
+                    originaltitle: widget.title,
                   );
                 }));
               },

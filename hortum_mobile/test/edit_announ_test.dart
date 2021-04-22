@@ -45,7 +45,7 @@ main() {
         category: new TextEditingController(text: 'Banana'),
         description: new TextEditingController(text: 'Banana Prata'),
         localization: new TextEditingController(text: 'Feira'),
-        originalTitle: 'A',
+        originaltitle: 'A',
         price: new TextEditingController(text: '21.50'),
         title: new TextEditingController(text: 'Banana Prata'),
       ));
