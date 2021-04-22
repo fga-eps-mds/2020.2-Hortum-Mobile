@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 String encodeString(String str) {
   var strInt = utf8.encode(str);
   return base64.encode(strInt);

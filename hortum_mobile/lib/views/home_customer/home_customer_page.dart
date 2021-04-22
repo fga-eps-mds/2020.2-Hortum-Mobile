@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/components/spin.dart';
 import 'package:hortum_mobile/data/announ_data_backend.dart';
 import 'package:hortum_mobile/data/productors_data_backend.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
@@ -69,11 +69,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                       ? this.isAnnouncements
                           ? AnnouncementsList(announData: announData)
                           : ProductorsList(productorsData: productorsData)
-                      : Container(
-                          margin: EdgeInsets.only(top: size.height * 0.25),
-                          child: SpinKitCircle(
-                              key: Key('spin'),
-                              color: Color(0xff47CC70).withOpacity(0.7))),
+                      : SpinWidget(margin: size.height * 0.25),
                 ],
               ),
             ),

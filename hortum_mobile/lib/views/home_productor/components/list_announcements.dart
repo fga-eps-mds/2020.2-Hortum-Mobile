@@ -38,6 +38,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                     AnnouncementBox(
                         profilePic: 'assets/images/perfil.jpg',
                         name: announcements[index]['username'],
+                        email: announcements[index]['email'],
                         title: announcements[index]['name'],
                         localization: 'Asa Norte, 404 Feira Da Tarde',
                         price: announcements[index]['price'],
