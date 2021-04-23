@@ -24,11 +24,7 @@ class _UserProfileState extends State<UserProfile> {
           height: size.height,
           child: Stack(
             children: [
-<<<<<<< HEAD
-              CircleStyle(color: Color(0xff478C5C).withOpacity(0.2)),
-=======
               CircleStyle(color: Color(0xff478C5C), opacity: 0.2),
->>>>>>> main
               Container(
                 padding: EdgeInsets.only(
                     right: size.width * 0.1, left: size.width * 0.1),

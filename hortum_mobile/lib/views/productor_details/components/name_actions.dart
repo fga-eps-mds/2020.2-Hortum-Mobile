@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/views/reclamation/reclamation_page.dart';
 
 class NameActionsWidget extends StatefulWidget {
   final String name;
+  final String email;
 
-  const NameActionsWidget({@required this.name, Key key}) : super(key: key);
+  const NameActionsWidget({@required this.name, @required this.email, Key key})
+      : super(key: key);
 
   @override
   _NameActionsWidgetState createState() => _NameActionsWidgetState();
@@ -30,7 +33,13 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
           IconButton(
               padding: EdgeInsets.only(top: 5, right: 10),
               icon: Icon(Icons.report, color: Color(0xffFF4D00)),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ReclamationPage(
+                    emailProductor: widget.email,
+                  );
+                }));
+              }),
         ],
       ),
     );
