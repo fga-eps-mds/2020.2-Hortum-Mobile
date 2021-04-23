@@ -47,7 +47,13 @@ class _PhotoSelecterReclamationState extends State<PhotoSelecterReclamation> {
               child: MaterialButton(
                 height: size.height * 0.05,
                 minWidth: size.width * 0.82,
-                child: Text('+ Adicionar imagem'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add),
+                    Text('Adicionar imagem'),
+                  ],
+                ),
                 onPressed: () async {
                   final pickedFile =
                       await picker.getImage(source: ImageSource.gallery);
