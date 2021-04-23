@@ -45,6 +45,7 @@ class _PhotoSelecterReclamationState extends State<PhotoSelecterReclamation> {
                 borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
               child: MaterialButton(
+                key: Key("adicionarImagem"),
                 height: size.height * 0.05,
                 minWidth: size.width * 0.82,
                 child: Row(

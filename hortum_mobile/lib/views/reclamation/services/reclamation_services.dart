@@ -9,7 +9,6 @@ class ReclamationServices {
     RegisterReclamationAPI registerReclam = new RegisterReclamationAPI(dio);
     var response = await registerReclam.registerReclamation(
         name: name, description: description, emailProductor: emailProductor);
-
     if (response == 400) {
       showDialog(
         context: context,

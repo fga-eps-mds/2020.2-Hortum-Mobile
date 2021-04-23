@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/spin.dart';
 import 'package:hortum_mobile/data/reclamation_data_backend.dart';
+import 'package:hortum_mobile/services/codec_string.dart';
 
 import 'components/list_reclamations.dart';
 import 'components/reclamation_form.dart';
@@ -42,6 +43,7 @@ class _ReclamationPageState extends State<ReclamationPage> {
                 margin: EdgeInsets.only(
                     top: size.height * 0.07, left: size.width * 0.05),
                 child: MaterialButton(
+                  key: Key('buttonArrowback'),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -81,14 +83,20 @@ class _ReclamationPageState extends State<ReclamationPage> {
                             child: MaterialButton(
                               key: Key('createReclamationButton'),
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return ReclamationForm(
-                                    dio: widget.dio,
-                                    name: name,
-                                    description: description,
-                                  );
-                                }));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return ReclamationForm(
+                                        dio: widget.dio,
+                                        name: name,
+                                        description: description,
+                                        emailProductor:
+                                            decodeString(widget.emailProductor),
+                                      );
+                                    },
+                                  ),
+                                );
                               },
                               child: Container(
                                 width: size.width * 0.3,
