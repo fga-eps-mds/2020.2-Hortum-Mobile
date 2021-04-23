@@ -16,7 +16,7 @@ class ProdLoggedAnnounDataApi {
 
   Future getAnnounProd() async {
     String encodedEmail = encodeString(actualUser.email);
-    String url = 'http://$ip:8000/productor/retrieve/${encodedEmail}';
+    String url = 'http://$ip:8000/announcement/retrieve/${encodedEmail}';
 
     var header = {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ class ProdLoggedAnnounDataApi {
     Response response =
         await this.dio.get(url, options: Options(headers: header));
 
-    this.announcements = response.data['announcements'];
+    this.announcements = response.data;
     manipulateData();
   }
 
