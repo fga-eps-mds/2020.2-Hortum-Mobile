@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_favorite_backend.dart';
 import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
+import 'package:hortum_mobile/views/favorites/fav_page.dart';
 
 class AnnouncementBox extends StatefulWidget {
   final String profilePic;
@@ -94,7 +94,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FavAnnounPage()),
+                                  builder: (context) => FavPage()),
                               (route) => true);
                         },
                       ),
@@ -111,7 +111,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FavAnnounPage()),
+                                  builder: (context) => FavPage()),
                               (route) => true);
                         },
                       )

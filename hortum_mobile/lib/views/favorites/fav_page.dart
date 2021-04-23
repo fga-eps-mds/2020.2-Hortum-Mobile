@@ -9,15 +9,15 @@ import 'package:hortum_mobile/views/favorites/components/select_favorite_button.
 import 'package:hortum_mobile/views/favorites/services/fav_page_services.dart';
 import 'package:hortum_mobile/views/home_customer/components/list_productors.dart';
 
-class FavAnnounPage extends StatefulWidget {
+class FavPage extends StatefulWidget {
   final Dio dio;
 
-  const FavAnnounPage({Key key, this.dio}) : super(key: key);
+  const FavPage({Key key, this.dio}) : super(key: key);
   @override
-  _FavAnnounPageState createState() => _FavAnnounPageState();
+  _FavPageState createState() => _FavPageState();
 }
 
-class _FavAnnounPageState extends State<FavAnnounPage> {
+class _FavPageState extends State<FavPage> {
   bool isAnnouncement = true;
 
   @override

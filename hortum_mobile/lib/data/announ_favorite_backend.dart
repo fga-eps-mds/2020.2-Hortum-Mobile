@@ -22,7 +22,7 @@ class AnnounFavAPI {
     Map params = {"email": email, "announcementName": announcementName};
 
     String _body = json.encode(params);
-    await dio.patch(url,
+    Response response = await dio.patch(url,
         data: _body,
         options: Options(
           headers: header,
@@ -30,5 +30,6 @@ class AnnounFavAPI {
             return status <= 500;
           },
         ));
+    return response.statusCode;
   }
 }

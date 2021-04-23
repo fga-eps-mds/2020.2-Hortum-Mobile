@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/productor_favorite_backend.dart';
-import 'package:hortum_mobile/views/favorites/fav_announ_page.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
+import 'package:hortum_mobile/views/favorites/fav_page.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details.dart';
 
 class ProductorsBox extends StatefulWidget {
@@ -83,7 +83,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                   await favProductor.favProductor(widget.email);
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => FavAnnounPage()),
+                      MaterialPageRoute(builder: (context) => FavPage()),
                       (route) => true);
                 },
               ),
