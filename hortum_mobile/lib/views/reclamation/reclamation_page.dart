@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/components/spin.dart';
+import 'package:hortum_mobile/data/reclamation_data_backend.dart';
 
+import 'components/list_reclamations.dart';
 import 'components/reclamation_form.dart';
 
 class ReclamationPage extends StatefulWidget {
@@ -21,16 +23,36 @@ class _ReclamationPageState extends State<ReclamationPage> {
     final TextEditingController name = new TextEditingController();
     final TextEditingController description = new TextEditingController();
     Size size = MediaQuery.of(context).size;
+    ReclamationDataAPI reclamAPI = new ReclamationDataAPI(widget.dio);
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: size.height,
-          child: Stack(
+    return FutureBuilder(
+      future: reclamAPI.listReclamation(emailProductor: widget.emailProductor),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return Scaffold(
+          body: Stack(
             children: [
-              CircleStyle(
-                color: Color(0xfff46a6a),
-                opacity: 0.2,
+              Container(
+                height: size.height * 0.03,
+                width: size.width * 0.15,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(200),
+                  color: Color(0xffF46A6A).withOpacity(0.3),
+                ),
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(
+                    top: size.height * 0.07, left: size.width * 0.05),
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(
@@ -39,30 +61,72 @@ class _ReclamationPageState extends State<ReclamationPage> {
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  key: Key('reclamationContent'),
                   children: [
-                    Text(
-                      'RECLAMAÇÃO',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 40,
-                          fontFamily: 'Comfortaa-Regular',
-                          letterSpacing: -0.33,
-                          fontWeight: FontWeight.w300),
+                    Container(
+                      child: Column(
+                        children: [
+                          Text(
+                            'RECLAMAÇÕES',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 40,
+                                fontFamily: 'Comfortaa-Regular',
+                                letterSpacing: -0.33,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            height: size.height * 0.06,
+                            padding: EdgeInsets.only(top: size.height * 0.005),
+                            child: MaterialButton(
+                              key: Key('createReclamationButton'),
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return ReclamationForm(
+                                    dio: widget.dio,
+                                    name: name,
+                                    description: description,
+                                  );
+                                }));
+                              },
+                              child: Container(
+                                width: size.width * 0.3,
+                                height: size.height * 0.04,
+                                margin: EdgeInsets.only(
+                                    top: size.height / 100,
+                                    bottom: size.height / 100),
+                                decoration: BoxDecoration(
+                                  color: Color(0xffA7DDB7),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                ),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text("Criar reclamação",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: 'Roboto-Bold',
+                                          fontSize: 11)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    ReclamationForm(
-                        dio: widget.dio,
-                        name: name,
-                        description: description,
-                        emailProductor: widget.emailProductor),
+                    if (snapshot.connectionState == ConnectionState.done)
+                      ReclamationsList(reclamAPI: reclamAPI)
+                    else
+                      SpinWidget(margin: size.height * 0.25),
                   ],
                 ),
               ),
               Footer(),
             ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
