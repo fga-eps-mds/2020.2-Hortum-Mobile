@@ -3,24 +3,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
+import 'package:hortum_mobile/data/reclamation_data_backend.dart';
 import 'package:hortum_mobile/data/reclamation_register_backend.dart';
 import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/views/reclamation/components/list_reclamations.dart';
+import 'package:hortum_mobile/views/reclamation/components/photo_selecter_reclamation.dart';
 import 'package:hortum_mobile/views/reclamation/components/reclamation_form.dart';
+import 'package:hortum_mobile/views/reclamation/reclamation_page.dart';
+import 'package:hortum_mobile/views/reclamation/services/reclamation_services.dart';
 import 'package:mockito/mockito.dart';
 import 'dart:convert';
 
 class DioMock extends Mock implements Dio {}
 
+class Teste extends StatefulWidget {
+  final Dio dio;
+  const Teste({this.dio});
+  @override
+  _TestState createState() {
+    return _TestState();
+  }
+}
+
+class _TestState extends State<Teste> {
+  @override
+  Widget build(BuildContext context) {
+    String name = 'raimundo';
+    String description = 'description';
+    String emailProductor = 'productor@teste.com';
+    return Scaffold(
+      body: Container(
+        child: MaterialButton(
+            key: Key('botão'),
+            onPressed: () async {
+              await ReclamationServices.registerReclamation(
+                  dio: widget.dio,
+                  name: name,
+                  description: description,
+                  emailProductor: emailProductor,
+                  context: context);
+            }),
+      ),
+    );
+  }
+}
+
 main() {
   final dio = DioMock();
   TestWidgetsFlutterBinding.ensureInitialized();
-  var url = 'http://$ip:8000/reclamation/create/';
+  actualUser.tokenAccess = 'token';
+  actualUser.isProductor = false;
+  actualUser.email = 'user@gmail.com';
 
-  group('Testing class RegisterReclamationAPI:', () {
+  group('Testing Reclamations data:', () {
     RegisterReclamationAPI registerReclamation = RegisterReclamationAPI(dio);
-    actualUser.tokenAccess = 'token';
     String responseMatcher = '';
-    test('Register Reclamation Successful', () async {
+    test('RegisterReclamationAPI', () async {
+      var url = 'http://$ip:8000/reclamation/create/';
       when(dio.post(url, data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async => Response(
               data: jsonEncode(responseMatcher),
@@ -31,50 +70,44 @@ main() {
 
       expect(responseActual, 200);
     });
-  });
 
-  group('Testing reclamation_form:', () {
-    Widget makeTestable() {
-      return MaterialApp(home: Scaffold(body: ReclamationForm(dio: dio)));
-    }
+    test('ReclamationDataAPI', () async {
+      ReclamationDataAPI reclamDataApi = ReclamationDataAPI(dio);
+      String emailProductor = 'productor@teste.com';
+      var url = 'http://$ip:8000/reclamation/list/';
+      List<dynamic> responseMatcher = [
+        {
+          'author': "user",
+          'description': 'description',
+        }
+      ];
+      List<dynamic> responseActual = [
+        {
+          'author': "user",
+          'description': 'description',
+        }
+      ];
 
-    testWidgets('CustomFormFields, CustomDescField e MaterialButton',
-        (WidgetTester tester) async {
-      actualUser.tokenAccess = 'token';
-      actualUser.isProductor = false;
-      await tester.pumpWidget(makeTestable());
-      expect(find.byType(CustomFormField), findsOneWidget);
-      expect(find.byType(CustomDescField), findsOneWidget);
-      expect(find.byType(MaterialButton), findsNWidgets(2));
+      when(dio.get(url, options: anyNamed('options'))).thenAnswer((_) async =>
+          Response(
+              data: responseMatcher, requestOptions: null, statusCode: 200));
+      await reclamDataApi.listReclamation(emailProductor: emailProductor);
+
+      expect(responseActual, responseMatcher);
     });
   });
 
-  group('Testing reclamationServices:', () {
-    TextEditingController name = TextEditingController(text: 'teste');
-    TextEditingController description =
-        TextEditingController(text: 'description');
-    String emailProductor = 'productor@teste.com';
+  group('Testing ReclamationServices:', () {
+    var url = 'http://$ip:8000/reclamation/create/';
     Widget makeTestable() {
       return MaterialApp(
-        home: Scaffold(
-          body: ReclamationForm(
-            dio: dio,
-            name: name,
-            description: description,
-            emailProductor: emailProductor,
-          ),
-        ),
+        home: Teste(dio: dio),
       );
     }
 
-    testWidgets('CustomFormField, CustomDescField e MaterialButton',
-        (WidgetTester tester) async {
-      actualUser.tokenAccess = 'token';
-      actualUser.isProductor = false;
+    testWidgets('Show dialogue', (WidgetTester tester) async {
       String responseMatcher =
           "Você já realizou uma reclamação contra este produtor";
-      actualUser.email = 'user@user.com';
-      actualUser.username = null;
 
       when(dio.post(url, data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async => Response(
@@ -83,9 +116,90 @@ main() {
               statusCode: 400));
 
       await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byKey(Key('entrarButton')));
+      await tester.tap(find.byKey(Key('botão')));
       await tester.pump();
+
       expect(find.byKey(Key('ReclamationAlreadyExists')), findsOneWidget);
+    });
+  });
+
+  group('Testing ReclamationPage:', () {
+    String emailProductor = 'productor@teste.com';
+    List<dynamic> responseMatcher = [
+      {
+        'author': "user",
+        'description': 'description',
+      }
+    ];
+
+    Widget makeTestable() {
+      return MaterialApp(
+        home: Scaffold(
+          body: ReclamationPage(dio: dio, emailProductor: emailProductor),
+        ),
+      );
+    }
+
+    when(dio.get(any, options: anyNamed('options'))).thenAnswer((_) async =>
+        Response(data: responseMatcher, requestOptions: null, statusCode: 200));
+
+    testWidgets('Renderização da página', (WidgetTester tester) async {
+      await tester.pumpWidget(makeTestable());
+      expect(find.byKey(Key('textReclamações')), findsOneWidget);
+    });
+  });
+
+  group('Testing ReclamationComponents:', () {
+    testWidgets('PhotoSelecter', (WidgetTester tester) async {
+      Widget makeTestable() {
+        return MaterialApp(
+          home: Scaffold(
+            body: PhotoSelecterReclamation(),
+          ),
+        );
+      }
+
+      await tester.pumpWidget(makeTestable());
+      expect(find.byKey(Key('adicionarImagem')), findsOneWidget);
+    });
+
+    ReclamationDataAPI reclamDataAPI = new ReclamationDataAPI();
+    reclamDataAPI.reclamations = [
+      {
+        'author': "user",
+        'description': 'description',
+      }
+    ];
+
+    testWidgets('ReclamationList e ReclamationBox',
+        (WidgetTester tester) async {
+      Widget makeTestable() {
+        return MaterialApp(
+          home: Scaffold(
+            body: ReclamationsList(
+              reclamAPI: reclamDataAPI,
+            ),
+          ),
+        );
+      }
+
+      await tester.pumpWidget(makeTestable());
+      expect(find.byKey(Key('containerReclamationBox')), findsOneWidget);
+    });
+
+    testWidgets('ReclamationForm', (WidgetTester tester) async {
+      Widget makeTestable() {
+        return MaterialApp(
+          home: Scaffold(
+            body: ReclamationForm(dio: dio),
+          ),
+        );
+      }
+
+      await tester.pumpWidget(makeTestable());
+      expect(find.byType(CustomFormField), findsOneWidget);
+      expect(find.byType(CustomDescField), findsOneWidget);
+      expect(find.byKey(Key('enviarReclamButton')), findsOneWidget);
     });
   });
 }

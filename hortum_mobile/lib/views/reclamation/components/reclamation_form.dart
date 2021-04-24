@@ -35,7 +35,7 @@ class _ReclamationFormState extends State<ReclamationForm> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
-        children: [
+        children: <Widget>[
           CircleStyle(
             color: Color(0xfff46a6a),
             opacity: 0.2,
@@ -117,11 +117,11 @@ class _ReclamationFormState extends State<ReclamationForm> {
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
                                 ReclamationServices.registerReclamation(
-                                    widget.dio,
-                                    name.text,
-                                    description.text,
-                                    widget.emailProductor,
-                                    context);
+                                    dio: widget.dio,
+                                    name: name.text,
+                                    description: description.text,
+                                    emailProductor: widget.emailProductor,
+                                    context: context);
                               }
                             },
                             child: Container(
@@ -136,7 +136,6 @@ class _ReclamationFormState extends State<ReclamationForm> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text("ENVIAR",
-                                    key: Key('textEnviar'),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Roboto-Bold')),

@@ -31,6 +31,7 @@ class _ReclamationBoxState extends State<ReclamationBox> {
       sizeStringDescription = 0.60;
 
     return Container(
+      key: Key('containerReclamationBox'),
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       width: size.width * 0.9,
       height: size.height * sizeStringDescription,

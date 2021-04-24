@@ -69,6 +69,7 @@ class _ReclamationPageState extends State<ReclamationPage> {
                         children: [
                           Text(
                             'RECLAMAÇÕES',
+                            key: Key('textReclamações'),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 40,
@@ -86,15 +87,13 @@ class _ReclamationPageState extends State<ReclamationPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) {
-                                      return ReclamationForm(
-                                        dio: widget.dio,
-                                        name: name,
-                                        description: description,
-                                        emailProductor:
-                                            decodeString(widget.emailProductor),
-                                      );
-                                    },
+                                    builder: (context) => ReclamationForm(
+                                      dio: widget.dio,
+                                      name: name,
+                                      description: description,
+                                      emailProductor:
+                                          decodeString(widget.emailProductor),
+                                    ),
                                   ),
                                 );
                               },
