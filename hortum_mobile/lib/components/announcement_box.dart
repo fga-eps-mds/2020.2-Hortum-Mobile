@@ -80,26 +80,29 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
-                        key: Key('favProd'),
-                        padding: EdgeInsets.all(6),
-                        constraints: BoxConstraints(
-                          minWidth: 3,
-                          minHeight: 3,
+                      Material(
+                        child: IconButton(
+                          key: Key('favAnnoun'),
+                          padding: EdgeInsets.all(6),
+                          constraints: BoxConstraints(
+                            minWidth: 3,
+                            minHeight: 3,
+                          ),
+                          icon: Icon(Icons.favorite_border_outlined, size: 22),
+                          onPressed: () async {
+                            await changeData.favAnnoun(
+                                widget.email, widget.title);
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FavPage()),
+                                (route) => true);
+                          },
                         ),
-                        icon: Icon(Icons.favorite_border_outlined, size: 22),
-                        onPressed: () async {
-                          await changeData.favAnnoun(
-                              widget.email, widget.title);
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FavPage()),
-                              (route) => true);
-                        },
                       ),
-                      IconButton(
-                        key: Key('favAnnoun'),
+                      Material(
+                          child: IconButton(
+                        key: Key('favProd'),
                         padding: EdgeInsets.all(6),
                         constraints: BoxConstraints(
                           minWidth: 3,
@@ -114,7 +117,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                                   builder: (context) => FavPage()),
                               (route) => true);
                         },
-                      )
+                      ))
                     ],
                   ),
               ],

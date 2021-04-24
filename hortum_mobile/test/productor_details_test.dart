@@ -39,6 +39,7 @@ main() {
 
     testWidgets('Testing the ProductorDetailsService',
         (WidgetTester tester) async {
+      actualUser.isProductor = false;
       Widget result = ProductorDetaislService.completeAnnouncements(param);
       Widget pump = MaterialApp(home: result);
       await tester.pumpWidget(pump);

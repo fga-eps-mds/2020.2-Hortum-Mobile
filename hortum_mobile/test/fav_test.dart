@@ -16,24 +16,24 @@ main() {
   dynamic response = {
     "idAnunFav": [
       {
-        "email": "nome11@example.com",
-        "username": "jdjd",
+        "email": "usuario@example.com",
+        "username": "usuario1",
         "idPictureProductor": null,
-        "name": "fddvtvf dvf",
+        "name": "Abóbora Japonesa",
         "type_of_product": "Abóbora",
-        "description": "bdchy",
-        "price": 21.8,
+        "description": "Abóbora Japonesa, unidade",
+        "price": 6.9,
         "idPicture": null,
         "likes": 1
       },
       {
-        "email": "nome11@example.com",
-        "username": "jdjd",
+        "email": "usuario2@example.com",
+        "username": "usuario2",
         "idPictureProductor": null,
-        "name": "dudhd",
+        "name": "Amora Silvestre",
         "type_of_product": "Amora",
-        "description": "zuhzhzxh",
-        "price": 99.0,
+        "description": "Amora Silvestre, dúzia",
+        "price": 25.4,
         "idPicture": null,
         "likes": 1
       }
@@ -42,7 +42,11 @@ main() {
 
   dynamic productorsResponse = {
     "idProdFav": [
-      {"username": "jdjd", "email": "nome11@example.com", "idPicture": null}
+      {
+        "username": "usuario2",
+        "email": "usuario2@example.com",
+        "idPicture": null
+      }
     ]
   };
 
@@ -53,7 +57,7 @@ main() {
   }
 
   group('AnnounDataApi methods tests', () {
-    test('Testing method getAnnoun of AnnounDataApi', () async {
+    test('Testing method getFavAnnoun of AnnounDataApi', () async {
       actualUser.tokenAccess = 'token';
       AnnounDataApi announData = AnnounDataApi(dioMock);
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
@@ -72,7 +76,7 @@ main() {
           (_) async => Response(data: response, requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.pump();
-      expect(find.text('fddvtvf dvf'), findsOneWidget);
+      expect(find.text('Amora Silvestre'), findsOneWidget);
     });
 
     testWidgets('Testing the change from announcements to productors',
@@ -103,7 +107,7 @@ main() {
       await tester.tap(find.text('Produtores'));
       await tester.pump();
       await tester.pump();
-      expect(find.text('jdjd'), findsOneWidget);
+      expect(find.text('usuario2'), findsOneWidget);
     });
   });
 }
