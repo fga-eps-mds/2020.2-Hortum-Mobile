@@ -13,17 +13,38 @@ main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final dioMock = DioMock();
 
-  List<dynamic> response = [
-    {
-      "username": "Usuário Teste",
-      "idPictureProductor": null,
-      "name": "Anúncio Teste",
-      "type_of_product": "Abelhas",
-      "description": "Abelhas",
-      "price": 10.0,
-      "idPicture": null
-    }
-  ];
+  dynamic response = {
+    "idAnunFav": [
+      {
+        "email": "nome11@example.com",
+        "username": "jdjd",
+        "idPictureProductor": null,
+        "name": "fddvtvf dvf",
+        "type_of_product": "Abóbora",
+        "description": "bdchy",
+        "price": 21.8,
+        "idPicture": null,
+        "likes": 1
+      },
+      {
+        "email": "nome11@example.com",
+        "username": "jdjd",
+        "idPictureProductor": null,
+        "name": "dudhd",
+        "type_of_product": "Amora",
+        "description": "zuhzhzxh",
+        "price": 99.0,
+        "idPicture": null,
+        "likes": 1
+      }
+    ]
+  };
+
+  dynamic productorsResponse = {
+    "idProdFav": [
+      {"username": "jdjd", "email": "nome11@example.com", "idPicture": null}
+    ]
+  };
 
   Widget makeTestable() {
     return MaterialApp(
@@ -38,27 +59,7 @@ main() {
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
       await announData.getFavAnnoun();
-      expect(announData.announcements, response);
-    });
-
-    test('Testing method manipulateData of AnnounDataApi', () async {
-      List<dynamic> response = [
-        {
-          "username": "Usuário Teste",
-          "idPictureProductor": null,
-          "name": "Anúncio Teste",
-          "type_of_product": "Abelhas",
-          "description": "Abelhas",
-          "price": 10.0,
-          "idPicture": null
-        }
-      ];
-      AnnounDataApi announData = AnnounDataApi();
-      announData.announcements = response;
-      announData.manipulateData();
-      response[0]['username'] = "Usuário";
-      response[0]['price'] = "R\$ 10,00";
-      expect(announData.announcements, response);
+      expect(announData.announcements, response['idAnunFav']);
     });
   });
 
@@ -71,7 +72,7 @@ main() {
           (_) async => Response(data: response, requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.pump();
-      expect(find.text('Anúncio Teste'), findsOneWidget);
+      expect(find.text('fddvtvf dvf'), findsOneWidget);
     });
 
     testWidgets('Testing the change from announcements to productors',
@@ -88,45 +89,21 @@ main() {
 
     testWidgets('Testing the productors list on CustomerHomePage',
         (WidgetTester tester) async {
-      List<dynamic> productorsResponse = [
-        {
-          "username": "Usuário Teste",
-          "email": "email@email.com",
-          "idPicture": null
-        }
-      ];
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
       when(dioMock.get('http://$ip:8000/customer/favorites/productors',
               options: anyNamed('options')))
-          .thenAnswer(
-              (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/customer/favorites/announcements',
-              options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: productorsResponse, requestOptions: null));
+      when(dioMock.get('http://$ip:8000/customer/favorites/announcements',
+              options: anyNamed('options')))
+          .thenAnswer(
+              (_) async => Response(data: response, requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.text('Produtores'));
       await tester.pump();
       await tester.pump();
-      expect(find.byKey(Key('Usuário Teste key')), findsOneWidget);
-    });
-
-    testWidgets('Testing the spin kit while the connection state is not done',
-        (WidgetTester tester) async {
-      actualUser.isProductor = false;
-      actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/customer/favorites/productors',
-              options: anyNamed('options')))
-          .thenAnswer(
-              (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/customer/favorites/announcements',
-              options: anyNamed('options')))
-          .thenAnswer((_) async => Response(data: [{}], requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.cached));
-      await tester.pump();
-      expect(find.byKey(Key('spin')), findsOneWidget);
+      expect(find.text('jdjd'), findsOneWidget);
     });
   });
 }
