@@ -12,22 +12,19 @@ main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final dioMock = DioMock();
 
-  dynamic response = {
-    "username": "Usuário Teste",
-    "email": "usuário@gmail.com",
-    "idPicture": null,
-    "announcements": [
-      {
-        "username": "Usuário Teste",
-        "idPictureProductor": null,
-        "name": "Folha Verde",
-        "type_of_product": "Alface",
-        "description": "Alface plantado na fazenda",
-        "price": 5.0,
-        "idPicture": null
-      }
-    ]
-  };
+  List<dynamic> response = [
+    {
+      "email": "usuário@gmail.com",
+      "username": "Usuário Teste",
+      "idPictureProductor": null,
+      "name": "Folha Verde",
+      "type_of_product": "Alface",
+      "description": "Alface plantado na fazenda",
+      "price": 5.0,
+      "idPicture": null,
+      "likes": 0
+    },
+  ];
 
   Widget makeTestable() {
     return MaterialApp(
