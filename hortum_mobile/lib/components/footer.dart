@@ -42,7 +42,9 @@ class Footer extends StatelessWidget {
                         } else {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return FavPage();
+                            return FavPage(
+                              isAnnouncement: true,
+                            );
                           }));
                         }
                       },

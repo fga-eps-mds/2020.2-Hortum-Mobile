@@ -11,15 +11,18 @@ import 'package:hortum_mobile/views/home_customer/components/list_productors.dar
 
 class FavPage extends StatefulWidget {
   final Dio dio;
+  final bool isAnnouncement;
 
-  const FavPage({Key key, this.dio}) : super(key: key);
+  const FavPage({@required this.isAnnouncement, this.dio, Key key})
+      : super(key: key);
   @override
-  _FavPageState createState() => _FavPageState();
+  _FavPageState createState() => _FavPageState(isAnnouncement: isAnnouncement);
 }
 
 class _FavPageState extends State<FavPage> {
-  bool isAnnouncement = true;
+  bool isAnnouncement;
 
+  _FavPageState({this.isAnnouncement});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,11 +52,11 @@ class _FavPageState extends State<FavPage> {
                     FavSelectButton(
                       isAnnouncement: this.isAnnouncement,
                       onClickActionAnnoun: () {
-                        this.isAnnouncement = true;
+                        isAnnouncement = true;
                         setState(() {});
                       },
                       onClickActionProductor: () {
-                        this.isAnnouncement = false;
+                        isAnnouncement = false;
                         setState(() {});
                       },
                     ),
