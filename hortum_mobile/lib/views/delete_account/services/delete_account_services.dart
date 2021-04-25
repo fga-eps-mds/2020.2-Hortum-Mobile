@@ -4,12 +4,12 @@ import 'package:hortum_mobile/data/user_delete_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/login/login_page.dart';
 
-Future<void> deleteUser(Dio dio, String password, BuildContext context) async {
+Future<void> deleteUser(Dio dio, String password) async {
   final DeleteUserAPI deleteData = new DeleteUserAPI(dio);
   var response = await deleteData.deleteUser(password);
   if (response.statusCode != 204) {
     showDialog(
-      context: context,
+      context: globalKey.currentContext,
       builder: (context) {
         return AlertDialog(
           key: Key('erroAoDeletar'),
@@ -42,7 +42,7 @@ Future<void> deleteUser(Dio dio, String password, BuildContext context) async {
   } else {
     actualUser.deleteUser();
     Navigator.pushAndRemoveUntil(
-        context,
+        globalKey.currentContext,
         MaterialPageRoute(builder: (context) => LoginPage()),
         (route) => route.isCurrent);
   }

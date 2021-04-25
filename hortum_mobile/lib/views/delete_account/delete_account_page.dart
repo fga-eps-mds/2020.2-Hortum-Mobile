@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/delete_account/components/delete_user_form.dart';
 
 class DeleteAccountPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _ChangePasswordState extends State<DeleteAccountPage> {
     final TextEditingController confirmPassword = new TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      key: globalKey,
       body: SingleChildScrollView(
         child: Container(
           height: size.height,

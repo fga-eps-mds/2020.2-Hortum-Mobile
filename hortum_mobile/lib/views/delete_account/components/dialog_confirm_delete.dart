@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/delete_account/services/delete_account_services.dart';
 
-Future<void> dialogDeleteConfirmUser(context, password, dio) async {
+Future<void> dialogDeleteConfirmUser(password, dio) async {
   return showDialog(
-    context: context,
+    context: globalKey.currentContext,
     barrierDismissible: true,
     builder: (BuildContext context) {
       return AlertDialog(
@@ -19,7 +20,7 @@ Future<void> dialogDeleteConfirmUser(context, password, dio) async {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              deleteUser(dio, password.text, context);
+              deleteUser(dio, password.text);
               Navigator.of(context).pop(false);
             },
             child: Text(

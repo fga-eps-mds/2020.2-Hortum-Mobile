@@ -79,7 +79,7 @@ class _DeleteUserFormState extends State<DeleteUserForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  dialogDeleteConfirmUser(context, password, widget.dio);
+                  dialogDeleteConfirmUser(password, widget.dio);
                 }
               },
               child: Container(
