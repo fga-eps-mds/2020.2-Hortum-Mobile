@@ -52,7 +52,7 @@ main() {
 
   Widget makeTestable() {
     return MaterialApp(
-      home: FavPage(dio: dioMock),
+      home: FavPage(isAnnouncement: true, dio: dioMock),
     );
   }
 
@@ -79,8 +79,7 @@ main() {
       expect(find.text('Amora Silvestre'), findsOneWidget);
     });
 
-    testWidgets('Testing the change from announcements to productors',
-        (WidgetTester tester) async {
+    testWidgets('Testing the FavPage rendering', (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
@@ -91,7 +90,8 @@ main() {
       expect(find.text('FAVORITOS'), findsOneWidget);
     });
 
-    testWidgets('Testing the productors list on CustomerHomePage',
+    testWidgets(
+        'Testing the productors list on CustomerHomePage and announcements after',
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
@@ -108,6 +108,10 @@ main() {
       await tester.pump();
       await tester.pump();
       expect(find.text('usuario2'), findsOneWidget);
+      await tester.tap(find.text('Anúncios'));
+      await tester.pump();
+      await tester.pump();
+      expect(find.text('Abóbora Japonesa'), findsOneWidget);
     });
   });
 }
