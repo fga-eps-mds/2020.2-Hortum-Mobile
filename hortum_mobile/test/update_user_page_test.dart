@@ -42,7 +42,7 @@ main() {
       actualUser.isProductor = true;
       await tester.pumpWidget(makeTestable());
       expect(find.byType(CustomFormField), findsNWidgets(2));
-      expect(find.byType(MaterialButton), findsNWidgets(3));
+      expect(find.byType(MaterialButton), findsNWidgets(2));
     });
   });
 
