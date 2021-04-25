@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
-import 'package:hortum_mobile/views/delete_account/components/password_form.dart';
+import 'package:hortum_mobile/views/delete_account/components/delete_user_form.dart';
 
 class DeleteAccountPage extends StatefulWidget {
   final Dio dio;
@@ -43,7 +43,7 @@ class _ChangePasswordState extends State<DeleteAccountPage> {
                         right: size.width * 0.1,
                         left: size.width * 0.1,
                       ),
-                      child: PasswordForm(
+                      child: DeleteUserForm(
                           dio: widget.dio,
                           password: password,
                           confirmPassword: confirmPassword))

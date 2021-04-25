@@ -2,14 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
+import 'package:hortum_mobile/views/delete_account/components/dialog_confirm_delete.dart';
 
-class PasswordForm extends StatefulWidget {
+class DeleteUserForm extends StatefulWidget {
   final Dio dio;
   final TextEditingController actualPassword;
   final TextEditingController password;
   final TextEditingController confirmPassword;
 
-  const PasswordForm(
+  const DeleteUserForm(
       {this.dio,
       this.actualPassword,
       this.confirmPassword,
@@ -17,19 +18,19 @@ class PasswordForm extends StatefulWidget {
       Key key})
       : super(key: key);
   @override
-  _PasswordFormState createState() => _PasswordFormState(
+  _DeleteUserFormState createState() => _DeleteUserFormState(
       actualPassword: actualPassword,
       password: password,
       confirmPassword: confirmPassword);
 }
 
-class _PasswordFormState extends State<PasswordForm> {
+class _DeleteUserFormState extends State<DeleteUserForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController actualPassword;
   final TextEditingController password;
   final TextEditingController confirmPassword;
 
-  _PasswordFormState(
+  _DeleteUserFormState(
       {this.actualPassword, this.confirmPassword, this.password});
 
   @override
@@ -77,7 +78,9 @@ class _PasswordFormState extends State<PasswordForm> {
           ),
           MaterialButton(
               onPressed: () {
-                if (_formKey.currentState.validate()) {}
+                if (_formKey.currentState.validate()) {
+                  dialogDeleteConfirmUser(context, password, widget.dio);
+                }
               },
               child: Container(
                 width: size.width * 0.5,
