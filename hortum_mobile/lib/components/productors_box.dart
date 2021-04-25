@@ -51,6 +51,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
           }));
         },
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               width: size.width * 0.12,
@@ -68,22 +69,28 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                 ),
               ),
             ),
-            Text(widget.name, style: TextStyle(fontSize: 20)),
-            Container(
-              width: size.width * 0.1,
-              height: size.height * 0.03,
-              margin: EdgeInsets.only(left: size.width * 0.4),
-              decoration: BoxDecoration(shape: BoxShape.circle),
+            Expanded(
+                flex: 4,
+                child: Text(
+                  widget.name,
+                  style: TextStyle(fontSize: 20),
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                )),
+            Expanded(
               child: MaterialButton(
                 child: Icon(
-                  Icons.cancel_outlined,
-                  color: Colors.red,
+                  Icons.thumb_up_alt_outlined,
+                  color: Colors.black,
                 ),
                 onPressed: () async {
                   await favProductor.favProductor(widget.email);
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => FavPage()),
+                      MaterialPageRoute(
+                          builder: (context) => FavPage(
+                                isAnnouncement: false,
+                              )),
                       (route) => true);
                 },
               ),

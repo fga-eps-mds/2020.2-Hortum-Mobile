@@ -75,7 +75,14 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                     ),
                   ),
                 ),
-                Text(widget.name, style: TextStyle(fontSize: 12)),
+                Flexible(
+                    fit: FlexFit.loose,
+                    child: Text(
+                      widget.name,
+                      style: TextStyle(fontSize: 12),
+                      maxLines: 2,
+                      overflow: TextOverflow.fade,
+                    )),
                 if (!actualUser.isProductor)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +102,9 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => FavPage()),
+                                    builder: (context) => FavPage(
+                                          isAnnouncement: true,
+                                        )),
                                 (route) => true);
                           },
                         ),
@@ -114,7 +123,9 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FavPage()),
+                                  builder: (context) => FavPage(
+                                        isAnnouncement: false,
+                                      )),
                               (route) => true);
                         },
                       ))
