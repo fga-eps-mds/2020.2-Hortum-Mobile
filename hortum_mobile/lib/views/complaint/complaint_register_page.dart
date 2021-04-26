@@ -8,26 +8,26 @@ import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/complaint/components/photo_selecter_complaint.dart';
 import 'package:hortum_mobile/views/complaint/services/complaint_services.dart';
 
-class ComplaintForm extends StatefulWidget {
+class ComplaintRegisterPage extends StatefulWidget {
   final Dio dio;
   final TextEditingController name;
   final TextEditingController description;
   final String emailProductor;
 
-  const ComplaintForm(
+  const ComplaintRegisterPage(
       {this.dio, this.name, this.description, this.emailProductor, Key key})
       : super(key: key);
   @override
-  _ComplaintFormState createState() =>
-      _ComplaintFormState(name: name, description: description);
+  _ComplaintRegisterPageState createState() =>
+      _ComplaintRegisterPageState(name: name, description: description);
 }
 
-class _ComplaintFormState extends State<ComplaintForm> {
+class _ComplaintRegisterPageState extends State<ComplaintRegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController name;
   final TextEditingController description;
 
-  _ComplaintFormState({this.name, this.description});
+  _ComplaintRegisterPageState({this.name, this.description});
 
   @override
   Widget build(BuildContext context) {

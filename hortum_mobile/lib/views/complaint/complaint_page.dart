@@ -4,8 +4,8 @@ import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/spin.dart';
 import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
+import 'package:hortum_mobile/views/complaint/complaint_register_page.dart';
 import 'components/list_complaints.dart';
-import 'components/complaint_form.dart';
 
 class ComplaintPage extends StatefulWidget {
   final Dio dio;
@@ -87,7 +87,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ComplaintForm(
+                                    builder: (context) => ComplaintRegisterPage(
                                       dio: widget.dio,
                                       name: name,
                                       description: description,
