@@ -57,6 +57,7 @@ class _ReclamationFormState extends State<ReclamationForm> {
                           padding: EdgeInsets.only(top: size.height * 0.085),
                           child: Text(
                             'RECLAMAÇÃO',
+                            key: Key('reclamationPage'),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 40,

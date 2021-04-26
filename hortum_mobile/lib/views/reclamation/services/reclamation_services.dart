@@ -29,6 +29,7 @@ class ReclamationServices {
             ),
             actions: [
               TextButton(
+                key: Key('okButton'),
                 onPressed: () {
                   Navigator.pop(context);
                 },

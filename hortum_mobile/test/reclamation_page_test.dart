@@ -118,13 +118,45 @@ main() {
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(Key('botão')));
       await tester.pump();
+      await tester.tap(find.byKey(Key('okButton')));
 
       expect(find.byKey(Key('ReclamationAlreadyExists')), findsOneWidget);
+    });
+
+    testWidgets('Return to CustomerHomePage', (WidgetTester tester) async {
+      String responseMatcher1 = "";
+      List<dynamic> responseMatcher2 = [
+        {
+          "username": "Usuário Teste",
+          "idPictureProductor": null,
+          "name": "Anúncio Teste",
+          "type_of_product": "Abelhas",
+          "description": "Abelhas",
+          "price": 10.0,
+          "idPicture": null
+        }
+      ];
+
+      when(dio.post(url, data: anyNamed('data'), options: anyNamed('options')))
+          .thenAnswer((_) async => Response(
+              data: jsonEncode(responseMatcher1),
+              requestOptions: null,
+              statusCode: 200));
+
+      when(dio.get(any, options: anyNamed('options'))).thenAnswer((_) async =>
+          Response(
+              data: responseMatcher2, requestOptions: null, statusCode: 201));
+
+      await tester.pumpWidget(makeTestable());
+      await tester.tap(find.byKey(Key('botão')));
+      await tester.pump();
+
+      expect(find.byType(Scaffold), findsOneWidget);
     });
   });
 
   group('Testing ReclamationPage:', () {
-    String emailProductor = 'productor@teste.com';
+    String emailProductor = 'cHJvZHVjdG9yQHRlc3RlLmNvbQ==';
     List<dynamic> responseMatcher = [
       {
         'author': "user",
@@ -143,9 +175,22 @@ main() {
     when(dio.get(any, options: anyNamed('options'))).thenAnswer((_) async =>
         Response(data: responseMatcher, requestOptions: null, statusCode: 200));
 
-    testWidgets('Renderização da página', (WidgetTester tester) async {
+    testWidgets('Renderização da página e botão voltar',
+        (WidgetTester tester) async {
       await tester.pumpWidget(makeTestable());
+      await tester.tap(find.byKey(Key('buttonArrowback')));
       expect(find.byKey(Key('textReclamações')), findsOneWidget);
+    });
+
+    testWidgets('Botão Criar reclamação', (WidgetTester tester) async {
+      when(dio.get(any, options: anyNamed('options'))).thenAnswer((_) async =>
+          Response(
+              data: responseMatcher, requestOptions: null, statusCode: 200));
+
+      await tester.pumpWidget(makeTestable());
+      await tester.tap(find.byKey(Key('createReclamationButton')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(Key('reclamationPage')), findsOneWidget);
     });
   });
 
