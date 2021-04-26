@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_delete_backend.dart';
 
 Future<void> dialogDeleteConfirm(context, title) async {
+  DeleteAnnounApi deleteApi = DeleteAnnounApi();
   return showDialog(
     context: context,
     barrierDismissible: true,
@@ -19,7 +20,7 @@ Future<void> dialogDeleteConfirm(context, title) async {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              DeleteAnnounApi.deleteAnnoun(title);
+              deleteApi.deleteAnnoun(title);
               Navigator.of(context).pop(false);
             },
             child: Text(

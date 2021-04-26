@@ -48,12 +48,21 @@ main() {
       expect(result, annouData.announcements[0]);
     });
 
-    test('Testing method getAnnoun of AnnounDataApi', () async {
+    test('Testing method getAnnoun of AnnounDataApi without filter', () async {
       actualUser.tokenAccess = 'token';
       AnnounDataApi announData = AnnounDataApi(dioMock);
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
       await announData.getAnnoun('');
+      expect(announData.announcements, response);
+    });
+
+    test('Testing method getAnnoun of AnnounDataApi with filter', () async {
+      actualUser.tokenAccess = 'token';
+      AnnounDataApi announData = AnnounDataApi(dioMock);
+      when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
+          (_) async => Response(data: response, requestOptions: null));
+      await announData.getAnnoun('Banana');
       expect(announData.announcements, response);
     });
 

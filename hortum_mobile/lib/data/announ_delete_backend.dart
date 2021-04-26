@@ -1,15 +1,25 @@
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
 
 class DeleteAnnounApi {
-  static Future deleteAnnoun(String anuncio) async {
-    String userAccessToken = await actualUser.readSecureData('token_access');
-    Uri url = Uri.parse('http://$ip:8000/announcement/update/$anuncio');
+  Dio dio;
+  DeleteAnnounApi([Dio client]) {
+    if (client == null)
+      this.dio = Dio();
+    else
+      this.dio = client;
+  }
+
+  Future deleteAnnoun(String anuncio) async {
+    String userAccessToken = actualUser.tokenAccess;
+    String url = 'http://$ip:8000/announcement/update/$anuncio';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
     };
 
-    await http.delete(url, headers: header);
+    Response response =
+        await this.dio.delete(url, options: Options(headers: header));
+    return response.statusCode;
   }
 }
