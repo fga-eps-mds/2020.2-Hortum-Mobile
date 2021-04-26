@@ -19,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Container(
           margin: EdgeInsets.only(top: size.height * 0.06),
           child: Column(
+            key: Key('registerFormPage'),
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               PhotoSelecter(title: 'CADASTRO'),
