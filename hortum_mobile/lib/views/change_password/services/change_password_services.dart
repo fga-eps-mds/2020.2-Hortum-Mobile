@@ -28,6 +28,7 @@ class ChangePasswordServices {
             ),
             actions: [
               TextButton(
+                key: Key('confirmButton'),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -46,11 +47,11 @@ class ChangePasswordServices {
       );
     } else {
       if (actualUser.isProductor) {
-        return Navigator.push(context, MaterialPageRoute(builder: (context) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
           return ProductorHomePage();
         }));
       } else {
-        return Navigator.push(context, MaterialPageRoute(builder: (context) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
           return CustomerHomePage();
         }));
       }

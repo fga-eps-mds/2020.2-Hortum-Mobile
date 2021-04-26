@@ -37,6 +37,7 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      key: Key('changePasswordForm'),
       height: size.height * 0.6,
       child: Column(
         children: <Widget>[
