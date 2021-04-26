@@ -5,29 +5,30 @@ import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/complaint/components/photo_selecter_complaint.dart';
-import 'package:hortum_mobile/views/complaint/services/complaint_services.dart';
+import 'package:hortum_mobile/views/register_complaint/services/complaint_services.dart';
 
-class ComplaintRegisterPage extends StatefulWidget {
+import 'components/photo_selecter_complaint.dart';
+
+class RegisterComplaintPage extends StatefulWidget {
   final Dio dio;
   final TextEditingController name;
   final TextEditingController description;
   final String emailProductor;
 
-  const ComplaintRegisterPage(
+  const RegisterComplaintPage(
       {this.dio, this.name, this.description, this.emailProductor, Key key})
       : super(key: key);
   @override
-  _ComplaintRegisterPageState createState() =>
-      _ComplaintRegisterPageState(name: name, description: description);
+  _RegisterComplaintPageState createState() =>
+      _RegisterComplaintPageState(name: name, description: description);
 }
 
-class _ComplaintRegisterPageState extends State<ComplaintRegisterPage> {
+class _RegisterComplaintPageState extends State<RegisterComplaintPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController name;
   final TextEditingController description;
 
-  _ComplaintRegisterPageState({this.name, this.description});
+  _RegisterComplaintPageState({this.name, this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -85,16 +86,18 @@ class _ComplaintRegisterPageState extends State<ComplaintRegisterPage> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 15, right: 165),
-                                  child: Text(
-                                    'Descrição do ocorrido',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontFamily: 'Comfortaa-Regular',
-                                        letterSpacing: -0.33,
-                                        fontWeight: FontWeight.w300),
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Descrição do ocorrido',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontFamily: 'Comfortaa-Regular',
+                                          letterSpacing: -0.33,
+                                          fontWeight: FontWeight.w300),
+                                    ),
                                   ),
                                 ),
                                 Padding(

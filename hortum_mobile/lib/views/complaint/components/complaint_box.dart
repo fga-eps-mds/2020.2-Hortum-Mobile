@@ -32,8 +32,6 @@ class _ComplaintBoxState extends State<ComplaintBox> {
     return Container(
       key: Key('containerComplaintBox'),
       margin: EdgeInsets.only(bottom: size.height * 0.05),
-      width: size.width * 0.9,
-      height: size.height * sizeStringDescription,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Color(0xffF46A6A)),
@@ -50,14 +48,12 @@ class _ComplaintBoxState extends State<ComplaintBox> {
         children: [
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(size.height * 0.005),
-            height: size.height * sizeStringDescription * 0.1,
-            width: size.width * 0.75,
+            padding: EdgeInsets.all(size.height * 0.01),
             child: Text(
               widget.author,
               style: TextStyle(
-                fontSize: 16,
-                fontFamily: 'Roboto-Bold',
+                fontSize: 17,
+                fontFamily: 'Comfortaa',
               ),
             ),
           ),
@@ -69,9 +65,7 @@ class _ComplaintBoxState extends State<ComplaintBox> {
           ),
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(size.height * 0.005),
-            height: (size.height * sizeStringDescription) * 0.5,
-            width: size.width * 0.75,
+            padding: EdgeInsets.all(size.height * 0.01),
             child: Text(
               widget.description,
               style: TextStyle(
@@ -82,8 +76,7 @@ class _ComplaintBoxState extends State<ComplaintBox> {
           ),
           Container(
             alignment: Alignment.bottomCenter,
-            height: (size.height * sizeStringDescription) * 0.35,
-            width: (size.height * sizeStringDescription) * 0.35,
+            padding: EdgeInsets.all(size.height * 0.01),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(15)),
               child: Material(
@@ -91,8 +84,8 @@ class _ComplaintBoxState extends State<ComplaintBox> {
                   child: Image.asset(
                     widget.image,
                     fit: BoxFit.fill,
-                    height: (size.height * sizeStringDescription) * 0.35,
-                    width: (size.height * sizeStringDescription) * 0.35,
+                    height: size.height * 0.2,
+                    width: size.height * 0.2,
                   ),
                 ),
               ),

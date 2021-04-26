@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/views/complaint/components/complaint_box.dart';
 
-class ComplaintsList extends StatefulWidget {
+class ComplaintsList extends StatelessWidget {
   final ComplaintDataAPI complaintAPI;
 
   const ComplaintsList({@required this.complaintAPI, Key key})
       : super(key: key);
 
   @override
-  _ComplaintsListState createState() => _ComplaintsListState();
-}
-
-class _ComplaintsListState extends State<ComplaintsList> {
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List Complaints = widget.complaintAPI.complaints;
+    List Complaints = complaintAPI.complaints;
 
     return Container(
       height: size.height * 0.66,
