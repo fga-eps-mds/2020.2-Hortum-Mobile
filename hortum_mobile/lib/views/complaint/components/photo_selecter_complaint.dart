@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class PhotoSelecterReclamation extends StatefulWidget {
+class PhotoSelecterComplaint extends StatefulWidget {
   @override
-  _PhotoSelecterReclamationState createState() =>
-      _PhotoSelecterReclamationState();
+  _PhotoSelecterComplaintState createState() => _PhotoSelecterComplaintState();
 
-  const PhotoSelecterReclamation({Key key}) : super(key: key);
+  const PhotoSelecterComplaint({Key key}) : super(key: key);
 }
 
-class _PhotoSelecterReclamationState extends State<PhotoSelecterReclamation> {
+class _PhotoSelecterComplaintState extends State<PhotoSelecterComplaint> {
   //File _image;
   final picker = ImagePicker();
 

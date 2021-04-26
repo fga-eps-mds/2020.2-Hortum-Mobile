@@ -5,29 +5,29 @@ import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/reclamation/components/photo_selecter_reclamation.dart';
-import 'package:hortum_mobile/views/reclamation/services/reclamation_services.dart';
+import 'package:hortum_mobile/views/complaint/components/photo_selecter_complaint.dart';
+import 'package:hortum_mobile/views/complaint/services/complaint_services.dart';
 
-class ReclamationForm extends StatefulWidget {
+class ComplaintForm extends StatefulWidget {
   final Dio dio;
   final TextEditingController name;
   final TextEditingController description;
   final String emailProductor;
 
-  const ReclamationForm(
+  const ComplaintForm(
       {this.dio, this.name, this.description, this.emailProductor, Key key})
       : super(key: key);
   @override
-  _ReclamationFormState createState() =>
-      _ReclamationFormState(name: name, description: description);
+  _ComplaintFormState createState() =>
+      _ComplaintFormState(name: name, description: description);
 }
 
-class _ReclamationFormState extends State<ReclamationForm> {
+class _ComplaintFormState extends State<ComplaintForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController name;
   final TextEditingController description;
 
-  _ReclamationFormState({this.name, this.description});
+  _ComplaintFormState({this.name, this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _ReclamationFormState extends State<ReclamationForm> {
                           padding: EdgeInsets.only(top: size.height * 0.085),
                           child: Text(
                             'RECLAMAÇÃO',
-                            key: Key('reclamationPage'),
+                            key: Key('ComplaintPage'),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 40,
@@ -106,7 +106,7 @@ class _ReclamationFormState extends State<ReclamationForm> {
                                         FormValidation.validateDescription,
                                   ),
                                 ),
-                                PhotoSelecterReclamation(),
+                                PhotoSelecterComplaint(),
                               ],
                             ),
                           ),
@@ -117,7 +117,7 @@ class _ReclamationFormState extends State<ReclamationForm> {
                             key: Key('enviarReclamButton'),
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
-                                ReclamationServices.registerReclamation(
+                                ComplaintServices.registerComplaint(
                                     dio: widget.dio,
                                     name: name.text,
                                     description: description.text,

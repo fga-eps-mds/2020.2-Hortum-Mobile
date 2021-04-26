@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
-import 'package:hortum_mobile/data/reclamation_data_backend.dart';
-import 'package:hortum_mobile/data/reclamation_register_backend.dart';
+import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/reclamation/components/list_reclamations.dart';
-import 'package:hortum_mobile/views/reclamation/components/photo_selecter_reclamation.dart';
-import 'package:hortum_mobile/views/reclamation/components/reclamation_form.dart';
-import 'package:hortum_mobile/views/reclamation/reclamation_page.dart';
-import 'package:hortum_mobile/views/reclamation/services/reclamation_services.dart';
+import 'package:hortum_mobile/views/complaint/components/list_complaints.dart';
+import 'package:hortum_mobile/views/complaint/components/photo_selecter_complaint.dart';
+import 'package:hortum_mobile/views/complaint/components/complaint_form.dart';
+import 'package:hortum_mobile/views/complaint/complaint_page.dart';
+import 'package:hortum_mobile/views/complaint/services/complaint_services.dart';
 import 'package:mockito/mockito.dart';
 import 'dart:convert';
 
@@ -36,7 +35,7 @@ class _TestState extends State<Teste> {
         child: MaterialButton(
             key: Key('botão'),
             onPressed: () async {
-              await ReclamationServices.registerReclamation(
+              await ComplaintServices.registerComplaint(
                   dio: widget.dio,
                   name: name,
                   description: description,
@@ -55,26 +54,26 @@ main() {
   actualUser.isProductor = false;
   actualUser.email = 'user@gmail.com';
 
-  group('Testing Reclamations data:', () {
-    RegisterReclamationAPI registerReclamation = RegisterReclamationAPI(dio);
+  group('Testing complaints data:', () {
+    ComplaintDataAPI registerComplaint = ComplaintDataAPI(dio);
     String responseMatcher = '';
-    test('RegisterReclamationAPI', () async {
-      var url = 'http://$ip:8000/reclamation/create/';
+    test('RegisterComplaintAPI', () async {
+      var url = 'http://$ip:8000/complaint/create/';
       when(dio.post(url, data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async => Response(
               data: jsonEncode(responseMatcher),
               requestOptions: null,
               statusCode: 200));
-      int responseActual = await registerReclamation.registerReclamation(
+      int responseActual = await registerComplaint.registerComplaint(
           name: '', description: '', emailProductor: '');
 
       expect(responseActual, 200);
     });
 
-    test('ReclamationDataAPI', () async {
-      ReclamationDataAPI reclamDataApi = ReclamationDataAPI(dio);
+    test('complaintDataAPI', () async {
+      ComplaintDataAPI complaintDataApi = ComplaintDataAPI(dio);
       String emailProductor = 'productor@teste.com';
-      var url = 'http://$ip:8000/reclamation/list/';
+      var url = 'http://$ip:8000/complaint/list/';
       List<dynamic> responseMatcher = [
         {
           'author': "user",
@@ -91,14 +90,14 @@ main() {
       when(dio.get(url, options: anyNamed('options'))).thenAnswer((_) async =>
           Response(
               data: responseMatcher, requestOptions: null, statusCode: 200));
-      await reclamDataApi.listReclamation(emailProductor: emailProductor);
+      await complaintDataApi.listComplaint(emailProductor: emailProductor);
 
       expect(responseActual, responseMatcher);
     });
   });
 
-  group('Testing ReclamationServices:', () {
-    var url = 'http://$ip:8000/reclamation/create/';
+  group('Testing complaintServices:', () {
+    var url = 'http://$ip:8000/complaint/create/';
     Widget makeTestable() {
       return MaterialApp(
         home: Teste(dio: dio),
@@ -120,7 +119,7 @@ main() {
       await tester.pump();
       await tester.tap(find.byKey(Key('okButton')));
 
-      expect(find.byKey(Key('ReclamationAlreadyExists')), findsOneWidget);
+      expect(find.byKey(Key('complaintAlreadyExists')), findsOneWidget);
     });
 
     testWidgets('Return to CustomerHomePage', (WidgetTester tester) async {
@@ -155,7 +154,7 @@ main() {
     });
   });
 
-  group('Testing ReclamationPage:', () {
+  group('Testing complaintPage:', () {
     String emailProductor = 'cHJvZHVjdG9yQHRlc3RlLmNvbQ==';
     List<dynamic> responseMatcher = [
       {
@@ -167,7 +166,7 @@ main() {
     Widget makeTestable() {
       return MaterialApp(
         home: Scaffold(
-          body: ReclamationPage(dio: dio, emailProductor: emailProductor),
+          body: ComplaintPage(dio: dio, emailProductor: emailProductor),
         ),
       );
     }
@@ -188,18 +187,18 @@ main() {
               data: responseMatcher, requestOptions: null, statusCode: 200));
 
       await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byKey(Key('createReclamationButton')));
+      await tester.tap(find.byKey(Key('createcomplaintButton')));
       await tester.pumpAndSettle();
-      expect(find.byKey(Key('reclamationPage')), findsOneWidget);
+      expect(find.byKey(Key('complaintPage')), findsOneWidget);
     });
   });
 
-  group('Testing ReclamationComponents:', () {
+  group('Testing complaintComponents:', () {
     testWidgets('PhotoSelecter', (WidgetTester tester) async {
       Widget makeTestable() {
         return MaterialApp(
           home: Scaffold(
-            body: PhotoSelecterReclamation(),
+            body: PhotoSelecterComplaint(),
           ),
         );
       }
@@ -208,35 +207,34 @@ main() {
       expect(find.byKey(Key('adicionarImagem')), findsOneWidget);
     });
 
-    ReclamationDataAPI reclamDataAPI = new ReclamationDataAPI();
-    reclamDataAPI.reclamations = [
+    ComplaintDataAPI complaintDataAPI = new ComplaintDataAPI();
+    complaintDataAPI.complaints = [
       {
         'author': "user",
         'description': 'description',
       }
     ];
 
-    testWidgets('ReclamationList e ReclamationBox',
-        (WidgetTester tester) async {
+    testWidgets('complaintList e complaintBox', (WidgetTester tester) async {
       Widget makeTestable() {
         return MaterialApp(
           home: Scaffold(
-            body: ReclamationsList(
-              reclamAPI: reclamDataAPI,
+            body: ComplaintsList(
+              complaintAPI: complaintDataAPI,
             ),
           ),
         );
       }
 
       await tester.pumpWidget(makeTestable());
-      expect(find.byKey(Key('containerReclamationBox')), findsOneWidget);
+      expect(find.byKey(Key('containercomplaintBox')), findsOneWidget);
     });
 
-    testWidgets('ReclamationForm', (WidgetTester tester) async {
+    testWidgets('complaintForm', (WidgetTester tester) async {
       Widget makeTestable() {
         return MaterialApp(
           home: Scaffold(
-            body: ReclamationForm(dio: dio),
+            body: ComplaintForm(dio: dio),
           ),
         );
       }

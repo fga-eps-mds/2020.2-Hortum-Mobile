@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ReclamationBox extends StatefulWidget {
+class ComplaintBox extends StatefulWidget {
   final String author;
   final String description;
   final String image;
 
-  const ReclamationBox({
+  const ComplaintBox({
     this.author,
     this.description,
     this.image,
@@ -14,10 +14,10 @@ class ReclamationBox extends StatefulWidget {
   });
 
   @override
-  _ReclamationBoxState createState() => _ReclamationBoxState();
+  _ComplaintBoxState createState() => _ComplaintBoxState();
 }
 
-class _ReclamationBoxState extends State<ReclamationBox> {
+class _ComplaintBoxState extends State<ComplaintBox> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,7 +31,7 @@ class _ReclamationBoxState extends State<ReclamationBox> {
       sizeStringDescription = 0.60;
 
     return Container(
-      key: Key('containerReclamationBox'),
+      key: Key('containerComplaintBox'),
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       width: size.width * 0.9,
       height: size.height * sizeStringDescription,

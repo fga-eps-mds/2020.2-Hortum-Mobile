@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/data/reclamation_data_backend.dart';
-import 'package:hortum_mobile/views/reclamation/components/reclamation_box.dart';
+import 'package:hortum_mobile/data/complaint_data_backend.dart';
+import 'package:hortum_mobile/views/complaint/components/complaint_box.dart';
 
-class ReclamationsList extends StatefulWidget {
-  final ReclamationDataAPI reclamAPI;
+class ComplaintsList extends StatefulWidget {
+  final ComplaintDataAPI complaintAPI;
 
-  const ReclamationsList({@required this.reclamAPI, Key key}) : super(key: key);
+  const ComplaintsList({@required this.complaintAPI, Key key})
+      : super(key: key);
 
   @override
-  _ReclamationsListState createState() => _ReclamationsListState();
+  _ComplaintsListState createState() => _ComplaintsListState();
 }
 
-class _ReclamationsListState extends State<ReclamationsList> {
+class _ComplaintsListState extends State<ComplaintsList> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List reclamations = widget.reclamAPI.reclamations;
+    List Complaints = widget.complaintAPI.complaints;
 
     return Container(
       height: size.height * 0.66,
-      child: reclamations.length != 0
+      child: Complaints.length != 0
           ? ListView.builder(
-              itemCount: reclamations.length,
+              itemCount: Complaints.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return ReclamationBox(
-                  author: reclamations[index]['author'],
-                  description: reclamations[index]['description'],
+                return ComplaintBox(
+                  author: Complaints[index]['author'],
+                  description: Complaints[index]['description'],
                   image: 'assets/images/perfil.jpg',
                 );
               })

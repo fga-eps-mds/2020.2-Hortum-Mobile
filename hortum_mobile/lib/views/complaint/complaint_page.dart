@@ -2,32 +2,32 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/spin.dart';
-import 'package:hortum_mobile/data/reclamation_data_backend.dart';
+import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
+import 'components/list_complaints.dart';
+import 'components/complaint_form.dart';
 
-import 'components/list_reclamations.dart';
-import 'components/reclamation_form.dart';
-
-class ReclamationPage extends StatefulWidget {
+class ComplaintPage extends StatefulWidget {
   final Dio dio;
   final String emailProductor;
 
-  const ReclamationPage({this.dio, this.emailProductor, Key key})
+  const ComplaintPage({this.dio, this.emailProductor, Key key})
       : super(key: key);
   @override
-  _ReclamationPageState createState() => _ReclamationPageState();
+  _ComplaintPageState createState() => _ComplaintPageState();
 }
 
-class _ReclamationPageState extends State<ReclamationPage> {
+class _ComplaintPageState extends State<ComplaintPage> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController name = new TextEditingController();
     final TextEditingController description = new TextEditingController();
     Size size = MediaQuery.of(context).size;
-    ReclamationDataAPI reclamAPI = new ReclamationDataAPI(widget.dio);
+    ComplaintDataAPI complaintDataAPI = new ComplaintDataAPI(widget.dio);
 
     return FutureBuilder(
-      future: reclamAPI.listReclamation(emailProductor: widget.emailProductor),
+      future:
+          complaintDataAPI.listComplaint(emailProductor: widget.emailProductor),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Scaffold(
           body: Stack(
@@ -69,7 +69,7 @@ class _ReclamationPageState extends State<ReclamationPage> {
                         children: [
                           Text(
                             'RECLAMAÇÕES',
-                            key: Key('textReclamações'),
+                            key: Key('textreclamações'),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 40,
@@ -82,12 +82,12 @@ class _ReclamationPageState extends State<ReclamationPage> {
                             height: size.height * 0.06,
                             padding: EdgeInsets.only(top: size.height * 0.005),
                             child: MaterialButton(
-                              key: Key('createReclamationButton'),
+                              key: Key('createcomplaintButton'),
                               onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ReclamationForm(
+                                    builder: (context) => ComplaintForm(
                                       dio: widget.dio,
                                       name: name,
                                       description: description,
@@ -123,7 +123,7 @@ class _ReclamationPageState extends State<ReclamationPage> {
                       ),
                     ),
                     if (snapshot.connectionState == ConnectionState.done)
-                      ReclamationsList(reclamAPI: reclamAPI)
+                      ComplaintsList(complaintAPI: complaintDataAPI)
                     else
                       SpinWidget(margin: size.height * 0.25),
                   ],

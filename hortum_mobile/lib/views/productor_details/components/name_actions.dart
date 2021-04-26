@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/views/reclamation/reclamation_page.dart';
+import 'package:hortum_mobile/views/complaint/complaint_page.dart';
 
 class NameActionsWidget extends StatefulWidget {
   final String name;
@@ -35,7 +35,7 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
               icon: Icon(Icons.report, color: Color(0xffFF4D00)),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ReclamationPage(
+                  return ComplaintPage(
                     emailProductor: widget.email,
                   );
                 }));
