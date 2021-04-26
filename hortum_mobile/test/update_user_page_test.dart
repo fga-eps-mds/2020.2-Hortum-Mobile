@@ -44,6 +44,15 @@ main() {
       expect(find.byType(CustomFormField), findsNWidgets(2));
       expect(find.byType(MaterialButton), findsNWidgets(2));
     });
+
+    testWidgets('Testing AdvancedSettingsButton', (WidgetTester tester) async {
+      actualUser.isProductor = true;
+      await tester.pumpWidget(makeTestable());
+      await tester.tap(find.text('Avançado'));
+      await tester.pump();
+      await tester.pump();
+      expect(find.text('Sair'), findsOneWidget);
+    });
   });
 
   group('Testing Service:', () {

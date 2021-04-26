@@ -44,14 +44,14 @@ main() {
   });
 
   group('Testing deleteUser Service:', () {
-    TextEditingController actualPassword = TextEditingController(text: '123');
+    TextEditingController password = TextEditingController(text: '123');
     TextEditingController confirmPassword = TextEditingController(text: '123');
     Widget makeTestable() {
       return MaterialApp(
           home: Scaffold(
               body: DeleteUserForm(
         dio: dio,
-        actualPassword: actualPassword,
+        password: password,
         confirmPassword: confirmPassword,
       )));
     }
@@ -63,7 +63,24 @@ main() {
               data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(requestOptions: null, statusCode: 400));
+      await tester.pumpWidget(makeTestable());
+      await tester.tap(find.text('EXCLUIR'));
+      await tester.pump();
+      await tester.pump();
+      expect(find.byKey(Key('deleteUser')), findsOneWidget);
+      await tester.tap(find.byKey(Key('yesButton')));
+      await tester.pump();
+      expect(find.byKey(Key('erroAoDeletar')), findsOneWidget);
+      await tester.tap(find.byKey(Key('okButton')));
+    });
 
+    testWidgets('Testing user delete success', (WidgetTester tester) async {
+      actualUser.tokenAccess = 'token';
+      actualUser.isProductor = true;
+      when(dio.delete(url,
+              data: anyNamed('data'), options: anyNamed('options')))
+          .thenAnswer(
+              (_) async => Response(requestOptions: null, statusCode: 204));
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.text('EXCLUIR'));
       await tester.pump();
@@ -72,7 +89,19 @@ main() {
       await tester.tap(find.byKey(Key('yesButton')));
       await tester.pump();
       await tester.pump();
-      expect(find.byKey(Key('erroAoDeletar')), findsOneWidget);
+      expect(find.text('ENTRAR'), findsOneWidget);
+    });
+
+    testWidgets('Testing tap "Não" button on dialogDelete',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(makeTestable());
+      await tester.tap(find.text('EXCLUIR'));
+      await tester.pump();
+      await tester.pump();
+      expect(find.byKey(Key('deleteUser')), findsOneWidget);
+      await tester.tap(find.byKey(Key('noButton')));
+      await tester.pump();
+      expect(find.text('EXCLUIR'), findsOneWidget);
     });
   });
 }
