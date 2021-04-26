@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
-import 'package:hortum_mobile/data/announ_register_backend.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 
@@ -22,7 +22,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    RegisterAnnounApi announApi = RegisterAnnounApi();
+    AnnouncementsApi announcementsApi = AnnouncementsApi();
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
@@ -90,7 +90,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         colorButton: Color(0xFFF49C00),
                         onClickAction: () {
                           if (_formKey.currentState.validate()) {
-                            announApi.registerAnnoun(
+                            announcementsApi.registerAnnoun(
                                 _titulo.text,
                                 _descricao.text,
                                 double.parse(_preco.text),
