@@ -41,6 +41,20 @@ main() {
       expect(find.text('Anúncio Teste'), findsOneWidget);
     });
 
+    testWidgets('Testing the state when response is empty on CustomerHomePage',
+        (WidgetTester tester) async {
+      actualUser.isProductor = false;
+      actualUser.tokenAccess = 'token';
+      when(dioMock.get(any, options: anyNamed('options')))
+          .thenAnswer((_) async => Response(data: [], requestOptions: null));
+      await tester.pumpWidget(makeTestable());
+      await tester.pump();
+      expect(
+          find.text(
+              'Infelizmente!!\nNão encontramos nenhum resultado para a sua busca'),
+          findsOneWidget);
+    });
+
     testWidgets('Testing the change from announcements to productors',
         (WidgetTester tester) async {
       actualUser.isProductor = false;
@@ -77,6 +91,24 @@ main() {
       await tester.pump();
       await tester.pump();
       expect(find.byKey(Key('Usuário Teste key')), findsOneWidget);
+    });
+
+    testWidgets('Testing an empty list of productors on CustomerHomePage',
+        (WidgetTester tester) async {
+      actualUser.isProductor = false;
+      actualUser.tokenAccess = 'token';
+      when(dioMock.get('http://$ip:8000/announcement/list',
+              options: anyNamed('options')))
+          .thenAnswer(
+              (_) async => Response(data: response, requestOptions: null));
+      when(dioMock.get('http://$ip:8000/productor/list',
+              options: anyNamed('options')))
+          .thenAnswer((_) async => Response(data: [], requestOptions: null));
+      await tester.pumpWidget(makeTestable());
+      await tester.tap(find.byIcon(Icons.cached));
+      await tester.pump();
+      await tester.pump();
+      expect(find.byKey(Key('noProductors')), findsOneWidget);
     });
 
     testWidgets('Testing the spin kit while the connection state is not done',
