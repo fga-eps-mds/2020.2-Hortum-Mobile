@@ -1,12 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/delete_account/services/delete_account_services.dart';
 
-Future<void> dialogDeleteConfirmUser(password, dio) async {
+Future<void> dialogDeleteConfirmUser(
+    TextEditingController password, Dio dio, BuildContext context) async {
   return showDialog(
-    context: globalKey.currentContext,
+    context: context,
     barrierDismissible: true,
-    builder: (BuildContext context) {
+    builder: (context) {
       return AlertDialog(
         key: Key('deleteUser'),
         title: Text('Deseja excluir sua conta?'),
@@ -20,11 +21,11 @@ Future<void> dialogDeleteConfirmUser(password, dio) async {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              deleteUser(dio, password.text);
-              Navigator.of(context).pop(false);
+              deleteUser(dio, password.text, context);
             },
             child: Text(
               "Sim",
+              key: Key('yesButton'),
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 19,
@@ -38,6 +39,7 @@ Future<void> dialogDeleteConfirmUser(password, dio) async {
             },
             child: Text(
               "Não",
+              key: Key('noButton'),
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 19,

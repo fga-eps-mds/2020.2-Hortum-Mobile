@@ -6,32 +6,22 @@ import 'package:hortum_mobile/views/delete_account/components/dialog_confirm_del
 
 class DeleteUserForm extends StatefulWidget {
   final Dio dio;
-  final TextEditingController actualPassword;
   final TextEditingController password;
   final TextEditingController confirmPassword;
 
-  const DeleteUserForm(
-      {this.dio,
-      this.actualPassword,
-      this.confirmPassword,
-      this.password,
-      Key key})
+  const DeleteUserForm({this.dio, this.confirmPassword, this.password, Key key})
       : super(key: key);
   @override
   _DeleteUserFormState createState() => _DeleteUserFormState(
-      actualPassword: actualPassword,
-      password: password,
-      confirmPassword: confirmPassword);
+      password: password, confirmPassword: confirmPassword);
 }
 
 class _DeleteUserFormState extends State<DeleteUserForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController actualPassword;
   final TextEditingController password;
   final TextEditingController confirmPassword;
 
-  _DeleteUserFormState(
-      {this.actualPassword, this.confirmPassword, this.password});
+  _DeleteUserFormState({this.confirmPassword, this.password});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +69,7 @@ class _DeleteUserFormState extends State<DeleteUserForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  dialogDeleteConfirmUser(password, widget.dio);
+                  dialogDeleteConfirmUser(password, widget.dio, context);
                 }
               },
               child: Container(

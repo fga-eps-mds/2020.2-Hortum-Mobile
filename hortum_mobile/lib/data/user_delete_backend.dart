@@ -13,7 +13,6 @@ class DeleteUserAPI {
     }
   }
   Future deleteUser(String password) async {
-    //Trocar o IPLOCAL pelo ip de sua máquina
     String url = 'http://$ip:8000/users/delete/';
 
     var header = {

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/circle_style.dart';
 import 'package:hortum_mobile/components/footer.dart';
-import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/delete_account/components/delete_user_form.dart';
 
 class DeleteAccountPage extends StatefulWidget {
@@ -10,17 +9,17 @@ class DeleteAccountPage extends StatefulWidget {
 
   const DeleteAccountPage({this.dio, Key key}) : super(key: key);
   @override
-  _ChangePasswordState createState() => _ChangePasswordState();
+  _DeleteAccountState createState() => _DeleteAccountState();
 }
 
-class _ChangePasswordState extends State<DeleteAccountPage> {
+class _DeleteAccountState extends State<DeleteAccountPage> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController password = new TextEditingController();
     final TextEditingController confirmPassword = new TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      key: globalKey,
+      key: Key('deleteAccountPage'),
       body: SingleChildScrollView(
         child: Container(
           height: size.height,
