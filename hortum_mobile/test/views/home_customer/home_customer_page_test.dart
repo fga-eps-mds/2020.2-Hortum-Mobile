@@ -30,37 +30,6 @@ main() {
     );
   }
 
-  group('AnnounDataApi methods tests', () {
-    test('Testing method getAnnoun of AnnounDataApi', () async {
-      actualUser.tokenAccess = 'token';
-      AnnounDataApi announData = AnnounDataApi(dioMock);
-      when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
-          (_) async => Response(data: response, requestOptions: null));
-      await announData.getAnnoun('');
-      expect(announData.announcements, response);
-    });
-
-    test('Testing method manipulateData of AnnounDataApi', () async {
-      List<dynamic> response = [
-        {
-          "username": "Usuário Teste",
-          "idPictureProductor": null,
-          "name": "Anúncio Teste",
-          "type_of_product": "Abelhas",
-          "description": "Abelhas",
-          "price": 10.0,
-          "idPicture": null
-        }
-      ];
-      AnnounDataApi announData = AnnounDataApi();
-      announData.announcements = response;
-      announData.manipulateData();
-      response[0]['username'] = "Usuário";
-      response[0]['price'] = "R\$ 10,00";
-      expect(announData.announcements, response);
-    });
-  });
-
   group('Design Tests', () {
     testWidgets('Testing the announcements on CustomerHomePage',
         (WidgetTester tester) async {

@@ -45,37 +45,4 @@ main() {
       expect(find.byType(MaterialButton), findsOneWidget);
     });
   });
-
-  group('Testing ChangePasswordService:', () {
-    TextEditingController actualPassword = TextEditingController(text: ' ');
-    TextEditingController password = TextEditingController(text: ' ');
-    TextEditingController confirmPassword = TextEditingController(text: ' ');
-    Widget makeTestable() {
-      return MaterialApp(
-          home: Scaffold(
-              body: PasswordForm(
-                  dio: dio,
-                  actualPassword: actualPassword,
-                  password: password,
-                  confirmPassword: confirmPassword)));
-    }
-
-    testWidgets('CustomFormFields e MaterialButton',
-        (WidgetTester tester) async {
-      actualUser.tokenAccess = 'token';
-      actualUser.isProductor = true;
-      String responseMatcher = "Senha incorreta!";
-
-      when(dio.patch(url, data: anyNamed('data'), options: anyNamed('options')))
-          .thenAnswer((_) async => Response(
-              data: jsonEncode(responseMatcher),
-              requestOptions: null,
-              statusCode: 400));
-
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byType(MaterialButton));
-      await tester.pump();
-      expect(find.byKey(Key('senhaIncorreta')), findsOneWidget);
-    });
-  });
 }
