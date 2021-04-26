@@ -22,6 +22,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    RegisterAnnounApi announApi = RegisterAnnounApi();
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
@@ -89,7 +90,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         colorButton: Color(0xFFF49C00),
                         onClickAction: () {
                           if (_formKey.currentState.validate()) {
-                            RegisterAnnounApi.registerAnnoun(
+                            announApi.registerAnnoun(
                                 _titulo.text,
                                 _descricao.text,
                                 double.parse(_preco.text),
