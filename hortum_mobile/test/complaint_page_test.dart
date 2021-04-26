@@ -5,9 +5,9 @@ import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/views/complaint/complaint_register_page.dart';
 import 'package:hortum_mobile/views/complaint/components/list_complaints.dart';
 import 'package:hortum_mobile/views/complaint/components/photo_selecter_complaint.dart';
-import 'package:hortum_mobile/views/complaint/components/complaint_form.dart';
 import 'package:hortum_mobile/views/complaint/complaint_page.dart';
 import 'package:hortum_mobile/views/complaint/services/complaint_services.dart';
 import 'package:mockito/mockito.dart';
@@ -189,7 +189,7 @@ main() {
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(Key('createcomplaintButton')));
       await tester.pumpAndSettle();
-      expect(find.byKey(Key('complaintPage')), findsOneWidget);
+      expect(find.byKey(Key('ComplaintPage')), findsOneWidget);
     });
   });
 
@@ -227,14 +227,14 @@ main() {
       }
 
       await tester.pumpWidget(makeTestable());
-      expect(find.byKey(Key('containercomplaintBox')), findsOneWidget);
+      expect(find.byKey(Key('containerComplaintBox')), findsOneWidget);
     });
 
     testWidgets('complaintForm', (WidgetTester tester) async {
       Widget makeTestable() {
         return MaterialApp(
           home: Scaffold(
-            body: ComplaintForm(dio: dio),
+            body: ComplaintRegisterPage(dio: dio),
           ),
         );
       }

@@ -18,7 +18,7 @@ class ComplaintServices {
         context: context,
         builder: (context) {
           return AlertDialog(
-            key: Key('ComplaintAlreadyExists'),
+            key: Key('complaintAlreadyExists'),
             title: Text("Erro!"),
             content: Text(
               "Você já realizou uma reclamação contra este produtor",

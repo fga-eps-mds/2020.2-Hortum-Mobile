@@ -5,6 +5,7 @@ import 'package:hortum_mobile/components/spin.dart';
 import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/complaint/complaint_register_page.dart';
+import 'package:hortum_mobile/views/complaint/components/arrowback_button.dart';
 import 'components/list_complaints.dart';
 
 class ComplaintPage extends StatefulWidget {
@@ -32,30 +33,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
         return Scaffold(
           body: Stack(
             children: [
-              Container(
-                height: size.height * 0.03,
-                width: size.width * 0.15,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(200),
-                  color: Color(0xffF46A6A).withOpacity(0.3),
-                ),
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.only(
-                    top: size.height * 0.07, left: size.width * 0.05),
-                child: MaterialButton(
-                  key: Key('buttonArrowback'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
+              ArrowBackButton(),
               Container(
                 padding: EdgeInsets.only(
                   right: size.width * 0.1,
@@ -69,7 +47,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
                         children: [
                           Text(
                             'RECLAMAÇÕES',
-                            key: Key('textreclamações'),
+                            key: Key('textReclamações'),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 40,

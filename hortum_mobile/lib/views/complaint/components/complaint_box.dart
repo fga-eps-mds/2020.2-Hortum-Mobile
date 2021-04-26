@@ -21,7 +21,6 @@ class _ComplaintBoxState extends State<ComplaintBox> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    'Dart'.length;
     double sizeStringDescription = widget.description.length.toDouble();
     if (sizeStringDescription < 150)
       sizeStringDescription = 0.365;
