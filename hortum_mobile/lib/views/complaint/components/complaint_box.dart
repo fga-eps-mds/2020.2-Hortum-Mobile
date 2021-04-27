@@ -21,13 +21,6 @@ class _ComplaintBoxState extends State<ComplaintBox> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double sizeStringDescription = widget.description.length.toDouble();
-    if (sizeStringDescription < 150)
-      sizeStringDescription = 0.365;
-    else if (sizeStringDescription < 350)
-      sizeStringDescription = 0.40;
-    else
-      sizeStringDescription = 0.60;
 
     return Container(
       key: Key('containerComplaintBox'),

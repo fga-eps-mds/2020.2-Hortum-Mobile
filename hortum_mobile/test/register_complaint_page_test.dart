@@ -47,7 +47,6 @@ main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   actualUser.tokenAccess = 'token';
   actualUser.isProductor = false;
-  // actualUser.email = 'user@gmail.com';
 
   group('Testing Complaint data:', () {
     test('registerComplaint', () async {

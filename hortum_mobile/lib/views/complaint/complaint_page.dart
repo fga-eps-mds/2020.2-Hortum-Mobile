@@ -44,6 +44,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
+                      alignment: Alignment.center,
                       padding: EdgeInsets.only(bottom: size.height * 0.01),
                       child: Column(
                         children: [
