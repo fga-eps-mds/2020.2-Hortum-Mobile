@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/form_field.dart';
-import 'package:hortum_mobile/data/user_delete_backend.dart';
+import 'package:hortum_mobile/data/user_data_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/delete_account/components/delete_user_form.dart';
 import 'package:mockito/mockito.dart';
@@ -15,7 +15,7 @@ main() {
   var url = 'http://$ip:8000/users/delete/';
 
   group('Testing class DeleteUserAPI:', () {
-    DeleteUserAPI deleteUser = DeleteUserAPI(dio);
+    UserAPI deleteUser = UserAPI(dio);
     actualUser.tokenAccess = 'token';
     test('Delete User Successful', () async {
       when(dio.delete(url,
