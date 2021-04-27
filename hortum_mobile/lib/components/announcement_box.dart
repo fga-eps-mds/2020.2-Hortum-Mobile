@@ -9,6 +9,7 @@ class AnnouncementBox extends StatefulWidget {
   final String price;
   final String productPic;
   final String email;
+  final String description;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -18,6 +19,7 @@ class AnnouncementBox extends StatefulWidget {
       @required this.price,
       @required this.productPic,
       @required this.email,
+      @required this.description,
       Key key})
       : super(key: key);
   @override
@@ -92,6 +94,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return AnnouncementDetails(
+                    description: widget.description,
                     localization: widget.localization,
                     name: widget.name,
                     price: widget.price,
