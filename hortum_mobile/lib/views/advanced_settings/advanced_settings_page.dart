@@ -23,7 +23,7 @@ class _AdvancedSettingsStatePage extends State<AdvancedSettingsPage> {
         SingleChildScrollView(
           child: Column(
             children: [
-              CircleStyle(color: Color(0xffF49C00), opacity: 0.2),
+              CircleStyle(color: Color(0xff478C5C), opacity: 0.2),
               Text(
                 'AVANÇADO',
                 style: TextStyle(
@@ -34,8 +34,7 @@ class _AdvancedSettingsStatePage extends State<AdvancedSettingsPage> {
                     fontWeight: FontWeight.w300),
               ),
               Container(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.05, left: size.width * 0.10),
+                  padding: EdgeInsets.only(top: size.height * 0.1),
                   child: Column(
                     children: [
                       ChangePasswordButton(),

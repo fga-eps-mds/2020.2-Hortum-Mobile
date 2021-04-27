@@ -32,6 +32,7 @@ class _DeleteAccountState extends State<DeleteAccountPage> {
                 children: [
                   Text(
                     'EXCLUIR CONTA',
+                    key: Key('deleteAccountText'),
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 40,

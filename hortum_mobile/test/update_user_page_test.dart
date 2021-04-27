@@ -51,7 +51,7 @@ main() {
       await tester.tap(find.text('Avançado'));
       await tester.pump();
       await tester.pump();
-      expect(find.text('Sair'), findsOneWidget);
+      expect(find.text('MUDAR SENHA'), findsOneWidget);
     });
   });
 

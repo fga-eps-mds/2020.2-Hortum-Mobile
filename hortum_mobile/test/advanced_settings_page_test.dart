@@ -18,39 +18,36 @@ main() {
       await tester.pumpWidget(makeTestable());
       await tester.pump();
       expect(find.text('AVANÇADO'), findsOneWidget);
-      expect(find.text('Mudar senha'), findsOneWidget);
-      expect(find.text('Excluir conta'), findsOneWidget);
-      expect(find.text('Sair'), findsOneWidget);
+      expect(find.text('MUDAR SENHA'), findsOneWidget);
+      expect(find.text('EXCLUIR CONTA'), findsOneWidget);
+      expect(find.text('SAIR'), findsOneWidget);
     });
     testWidgets('Testing the LogoutButton', (WidgetTester tester) async {
       actualUser.isProductor = true;
       await tester.pumpWidget(makeTestable());
-      await tester.pump();
-      await tester.tap(find.text('Sair'));
-      await tester.pump();
-      await tester.pump();
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('SAIR'));
+      await tester.pumpAndSettle();
       expect(find.text('ENTRAR'), findsOneWidget);
     });
 
     testWidgets('Testing the DeleteAccountButton', (WidgetTester tester) async {
       actualUser.isProductor = true;
       await tester.pumpWidget(makeTestable());
-      await tester.pump();
-      await tester.tap(find.text('Excluir conta'));
-      await tester.pump();
-      await tester.pump();
-      expect(find.text('EXCLUIR CONTA'), findsOneWidget);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('EXCLUIR CONTA'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(Key('deleteAccountPage')), findsOneWidget);
     });
 
     testWidgets('Testing the ChangePasswordButton',
         (WidgetTester tester) async {
       actualUser.isProductor = true;
       await tester.pumpWidget(makeTestable());
-      await tester.pump();
-      await tester.tap(find.text('Mudar senha'));
-      await tester.pump();
-      await tester.pump();
-      expect(find.text('MUDAR SENHA'), findsOneWidget);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('MUDAR SENHA'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(Key('profileContent')), findsOneWidget);
     });
   });
 }
