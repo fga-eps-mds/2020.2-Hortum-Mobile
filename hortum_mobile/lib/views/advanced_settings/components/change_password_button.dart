@@ -8,10 +8,10 @@ class ChangePasswordButton extends StatelessWidget {
       Icon(Icons.lock_open, color: Color(0xff219653)),
       MaterialButton(
         onPressed: () {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => ChangePasswordPage()),
-              (route) => route.isCurrent);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChangePasswordPage()),
+          );
         },
         child: Text(
           "Mudar senha",

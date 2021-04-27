@@ -7,10 +7,10 @@ class AdvancedSettingsButton extends StatelessWidget {
     return MaterialButton(
       padding: EdgeInsets.only(top: 6),
       onPressed: () {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => AdvancedSettingsPage()),
-            (route) => route.isCurrent);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AdvancedSettingsPage()),
+        );
       },
       child: Text(
         "Avançado",

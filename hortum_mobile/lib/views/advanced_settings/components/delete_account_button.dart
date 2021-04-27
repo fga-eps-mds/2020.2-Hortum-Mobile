@@ -8,10 +8,10 @@ class DeleteAccountButton extends StatelessWidget {
       Icon(Icons.delete_outline, color: Color(0xff219653)),
       MaterialButton(
         onPressed: () {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => DeleteAccountPage()),
-              (route) => route.isCurrent);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DeleteAccountPage()),
+          );
         },
         child: Text(
           "Excluir conta",
