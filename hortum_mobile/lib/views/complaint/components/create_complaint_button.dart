@@ -17,8 +17,8 @@ class CreateComplaintButton extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final TextEditingController name = new TextEditingController();
     final TextEditingController description = new TextEditingController();
-    return Align(
-      alignment: Alignment.topRight,
+    return Padding(
+      padding: EdgeInsets.only(left: size.width * 0.675),
       child: Container(
         width: size.width * 0.3,
         height: size.height * 0.04,

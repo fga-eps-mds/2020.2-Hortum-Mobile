@@ -7,10 +7,10 @@ class ArrowBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Align(
-      alignment: Alignment.topLeft,
+    return Padding(
+      padding: EdgeInsets.only(left: size.width * 0.025),
       child: Container(
-        height: size.height * 0.03,
+        height: size.height * 0.04,
         width: size.width * 0.15,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(200),
