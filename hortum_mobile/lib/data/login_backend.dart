@@ -1,12 +1,22 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/model/user.dart';
-import 'package:http/http.dart' as http;
 
 class LoginApi {
-  static Future<User> login(String email, String password) async {
+  Dio dio;
+
+  LoginApi([Dio client]) {
+    if (client == null) {
+      this.dio = Dio();
+    } else {
+      this.dio = client;
+    }
+  }
+
+  Future login(String email, String password) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    Uri url = Uri.parse('http://$ip:8000/login/');
+    var url = 'http://$ip:8000/login/';
     var header = {"Content-Type": "application/json"};
 
     Map params = {
@@ -15,12 +25,21 @@ class LoginApi {
     };
 
     String _body = json.encode(params);
-    var response = await http.post(url, headers: header, body: _body);
-    Map mapResponse = json.decode(response.body);
-    mapResponse['password'] = password;
+    Response response = await dio.post(
+      url,
+      data: _body,
+      options: Options(
+        headers: header,
+        validateStatus: (status) {
+          return status <= 500;
+        },
+      ),
+    );
+    dynamic userData = response.data;
+    userData['response'] = password;
 
     if (response.statusCode == 200) {
-      actualUser = User.fromJson(mapResponse);
+      actualUser = User.fromJson(response.data);
       actualUser.writeSecureData('email', actualUser.email);
       actualUser.writeSecureData('token_refresh', actualUser.tokenRefresh);
       actualUser.writeSecureData('token_access', actualUser.tokenAccess);
