@@ -31,6 +31,7 @@ class LoginServices {
             ),
             actions: [
               TextButton(
+                key: Key('okButton'),
                 onPressed: () {
                   Navigator.pop(context);
                 },

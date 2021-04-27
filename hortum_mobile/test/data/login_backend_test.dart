@@ -18,10 +18,10 @@ void main() {
     dynamic responseMatcher = {
       'email': 'teste@gmail.com',
       'password': 'senha',
-      'tokenAccess': 'abc',
-      'tokenRefresh': 'cba',
+      'access': 'abc',
+      'refresh': 'cba',
       'username': 'teste',
-      'isProductor': false,
+      'is_productor': false,
     };
     when(dioMock.post(any,
             data: anyNamed('data'), options: anyNamed('options')))

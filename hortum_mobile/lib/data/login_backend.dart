@@ -35,8 +35,6 @@ class LoginApi {
         },
       ),
     );
-    dynamic userData = response.data;
-    userData['response'] = password;
 
     if (response.statusCode == 200) {
       actualUser = User.fromJson(response.data);
