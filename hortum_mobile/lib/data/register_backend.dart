@@ -3,8 +3,8 @@ import 'package:hortum_mobile/globals.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterApi {
-  static Future register(
-      String username, String email, String password, bool isProductor) async {
+  static Future register(String username, String email, String password,
+      String telefone, bool isProductor) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     Uri urlCustomer = Uri.parse('http://$ip:8000/signup/customer/');
     Uri urlProductor = Uri.parse('http://$ip:8000/signup/productor/');
@@ -15,6 +15,7 @@ class RegisterApi {
         "username": username,
         "email": email,
         "password": password,
+        "phone_number": telefone
       },
     };
 

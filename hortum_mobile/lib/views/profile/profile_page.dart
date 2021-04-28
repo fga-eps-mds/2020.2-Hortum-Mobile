@@ -17,6 +17,8 @@ class _UserProfileState extends State<UserProfile> {
     TextEditingController email = TextEditingController(text: actualUser.email);
     TextEditingController username =
         TextEditingController(text: actualUser.username);
+    TextEditingController phone_number =
+        TextEditingController(text: actualUser.phone_number);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -36,7 +38,11 @@ class _UserProfileState extends State<UserProfile> {
                         heigth: size.width * 0.3,
                         radius: 50,
                         bottomMargin: size.height * 0.06),
-                    ProfileForm(email: email, username: username),
+                    ProfileForm(
+                      email: email,
+                      username: username,
+                      phone_number: phone_number,
+                    ),
                   ],
                 ),
               ),

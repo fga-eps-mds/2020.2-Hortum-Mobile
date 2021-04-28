@@ -13,8 +13,10 @@ class ProfileForm extends StatefulWidget {
   final Dio dio;
   final TextEditingController email;
   final TextEditingController username;
+  final TextEditingController phone_number;
 
-  const ProfileForm({this.dio, this.email, this.username, key})
+  const ProfileForm(
+      {this.dio, this.email, this.username, this.phone_number, key})
       : super(key: key);
 
   @override
@@ -27,7 +29,8 @@ class _ProfileFormState extends State<ProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController email;
   final TextEditingController username;
-  _ProfileFormState({this.email, this.username});
+  final TextEditingController phone_number;
+  _ProfileFormState({this.email, this.username, this.phone_number});
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +66,17 @@ class _ProfileFormState extends State<ProfileForm> {
                       controller: email,
                       icon: Icon(Icons.email_outlined, color: Colors.black),
                       validator: FormValidation.validateEmail,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: CustomFormField(
+                      suffixIcon: false,
+                      obscureText: false,
+                      labelText: 'Telefone',
+                      controller: phone_number,
+                      icon: Icon(Icons.phone, color: Colors.black),
+                      validator: FormValidation.validatePhone,
                     ),
                   ),
                 ],

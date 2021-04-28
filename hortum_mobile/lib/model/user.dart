@@ -6,6 +6,7 @@ class User {
   String email;
   String username;
   String password;
+  String phone_number;
   bool isProductor;
   final _storage = new FlutterSecureStorage();
 
@@ -15,7 +16,8 @@ class User {
       this.email,
       this.username,
       this.password,
-      this.isProductor});
+      this.isProductor,
+      this.phone_number});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -24,7 +26,8 @@ class User {
         email: json['email'],
         username: json['username'],
         password: json['password'],
-        isProductor: json['is_productor']);
+        isProductor: json['is_productor'],
+        phone_number: json['phone_number']);
   }
 
   void deleteUser() {
@@ -37,6 +40,7 @@ class User {
     username = null;
     password = null;
     isProductor = null;
+    phone_number = null;
   }
 
   void updateToken(String newToken) {
@@ -74,6 +78,7 @@ class User {
         other.email == email &&
         other.username == username &&
         other.password == password &&
-        other.isProductor == isProductor;
+        other.isProductor == isProductor &&
+        other.phone_number == phone_number;
   }
 }
