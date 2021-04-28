@@ -47,7 +47,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
+                    padding: const EdgeInsets.only(bottom: 15),
                     child: CustomFormField(
                       suffixIcon: false,
                       controller: username,
@@ -58,7 +58,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 15),
                     child: CustomFormField(
                       suffixIcon: false,
                       obscureText: false,
@@ -69,7 +69,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 15),
                     child: CustomFormField(
                       suffixIcon: false,
                       obscureText: false,

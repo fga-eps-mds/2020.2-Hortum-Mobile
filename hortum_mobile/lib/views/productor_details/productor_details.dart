@@ -49,7 +49,9 @@ class _ProductorDetailsState extends State<ProductorDetails> {
                                 bottomMargin: size.height * 0.02,
                               ),
                               NameActionsWidget(
-                                  name: prodData.announcements[0]['username']),
+                                name: prodData.announcements[0]['username'],
+                                email: widget.email,
+                              ),
                               AnnouncementsDetails(prodData: prodData)
                             ],
                           ))
