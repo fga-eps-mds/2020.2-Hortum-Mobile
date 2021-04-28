@@ -26,21 +26,6 @@ void main() {
     expect(result, user);
   });
 
-  test('Given an user delete his info', () {
-    user.deleteUser();
-    expect(user.username, null);
-    expect(user.password, null);
-    expect(user.email, null);
-    expect(user.isProductor, null);
-    expect(user.tokenAccess, null);
-    expect(user.tokenRefresh, null);
-  });
-
-  test('Testing method updateToken from User model', () {
-    user.updateToken('tokenAcesso');
-    expect(user.tokenAccess, 'tokenAcesso');
-  });
-
   test('Testing initAutoLogin method', () {
     user.email = 'consumidor@email.com';
     user.tokenAccess = 'tokenAcesso';
