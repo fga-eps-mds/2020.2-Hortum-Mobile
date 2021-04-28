@@ -1,13 +1,21 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
 
 class RegisterApi {
-  static Future register(
+  Dio dio;
+  RegisterApi([Dio client]) {
+    if (client == null)
+      this.dio = Dio();
+    else
+      this.dio = client;
+  }
+
+  Future register(
       String username, String email, String password, bool isProductor) async {
-    //Trocar o IPLOCAL pelo ip de sua máquina
-    Uri urlCustomer = Uri.parse('http://$ip:8000/signup/customer/');
-    Uri urlProductor = Uri.parse('http://$ip:8000/signup/productor/');
+    String urlCustomer = 'http://$ip:8000/signup/customer/';
+    String urlProductor = 'http://$ip:8000/signup/productor/';
+
     var header = {"Content-Type": "application/json"};
 
     Map params = {
@@ -20,9 +28,12 @@ class RegisterApi {
 
     String _body = json.encode(params);
     if (isProductor == false) {
-      await http.post(urlCustomer, headers: header, body: _body);
+      await this
+          .dio
+          .post(urlCustomer, data: _body, options: Options(headers: header));
     } else {
-      await http.post(urlProductor, headers: header, body: _body);
+      await dio.post(urlProductor,
+          data: _body, options: Options(headers: header));
     }
     // Exemplo de código para depois que a conta for criada
     // if (response.statusCode == 201) {}
