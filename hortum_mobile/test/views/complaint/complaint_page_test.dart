@@ -43,7 +43,6 @@ main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   actualUser.tokenAccess = 'token';
   actualUser.isProductor = false;
-  // actualUser.email = 'user@gmail.com';
 
   group('Testing complaints data:', () {
     ComplaintDataAPI complaintDataApi = ComplaintDataAPI(dio);
