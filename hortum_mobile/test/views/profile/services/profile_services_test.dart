@@ -41,9 +41,9 @@ main() {
     });
 
     group('Testing ProfileServices response.status_code 400:', () {
-      String responseMatcher = "";
       testWidgets('Return to CustomerHomePage', (WidgetTester tester) async {
         actualUser.isProductor = false;
+        String responseMatcher = "";
 
         when(dio.patch(any,
                 data: anyNamed('data'), options: anyNamed('options')))
@@ -56,21 +56,6 @@ main() {
         await tester.tap(find.byKey(Key('salvarButton')));
         await tester.pumpAndSettle();
         expect(find.byKey(Key('categoryCarr')), findsOneWidget);
-      });
-      testWidgets('Return to ProductorHomePage', (WidgetTester tester) async {
-        actualUser.isProductor = true;
-
-        when(dio.patch(any,
-                data: anyNamed('data'), options: anyNamed('options')))
-            .thenAnswer((_) async => Response(
-                data: jsonEncode(responseMatcher),
-                requestOptions: null,
-                statusCode: 200));
-
-        await tester.pumpWidget(makeTestable());
-        await tester.tap(find.byKey(Key('salvarButton')));
-        await tester.pumpAndSettle();
-        expect(find.text('MEUS ANÚNCIOS'), findsOneWidget);
       });
     });
   });
