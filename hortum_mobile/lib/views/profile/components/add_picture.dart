@@ -17,8 +17,8 @@ class _AddPictureButtonState extends State<AddPictureButton> {
       child: Container(
         margin:
             EdgeInsets.only(top: size.height * 0.21, left: size.width * 0.25),
-        width: size.width * 0.12,
-        height: size.width * 0.12,
+        width: size.height * 0.06,
+        height: size.height * 0.06,
         decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
         child: MaterialButton(
           padding: EdgeInsets.all(0),
