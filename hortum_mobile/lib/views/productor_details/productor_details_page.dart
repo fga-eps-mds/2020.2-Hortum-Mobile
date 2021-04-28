@@ -43,8 +43,8 @@ class _ProductorDetailsState extends State<ProductorDetails> {
                             key: Key('productorDetails'),
                             children: [
                               ProfilePicture(
-                                width: size.width * 0.4,
-                                heigth: size.width * 0.4,
+                                width: size.height * 0.2,
+                                heigth: size.height * 0.2,
                                 radius: 70,
                                 bottomMargin: size.height * 0.02,
                               ),
