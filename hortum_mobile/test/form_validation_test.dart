@@ -76,4 +76,24 @@ void main() {
       expect(result, null);
     });
   });
+
+  group('Phone Validator', () {
+    test('Given an empty phone number return error', () {
+      String result = FormValidation.validatePhone('');
+      expect(result, 'Informe o celular');
+    });
+
+    test('Given an invalid phone number return error', () {
+      String result = FormValidation.validatePhone('123456789');
+      expect(result, 'O celular deve ter 11 dígitos');
+    });
+    test('Given an non empty and with symbols phone number return null', () {
+      String result = FormValidation.validatePhone('sadossewsdw');
+      expect(result, 'O número do celular so deve conter dígitos');
+    });
+    test('Given an non empty and valid phone number return null', () {
+      String result = FormValidation.validatePhone('12345678910');
+      expect(result, null);
+    });
+  });
 }
