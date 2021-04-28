@@ -29,6 +29,7 @@ class CreateComplaintButton extends StatelessWidget {
         ),
         child: MaterialButton(
           key: Key('createcomplaintButton'),
+          padding: EdgeInsets.all(0),
           onPressed: () {
             Navigator.push(
               context,
