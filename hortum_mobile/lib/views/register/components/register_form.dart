@@ -105,12 +105,8 @@ class _RegisterFormState extends State<RegisterForm> {
                             colorButton: Color(0xFF81B622),
                             onClickAction: () {
                               if (_formKey.currentState.validate()) {
-                                registerApi.register(
-                                  _name.text,
-                                  _email.text,
-                                  _password.text,
-                                  _isProductor,
-                                );
+                                registerApi.register(_name.text, _email.text,
+                                    _password.text, _isProductor, context);
                               }
                             }),
                       ],

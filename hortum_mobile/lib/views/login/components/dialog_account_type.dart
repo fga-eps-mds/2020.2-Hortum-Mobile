@@ -27,7 +27,8 @@ class DialogAccountType extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage(true)));
+                              builder: (context) =>
+                                  RegisterPage(isProductor: true)));
                     },
                     child: Text(
                       "Produtor",
@@ -43,7 +44,8 @@ class DialogAccountType extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegisterPage(false)));
+                              builder: (context) =>
+                                  RegisterPage(isProductor: false)));
                     },
                     child: Text(
                       "Comprador",

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/views/login/login_page.dart';
 
 class RegisterApi {
   Dio dio;
@@ -11,10 +13,11 @@ class RegisterApi {
       this.dio = client;
   }
 
-  Future register(
-      String username, String email, String password, bool isProductor) async {
+  Future register(String username, String email, String password,
+      bool isProductor, BuildContext context) async {
     String urlCustomer = 'http://$ip:8000/signup/customer/';
     String urlProductor = 'http://$ip:8000/signup/productor/';
+    Response response;
 
     var header = {"Content-Type": "application/json"};
 
@@ -28,15 +31,18 @@ class RegisterApi {
 
     String _body = json.encode(params);
     if (isProductor == false) {
-      await this
+      response = await this
           .dio
           .post(urlCustomer, data: _body, options: Options(headers: header));
     } else {
-      await dio.post(urlProductor,
+      response = await dio.post(urlProductor,
           data: _body, options: Options(headers: header));
     }
-    // Exemplo de código para depois que a conta for criada
-    // if (response.statusCode == 201) {}
+    if (response.statusCode == 201) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return LoginPage();
+      }));
+    }
     // else {}
   }
 }
