@@ -35,4 +35,19 @@ void main() {
     expect(user.tokenAccess, null);
     expect(user.tokenRefresh, null);
   });
+
+  test('Testing method updateToken from User model', () {
+    user.updateToken('tokenAcesso');
+    expect(user.tokenAccess, 'tokenAcesso');
+  });
+
+  test('Testing initAutoLogin method', () {
+    user.email = 'consumidor@email.com';
+    user.tokenAccess = 'tokenAcesso';
+    user.initAutoLogin(false, 'Consumidor');
+    expect(user.isProductor, false);
+    expect(user.username, 'Consumidor');
+    expect(user.email, 'consumidor@email.com');
+    expect(user.tokenAccess, 'tokenAcesso');
+  });
 }
