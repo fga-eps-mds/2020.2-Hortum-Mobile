@@ -2,8 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/profile/components/change_password_button.dart';
-import 'package:hortum_mobile/views/profile/components/logout_button.dart';
+import 'package:hortum_mobile/views/profile/components/advanced_settings_button.dart';
 import 'package:hortum_mobile/views/profile/services/profile_services.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -31,18 +30,17 @@ class _ProfileFormState extends State<ProfileForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.6,
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.35,
+            height: size.height * 0.33,
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
+                    padding: EdgeInsets.only(bottom: size.height * 0.025),
                     child: CustomFormField(
                       suffixIcon: false,
                       controller: widget.username,
@@ -53,7 +51,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                    padding: EdgeInsets.only(bottom: size.height * 0.025),
                     child: CustomFormField(
                       suffixIcon: false,
                       obscureText: false,
@@ -104,8 +102,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           color: Colors.white, fontFamily: 'Roboto-Bold')),
                 ),
               )),
-          ChangePasswordButton(),
-          LogoutButton()
+          AdvancedSettingsButton()
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/data/update_user_backend.dart';
+import 'package:hortum_mobile/data/user_data_backend.dart';
+
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
@@ -9,7 +10,7 @@ class ProfileServices {
   static Future updateUser(
       Dio dio, String nameForm, String emailForm, BuildContext context) async {
     var response;
-    UpdateUserAPI updateData = new UpdateUserAPI(dio);
+    UserAPI updateData = new UserAPI(dio);
 
     if (actualUser.email == emailForm) {
       response = await updateData.updateUser(username: nameForm);

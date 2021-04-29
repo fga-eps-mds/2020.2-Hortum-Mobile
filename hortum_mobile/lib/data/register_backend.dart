@@ -1,13 +1,24 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
+import 'package:hortum_mobile/views/login/login_page.dart';
 
 class RegisterApi {
-  static Future register(String username, String email, String password,
-      String telefone, bool isProductor) async {
-    //Trocar o IPLOCAL pelo ip de sua máquina
-    Uri urlCustomer = Uri.parse('http://$ip:8000/signup/customer/');
-    Uri urlProductor = Uri.parse('http://$ip:8000/signup/productor/');
+  Dio dio;
+  RegisterApi([Dio client]) {
+    if (client == null)
+      this.dio = Dio();
+    else
+      this.dio = client;
+  }
+
+  Future register(String username, String email, String password,
+      String telefone, bool isProductor, BuildContext context) async {
+    String urlCustomer = 'http://$ip:8000/signup/customer/';
+    String urlProductor = 'http://$ip:8000/signup/productor/';
+    Response response;
+
     var header = {"Content-Type": "application/json"};
 
     Map params = {
@@ -21,12 +32,18 @@ class RegisterApi {
 
     String _body = json.encode(params);
     if (isProductor == false) {
-      await http.post(urlCustomer, headers: header, body: _body);
+      response = await this
+          .dio
+          .post(urlCustomer, data: _body, options: Options(headers: header));
     } else {
-      await http.post(urlProductor, headers: header, body: _body);
+      response = await dio.post(urlProductor,
+          data: _body, options: Options(headers: header));
     }
-    // Exemplo de código para depois que a conta for criada
-    // if (response.statusCode == 201) {}
+    if (response.statusCode == 201) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return LoginPage();
+      }));
+    }
     // else {}
   }
 }

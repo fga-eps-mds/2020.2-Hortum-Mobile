@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
@@ -5,10 +6,12 @@ import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 
 class RegisterForm extends StatefulWidget {
-  final bool _isProductor;
-  RegisterForm(this._isProductor);
+  final bool isProductor;
+  final Dio dio;
+
+  const RegisterForm({this.isProductor, this.dio, Key key}) : super(key: key);
   @override
-  _RegisterFormState createState() => _RegisterFormState(_isProductor);
+  _RegisterFormState createState() => _RegisterFormState(isProductor);
 }
 
 class _RegisterFormState extends State<RegisterForm> {
@@ -23,6 +26,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    RegisterApi registerApi = RegisterApi(widget.dio);
     Size size = MediaQuery.of(context).size;
     return Align(
       alignment: Alignment.bottomCenter,
@@ -110,13 +114,13 @@ class _RegisterFormState extends State<RegisterForm> {
                             colorButton: Color(0xFF81B622),
                             onClickAction: () {
                               if (_formKey.currentState.validate()) {
-                                print(_phone_number.text);
-                                RegisterApi.register(
+                                registerApi.register(
                                     _name.text,
                                     _email.text,
-                                    _password.text,
                                     _phone_number.text,
-                                    _isProductor);
+                                    _password.text,
+                                    _isProductor,
+                                    context);
                               }
                             }),
                       ],

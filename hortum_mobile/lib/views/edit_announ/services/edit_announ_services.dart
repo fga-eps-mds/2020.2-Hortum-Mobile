@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/data/announ_edit_backend.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class ChangeServices {
@@ -12,9 +12,9 @@ class ChangeServices {
       String category,
       String description,
       BuildContext context) async {
-    final EditAnnounApi changeData = new EditAnnounApi(dio);
+    final AnnouncementsApi announcementsApi = AnnouncementsApi(dio);
     if (title == originalTitle) title = null;
-    var response = await changeData.editAnnoun(originalTitle,
+    var response = await announcementsApi.editAnnoun(originalTitle,
         name: title,
         price: precoDouble,
         category: category,

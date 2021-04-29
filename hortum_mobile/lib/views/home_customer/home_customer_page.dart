@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/spin.dart';
-import 'package:hortum_mobile/data/announ_data_backend.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/data/productors_data_backend.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
 import 'package:hortum_mobile/views/home_customer/components/home_type.dart';
@@ -27,12 +27,12 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    AnnounDataApi announData = new AnnounDataApi(widget.dio);
+    AnnouncementsApi announcementsApi = AnnouncementsApi(widget.dio);
     ProductorsDataApi productorsData = new ProductorsDataApi(widget.dio);
 
     return FutureBuilder(
       future: HomeCustomerServices.populateData(
-          isAnnouncements, _filter.text, announData, productorsData),
+          isAnnouncements, _filter.text, announcementsApi, productorsData),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -67,7 +67,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   ),
                   snapshot.connectionState == ConnectionState.done
                       ? this.isAnnouncements
-                          ? AnnouncementsList(announData: announData)
+                          ? AnnouncementsList(announData: announcementsApi)
                           : ProductorsList(productorsData: productorsData)
                       : SpinWidget(margin: size.height * 0.25),
                 ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
-import 'package:hortum_mobile/data/announ_data_backend.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 
 class AnnouncementsList extends StatefulWidget {
-  final AnnounDataApi announData;
+  final AnnouncementsApi announData;
 
   const AnnouncementsList({@required this.announData, Key key})
       : super(key: key);
