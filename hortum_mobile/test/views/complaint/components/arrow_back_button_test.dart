@@ -13,7 +13,7 @@ main() {
   actualUser.tokenAccess = 'token';
   actualUser.isProductor = false;
 
-  group('Testing complaintPage:', () {
+  group('Testing Complaint components:', () {
     String emailProductor = 'cHJvZHVjdG9yQHRlc3RlLmNvbQ==';
     List<dynamic> responseMatcher = [
       {
@@ -33,8 +33,9 @@ main() {
     when(dio.get(any, options: anyNamed('options'))).thenAnswer((_) async =>
         Response(data: responseMatcher, requestOptions: null, statusCode: 200));
 
-    testWidgets('Render Complaint Page correctly', (WidgetTester tester) async {
+    testWidgets('ArrowBack button', (WidgetTester tester) async {
       await tester.pumpWidget(makeTestable());
+      await tester.tap(find.byKey(Key('buttonArrowback')));
       expect(find.byKey(Key('textReclamações')), findsOneWidget);
     });
   });
