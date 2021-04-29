@@ -49,6 +49,7 @@ class AnnouncementsApi {
       "description": description,
       "price": price,
       "type_of_product": category,
+      "images": []
     };
 
     String _body = json.encode(params);

@@ -53,6 +53,7 @@ class User {
     this.username = username;
     this.email = await this.readSecureData('email');
     this.tokenAccess = await this.readSecureData('token_access');
+    this.phone_number = await this.readSecureData('phone_number');
   }
 
   Future writeSecureData(String key, String value) async {

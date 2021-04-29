@@ -117,8 +117,8 @@ class _RegisterFormState extends State<RegisterForm> {
                                 registerApi.register(
                                     _name.text,
                                     _email.text,
-                                    _phone_number.text,
                                     _password.text,
+                                    _phone_number.text,
                                     _isProductor,
                                     context);
                               }

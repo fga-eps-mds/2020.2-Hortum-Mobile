@@ -70,7 +70,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                    padding: EdgeInsets.only(bottom: size.height * 0.025),
                     child: CustomFormField(
                       suffixIcon: false,
                       obscureText: false,
