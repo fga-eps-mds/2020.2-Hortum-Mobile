@@ -32,18 +32,17 @@ class _ProfileFormState extends State<ProfileForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.6,
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.35,
+            height: size.height * 0.33,
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
+                    padding: EdgeInsets.only(bottom: size.height * 0.025),
                     child: CustomFormField(
                       suffixIcon: false,
                       controller: username,
@@ -54,7 +53,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(bottom: size.height * 0.025),
                     child: CustomFormField(
                       suffixIcon: false,
                       obscureText: false,

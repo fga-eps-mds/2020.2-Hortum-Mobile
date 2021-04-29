@@ -33,7 +33,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  key: Key('profileContent'),
+                  key: Key('changePasswordContent'),
                   children: [
                     Text(
                       'MUDAR SENHA',
