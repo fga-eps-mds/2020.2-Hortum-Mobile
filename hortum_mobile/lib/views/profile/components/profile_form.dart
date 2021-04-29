@@ -51,7 +51,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     padding: EdgeInsets.only(bottom: size.height * 0.025),
                     child: CustomFormField(
                       suffixIcon: false,
-                      controller: widget.username,
+                      controller: username,
                       obscureText: false,
                       labelText: 'Nome',
                       icon: Icon(Icons.face, color: Colors.black),
@@ -64,7 +64,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       suffixIcon: false,
                       obscureText: false,
                       labelText: 'E-mail',
-                      controller: widget.email,
+                      controller: email,
                       icon: Icon(Icons.email_outlined, color: Colors.black),
                       validator: FormValidation.validateEmail,
                     ),
@@ -75,7 +75,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       suffixIcon: false,
                       obscureText: false,
                       labelText: 'Telefone',
-                      controller: widget.phone_number,
+                      controller: phone_number,
                       icon: Icon(Icons.phone, color: Colors.black),
                       validator: FormValidation.validatePhone,
                     ),
@@ -87,8 +87,9 @@ class _ProfileFormState extends State<ProfileForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  if (actualUser.username != widget.username.text ||
-                      actualUser.email != widget.email.text) {
+                  if (actualUser.username != username.text ||
+                      actualUser.email != email.text ||
+                      actualUser != phone_number) {
                     ProfileServices.updateUser(widget.dio, widget.username.text,
                         widget.email.text, widget.phone_number.text, context);
                   }
