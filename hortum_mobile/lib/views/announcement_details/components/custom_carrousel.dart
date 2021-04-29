@@ -15,7 +15,7 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
     CarouselController buttonCarrouselContoller = CarouselController();
     return CarouselSlider(
       carouselController: buttonCarrouselContoller,
-      options: CarouselOptions(height: size.height * 0.2, viewportFraction: 1),
+      options: CarouselOptions(height: size.height * 0.25, viewportFraction: 1),
       items: [1, 2, 3, 4, 5].map((i) {
         return Builder(
           builder: (BuildContext context) {
@@ -41,14 +41,14 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
                       child: InkWell(
                           child: Image.asset(widget.productPic,
                               fit: BoxFit.fill,
-                              height: size.height * 0.2,
+                              height: size.height * 0.25,
                               width: size.width * 0.9)),
                     ),
                   ),
                   Container(
                     height: size.height * 0.03,
                     width: size.width * 0.06,
-                    margin: EdgeInsets.only(top: size.height * 0.07),
+                    margin: EdgeInsets.only(top: size.height * 0.1),
                     child: MaterialButton(
                       padding: EdgeInsets.all(0),
                       child: Icon(Icons.keyboard_arrow_left_outlined,
@@ -62,7 +62,7 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
                     height: size.height * 0.03,
                     width: size.width * 0.06,
                     margin: EdgeInsets.only(
-                        top: size.height * 0.07, left: size.width * 0.8),
+                        top: size.height * 0.1, left: size.width * 0.8),
                     child: MaterialButton(
                       padding: EdgeInsets.all(0),
                       child: Icon(Icons.keyboard_arrow_right_outlined,
