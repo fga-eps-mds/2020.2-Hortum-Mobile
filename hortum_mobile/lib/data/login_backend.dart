@@ -17,12 +17,10 @@ class LoginApi {
     String _body = json.encode(params);
     var response = await http.post(url, headers: header, body: _body);
     Map mapResponse = json.decode(response.body);
-    print(mapResponse);
     mapResponse['password'] = password;
 
     if (response.statusCode == 200) {
       actualUser = User.fromJson(mapResponse);
-      print(actualUser.phone_number);
       actualUser.writeSecureData('email', actualUser.email);
       actualUser.writeSecureData('token_refresh', actualUser.tokenRefresh);
       actualUser.writeSecureData('token_access', actualUser.tokenAccess);
@@ -30,7 +28,6 @@ class LoginApi {
     } else {
       actualUser = null;
     }
-    print(actualUser.phone_number);
     return actualUser;
   }
 }
