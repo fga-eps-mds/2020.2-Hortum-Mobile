@@ -7,14 +7,16 @@ import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class ProfileServices {
-  static Future updateUser(
-      Dio dio, String nameForm, String emailForm, BuildContext context) async {
+  static Future updateUser(Dio dio, String nameForm, String emailForm,
+      String phone_number_form, BuildContext context) async {
     var response;
     UserAPI updateData = new UserAPI(dio);
 
     if (actualUser.email == emailForm) {
       response = await updateData.updateUser(username: nameForm);
     } else if (actualUser.username == nameForm) {
+      response = await updateData.updateUser(email: emailForm);
+    } else if (actualUser.phone_number == phone_number_form) {
       response = await updateData.updateUser(email: emailForm);
     } else {
       response =

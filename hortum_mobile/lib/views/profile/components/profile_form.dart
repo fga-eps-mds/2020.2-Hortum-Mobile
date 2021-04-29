@@ -19,13 +19,21 @@ class ProfileForm extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ProfileFormState createState() => _ProfileFormState();
+  _ProfileFormState createState() => _ProfileFormState(
+      phone_number: phone_number, username: username, email: email);
 }
 
 class _ProfileFormState extends State<ProfileForm> {
   final picker = ImagePicker();
+  final TextEditingController email;
+  final TextEditingController username;
+  final TextEditingController phone_number;
   final _formKey = GlobalKey<FormState>();
-
+  _ProfileFormState({
+    this.email,
+    this.username,
+    this.phone_number,
+  });
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -82,7 +90,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   if (actualUser.username != widget.username.text ||
                       actualUser.email != widget.email.text) {
                     ProfileServices.updateUser(widget.dio, widget.username.text,
-                        widget.email.text, context);
+                        widget.email.text, widget.phone_number.text, context);
                   }
                 }
               },
