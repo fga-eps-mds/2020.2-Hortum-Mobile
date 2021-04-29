@@ -19,7 +19,7 @@ class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _confirmPassword = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _email = TextEditingController();
-  final TextEditingController _telefone = TextEditingController();
+  final TextEditingController _phone_number = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                 suffixIcon: false,
                                 obscureText: false,
                                 labelText: 'Telefone',
-                                controller: _telefone,
+                                controller: _phone_number,
                                 icon: Icon(Icons.phone, color: Colors.black),
                                 validator: FormValidation.validatePhone,
                               ),
@@ -110,11 +110,12 @@ class _RegisterFormState extends State<RegisterForm> {
                             colorButton: Color(0xFF81B622),
                             onClickAction: () {
                               if (_formKey.currentState.validate()) {
+                                print(_phone_number.text);
                                 RegisterApi.register(
                                     _name.text,
                                     _email.text,
                                     _password.text,
-                                    _telefone.text,
+                                    _phone_number.text,
                                     _isProductor);
                               }
                             }),

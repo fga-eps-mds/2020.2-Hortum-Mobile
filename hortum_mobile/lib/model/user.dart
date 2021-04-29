@@ -6,8 +6,8 @@ class User {
   String email;
   String username;
   String password;
-  String phone_number;
   bool isProductor;
+  String phone_number;
   final _storage = new FlutterSecureStorage();
 
   User(
