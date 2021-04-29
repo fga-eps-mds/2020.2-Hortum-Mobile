@@ -2,8 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/profile/components/change_password_button.dart';
-import 'package:hortum_mobile/views/profile/components/logout_button.dart';
+import 'package:hortum_mobile/views/profile/components/advanced_settings_button.dart';
 import 'package:hortum_mobile/views/profile/services/profile_services.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -94,8 +93,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           color: Colors.white, fontFamily: 'Roboto-Bold')),
                 ),
               )),
-          ChangePasswordButton(),
-          LogoutButton()
+          AdvancedSettingsButton()
         ],
       ),
     );

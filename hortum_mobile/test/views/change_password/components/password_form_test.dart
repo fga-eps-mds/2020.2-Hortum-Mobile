@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/profile/components/profile_form.dart';
+import 'package:hortum_mobile/views/change_password/components/password_form.dart';
 import 'package:mockito/mockito.dart';
 
 class DioMock extends Mock implements Dio {}
 
 main() {
-  final dio = DioMock();
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Testing profile_form:', () {
+  group('Testing PasswordForm:', () {
     Widget makeTestable() {
-      return MaterialApp(home: Scaffold(body: ProfileForm(dio: dio)));
+      return MaterialApp(home: Scaffold(body: PasswordForm()));
     }
 
     testWidgets('CustomFormFields e MaterialButton',
@@ -22,8 +21,8 @@ main() {
       actualUser.tokenAccess = 'token';
       actualUser.isProductor = true;
       await tester.pumpWidget(makeTestable());
-      expect(find.byType(CustomFormField), findsNWidgets(2));
-      expect(find.byType(MaterialButton), findsNWidgets(2));
+      expect(find.byType(CustomFormField), findsNWidgets(3));
+      expect(find.byType(MaterialButton), findsOneWidget);
     });
   });
 }
