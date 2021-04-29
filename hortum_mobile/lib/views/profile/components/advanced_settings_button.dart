@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/views/change_password/change_password_page.dart';
+import 'package:hortum_mobile/views/advanced_settings/advanced_settings_page.dart';
 
-class ChangePasswordButton extends StatelessWidget {
+class AdvancedSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      padding: EdgeInsets.only(top: 6),
       onPressed: () {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => ChangePasswordPage()),
-            (route) => route.isCurrent);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AdvancedSettingsPage()),
+        );
       },
       child: Text(
-        "Mudar senha",
+        "Avançado",
         style: TextStyle(
             fontSize: 15.0,
             decoration: TextDecoration.underline,

@@ -2,31 +2,26 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/profile/components/advanced_settings_button.dart';
-import 'package:hortum_mobile/views/profile/services/profile_services.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:hortum_mobile/views/delete_account/components/dialog_confirm_delete.dart';
 
-import '../../../globals.dart';
-
-class ProfileForm extends StatefulWidget {
+class DeleteUserForm extends StatefulWidget {
   final Dio dio;
-  final TextEditingController email;
-  final TextEditingController username;
+  final TextEditingController password;
+  final TextEditingController confirmPassword;
 
-  const ProfileForm({this.dio, this.email, this.username, key})
+  const DeleteUserForm({this.dio, this.confirmPassword, this.password, Key key})
       : super(key: key);
-
   @override
-  _ProfileFormState createState() =>
-      _ProfileFormState(email: email, username: username);
+  _DeleteUserFormState createState() => _DeleteUserFormState(
+      password: password, confirmPassword: confirmPassword);
 }
 
-class _ProfileFormState extends State<ProfileForm> {
-  final picker = ImagePicker();
+class _DeleteUserFormState extends State<DeleteUserForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController email;
-  final TextEditingController username;
-  _ProfileFormState({this.email, this.username});
+  final TextEditingController password;
+  final TextEditingController confirmPassword;
+
+  _DeleteUserFormState({this.confirmPassword, this.password});
 
   @override
   Widget build(BuildContext context) {
@@ -36,32 +31,35 @@ class _ProfileFormState extends State<ProfileForm> {
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.35,
+            height: size.height * 0.5,
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
+                    padding: const EdgeInsets.only(top: 20),
                     child: CustomFormField(
                       suffixIcon: false,
-                      controller: username,
-                      obscureText: false,
-                      labelText: 'Nome',
-                      icon: Icon(Icons.face, color: Colors.black),
-                      validator: FormValidation.validateName,
+                      obscureText: true,
+                      labelText: 'Insira sua senha',
+                      controller: password,
+                      icon: Icon(Icons.lock_open, color: Colors.black),
+                      validator: FormValidation.validatePassword,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: CustomFormField(
                       suffixIcon: false,
-                      obscureText: false,
-                      labelText: 'E-mail',
-                      controller: email,
-                      icon: Icon(Icons.email_outlined, color: Colors.black),
-                      validator: FormValidation.validateEmail,
+                      obscureText: true,
+                      labelText: 'Confirme a senha',
+                      controller: confirmPassword,
+                      icon: Icon(Icons.lock_open, color: Colors.black),
+                      validator: (value) {
+                        return FormValidation.validateConfirmPassword(
+                            password.text, value);
+                      },
                     ),
                   ),
                 ],
@@ -71,30 +69,24 @@ class _ProfileFormState extends State<ProfileForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  if (actualUser.username != username.text ||
-                      actualUser.email != email.text) {
-                    ProfileServices.updateUser(
-                        widget.dio, username.text, email.text, context);
-                  }
+                  dialogDeleteConfirmUser(password, widget.dio, context);
                 }
               },
-              key: Key('salvarButton'),
               child: Container(
                 width: size.width * 0.5,
                 height: size.height * 0.04,
                 margin: EdgeInsets.only(top: size.height / 100),
                 decoration: BoxDecoration(
-                  color: Color(0xff75CE90),
+                  color: Color(0xffF46A6A),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text("SALVAR",
+                  child: Text("EXCLUIR",
                       style: TextStyle(
                           color: Colors.white, fontFamily: 'Roboto-Bold')),
                 ),
               )),
-          AdvancedSettingsButton()
         ],
       ),
     );

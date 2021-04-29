@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/form_field.dart';
-import 'package:hortum_mobile/data/change_password_backend.dart';
+import 'package:hortum_mobile/data/user_data_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/change_password/components/password_form.dart';
 import 'package:mockito/mockito.dart';
@@ -16,7 +16,7 @@ main() {
   var url = 'http://$ip:8000/users/change-password/';
 
   group('Testing class ChangePasswordAPI:', () {
-    ChangePasswordAPI changePassword = ChangePasswordAPI(dio);
+    UserAPI changePassword = UserAPI(dio);
     actualUser.tokenAccess = 'token';
     String responseMatcher = "Senha alterada!";
     test('Change Password Successful', () async {
