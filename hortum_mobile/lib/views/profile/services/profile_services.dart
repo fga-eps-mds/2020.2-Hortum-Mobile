@@ -12,15 +12,17 @@ class ProfileServices {
     var response;
     UserAPI updateData = new UserAPI(dio);
 
-    if (actualUser.email == emailForm) {
+    if (actualUser.email != emailForm) {
+      response = await updateData.updateUser(email: emailForm);
+    } else if (actualUser.username != nameForm) {
       response = await updateData.updateUser(username: nameForm);
-    } else if (actualUser.username == nameForm) {
-      response = await updateData.updateUser(email: emailForm);
-    } else if (actualUser.phone_number == phone_number_form) {
-      response = await updateData.updateUser(email: emailForm);
+    } else if (actualUser.phone_number != phone_number_form) {
+      response = await updateData.updateUser(phone_number: phone_number_form);
     } else {
-      response =
-          await updateData.updateUser(username: nameForm, email: emailForm);
+      response = await updateData.updateUser(
+          username: nameForm,
+          email: emailForm,
+          phone_number: phone_number_form);
     }
 
     if (response == 400) {
@@ -58,6 +60,7 @@ class ProfileServices {
     } else {
       actualUser.email = emailForm;
       actualUser.username = nameForm;
+      actualUser.phone_number = phone_number_form;
       if (actualUser.isProductor) {
         return Navigator.push(context, MaterialPageRoute(builder: (context) {
           return ProductorHomePage();

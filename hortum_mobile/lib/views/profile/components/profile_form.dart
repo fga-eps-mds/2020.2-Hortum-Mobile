@@ -20,7 +20,7 @@ class ProfileForm extends StatefulWidget {
 
   @override
   _ProfileFormState createState() => _ProfileFormState(
-      phone_number: phone_number, username: username, email: email);
+      email: email, username: username, phone_number: phone_number);
 }
 
 class _ProfileFormState extends State<ProfileForm> {
@@ -89,9 +89,9 @@ class _ProfileFormState extends State<ProfileForm> {
                 if (_formKey.currentState.validate()) {
                   if (actualUser.username != username.text ||
                       actualUser.email != email.text ||
-                      actualUser != phone_number) {
-                    ProfileServices.updateUser(widget.dio, widget.username.text,
-                        widget.email.text, widget.phone_number.text, context);
+                      actualUser.phone_number != phone_number.text) {
+                    ProfileServices.updateUser(widget.dio, username.text,
+                        email.text, phone_number.text, context);
                   }
                 }
               },
