@@ -20,17 +20,12 @@ class ProfileForm extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ProfileFormState createState() =>
-      _ProfileFormState(email: email, username: username);
+  _ProfileFormState createState() => _ProfileFormState();
 }
 
 class _ProfileFormState extends State<ProfileForm> {
   final picker = ImagePicker();
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController email;
-  final TextEditingController username;
-  final TextEditingController phone_number;
-  _ProfileFormState({this.email, this.username, this.phone_number});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +45,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     padding: const EdgeInsets.only(bottom: 15),
                     child: CustomFormField(
                       suffixIcon: false,
-                      controller: username,
+                      controller: widget.username,
                       obscureText: false,
                       labelText: 'Nome',
                       icon: Icon(Icons.face, color: Colors.black),
@@ -63,7 +58,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       suffixIcon: false,
                       obscureText: false,
                       labelText: 'E-mail',
-                      controller: email,
+                      controller: widget.email,
                       icon: Icon(Icons.email_outlined, color: Colors.black),
                       validator: FormValidation.validateEmail,
                     ),
@@ -74,7 +69,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       suffixIcon: false,
                       obscureText: false,
                       labelText: 'Telefone',
-                      controller: phone_number,
+                      controller: widget.phone_number,
                       icon: Icon(Icons.phone, color: Colors.black),
                       validator: FormValidation.validatePhone,
                     ),
@@ -86,10 +81,10 @@ class _ProfileFormState extends State<ProfileForm> {
           MaterialButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  if (actualUser.username != username.text ||
-                      actualUser.email != email.text) {
-                    ProfileServices.updateUser(
-                        widget.dio, username.text, email.text, context);
+                  if (actualUser.username != widget.username.text ||
+                      actualUser.email != widget.email.text) {
+                    ProfileServices.updateUser(widget.dio, widget.username.text,
+                        widget.email.text, context);
                   }
                 }
               },
