@@ -52,9 +52,14 @@ class AnnouncementsApi {
     };
 
     String _body = json.encode(params);
-    Response response = await this
-        .dio
-        .post(url, data: _body, options: Options(headers: header));
+    Response response = await this.dio.post(url,
+        data: _body,
+        options: Options(
+          headers: header,
+          validateStatus: (status) {
+            return status <= 500;
+          },
+        ));
 
     return response;
   }
