@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class TitleButtonsRow extends StatefulWidget {
@@ -26,7 +28,11 @@ class _TitleButtonsRowState extends State<TitleButtonsRow> {
           ),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ProductorHomePage();
+              if (actualUser.isProductor == true) {
+                return ProductorHomePage();
+              } else {
+                return CustomerHomePage();
+              }
             }));
           },
         ),
