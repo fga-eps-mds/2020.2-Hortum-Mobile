@@ -35,9 +35,8 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
           child: Form(
             key: _formKey,
             child: Container(
-              height: size.height * 0.62,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomFormField(
                       suffixIcon: false,
@@ -98,7 +97,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                   Container(
                     margin: EdgeInsets.only(bottom: size.height * 0.05),
                     child: ConfirmButton(
-                        labelButton: "CRIAR",
+                        labelButton: "SALVAR",
                         colorButton: Color(0xFFF49C00),
                         onClickAction: () {
                           if (_formKey.currentState.validate()) {
