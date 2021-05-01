@@ -176,8 +176,8 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                             child: InkWell(
                                 child: Image.asset(widget.productPic,
                                     fit: BoxFit.fill,
-                                    height: size.height * 0.1,
-                                    width: size.width * 0.2)),
+                                    height: size.height * 0.09,
+                                    width: size.width * 0.17)),
                           ),
                         ),
                       ),
