@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/announcement_details/announcement_details_page.dart';
+import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
 class AnnouncementBox extends StatefulWidget {
   final String profilePic;
@@ -54,7 +56,12 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               border: Border(right: BorderSide(color: Color(0xff57A051))),
             ),
             child: MaterialButton(
-              onPressed: () {},
+              key: Key('productorDetailsButton'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ProductorDetails(email: encodeString(widget.email));
+                }));
+              },
               child: Column(
                 children: [
                   Container(
@@ -91,6 +98,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               color: Colors.transparent,
             ),
             child: MaterialButton(
+              key: Key('announcementDetailsButton'),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return AnnouncementDetails(
