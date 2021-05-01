@@ -50,6 +50,7 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
                     width: size.width * 0.06,
                     margin: EdgeInsets.only(top: size.height * 0.1),
                     child: MaterialButton(
+                      key: Key('carouselLeft'),
                       padding: EdgeInsets.all(0),
                       child: Icon(Icons.keyboard_arrow_left_outlined,
                           size: 35, color: Colors.grey),
@@ -59,6 +60,7 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
                     ),
                   ),
                   Container(
+                    key: Key('carouselRight'),
                     height: size.height * 0.03,
                     width: size.width * 0.06,
                     margin: EdgeInsets.only(

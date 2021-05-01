@@ -20,6 +20,7 @@ class _TitleButtonsRowState extends State<TitleButtonsRow> {
         height: size.height * 0.03,
         width: size.width * 0.06,
         child: MaterialButton(
+          key: Key('announcementReturn'),
           padding: EdgeInsets.all(0),
           child: Icon(
             Icons.arrow_back,
