@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:dio/dio.dart';
-import 'package:mockito/mockito.dart';
-
-class DioMock extends Mock implements Dio {}
 
 main() {
-  final dioMock = DioMock();
   TestWidgetsFlutterBinding.ensureInitialized();
   String profilePic = 'assets/images/perfil.jpg';
   String name = 'Victor';
