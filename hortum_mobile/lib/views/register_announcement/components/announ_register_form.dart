@@ -14,7 +14,7 @@ class AnnounRegisterForm extends StatefulWidget {
 class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _titulo = TextEditingController();
-  final TextEditingController _localizacao = TextEditingController();
+  final List<TextEditingController> _localizacao = [TextEditingController()];
   final TextEditingController _categoria = TextEditingController();
   final TextEditingController _preco = TextEditingController();
   final TextEditingController _descricao = TextEditingController();
@@ -27,11 +27,11 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
       child: Container(
+        height: size.height * 0.8,
         child: Center(
           child: Form(
             key: _formKey,
             child: Container(
-              height: size.height * 0.62,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -44,16 +44,35 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       ),
                       validator: AnnouncementsFormValidation.validateTitle,
                       controller: _titulo),
-                  CustomFormField(
-                      suffixIcon: false,
-                      labelText: 'Localização',
-                      icon: Icon(
-                        Icons.location_on_outlined,
-                        color: Colors.black,
-                      ),
-                      validator:
-                          AnnouncementsFormValidation.validateLocalization,
-                      controller: _localizacao),
+                  Container(
+                    height: size.height * 0.1 * _localizacao.length,
+                    child: ListView.builder(
+                        itemCount: _localizacao.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(top: size.height * 0.018),
+                            child: CustomFormField(
+                                suffixIcon: true,
+                                onPressed: () {
+                                  setState(() {
+                                    if (_localizacao.length <= 2) {
+                                      _localizacao.insert(
+                                          index, new TextEditingController());
+                                      index++;
+                                    }
+                                  });
+                                },
+                                labelText: 'Localização',
+                                icon: Icon(
+                                  Icons.location_on_outlined,
+                                  color: Colors.black,
+                                ),
+                                validator: AnnouncementsFormValidation
+                                    .validateLocalization,
+                                controller: _localizacao[index]),
+                          );
+                        }),
+                  ),
                   SelectFormField(
                     labelText: 'Categoria',
                     icon: Icon(
