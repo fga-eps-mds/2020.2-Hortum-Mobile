@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/login_backend.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
@@ -5,11 +6,15 @@ import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class LoginServices {
   static Future login(
-      String emailForm, String passwordForm, BuildContext context) async {
+      [String emailForm,
+      String passwordForm,
+      BuildContext context,
+      Dio dio]) async {
     final email = emailForm;
     final password = passwordForm;
+    LoginApi loginApi = LoginApi(dio);
 
-    var user = await LoginApi.login(email, password);
+    var user = await loginApi.login(email, password);
     if (user == null) {
       showDialog(
         context: context,
@@ -26,6 +31,7 @@ class LoginServices {
             ),
             actions: [
               TextButton(
+                key: Key('okButton'),
                 onPressed: () {
                   Navigator.pop(context);
                 },

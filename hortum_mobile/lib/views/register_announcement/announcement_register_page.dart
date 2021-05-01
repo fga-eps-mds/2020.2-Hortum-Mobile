@@ -24,6 +24,7 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
               Container(
                 height: size.height,
                 child: Column(
+                  key: Key('registerAnnouncementForm'),
                   children: <Widget>[
                     Container(
                         height: size.height * 0.9,

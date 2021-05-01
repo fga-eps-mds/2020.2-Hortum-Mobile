@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
-import 'package:hortum_mobile/views/productor_details/productor_details.dart';
+import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
 class ProductorsBox extends StatefulWidget {
   final String name;

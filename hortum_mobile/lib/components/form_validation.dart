@@ -39,4 +39,13 @@ class FormValidation {
       return "A senha deve ser igual";
     return null;
   }
+
+  static String validateDescription(String value) {
+    if (value.length == 0) {
+      return "Informe a descrição";
+    } else if (value.length > 450) {
+      return "A descrição deve conter no máximo 450 caracteres";
+    }
+    return null;
+  }
 }

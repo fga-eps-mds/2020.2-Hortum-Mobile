@@ -27,15 +27,18 @@ class _UserProfileState extends State<UserProfile> {
               CircleStyle(color: Color(0xff478C5C), opacity: 0.2),
               Container(
                 padding: EdgeInsets.only(
-                    right: size.width * 0.1, left: size.width * 0.1),
+                  right: size.width * 0.1,
+                  left: size.width * 0.1,
+                ),
                 child: Column(
                   key: Key('profileContent'),
                   children: [
                     ProfilePicture(
-                        width: size.width * 0.3,
-                        heigth: size.width * 0.3,
-                        radius: 50,
-                        bottomMargin: size.height * 0.06),
+                      width: size.height * 0.15,
+                      heigth: size.height * 0.15,
+                      radius: 50,
+                      bottomMargin: size.height * 0.06,
+                    ),
                     ProfileForm(email: email, username: username),
                   ],
                 ),
