@@ -19,34 +19,27 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          height: size.height,
-          child: Stack(
-            children: [
-              Container(
-                height: size.height,
-                child: Column(
-                  key: Key('registerAnnouncementForm'),
-                  children: <Widget>[
-                    Container(
-                        height: size.height * 0.9,
-                        child: ListView(children: [
-                          PhotoSelecter(
-                            title: 'CRIAR ANÚNCIO',
-                          ),
-                          AnnounRegisterForm(
-                            dio: widget.dio,
-                          ),
-                        ])),
-                  ],
-                ),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              height: size.height * 0.9,
+              child: ListView(
+                key: Key('registerAnnouncementForm'),
+                children: <Widget>[
+                  PhotoSelecter(
+                    title: 'CRIAR ANÚNCIO',
+                  ),
+                  AnnounRegisterForm(
+                    dio: widget.dio,
+                  ),
+                ],
               ),
-              Footer(),
-            ],
+            ),
           ),
-        ),
+          Footer(),
+        ],
       ),
     );
   }

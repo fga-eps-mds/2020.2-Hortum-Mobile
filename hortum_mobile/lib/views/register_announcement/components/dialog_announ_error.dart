@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/views/register_announcement/services/error_message_format.dart';
 
-Future<void> dialogRepeatedError(BuildContext context) async {
+Future<void> dialogError(BuildContext context, var response) async {
+  String msgError = Formarter.announErrorFormart(response.data.toString());
   return showDialog(
     context: context,
     barrierDismissible: true,
@@ -9,7 +11,7 @@ Future<void> dialogRepeatedError(BuildContext context) async {
         key: Key('erroNomeAnnoun'),
         title: Text("Erro!"),
         content: Text(
-          "Nome de anúncio já utilizado!",
+          msgError,
           style: TextStyle(
             fontFamily: 'Roboto',
             fontSize: 16,
