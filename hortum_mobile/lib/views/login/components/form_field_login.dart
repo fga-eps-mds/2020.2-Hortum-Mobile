@@ -28,8 +28,9 @@ class _FormFieldLoginState extends State<FormFieldLogin> {
   @override
   Widget build(BuildContext context) {
     bool obscure = widget.isObscure;
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(40, 8, 40, 0),
+      padding: EdgeInsets.only(left: size.width * 0.1, right: size.width * 0.1),
       child: TextFormField(
         key: widget.keyIdentifier,
         obscureText: obscure,
