@@ -27,7 +27,6 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
       child: Container(
-        height: size.height * 0.8,
         child: Center(
           child: Form(
             key: _formKey,
@@ -45,12 +44,13 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                       validator: AnnouncementsFormValidation.validateTitle,
                       controller: _titulo),
                   Container(
-                    height: size.height * 0.1 * _localizacao.length,
                     child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
                         itemCount: _localizacao.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: EdgeInsets.only(top: size.height * 0.018),
+                            padding: EdgeInsets.only(top: size.height * 0.01),
                             child: CustomFormField(
                                 suffixIcon: true,
                                 onPressed: () {
