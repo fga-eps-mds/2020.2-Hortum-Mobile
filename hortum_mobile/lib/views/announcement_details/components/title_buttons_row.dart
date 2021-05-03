@@ -50,20 +50,6 @@ class _TitleButtonsRowState extends State<TitleButtonsRow> {
               fontWeight: FontWeight.w300),
         ),
       ),
-      Container(
-        margin: EdgeInsets.only(top: size.height * 0.028),
-        height: size.height * 0.03,
-        width: size.width * 0.06,
-        child: MaterialButton(
-          padding: EdgeInsets.all(0),
-          child: Icon(
-            Icons.near_me_outlined,
-            size: 30,
-            color: Colors.black,
-          ),
-          onPressed: () {},
-        ),
-      ),
     ]);
   }
 }

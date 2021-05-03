@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/announcement_details/components/custom_carrousel.dart';
 import 'package:hortum_mobile/views/announcement_details/components/localization_container.dart';
 import 'package:hortum_mobile/views/announcement_details/components/price_container.dart';
 import 'package:hortum_mobile/views/announcement_details/components/title_buttons_row.dart';
+import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
 class AnnouncementDetails extends StatefulWidget {
   final String profilePic;
@@ -13,6 +15,7 @@ class AnnouncementDetails extends StatefulWidget {
   final String price;
   final String productPic;
   final String description;
+  final String email;
 
   const AnnouncementDetails(
       {@required this.profilePic,
@@ -22,6 +25,7 @@ class AnnouncementDetails extends StatefulWidget {
       @required this.price,
       @required this.productPic,
       @required this.description,
+      @required this.email,
       Key key})
       : super(key: key);
   @override
@@ -159,7 +163,13 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                                 width: size.height * 0.08)),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ProductorDetails(
+                            email: encodeString(widget.email));
+                      }));
+                    },
                   ),
                 ),
                 Center(

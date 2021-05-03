@@ -16,11 +16,13 @@ main() {
   String localization = 'localizacao';
   String price = '15.00';
   String description = 'descricao';
+  String email = 'victor@gmail.com';
   actualUser.isProductor = false;
   group('Testing AnnouncementDetailsPage:', () {
     Widget makeTestable() {
       return MaterialApp(
           home: AnnouncementDetails(
+        email: email,
         profilePic: profilePic,
         name: name,
         productPic: productPic,
@@ -38,7 +40,7 @@ main() {
       expect(find.byType(PriceContainer), findsOneWidget);
       expect(find.byType(LocalizationContainer), findsOneWidget);
       expect(find.byType(CustomCarrousel), findsOneWidget);
-      expect(find.byType(MaterialButton), findsNWidgets(7));
+      expect(find.byType(MaterialButton), findsNWidgets(6));
     });
     testWidgets('Testing the Return Button', (WidgetTester tester) async {
       actualUser.tokenAccess = 'token';

@@ -102,6 +102,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return AnnouncementDetails(
+                    email: widget.email,
                     description: widget.description,
                     localization: widget.localization,
                     name: widget.name,
