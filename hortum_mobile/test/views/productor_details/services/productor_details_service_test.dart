@@ -16,12 +16,26 @@ main() {
       "likes": 0
     }
   ];
-  testWidgets('Testing the ProductorDetailsService',
+  testWidgets(
+      'Testing the ProductorDetailsService when the productor has announcements',
       (WidgetTester tester) async {
     Widget result = ProductorDetaislService.completeAnnouncements(
         param, Size(360.0, 692.0));
     Widget pump = MaterialApp(home: result);
     await tester.pumpWidget(pump);
     expect(find.byKey(Key('columnAnnoun')), findsOneWidget);
+  });
+
+  testWidgets(
+      "Testing the ProductorDetailsService when the productor hasn't announcements",
+      (WidgetTester tester) async {
+    Widget result =
+        ProductorDetaislService.completeAnnouncements([], Size(360.0, 692.0));
+    Widget pump = MaterialApp(home: result);
+    await tester.pumpWidget(pump);
+    expect(
+        find.text(
+            'Este produtor não possui anúncios disponíveis no momento !!'),
+        findsOneWidget);
   });
 }
