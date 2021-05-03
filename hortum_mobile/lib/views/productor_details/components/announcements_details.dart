@@ -27,7 +27,7 @@ class _AnnouncementsDetailsState extends State<AnnouncementsDetails> {
                 ProductorLocalization(),
                 AnnouncementTag(),
                 ProductorDetaislService.completeAnnouncements(
-                    widget.prodData.announcements)
+                    widget.prodData.announcements, size)
               ],
             ),
           ],

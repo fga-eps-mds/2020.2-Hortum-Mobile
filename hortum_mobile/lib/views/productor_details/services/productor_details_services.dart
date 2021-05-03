@@ -2,19 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
 
 class ProductorDetaislService {
-  static Widget completeAnnouncements(List<dynamic> announcements) {
-    return Column(
-        key: Key('columnAnnoun'),
-        children: announcements
-            .map<Widget>((dynamic announcement) => AnnouncementBox(
-                profilePic: 'assets/images/perfil.jpg',
-                email: announcement['email'],
-                name: announcement['username'].toString().split(' ')[0],
-                title: announcement['name'],
-                localization: 'Asa Norte Feira 404',
-                price:
-                    "R\$ ${announcement['price'].toStringAsFixed(2).replaceFirst('.', ',')}",
-                productPic: 'assets/images/banana.jpg'))
-            .toList());
+  static Widget completeAnnouncements(List<dynamic> announcements, Size size) {
+    if (announcements.length != 0) {
+      return Column(
+          key: Key('columnAnnoun'),
+          children: announcements
+              .map<Widget>((dynamic announcement) => AnnouncementBox(
+                  profilePic: 'assets/images/perfil.jpg',
+                  email: announcement['email'],
+                  name: announcement['username'].toString().split(' ')[0],
+                  title: announcement['name'],
+                  localization: 'Asa Norte Feira 404',
+                  price:
+                      "R\$ ${announcement['price'].toStringAsFixed(2).replaceFirst('.', ',')}",
+                  productPic: 'assets/images/banana.jpg'))
+              .toList());
+    }
+    return Container(
+      width: size.width * 0.65,
+      child: Text(
+        "Este produtor não possui anúncios disponíveis no momento !!",
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Color(0xff1D8E40)),
+      ),
+    );
   }
 }

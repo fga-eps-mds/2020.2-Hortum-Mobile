@@ -18,7 +18,8 @@ main() {
   ];
   testWidgets('Testing the ProductorDetailsService',
       (WidgetTester tester) async {
-    Widget result = ProductorDetaislService.completeAnnouncements(param);
+    Widget result = ProductorDetaislService.completeAnnouncements(
+        param, Size(360.0, 692.0));
     Widget pump = MaterialApp(home: result);
     await tester.pumpWidget(pump);
     expect(find.byKey(Key('columnAnnoun')), findsOneWidget);
