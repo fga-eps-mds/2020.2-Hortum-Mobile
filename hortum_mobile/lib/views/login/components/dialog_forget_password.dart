@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
+import 'package:hortum_mobile/views/forget_password/components/dialog_answer_email.dart';
 
 import 'form_field_login.dart';
 
@@ -61,7 +62,6 @@ class ForgetPassword extends StatelessWidget {
                 Container(
                   width: size.width * 0.3,
                   height: size.height * 0.04,
-                  // margin: EdgeInsets.only(top: size.height * 0.07),
                   decoration: BoxDecoration(
                     color: Color(0xff81B622),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -70,7 +70,12 @@ class ForgetPassword extends StatelessWidget {
                     key: Key('sendEmail'),
                     padding: EdgeInsets.all(0),
                     onPressed: () {
-                      if (_formKey.currentState.validate()) {}
+                      if (_formKey.currentState.validate()) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DialogAnswerEmail()));
+                      }
                     },
                     child: Text(
                       "Enviar",
