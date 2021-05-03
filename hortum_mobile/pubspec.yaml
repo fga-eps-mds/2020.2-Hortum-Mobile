@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^0.7.4 
+  multi_image_picker: ^4.8.0
   http: ^0.13.0
   flutter_secure_storage: ^4.1.0
   page_transition: ^1.1.7+6

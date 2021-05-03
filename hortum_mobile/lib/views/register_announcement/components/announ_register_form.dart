@@ -7,6 +7,8 @@ import 'package:hortum_mobile/views/register_announcement/components/select_fiel
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 
 class AnnounRegisterForm extends StatefulWidget {
+  final AnnouncementsApi announcementsApi;
+  const AnnounRegisterForm({@required this.announcementsApi});
   @override
   _AnnounRegisterFormState createState() => _AnnounRegisterFormState();
 }
@@ -22,7 +24,6 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    AnnouncementsApi announcementsApi = AnnouncementsApi();
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
@@ -89,8 +90,9 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                         labelButton: "CRIAR",
                         colorButton: Color(0xFFF49C00),
                         onClickAction: () {
+                          print(widget.announcementsApi.hashCode);
                           if (_formKey.currentState.validate()) {
-                            announcementsApi.registerAnnoun(
+                            widget.announcementsApi.registerAnnoun(
                                 _titulo.text,
                                 _descricao.text,
                                 double.parse(_preco.text),

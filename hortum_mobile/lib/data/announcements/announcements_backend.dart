@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
@@ -6,6 +7,7 @@ import 'package:hortum_mobile/globals.dart';
 class AnnouncementsApi {
   Dio dio;
   List<dynamic> announcements = [];
+  List<File> images = [];
 
   AnnouncementsApi([Dio client]) {
     if (client == null)
@@ -38,25 +40,32 @@ class AnnouncementsApi {
     String userAccessToken = actualUser.tokenAccess;
     String url = 'http://$ip:8000/announcement/create';
     var header = {
-      "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
     };
-
     String email = actualUser.email;
-    Map params = {
+    var params = FormData.fromMap({
       "email": email,
       "name": name,
       "description": description,
       "price": price,
       "type_of_product": category,
-    };
+      "localization": []
+    });
+    for (File item in this.images)
+      params.files.addAll([
+        MapEntry("image_files", await MultipartFile.fromFile(item.path)),
+      ]);
 
-    String _body = json.encode(params);
-    Response response = await this
-        .dio
-        .post(url, data: _body, options: Options(headers: header));
+    //String _body = json.encode(params);
+    try {
+      Response response = await this
+          .dio
+          .post(url, data: params, options: Options(headers: header));
 
-    return response;
+      return response;
+    } on DioError catch (err) {
+      print(err);
+    }
   }
 
   Future deleteAnnoun(String anuncio) async {
@@ -113,5 +122,10 @@ class AnnouncementsApi {
           "R\$ ${element['price'].toStringAsFixed(2).replaceFirst('.', ',')}";
       element['username'] = element['username'].toString().split(" ")[0];
     });
+  }
+
+  addImages(File image) {
+    this.images.add(image);
+    print(this.images);
   }
 }
