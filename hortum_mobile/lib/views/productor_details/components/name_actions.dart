@@ -21,11 +21,17 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(widget.name,
+          Container(
+            width: size.width * 0.45,
+            child: Text(
+              widget.name,
               style: TextStyle(
                   fontFamily: 'Roboto-Bold',
                   fontWeight: FontWeight.bold,
-                  fontSize: 25)),
+                  fontSize: 25),
+              textAlign: TextAlign.center,
+            ),
+          ),
           IconButton(
               padding: EdgeInsets.only(left: 10),
               icon: Icon(Icons.ios_share, color: Color(0xffA7DDB7)),
