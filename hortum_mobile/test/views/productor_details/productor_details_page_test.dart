@@ -27,11 +27,12 @@ main() {
 
   Widget makeTestable() {
     return MaterialApp(
-      home: ProductorDetails(email: "emailteste@gmail.com", dio: dioMock),
+      home: ProductorDetails(
+          email: "emailteste@gmail.com", name: "Produtor", dio: dioMock),
     );
   }
 
-  testWidgets('Testing if RegisterAnnouncementPage renders correctly',
+  testWidgets('Testing if ProductorDetailsPage renders correctly',
       (WidgetTester tester) async {
     actualUser.isProductor = false;
     actualUser.tokenAccess = 'token';
