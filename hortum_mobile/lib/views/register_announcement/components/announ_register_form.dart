@@ -33,7 +33,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
       child: Form(
         key: _formKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
               padding: EdgeInsets.only(bottom: paddingSize),
@@ -122,7 +122,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                           context);
                     }
                   }),
-            )
+            ),
           ],
         ),
       ),
