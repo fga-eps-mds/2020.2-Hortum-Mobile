@@ -41,7 +41,7 @@ class _ProfileFormState extends State<ProfileForm> {
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.33,
+            height: size.height * 0.4,
             child: Form(
               key: _formKey,
               child: Column(

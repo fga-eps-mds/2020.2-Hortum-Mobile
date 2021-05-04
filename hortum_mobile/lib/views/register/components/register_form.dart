@@ -31,7 +31,7 @@ class _RegisterFormState extends State<RegisterForm> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-          height: size.height * 0.6,
+          height: size.height * 0.65,
           decoration: new BoxDecoration(
               gradient: LinearGradient(
                   begin: FractionalOffset.bottomCenter,
@@ -57,7 +57,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: size.height * 0.42,
+                          height: size.height * 0.5,
                           margin: EdgeInsets.only(bottom: size.height * 0.02),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
