@@ -9,12 +9,20 @@ Future<void> registerAnnounServices(Dio dio, String name, String description,
   final AnnouncementsApi registerData = new AnnouncementsApi(dio);
   var response =
       await registerData.registerAnnoun(name, description, price, category);
+  String msgError = announErrorFormart(response.data.toString());
   if (response.statusCode != 201) {
-    dialogError(context, response);
+    dialogError(context, msgError);
   } else {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => ProductorHomePage()),
         (route) => route.isCurrent);
   }
+}
+
+String announErrorFormart(String responseMsg) {
+  if (responseMsg == '{images: [This field is required.]}')
+    return 'É preciso adicionar uma imagem';
+  else
+    return 'Nome de anúncio já utilizado';
 }

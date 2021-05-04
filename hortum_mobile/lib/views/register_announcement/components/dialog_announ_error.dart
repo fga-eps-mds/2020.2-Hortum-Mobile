@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/views/register_announcement/services/error_message_format.dart';
 
-Future<void> dialogError(BuildContext context, var response) async {
-  String msgError = Formarter.announErrorFormart(response.data.toString());
+Future<void> dialogError(BuildContext context, String msgError) async {
   return showDialog(
     context: context,
     barrierDismissible: true,
