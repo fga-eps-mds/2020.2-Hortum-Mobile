@@ -17,12 +17,12 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(left: size.width * 0.25),
+      padding: EdgeInsets.only(left: size.width * 0.15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: size.width * 0.45,
+            width: size.width * 0.7,
             child: Text(
               widget.name,
               style: TextStyle(
@@ -32,10 +32,6 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
               textAlign: TextAlign.center,
             ),
           ),
-          IconButton(
-              padding: EdgeInsets.only(left: 10),
-              icon: Icon(Icons.ios_share, color: Color(0xffA7DDB7)),
-              onPressed: () {}),
           IconButton(
               padding: EdgeInsets.only(top: 5, right: 10),
               icon: Icon(Icons.report, color: Color(0xffFF4D00)),
