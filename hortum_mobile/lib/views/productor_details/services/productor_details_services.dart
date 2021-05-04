@@ -10,6 +10,7 @@ class ProductorDetaislService {
               .map<Widget>((dynamic announcement) => AnnouncementBox(
                   profilePic: 'assets/images/perfil.jpg',
                   email: announcement['email'],
+                  description: announcement['description'],
                   name: announcement['username'].toString().split(' ')[0],
                   title: announcement['name'],
                   localization: 'Asa Norte Feira 404',

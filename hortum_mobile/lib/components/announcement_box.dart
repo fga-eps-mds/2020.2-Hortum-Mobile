@@ -59,7 +59,8 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               key: Key('productorDetailsButton'),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ProductorDetails(email: encodeString(widget.email));
+                  return ProductorDetails(
+                      email: encodeString(widget.email), name: widget.name);
                 }));
               },
               child: Column(
