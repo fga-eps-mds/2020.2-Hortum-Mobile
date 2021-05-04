@@ -21,7 +21,7 @@ class ProductorDetaislService {
     return Container(
       width: size.width * 0.65,
       child: Text(
-        "Este produtor não possui anúncios disponíveis no momento !!",
+        "Este produtor não possui anúncios disponíveis no momento !",
         textAlign: TextAlign.center,
         style: TextStyle(color: Color(0xff1D8E40)),
       ),
