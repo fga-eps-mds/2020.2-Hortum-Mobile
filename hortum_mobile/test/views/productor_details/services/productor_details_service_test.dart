@@ -34,8 +34,7 @@ main() {
     Widget pump = MaterialApp(home: result);
     await tester.pumpWidget(pump);
     expect(
-        find.text(
-            'Este produtor não possui anúncios disponíveis no momento !!'),
+        find.text('Este produtor não possui anúncios disponíveis no momento !'),
         findsOneWidget);
   });
 }
