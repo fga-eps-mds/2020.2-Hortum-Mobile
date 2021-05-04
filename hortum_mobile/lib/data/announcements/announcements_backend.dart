@@ -107,6 +107,19 @@ class AnnouncementsApi {
     return response;
   }
 
+  Future categoryAnnoun(String filter) async {
+    String url = 'http://$ip:8000/announcement/category/${filter}';
+
+    var header = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + actualUser.tokenAccess
+    };
+    Response response =
+        await this.dio.get(url, options: Options(headers: header));
+    this.announcements = response.data;
+    manipulateData();
+  }
+
   manipulateData() {
     this.announcements.forEach((element) {
       element['price'] =
