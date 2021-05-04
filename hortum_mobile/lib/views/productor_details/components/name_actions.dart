@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/views/complaint/complaint_page.dart';
+import 'package:hortum_mobile/views/productor_details/services/productor_details_services.dart';
 
 class NameActionsWidget extends StatefulWidget {
   final String name;
@@ -16,6 +17,7 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String name = ProductorDetaislService.formatName(widget.name);
     return Padding(
       padding: EdgeInsets.only(left: size.width * 0.15),
       child: Row(
@@ -24,7 +26,7 @@ class _NameActionsWidgetState extends State<NameActionsWidget> {
           Container(
             width: size.width * 0.7,
             child: Text(
-              widget.name,
+              name,
               style: TextStyle(
                   fontFamily: 'Roboto-Bold',
                   fontWeight: FontWeight.bold,

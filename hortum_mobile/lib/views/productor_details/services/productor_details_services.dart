@@ -28,4 +28,11 @@ class ProductorDetaislService {
       ),
     );
   }
+
+  static String formatName(String name) {
+    if (name.length > 25) {
+      return name.split(' ')[0] + ' ' + name.split(' ')[1];
+    } else
+      return name;
+  }
 }
