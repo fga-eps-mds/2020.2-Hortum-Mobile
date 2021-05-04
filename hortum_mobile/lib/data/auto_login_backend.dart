@@ -3,19 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
 
 class AutomaticLoginAPI {
-  static Dio dio;
+  static Dio dio = Dio();
 
-  AutomaticLoginAPI([Dio client]) {
-    if (client == null) {
-      dio = Dio();
-    } else {
-      dio = client;
-    }
-  }
-
-  static Future<bool> automaticLogin() async {
+  static Future<bool> automaticLogin(String tokenAccess) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    String userAccessToken = actualUser.tokenAccess;
+
+    String userAccessToken = tokenAccess;
     String urlTest = 'http://$ip:8000/api/test_token/';
     String urlRefresh = 'http://$ip:8000/login/refresh/';
 
@@ -36,8 +29,8 @@ class AutomaticLoginAPI {
       response = await dio.get(urlTest, options: Options(headers: header));
     }
 
-    String username = json.decode(response.data)['user'];
-    bool isProductor = json.decode(response.data)['is_productor'];
+    String username = response.data['user'];
+    bool isProductor = response.data['is_productor'];
     actualUser.initAutoLogin(isProductor, username);
 
     return isProductor;

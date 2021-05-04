@@ -24,7 +24,7 @@ class _IntroScreenPageState extends State<IntroScreenPage> {
       tokenAccess = value;
 
       if (tokenAccess != null) {
-        AutomaticLoginAPI.automaticLogin().then((value) {
+        AutomaticLoginAPI.automaticLogin(tokenAccess).then((value) {
           isProductor = value;
         });
       }
