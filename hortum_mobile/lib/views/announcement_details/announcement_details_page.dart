@@ -167,7 +167,8 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return ProductorDetails(
-                            email: encodeString(widget.email));
+                            email: encodeString(widget.email),
+                            name: widget.name);
                       }));
                     },
                   ),
