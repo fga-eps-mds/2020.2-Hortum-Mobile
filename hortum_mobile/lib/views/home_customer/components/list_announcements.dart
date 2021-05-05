@@ -33,7 +33,7 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                       title: announcements[index]['name'],
                       localization: 'Asa Norte,404 Feira Da Tarde',
                       price: announcements[index]['price'],
-                      productPic: announcements[index]['images'][0]['picture'],
+                      productPic: announcements[index]['images'],
                       description: announcements[index]['description']);
                 },
               )

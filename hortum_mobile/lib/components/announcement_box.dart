@@ -9,7 +9,7 @@ class AnnouncementBox extends StatefulWidget {
   final String title;
   final String localization;
   final String price;
-  final String productPic;
+  final List<dynamic> productPic;
   final String email;
   final String description;
 
@@ -31,6 +31,7 @@ class AnnouncementBox extends StatefulWidget {
 class _AnnouncementBoxState extends State<AnnouncementBox> {
   @override
   Widget build(BuildContext context) {
+    print(widget.productPic);
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),
@@ -184,7 +185,8 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Material(
                             child: InkWell(
-                                child: Image.network(widget.productPic,
+                                child: Image.network(
+                                    widget.productPic[0]['picture'],
                                     fit: BoxFit.fill,
                                     height: size.height * 0.09,
                                     width: size.width * 0.17)),
