@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
+import 'package:hortum_mobile/components/dialog_empty_localizations.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
+import 'package:hortum_mobile/components/localization_field.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 
@@ -18,8 +20,9 @@ class AnnounRegisterForm extends StatefulWidget {
 
 class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   final _formKey = GlobalKey<FormState>();
+  final formKeyLocalization = GlobalKey<FormState>();
   final TextEditingController _titulo = TextEditingController();
-  final List<TextEditingController> _localizacao = [TextEditingController()];
+  final List<TextEditingController> _localizacao = [];
   final TextEditingController _categoria = TextEditingController();
   final TextEditingController _preco = TextEditingController();
   final TextEditingController _descricao = TextEditingController();
@@ -28,6 +31,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double paddingSize = size.height * 0.014;
+    TextEditingController newLocalization = new TextEditingController();
     return Padding(
       padding: EdgeInsets.fromLTRB(size.width * 0.09, 0, size.width * 0.09, 0),
       child: Form(
@@ -47,35 +51,31 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                   validator: FormValidation.validateTitle,
                   controller: _titulo),
             ),
-            Container(
-              child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: _localizacao.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: paddingSize),
-                      child: CustomFormField(
-                          suffixIcon: true,
-                          onPressed: () {
-                            setState(() {
-                              if (_localizacao.length <= 2) {
-                                _localizacao.insert(
-                                    index, new TextEditingController());
-                                index++;
-                              }
-                            });
-                          },
-                          labelText: 'Localização',
-                          icon: Icon(
-                            Icons.location_on_outlined,
-                            color: Colors.black,
-                          ),
-                          validator: FormValidation.validateLocalization,
-                          controller: _localizacao[index]),
-                    );
-                  }),
+            Padding(
+              padding: EdgeInsets.only(bottom: paddingSize),
+              child: Form(
+                key: formKeyLocalization,
+                child: CustomFormField(
+                    suffixIcon: true,
+                    onPressed: () {
+                      setState(() {
+                        if (_localizacao.length <= 2 &&
+                            formKeyLocalization.currentState.validate()) {
+                          _localizacao.insert(
+                            _localizacao.length,
+                            new TextEditingController(
+                                text: newLocalization.text),
+                          );
+                        }
+                      });
+                    },
+                    labelText: 'Localizacao',
+                    icon: Icon(Icons.location_on_outlined, color: Colors.black),
+                    validator: FormValidation.validateLocalization,
+                    controller: newLocalization),
+              ),
             ),
+            LocalizationField(localizations: _localizacao),
             Padding(
               padding: EdgeInsets.only(bottom: paddingSize),
               child: SelectFormField(
@@ -126,10 +126,15 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
             Container(
               margin: EdgeInsets.only(bottom: size.height * 0.05),
               child: ConfirmButton(
-                  labelButton: "SALVAR",
-                  colorButton: Color(0xFFF49C00),
-                  onClickAction: () {
-                    if (_formKey.currentState.validate()) {
+                labelButton: "SALVAR",
+                colorButton: Color(0xFFF49C00),
+                onClickAction: () {
+                  if (_formKey.currentState.validate()) {
+                    if (_localizacao.isEmpty) {
+                      showDialog(
+                          context: context,
+                          builder: (context) => DialogEmptyLocalizations());
+                    } else
                       registerAnnounServices(
                           widget.dio,
                           _titulo.text,
@@ -138,8 +143,9 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                           double.parse(_preco.text),
                           _categoria.text,
                           context);
-                    }
-                  }),
+                  }
+                },
+              ),
             ),
           ],
         ),

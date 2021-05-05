@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hortum_mobile/views/edit_announ/components/dialog_empty_localizations.dart';
+import 'package:hortum_mobile/components/dialog_empty_localizations.dart';
 
 class Teste extends StatefulWidget {
   @override

@@ -2,9 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
+import 'package:hortum_mobile/components/dialog_empty_localizations.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/edit_announ/components/dialog_empty_localizations.dart';
+import 'package:hortum_mobile/components/localization_field.dart';
 import 'package:hortum_mobile/views/edit_announ/services/edit_announ_services.dart';
 import 'package:hortum_mobile/views/profile/components/add_picture.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
@@ -107,55 +108,7 @@ class _EditPageState extends State<EditPage> {
                           validator: FormValidation.validateLocalization,
                           controller: newLocalization),
                     ),
-                    Container(
-                      decoration: new BoxDecoration(
-                        color: Color(0XFFC4C4C4),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: const Radius.circular(15.0),
-                          bottomRight: const Radius.circular(15.0),
-                        ),
-                      ),
-                      child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: localization.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                                bottom: size.height * 0.005,
-                                right: size.width * 0.05,
-                                left: size.width * 0.05),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: size.width * 0.55,
-                                  child: Text(
-                                    localization[index].text,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontFamily: 'Roboto-Regular',
-                                    ),
-                                  ),
-                                ),
-                                IconButton(
-                                    key: Key('removeLocalization'),
-                                    icon: Icon(
-                                      Icons.remove,
-                                      color: Colors.black,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        localization.removeAt(index);
-                                      });
-                                    }),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                    LocalizationField(localizations: localization),
                     Row(children: [
                       Container(
                         padding: EdgeInsets.only(right: 15, top: 15),
