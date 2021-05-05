@@ -31,9 +31,10 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                       email: announcements[index]['email'],
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
-                      localization: 'Asa Norte, 404 Feira Da Tarde',
+                      localization: 'Asa Norte,404 Feira Da Tarde',
                       price: announcements[index]['price'],
-                      productPic: 'assets/images/banana.jpg');
+                      productPic: 'assets/images/banana.jpg',
+                      description: announcements[index]['description']);
                 },
               )
             : Container(
