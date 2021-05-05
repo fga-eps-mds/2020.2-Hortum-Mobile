@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
+import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/edit_announ/services/edit_announ_services.dart';
 import 'package:hortum_mobile/views/profile/components/add_picture.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
-import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
-
 import 'components/edit_picture.dart';
 
 class EditPage extends StatefulWidget {
@@ -79,7 +78,7 @@ class _EditPageState extends State<EditPage> {
                           Icons.title_outlined,
                           color: Colors.black,
                         ),
-                        validator: AnnouncementsFormValidation.validateTitle,
+                        validator: FormValidation.validateTitle,
                         controller: title),
                     Column(
                       children: [
@@ -89,8 +88,7 @@ class _EditPageState extends State<EditPage> {
                             labelText: 'Localizacao',
                             icon: Icon(Icons.location_on_outlined,
                                 color: Colors.black),
-                            validator: AnnouncementsFormValidation
-                                .validateLocalization,
+                            validator: FormValidation.validateLocalization,
                             controller: localization),
                         Container(
                           decoration: new BoxDecoration(
@@ -116,8 +114,7 @@ class _EditPageState extends State<EditPage> {
                               Icons.filter_alt_outlined,
                               color: Colors.black,
                             ),
-                            validator:
-                                AnnouncementsFormValidation.validateCategory,
+                            validator: FormValidation.validateCategory,
                             listValues: announcementsCategories,
                             controller: category),
                       ),
@@ -131,8 +128,7 @@ class _EditPageState extends State<EditPage> {
                               Icons.attach_money_outlined,
                               color: Colors.black,
                             ),
-                            validator:
-                                AnnouncementsFormValidation.validatePrice,
+                            validator: FormValidation.validatePrice,
                             controller: price),
                       )
                     ]),
@@ -152,8 +148,7 @@ class _EditPageState extends State<EditPage> {
                           ),
                         ]),
                         CustomDescField(
-                            validator:
-                                AnnouncementsFormValidation.validateDescription,
+                            validator: FormValidation.validateDescription,
                             controller: description),
                       ],
                     ),

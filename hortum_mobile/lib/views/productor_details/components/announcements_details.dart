@@ -19,7 +19,7 @@ class _AnnouncementsDetailsState extends State<AnnouncementsDetails> {
     Size size = MediaQuery.of(context).size;
     return Container(
         width: size.width,
-        height: size.height * 0.45,
+        height: size.height * 0.47,
         child: ListView(
           children: [
             Column(
@@ -27,7 +27,7 @@ class _AnnouncementsDetailsState extends State<AnnouncementsDetails> {
                 ProductorLocalization(),
                 AnnouncementTag(),
                 ProductorDetaislService.completeAnnouncements(
-                    widget.prodData.announcements)
+                    widget.prodData.announcements, size)
               ],
             ),
           ],

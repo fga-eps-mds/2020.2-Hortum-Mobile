@@ -63,8 +63,13 @@ class AnnouncementsApi {
     try {
       Response response = await this.dio.post(url,
           data: params,
-          options:
-              Options(headers: header, contentType: 'multipart/form-data'));
+          options: Options(
+            headers: header,
+            contentType: 'multipart/form-data',
+            validateStatus: (status) {
+              return status <= 500;
+            },
+          ));
 
       return response;
     } on DioError catch (err) {
