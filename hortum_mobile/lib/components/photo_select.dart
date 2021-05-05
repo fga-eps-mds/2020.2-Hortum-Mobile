@@ -1,26 +1,27 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/components/announcements_data.dart';
-import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/services/upload_image.dart';
 
 class PhotoSelecter extends StatefulWidget {
-  final AnnouncementsApi announcementsApi;
+  final bool isAnnounRegister;
   final String title;
-  const PhotoSelecter({@required this.title, this.announcementsApi, Key key})
+
+  const PhotoSelecter(
+      {@required this.title, @required this.isAnnounRegister, Key key})
       : super(key: key);
   @override
   _PhotoSelecterState createState() => _PhotoSelecterState();
 }
 
 class _PhotoSelecterState extends State<PhotoSelecter> {
-  List<Asset> images = <Asset>[];
   File image;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<Asset> resultList = <Asset>[];
+    List<File> images = <File>[];
     return Container(
       decoration: BoxDecoration(color: Colors.white),
       child: Container(
@@ -58,42 +59,32 @@ class _PhotoSelecterState extends State<PhotoSelecter> {
               child: MaterialButton(
                 height: size.height * 0.15,
                 minWidth: size.width * 0.3,
-                child: Icon(
-                  Icons.add_a_photo,
-                  size: size.height * 0.06,
+                padding: EdgeInsets.all(0),
+                child: Container(
+                  width: size.width * 0.3,
+                  height: size.height * 0.15,
+                  child: image == null
+                      ? Icon(
+                          Icons.add_a_photo,
+                          size: size.height * 0.06,
+                        )
+                      : Image.file(
+                          image,
+                          fit: BoxFit.fill,
+                        ),
                 ),
                 onPressed: () async {
-                  resultList = await MultiImagePicker.pickImages(
-                    maxImages: 300,
-                    enableCamera: true,
-                    selectedAssets: images,
-                    cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
-                    materialOptions: MaterialOptions(
-                      actionBarColor: "#abcdef",
-                      actionBarTitle: "Example App",
-                      allViewTitle: "All Photos",
-                      useDetailsView: false,
-                      selectCircleStrokeColor: "#000000",
-                    ),
-                  );
-                  print(widget.announcementsApi.hashCode);
-                  resultList.forEach((element) {
-                    image = File(element.identifier);
-                    widget.announcementsApi.addImages(image);
-                  });
+                  if (widget.isAnnounRegister) {
+                    images = await UploadImage.uploadImage(5);
+                    announImages = images;
+                    image = images[0];
+                  } else {
+                    images = await UploadImage.uploadImage(1);
+                    profile_picture = images[0];
+                    image = images[0];
+                  }
+                  setState(() {});
                 },
-                //   onPressed: () async {
-                //     final pickedFile =
-                //         await picker.getImage(source: ImageSource.gallery);
-
-                //     setState(() {
-                //       if (pickedFile != null) {
-                //         //  _image = File(pickedFile.path);
-                //       } else {
-                //         print('No image selected.');
-                //       }
-                //     });
-                //   },
               ),
             )
           ],
