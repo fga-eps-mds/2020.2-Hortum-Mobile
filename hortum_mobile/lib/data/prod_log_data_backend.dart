@@ -28,7 +28,6 @@ class ProdLoggedAnnounDataApi {
 
     this.announcements = response.data;
     manipulateData();
-    // print(this.announcements);
   }
 
   manipulateData() {
