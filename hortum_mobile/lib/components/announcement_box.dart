@@ -59,98 +59,105 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
       child: Row(
         children: [
           Container(
-            width: size.width * 0.2,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border(right: BorderSide(color: Color(0xff57A051))),
-            ),
-            child: MaterialButton(
-              key: Key('productorDetailsButton'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ProductorDetails(
-                      email: encodeString(widget.email), name: widget.name);
-                }));
-              },
-              child: Column(
+              width: size.width * 0.2,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border(right: BorderSide(color: Color(0xff57A051))),
+              ),
+              child: Stack(
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    padding:
-                        EdgeInsets.only(top: size.height * 0.05, bottom: 3),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      child: Material(
-                        child: InkWell(
-                            child: Image.asset(widget.profilePic,
-                                fit: BoxFit.fill,
-                                height: size.height * 0.06,
-                                width: size.height * 0.06)),
+                  MaterialButton(
+                    key: Key('productorDetailsButton'),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ProductorDetails(
+                            email: encodeString(widget.email),
+                            name: widget.name);
+                      }));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: size.height * 0.05),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        child: Material(
+                          child: InkWell(
+                              child: Image.asset(widget.profilePic,
+                                  fit: BoxFit.fill,
+                                  height: size.height * 0.06,
+                                  width: size.height * 0.06)),
+                        ),
                       ),
                     ),
                   ),
-                  Text(widget.name, style: TextStyle(fontSize: 12)),
-                  Flexible(
-                      fit: FlexFit.loose,
-                      child: Text(
-                        widget.name,
-                        style: TextStyle(fontSize: 12),
-                        maxLines: 2,
-                        overflow: TextOverflow.fade,
-                      )),
-                  if (!actualUser.isProductor)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Material(
-                          child: IconButton(
-                            key: Key('favAnnoun'),
-                            padding: EdgeInsets.all(6),
-                            constraints: BoxConstraints(
-                              minWidth: 3,
-                              minHeight: 3,
+                  Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.12),
+                      child: Column(
+                        children: [
+                          Flexible(
+                              fit: FlexFit.loose,
+                              child: Text(
+                                widget.name,
+                                style: TextStyle(fontSize: 12),
+                                maxLines: 2,
+                                overflow: TextOverflow.fade,
+                              )),
+                          if (!actualUser.isProductor)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Material(
+                                  child: IconButton(
+                                    key: Key('favAnnoun'),
+                                    padding:
+                                        EdgeInsets.all(size.height * 0.0008),
+                                    constraints: BoxConstraints(
+                                      minWidth: 0,
+                                      minHeight: 0,
+                                    ),
+                                    icon: Icon(Icons.favorite_border_outlined,
+                                        size: 20),
+                                    onPressed: () async {
+                                      await changeData.favAnnoun(
+                                          widget.email, widget.title);
+                                      Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => FavPage(
+                                                    isAnnouncement: true,
+                                                  )),
+                                          (route) => true);
+                                    },
+                                  ),
+                                ),
+                                Material(
+                                    child: IconButton(
+                                  key: Key('favProd'),
+                                  padding: EdgeInsets.all(size.height * 0.0008),
+                                  constraints: BoxConstraints(
+                                    minWidth: 0,
+                                    minHeight: 0,
+                                  ),
+                                  icon: Icon(Icons.thumb_up_alt_outlined,
+                                      size: 20),
+                                  onPressed: () async {
+                                    await favProductor
+                                        .favProductor(widget.email);
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => FavPage(
+                                                  isAnnouncement: false,
+                                                )),
+                                        (route) => true);
+                                  },
+                                ))
+                              ],
                             ),
-                            icon:
-                                Icon(Icons.favorite_border_outlined, size: 22),
-                            onPressed: () async {
-                              await changeData.favAnnoun(
-                                  widget.email, widget.title);
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => FavPage(
-                                            isAnnouncement: true,
-                                          )),
-                                  (route) => true);
-                            },
-                          ),
-                        ),
-                        Material(
-                            child: IconButton(
-                          key: Key('favProd'),
-                          padding: EdgeInsets.all(6),
-                          constraints: BoxConstraints(
-                            minWidth: 3,
-                            minHeight: 3,
-                          ),
-                          icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
-                          onPressed: () async {
-                            await favProductor.favProductor(widget.email);
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FavPage(
-                                          isAnnouncement: false,
-                                        )),
-                                (route) => true);
-                          },
-                        ))
-                      ],
-                    ),
+                        ],
+                      ))
                 ],
-              ),
-            ),
-          ),
+              )),
           Container(
             width: size.width * 0.694,
             decoration: BoxDecoration(
