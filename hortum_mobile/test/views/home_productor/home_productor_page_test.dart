@@ -21,7 +21,8 @@ main() {
       "description": "Alface plantado na fazenda",
       "price": 5.0,
       "idPicture": null,
-      "likes": 0
+      "likes": 0,
+      "localizations": []
     },
   ];
 
@@ -72,7 +73,7 @@ main() {
         await tester.tap(find.byIcon(Icons.delete).first);
         await tester.pump();
         await tester.tap(find.text('Não'));
-        await tester.pump();
+        await tester.pumpAndSettle();
 
         expect(find.byKey(Key('removeAnnoun')), findsNothing);
         expect(find.text('MEUS ANÚNCIOS'), findsOneWidget);

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/globals.dart';
@@ -124,8 +125,10 @@ main() {
               data: jsonEncode(responseMatcher),
               requestOptions: null,
               statusCode: 200));
-      var responseActual =
-          await announcementsApi.editAnnoun('Banana', name: name, price: preco);
+      var responseActual = await announcementsApi.editAnnoun('Banana',
+          name: name,
+          price: preco,
+          localizations: [TextEditingController(text: 'brasilia')]);
 
       expect(responseActual.statusCode, 200);
     });
@@ -138,7 +141,8 @@ main() {
       "name": "Teste",
       "description": "Decrição de anúncio teste",
       "price": 15.0,
-      "type_of_product": "Alface"
+      "type_of_product": "Alface",
+      "localizations": []
     };
     test('Testing the method registerAnnoun on RegisterAnnounApi', () async {
       actualUser.tokenAccess = 'token';
@@ -148,8 +152,12 @@ main() {
               data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: response, requestOptions: null, statusCode: 200));
-      Response result = await announcementsApi.registerAnnoun(request['name'],
-          request['description'], request['price'], request['type_of_product']);
+      Response result = await announcementsApi.registerAnnoun(
+          request['name'],
+          request['description'],
+          request['localizations'],
+          request['price'],
+          request['type_of_product']);
       expect(result.data['msg'], "Announcement created");
     });
   });
