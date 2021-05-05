@@ -27,13 +27,13 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return AnnouncementBox(
-                      profilePic: 'assets/images/perfil.jpg',
+                      profilePic: announcements[index]['pictureProductor'],
                       email: announcements[index]['email'],
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
                       localization: 'Asa Norte, 404 Feira Da Tarde',
                       price: announcements[index]['price'],
-                      productPic: 'assets/images/banana.jpg');
+                      productPic: announcements[index]['images'][0]['picture']);
                 },
               )
             : Container(

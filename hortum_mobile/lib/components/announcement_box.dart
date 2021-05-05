@@ -59,7 +59,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     child: Material(
                       child: InkWell(
-                          child: Image.asset(widget.profilePic,
+                          child: Image.network(widget.profilePic,
                               fit: BoxFit.fill,
                               height: size.height * 0.06,
                               width: size.height * 0.06)),

@@ -17,6 +17,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
   @override
   Widget build(BuildContext context) {
     List announcements = widget.announProd.announcements;
+    print(announcements);
     Size size = MediaQuery.of(context).size;
     return Container(
         alignment: Alignment.topCenter,
@@ -36,7 +37,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         description: announcements[index]['description'],
                         category: announcements[index]['type_of_product']),
                     AnnouncementBox(
-                        profilePic: 'assets/images/perfil.jpg',
+                        profilePic: announcements[index]['pictureProductor'],
                         name: announcements[index]['username'],
                         email: announcements[index]['email'],
                         title: announcements[index]['name'],
