@@ -36,6 +36,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         description: announcements[index]['description'],
                         category: announcements[index]['type_of_product']),
                     AnnouncementBox(
+                        description: announcements[index]['description'],
                         profilePic: 'assets/images/perfil.jpg',
                         name: announcements[index]['username'],
                         email: announcements[index]['email'],
