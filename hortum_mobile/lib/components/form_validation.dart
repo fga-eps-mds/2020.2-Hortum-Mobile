@@ -63,8 +63,9 @@ class FormValidation {
   static String validateLocalization(String value) {
     if (value.length == 0) {
       return "Informe a localização";
+    } else if (value.length > 100) {
+      return "A localização deve conter no máximo 100 caracteres";
     }
-    // Adicionar validação de Localização
     return null;
   }
 

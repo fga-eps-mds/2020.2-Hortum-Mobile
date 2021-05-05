@@ -4,6 +4,7 @@ import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
+import 'package:hortum_mobile/views/edit_announ/components/dialog_empty_localizations.dart';
 import 'package:hortum_mobile/views/edit_announ/services/edit_announ_services.dart';
 import 'package:hortum_mobile/views/profile/components/add_picture.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
@@ -41,6 +42,7 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   final formKey = GlobalKey<FormState>();
+  final formKeyLocalization = GlobalKey<FormState>();
   final TextEditingController title;
   final TextEditingController description;
   final List<TextEditingController> localization;
@@ -83,24 +85,28 @@ class _EditPageState extends State<EditPage> {
                         ),
                         validator: FormValidation.validateTitle,
                         controller: title),
-                    CustomFormField(
-                        suffixIcon: true,
-                        onPressed: () {
-                          setState(() {
-                            if (localization.length <= 2 &&
-                                newLocalization.text.isNotEmpty) {
-                              localization.insert(
+                    Form(
+                      key: formKeyLocalization,
+                      child: CustomFormField(
+                          suffixIcon: true,
+                          onPressed: () {
+                            setState(() {
+                              if (localization.length <= 2 &&
+                                  formKeyLocalization.currentState.validate()) {
+                                localization.insert(
                                   localization.length,
                                   new TextEditingController(
-                                      text: newLocalization.text));
-                            }
-                          });
-                        },
-                        labelText: 'Localizacao',
-                        icon: Icon(Icons.location_on_outlined,
-                            color: Colors.black),
-                        validator: FormValidation.validateLocalization,
-                        controller: newLocalization),
+                                      text: newLocalization.text),
+                                );
+                              }
+                            });
+                          },
+                          labelText: 'Localizacao',
+                          icon: Icon(Icons.location_on_outlined,
+                              color: Colors.black),
+                          validator: FormValidation.validateLocalization,
+                          controller: newLocalization),
+                    ),
                     Container(
                       decoration: new BoxDecoration(
                         color: Color(0XFFC4C4C4),
@@ -202,10 +208,11 @@ class _EditPageState extends State<EditPage> {
                     MaterialButton(
                       key: Key('salvarAnnoun'),
                       onPressed: () {
-                        if (localization.isNotEmpty)
-                          newLocalization.text = localization[0].text;
-                        if (formKey.currentState.validate() &&
-                            localization.isNotEmpty) {
+                        if (localization.isEmpty) {
+                          showDialog(
+                              context: context,
+                              builder: (context) => DialogEmptyLocalizations());
+                        } else if (formKey.currentState.validate()) {
                           double precoDouble = double.parse(price.text);
                           ChangeServices.editAnnoun(
                               widget.dio,
