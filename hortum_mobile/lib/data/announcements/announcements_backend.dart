@@ -7,7 +7,6 @@ import 'package:hortum_mobile/globals.dart';
 class AnnouncementsApi {
   Dio dio;
   List<dynamic> announcements = [];
-  List<File> images = [];
 
   AnnouncementsApi([Dio client]) {
     if (client == null)
@@ -42,6 +41,7 @@ class AnnouncementsApi {
     var header = {
       "Authorization": "Bearer " + userAccessToken,
     };
+
     String email = actualUser.email;
     var params = FormData.fromMap({
       "email": email,
@@ -49,18 +49,22 @@ class AnnouncementsApi {
       "description": description,
       "price": price,
       "type_of_product": category,
-      "localization": []
+      "localizations": ['Asa Norte 404'],
     });
-    for (File item in this.images)
-      params.files.addAll([
-        MapEntry("image_files", await MultipartFile.fromFile(item.path)),
-      ]);
 
-    //String _body = json.encode(params);
+    for (File item in announImages) {
+      String filename = item.path.split('/').last;
+      params.files.addAll([
+        MapEntry("images",
+            await MultipartFile.fromFile(item.path, filename: filename)),
+      ]);
+    }
+
     try {
-      Response response = await this
-          .dio
-          .post(url, data: params, options: Options(headers: header));
+      Response response = await this.dio.post(url,
+          data: params,
+          options:
+              Options(headers: header, contentType: 'multipart/form-data'));
 
       return response;
     } on DioError catch (err) {
@@ -122,10 +126,5 @@ class AnnouncementsApi {
           "R\$ ${element['price'].toStringAsFixed(2).replaceFirst('.', ',')}";
       element['username'] = element['username'].toString().split(" ")[0];
     });
-  }
-
-  addImages(File image) {
-    this.images.add(image);
-    print(this.images);
   }
 }

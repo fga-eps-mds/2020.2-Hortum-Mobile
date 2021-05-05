@@ -35,8 +35,8 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
                         height: size.height * 0.9,
                         child: ListView(children: [
                           PhotoSelecter(
-                            announcementsApi: announcementsApi,
                             title: 'CRIAR ANÚNCIO',
+                            isAnnounRegister: true,
                           ),
                           AnnounRegisterForm(
                             announcementsApi: announcementsApi,
