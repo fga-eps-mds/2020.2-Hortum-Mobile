@@ -113,6 +113,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             labelButton: "CADASTRAR",
                             colorButton: Color(0xFF81B622),
                             onClickAction: () {
+                              print('salve');
                               if (_formKey.currentState.validate()) {
                                 registerApi.register(
                                     _name.text,
