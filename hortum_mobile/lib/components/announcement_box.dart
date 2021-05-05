@@ -4,6 +4,9 @@ import 'package:hortum_mobile/data/announ_favorite_backend.dart';
 import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/favorites/fav_page.dart';
+import 'package:hortum_mobile/services/codec_string.dart';
+import 'package:hortum_mobile/views/announcement_details/announcement_details_page.dart';
+import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
 class AnnouncementBox extends StatefulWidget {
   final String profilePic;
@@ -14,6 +17,7 @@ class AnnouncementBox extends StatefulWidget {
   final String productPic;
   final String email;
   final Dio dio;
+  final String description;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -22,7 +26,8 @@ class AnnouncementBox extends StatefulWidget {
       @required this.localization,
       @required this.price,
       @required this.productPic,
-      this.email,
+      @required this.email,
+      @required this.description,
       this.dio,
       Key key})
       : super(key: key);
@@ -59,79 +64,91 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               color: Colors.transparent,
               border: Border(right: BorderSide(color: Color(0xff57A051))),
             ),
-            child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(top: size.height * 0.05, bottom: 3),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    child: Material(
-                      child: InkWell(
-                          child: Image.asset(widget.profilePic,
-                              fit: BoxFit.fill,
-                              height: size.height * 0.06,
-                              width: size.height * 0.06)),
+            child: MaterialButton(
+              key: Key('productorDetailsButton'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ProductorDetails(
+                      email: encodeString(widget.email), name: widget.name);
+                }));
+              },
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    padding:
+                        EdgeInsets.only(top: size.height * 0.05, bottom: 3),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      child: Material(
+                        child: InkWell(
+                            child: Image.asset(widget.profilePic,
+                                fit: BoxFit.fill,
+                                height: size.height * 0.06,
+                                width: size.height * 0.06)),
+                      ),
                     ),
                   ),
-                ),
-                Flexible(
-                    fit: FlexFit.loose,
-                    child: Text(
-                      widget.name,
-                      style: TextStyle(fontSize: 12),
-                      maxLines: 2,
-                      overflow: TextOverflow.fade,
-                    )),
-                if (!actualUser.isProductor)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Material(
-                        child: IconButton(
-                          key: Key('favAnnoun'),
+                  Text(widget.name, style: TextStyle(fontSize: 12)),
+                  Flexible(
+                      fit: FlexFit.loose,
+                      child: Text(
+                        widget.name,
+                        style: TextStyle(fontSize: 12),
+                        maxLines: 2,
+                        overflow: TextOverflow.fade,
+                      )),
+                  if (!actualUser.isProductor)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Material(
+                          child: IconButton(
+                            key: Key('favAnnoun'),
+                            padding: EdgeInsets.all(6),
+                            constraints: BoxConstraints(
+                              minWidth: 3,
+                              minHeight: 3,
+                            ),
+                            icon:
+                                Icon(Icons.favorite_border_outlined, size: 22),
+                            onPressed: () async {
+                              await changeData.favAnnoun(
+                                  widget.email, widget.title);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FavPage(
+                                            isAnnouncement: true,
+                                          )),
+                                  (route) => true);
+                            },
+                          ),
+                        ),
+                        Material(
+                            child: IconButton(
+                          key: Key('favProd'),
                           padding: EdgeInsets.all(6),
                           constraints: BoxConstraints(
                             minWidth: 3,
                             minHeight: 3,
                           ),
-                          icon: Icon(Icons.favorite_border_outlined, size: 22),
+                          icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
                           onPressed: () async {
-                            await changeData.favAnnoun(
-                                widget.email, widget.title);
+                            await favProductor.favProductor(widget.email);
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => FavPage(
-                                          isAnnouncement: true,
+                                          isAnnouncement: false,
                                         )),
                                 (route) => true);
                           },
-                        ),
-                      ),
-                      Material(
-                          child: IconButton(
-                        key: Key('favProd'),
-                        padding: EdgeInsets.all(6),
-                        constraints: BoxConstraints(
-                          minWidth: 3,
-                          minHeight: 3,
-                        ),
-                        icon: Icon(Icons.thumb_up_alt_outlined, size: 22),
-                        onPressed: () async {
-                          await favProductor.favProductor(widget.email);
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FavPage(
-                                        isAnnouncement: false,
-                                      )),
-                              (route) => true);
-                        },
-                      ))
-                    ],
-                  ),
-              ],
+                        ))
+                      ],
+                    ),
+                ],
+              ),
             ),
           ),
           Container(
@@ -139,86 +156,103 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
             decoration: BoxDecoration(
               color: Colors.transparent,
             ),
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: size.height * 0.015),
-                  child: Text(
-                    widget.title,
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto-Bold'),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: size.height * 0.02),
-                      padding: EdgeInsets.only(left: size.width * 0.03),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.room,
-                                size: 15,
-                              ),
-                              Text(
-                                "Localização",
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              widget.localization,
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.black.withOpacity(0.7)),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.attach_money_rounded,
-                                size: 15,
-                              ),
-                              Text("Preço", style: TextStyle(fontSize: 12))
-                            ],
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              widget.price,
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.black.withOpacity(0.7)),
-                            ),
-                          ),
-                        ],
-                      ),
+            child: MaterialButton(
+              key: Key('announcementDetailsButton'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AnnouncementDetails(
+                    email: widget.email,
+                    description: widget.description,
+                    localization: widget.localization,
+                    name: widget.name,
+                    price: widget.price,
+                    productPic: widget.productPic,
+                    profilePic: widget.profilePic,
+                    title: widget.title,
+                  );
+                }));
+              },
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: size.height * 0.015),
+                    child: Text(
+                      widget.title,
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto-Bold'),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          right: size.width * 0.03, top: size.height * 0.01),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        child: Material(
-                          child: InkWell(
-                              child: Image.asset(widget.productPic,
-                                  fit: BoxFit.fill,
-                                  height: size.height * 0.1,
-                                  width: size.width * 0.2)),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: size.height * 0.02),
+                        padding: EdgeInsets.only(left: size.width * 0.02),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.room,
+                                  size: 15,
+                                ),
+                                Text(
+                                  "Localização",
+                                  style: TextStyle(fontSize: 12),
+                                )
+                              ],
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              child: Text(
+                                widget.localization,
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black.withOpacity(0.7)),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.attach_money_rounded,
+                                  size: 15,
+                                ),
+                                Text("Preço", style: TextStyle(fontSize: 12))
+                              ],
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              child: Text(
+                                widget.price,
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black.withOpacity(0.7)),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      Container(
+                        margin: EdgeInsets.only(
+                            right: size.width * 0.02, top: size.height * 0.01),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          child: Material(
+                            child: InkWell(
+                                child: Image.asset(widget.productPic,
+                                    fit: BoxFit.fill,
+                                    height: size.height * 0.09,
+                                    width: size.width * 0.17)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],

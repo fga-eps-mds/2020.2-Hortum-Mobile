@@ -17,13 +17,13 @@ class _CustomDescFieldState extends State<CustomDescField> {
       maxLines: 6,
       decoration: InputDecoration(
           border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+              borderSide: BorderSide(color: Colors.black, width: 1.5),
               borderRadius: BorderRadius.circular(15)),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+              borderSide: BorderSide(color: Colors.black, width: 1.5),
               borderRadius: BorderRadius.circular(15)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue, width: 3.0),
+              borderSide: BorderSide(color: Colors.blue, width: 1.5),
               borderRadius: BorderRadius.circular(15)),
           contentPadding: EdgeInsets.all(8)),
       validator: widget.validator,

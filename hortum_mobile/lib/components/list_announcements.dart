@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
-import 'package:hortum_mobile/data/announ_data_backend.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 
 class AnnouncementsList extends StatefulWidget {
-  final AnnounDataApi announData;
+  final AnnouncementsApi announData;
   final String textNotFound;
 
   const AnnouncementsList(
@@ -33,9 +33,10 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                       email: announcements[index]['email'],
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
-                      localization: 'Asa Norte, 404 Feira Da Tarde',
+                      localization: 'Asa Norte,404 Feira Da Tarde',
                       price: announcements[index]['price'],
-                      productPic: 'assets/images/banana.jpg');
+                      productPic: 'assets/images/banana.jpg',
+                      description: announcements[index]['description']);
                 },
               )
             : Container(

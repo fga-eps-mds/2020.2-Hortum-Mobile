@@ -36,6 +36,7 @@ class _ProductorsListState extends State<ProductorsList> {
                 },
               )
             : Container(
+                key: Key('noProductors'),
                 margin: EdgeInsets.only(top: size.height * 0.15),
                 width: size.width * 0.6,
                 child: Text(

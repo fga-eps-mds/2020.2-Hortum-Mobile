@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/list_announcements.dart';
-import 'package:hortum_mobile/data/announ_data_backend.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/data/productors_data_backend.dart';
 import 'package:hortum_mobile/views/favorites/components/select_favorite_button.dart';
 import 'package:hortum_mobile/views/favorites/services/fav_page_services.dart';
@@ -26,7 +26,7 @@ class _FavPageState extends State<FavPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    AnnounDataApi announData = new AnnounDataApi(widget.dio);
+    AnnouncementsApi announData = new AnnouncementsApi(widget.dio);
     ProductorsDataApi productorsData = new ProductorsDataApi(widget.dio);
     return FutureBuilder(
         future: FavPageServices.populateData(isAnnouncement, announData,
