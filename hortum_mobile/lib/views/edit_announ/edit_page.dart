@@ -13,7 +13,7 @@ class EditPage extends StatefulWidget {
   final Dio dio;
   final TextEditingController title;
   final TextEditingController description;
-  final TextEditingController localization;
+  final List<TextEditingController> localization;
   final TextEditingController price;
   final TextEditingController category;
   final String originaltitle;
@@ -43,7 +43,7 @@ class _EditPageState extends State<EditPage> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController title;
   final TextEditingController description;
-  final TextEditingController localization;
+  final List<TextEditingController> localization;
   final TextEditingController price;
   final TextEditingController category;
   String originaltitle;
@@ -59,16 +59,19 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController newLocalization = new TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
           children: [
             Container(
+              alignment: Alignment.center,
               padding: EdgeInsets.only(
                   right: size.width * 0.1, left: size.width * 0.1),
               child: Form(
                 key: formKey,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     EditPicture(),
                     CustomFormField(
@@ -80,32 +83,76 @@ class _EditPageState extends State<EditPage> {
                         ),
                         validator: FormValidation.validateTitle,
                         controller: title),
-                    Column(
-                      children: [
-                        CustomFormField(
-                            suffixIcon: true,
-                            onPressed: () {},
-                            labelText: 'Localizacao',
-                            icon: Icon(Icons.location_on_outlined,
-                                color: Colors.black),
-                            validator: FormValidation.validateLocalization,
-                            controller: localization),
-                        Container(
-                          decoration: new BoxDecoration(
-                            color: Color(0XFFC4C4C4),
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: const Radius.circular(15.0),
-                              bottomRight: const Radius.circular(15.0),
+                    CustomFormField(
+                        suffixIcon: true,
+                        onPressed: () {
+                          setState(() {
+                            if (localization.length <= 2 &&
+                                newLocalization.text.isNotEmpty) {
+                              localization.insert(
+                                  localization.length,
+                                  new TextEditingController(
+                                      text: newLocalization.text));
+                            }
+                          });
+                        },
+                        labelText: 'Localizacao',
+                        icon: Icon(Icons.location_on_outlined,
+                            color: Colors.black),
+                        validator: FormValidation.validateLocalization,
+                        controller: newLocalization),
+                    Container(
+                      decoration: new BoxDecoration(
+                        color: Color(0XFFC4C4C4),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: const Radius.circular(15.0),
+                          bottomRight: const Radius.circular(15.0),
+                        ),
+                      ),
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: localization.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                bottom: size.height * 0.005,
+                                right: size.width * 0.05,
+                                left: size.width * 0.05),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: size.width * 0.55,
+                                  child: Text(
+                                    localization[index].text,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontFamily: 'Roboto-Regular',
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                    key: Key('removeLocalization'),
+                                    icon: Icon(
+                                      Icons.remove,
+                                      color: Colors.black,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        localization.removeAt(index);
+                                      });
+                                    }),
+                              ],
                             ),
-                          ),
-                          height: size.height * 0.15,
-                          width: size.width * 0.7,
-                        )
-                      ],
+                          );
+                        },
+                      ),
                     ),
                     Row(children: [
                       Container(
-                        padding: EdgeInsets.only(right: 15),
+                        padding: EdgeInsets.only(right: 15, top: 15),
                         width: size.width * 0.4,
                         child: SelectFormField(
                             initialValue: widget.category.text,
@@ -119,7 +166,7 @@ class _EditPageState extends State<EditPage> {
                             controller: category),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 15),
+                        padding: EdgeInsets.only(left: 15, top: 15),
                         width: size.width * 0.4,
                         child: CustomFormField(
                             suffixIcon: false,
@@ -153,36 +200,41 @@ class _EditPageState extends State<EditPage> {
                       ],
                     ),
                     MaterialButton(
-                        key: Key('salvarAnnoun'),
-                        onPressed: () {
-                          if (formKey.currentState.validate()) {
-                            double precoDouble = double.parse(price.text);
-                            ChangeServices.editAnnoun(
-                                widget.dio,
-                                originaltitle,
-                                widget.title.text,
-                                precoDouble,
-                                widget.category.text,
-                                widget.description.text,
-                                context);
-                          }
-                        },
-                        child: Container(
-                          width: size.width * 0.5,
-                          height: size.height * 0.04,
-                          margin: EdgeInsets.only(top: size.height * 0.03),
-                          decoration: BoxDecoration(
-                            color: Color(0xff75CE90),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text("SALVAR",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Roboto-Bold')),
-                          ),
-                        )),
+                      key: Key('salvarAnnoun'),
+                      onPressed: () {
+                        if (localization.isNotEmpty)
+                          newLocalization.text = localization[0].text;
+                        if (formKey.currentState.validate() &&
+                            localization.isNotEmpty) {
+                          double precoDouble = double.parse(price.text);
+                          ChangeServices.editAnnoun(
+                              widget.dio,
+                              originaltitle,
+                              widget.title.text,
+                              precoDouble,
+                              widget.category.text,
+                              widget.description.text,
+                              widget.localization,
+                              context);
+                        }
+                      },
+                      child: Container(
+                        width: size.width * 0.5,
+                        height: size.height * 0.04,
+                        margin: EdgeInsets.only(top: size.height * 0.03),
+                        decoration: BoxDecoration(
+                          color: Color(0xff75CE90),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text("SALVAR",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Roboto-Bold')),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
