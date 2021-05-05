@@ -13,7 +13,7 @@ class AnnouncementDetails extends StatefulWidget {
   final String title;
   final String localization;
   final String price;
-  final String productPic;
+  final List<dynamic> productPic;
   final String description;
   final String email;
 
@@ -157,7 +157,7 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                       borderRadius: BorderRadius.all(Radius.circular(25)),
                       child: Material(
                         child: InkWell(
-                            child: Image.asset(widget.profilePic,
+                            child: Image.network(widget.profilePic,
                                 fit: BoxFit.fill,
                                 height: size.height * 0.08,
                                 width: size.height * 0.08)),

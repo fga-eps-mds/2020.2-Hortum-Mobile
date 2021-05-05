@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class CustomCarrousel extends StatefulWidget {
-  final String productPic;
+  final List<dynamic> productPic;
   const CustomCarrousel({@required this.productPic, Key key}) : super(key: key);
   @override
   _CustomCarrouselState createState() => _CustomCarrouselState();
@@ -15,8 +15,12 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
     CarouselController buttonCarrouselContoller = CarouselController();
     return CarouselSlider(
       carouselController: buttonCarrouselContoller,
-      options: CarouselOptions(height: size.height * 0.25, viewportFraction: 1),
-      items: [1, 2, 3, 4, 5].map((i) {
+      options: CarouselOptions(
+        height: size.height * 0.25,
+        viewportFraction: 1,
+        autoPlay: true,
+      ),
+      items: widget.productPic.map((i) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
@@ -39,7 +43,7 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     child: Material(
                       child: InkWell(
-                          child: Image.asset(widget.productPic,
+                          child: Image.network(i['picture'],
                               fit: BoxFit.fill,
                               height: size.height * 0.25,
                               width: size.width * 0.9)),

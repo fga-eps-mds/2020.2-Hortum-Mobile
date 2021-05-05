@@ -8,7 +8,7 @@ class ProductorDetaislService {
           key: Key('columnAnnoun'),
           children: announcements
               .map<Widget>((dynamic announcement) => AnnouncementBox(
-                  profilePic: 'assets/images/perfil.jpg',
+                  profilePic: announcement['pictureProductor'],
                   email: announcement['email'],
                   description: announcement['description'],
                   name: announcement['username'].toString().split(' ')[0],
@@ -16,7 +16,7 @@ class ProductorDetaislService {
                   localization: 'Asa Norte Feira 404',
                   price:
                       "R\$ ${announcement['price'].toStringAsFixed(2).replaceFirst('.', ',')}",
-                  productPic: 'assets/images/banana.jpg'))
+                  productPic: announcement['images']))
               .toList());
     }
     return Container(
