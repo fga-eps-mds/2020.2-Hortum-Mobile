@@ -42,7 +42,8 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         title: announcements[index]['name'],
                         localization: 'Asa Norte, 404 Feira Da Tarde',
                         price: announcements[index]['price'],
-                        productPic: 'assets/images/banana.jpg')
+                        productPic: announcements[index]['images'][0]
+                            ['picture'])
                   ]);
                 },
               )
