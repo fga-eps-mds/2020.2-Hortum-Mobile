@@ -47,37 +47,34 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                   validator: FormValidation.validateTitle,
                   controller: _titulo),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: paddingSize),
-              child: Container(
-                child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: _localizacao.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.01),
-                        child: CustomFormField(
-                            suffixIcon: true,
-                            onPressed: () {
-                              setState(() {
-                                if (_localizacao.length <= 2) {
-                                  _localizacao.insert(
-                                      index, new TextEditingController());
-                                  index++;
-                                }
-                              });
-                            },
-                            labelText: 'Localização',
-                            icon: Icon(
-                              Icons.location_on_outlined,
-                              color: Colors.black,
-                            ),
-                            validator: FormValidation.validateLocalization,
-                            controller: _localizacao[index]),
-                      );
-                    }),
-              ),
+            Container(
+              child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _localizacao.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: paddingSize),
+                      child: CustomFormField(
+                          suffixIcon: true,
+                          onPressed: () {
+                            setState(() {
+                              if (_localizacao.length <= 2) {
+                                _localizacao.insert(
+                                    index, new TextEditingController());
+                                index++;
+                              }
+                            });
+                          },
+                          labelText: 'Localização',
+                          icon: Icon(
+                            Icons.location_on_outlined,
+                            color: Colors.black,
+                          ),
+                          validator: FormValidation.validateLocalization,
+                          controller: _localizacao[index]),
+                    );
+                  }),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: paddingSize),
@@ -137,6 +134,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                           widget.dio,
                           _titulo.text,
                           _descricao.text,
+                          _localizacao,
                           double.parse(_preco.text),
                           _categoria.text,
                           context);
