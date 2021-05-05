@@ -1,88 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/views/forget_password/components/dialog_answer_email.dart';
-
-import 'form_field_login.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../../globals.dart';
 
 class ForgetPassword extends StatelessWidget {
-  final TextEditingController emailController;
-  const ForgetPassword([Key key, this.emailController]) : super(key: key);
+  final url = 'http://$ip:8000/reset_password/';
+  ForgetPassword([Key key]) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.fromLTRB(180, 0, 0, 0),
       child: TextButton(
+        key: Key('forgetPassButton'),
         onPressed: () {
           showDialog(
             context: context,
             builder: (context) => new AlertDialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15))),
-              key: Key('sendEmailDialog'),
+              key: Key('dialogForgetPassword'),
               insetPadding: EdgeInsets.only(
-                  left: size.width * 0.01, right: size.width * 0.01),
+                  left: size.width * 0.04, right: size.width * 0.04),
               contentPadding: EdgeInsets.only(
-                  left: size.width * 0.015,
-                  right: size.width * 0.015,
+                  left: size.width * 0.05,
+                  right: size.width * 0.05,
                   bottom: size.height * 0.03,
                   top: size.height * 0.03),
               content: SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: size.height / 6,
-                        child: Image.asset("assets/images/logo.png"),
-                      ),
-                      Text(
-                        'Informe o seu email para recuperar a senha e verifique a sua caixa de entrada',
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      height: size.height / 6,
+                      child: Image.asset("assets/images/logo.png"),
+                    ),
+                    Container(
+                      child: Text(
+                        'Ao clicar no botão abaixo você será encaminhado para a página de redefinição de senha',
                         style: TextStyle(
                           fontFamily: 'Roboto',
-                          fontSize: 14,
+                          fontSize: 16,
                         ),
                       ),
-                      FormFieldLogin(
-                        keyIdentifier: Key('emailField'),
-                        suffixIcon: false,
-                        controller: emailController,
-                        isObscure: false,
-                        label: 'Email',
-                        icon: Icons.email,
-                        validator: FormValidation.validateEmail,
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               actions: <Widget>[
                 Container(
-                  width: size.width * 0.3,
-                  height: size.height * 0.04,
+                  width: size.width * 0.4,
+                  height: size.height * 0.05,
                   decoration: BoxDecoration(
                     color: Color(0xff81B622),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: MaterialButton(
-                    key: Key('sendEmail'),
+                    key: Key('redirectButton'),
                     padding: EdgeInsets.all(0),
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DialogAnswerEmail()));
-                      }
+                    onPressed: () async {
+                      await canLaunch(url)
+                          ? await launch(url)
+                          : throw 'Could not launch $url';
                     },
                     child: Text(
-                      "Enviar",
+                      "Redefinir senha",
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Roboto-Bold',
-                          fontSize: 11),
+                          fontSize: 15),
                     ),
                   ),
                 ),
