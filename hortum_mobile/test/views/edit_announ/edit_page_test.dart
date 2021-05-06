@@ -18,7 +18,7 @@ main() {
         dio: dio,
         category: new TextEditingController(text: 'Banana'),
         description: new TextEditingController(text: 'Banana Prata'),
-        localization: new TextEditingController(text: 'Feira'),
+        localization: [TextEditingController(text: "Brasilia")],
         originaltitle: 'A',
         price: new TextEditingController(text: '21.50'),
         title: new TextEditingController(text: 'Banana Prata'),
@@ -28,6 +28,8 @@ main() {
     testWidgets('CustomFormFields, MaterialButton e CustomDescField',
         (WidgetTester tester) async {
       await tester.pumpWidget(makeTestable());
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.tap(find.byIcon(Icons.remove));
       expect(find.byType(CustomFormField), findsNWidgets(3));
       expect(find.byType(CustomDescField), findsOneWidget);
       expect(find.byType(MaterialButton), findsNWidgets(2));

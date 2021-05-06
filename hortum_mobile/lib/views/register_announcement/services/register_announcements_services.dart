@@ -6,12 +6,13 @@ import 'package:hortum_mobile/views/register_announcement/components/dialog_anno
 Future<void> registerAnnounServices(
     String name,
     String description,
+    List localization,
     double price,
     String category,
     BuildContext context,
     AnnouncementsApi registerData) async {
-  var response =
-      await registerData.registerAnnoun(name, description, price, category);
+  var response = await registerData.registerAnnoun(
+      name, description, localization, price, category);
   String msgError = announErrorFormart(response.data.toString());
   if (response.statusCode != 201) {
     dialogError(context, msgError);

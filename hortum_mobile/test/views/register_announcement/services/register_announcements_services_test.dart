@@ -25,7 +25,13 @@ class _TestState extends State<Teste> {
         key: Key('botão'),
         onPressed: () async {
           await registerAnnounServices(
-              'name', 'description', 2.8, 'Banana', context, announcementsApi);
+              'name',
+              'description',
+              [TextEditingController(text: 'brasilia')],
+              2.8,
+              'Banana',
+              context,
+              announcementsApi);
         });
   }
 }
@@ -65,7 +71,7 @@ main() {
 
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(Key('botão')));
-      await tester.pump();
+      await tester.pumpAndSettle();
       expect(find.byKey(Key('erroNomeAnnoun')), findsOneWidget);
       await tester.tap(find.byKey(Key('okButton')));
     });

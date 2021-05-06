@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hortum_mobile/globals.dart';
 
 class AnnouncementsApi {
@@ -33,14 +34,23 @@ class AnnouncementsApi {
     manipulateData();
   }
 
-  Future registerAnnoun(
-      String name, String description, double price, String category) async {
+  Future registerAnnoun(String name, String description, List localization,
+      double price, String category) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String userAccessToken = actualUser.tokenAccess;
     String url = 'http://$ip:8000/announcement/create';
     var header = {
       "Authorization": "Bearer " + userAccessToken,
     };
+    List<String> localizacao = [];
+
+    int index = 0;
+    localization.forEach((element) {
+      if (element.text != TextEditingValue.empty) {
+        localizacao.insert(index, element.text);
+        index++;
+      }
+    });
 
     String email = actualUser.email;
     var params = FormData.fromMap({
@@ -49,7 +59,7 @@ class AnnouncementsApi {
       "description": description,
       "price": price,
       "type_of_product": category,
-      "localizations": ['Asa Norte 404'],
+      "localizations": localizacao,
     });
 
     for (File item in announImages) {
@@ -95,7 +105,8 @@ class AnnouncementsApi {
       String description,
       double price,
       String category,
-      bool inventory}) async {
+      bool inventory,
+      List localizations}) async {
     String url = 'http://$ip:8000/announcement/update/$nomeOriginal';
 
     var header = {
@@ -103,12 +114,21 @@ class AnnouncementsApi {
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
+    List<String> localizacao = [];
+
+    int index = 0;
+    localizations.forEach((element) {
+      localizacao.insert(index, element.text);
+      index++;
+    });
+
     Map params = {
       "name": name,
       "description": description,
       "price": price,
       "type_of_product": category,
-      "inventory": inventory
+      "inventory": inventory,
+      "localizations": localizacao
     };
     params.removeWhere((key, value) => value == null);
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/login/components/dialog_account_type.dart';
-import 'package:hortum_mobile/views/login/components/forget_password.dart';
 import 'package:hortum_mobile/views/login/components/form_field_login.dart';
 import './services/login_services.dart';
+import 'components/dialog_forget_password.dart';
 
 class LoginPage extends StatefulWidget {
   @override
