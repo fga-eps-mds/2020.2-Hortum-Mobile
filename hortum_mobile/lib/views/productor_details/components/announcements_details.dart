@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/productor_details_backend.dart';
 import 'package:hortum_mobile/views/productor_details/components/announcements_tag.dart';
-import 'package:hortum_mobile/views/productor_details/components/productor_localization.dart';
 import 'package:hortum_mobile/views/productor_details/services/productor_details_services.dart';
 
 class AnnouncementsDetails extends StatefulWidget {
@@ -24,7 +23,6 @@ class _AnnouncementsDetailsState extends State<AnnouncementsDetails> {
           children: [
             Column(
               children: [
-                ProductorLocalization(),
                 AnnouncementTag(),
                 ProductorDetaislService.completeAnnouncements(
                     widget.prodData.announcements, size)

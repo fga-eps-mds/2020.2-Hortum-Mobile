@@ -9,7 +9,7 @@ main() {
   String name = 'Victor';
   String title = 'titulo';
   String productPic = 'assets/images/banana.jpg';
-  String localization = 'localizacao';
+  List<String> localizations = ['localizacao'];
   String price = '15.00';
   String description = 'descricao';
   String email = 'joao@gmail.com';
@@ -22,7 +22,7 @@ main() {
         name: name,
         productPic: productPic,
         title: title,
-        localization: localization,
+        localizations: localizations,
         description: description,
         price: price,
         email: email,
