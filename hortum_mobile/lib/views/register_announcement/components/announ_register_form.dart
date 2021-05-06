@@ -51,33 +51,29 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                   validator: FormValidation.validateTitle,
                   controller: _titulo),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: paddingSize),
-              child: Form(
-                key: formKeyLocalization,
-                child: CustomFormField(
-                    suffixIcon: true,
-                    onPressed: () {
-                      setState(() {
-                        if (_localizacao.length <= 2 &&
-                            formKeyLocalization.currentState.validate()) {
-                          _localizacao.insert(
-                            _localizacao.length,
-                            new TextEditingController(
-                                text: newLocalization.text),
-                          );
-                        }
-                      });
-                    },
-                    labelText: 'Localizacao',
-                    icon: Icon(Icons.location_on_outlined, color: Colors.black),
-                    validator: FormValidation.validateLocalization,
-                    controller: newLocalization),
-              ),
+            Form(
+              key: formKeyLocalization,
+              child: CustomFormField(
+                  suffixIcon: true,
+                  onPressed: () {
+                    setState(() {
+                      if (_localizacao.length <= 2 &&
+                          formKeyLocalization.currentState.validate()) {
+                        _localizacao.insert(
+                          _localizacao.length,
+                          new TextEditingController(text: newLocalization.text),
+                        );
+                      }
+                    });
+                  },
+                  labelText: 'Localizacao',
+                  icon: Icon(Icons.location_on_outlined, color: Colors.black),
+                  validator: FormValidation.validateLocalization,
+                  controller: newLocalization),
             ),
             LocalizationField(localizations: _localizacao),
             Padding(
-              padding: EdgeInsets.only(bottom: paddingSize),
+              padding: EdgeInsets.only(top: paddingSize, bottom: paddingSize),
               child: SelectFormField(
                 labelText: 'Categoria',
                 icon: Icon(
