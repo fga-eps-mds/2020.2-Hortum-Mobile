@@ -172,9 +172,5 @@ void main() {
       String result = FormValidation.validateLocalization('');
       expect(result, 'Informe a localização');
     });
-
-    test('Given a valid value return null', () {
-      String result = FormValidation.validateLocalization('Asa Norte 404');
-    });
   });
 }
