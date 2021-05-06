@@ -40,7 +40,7 @@ class UserAPI {
             return status <= 500;
           },
         ));
-    return response.statusCode;
+    return response;
   }
 
   Future changePassword(String actualPassword, String newPassword) async {

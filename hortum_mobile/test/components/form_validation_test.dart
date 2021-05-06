@@ -88,7 +88,7 @@ void main() {
     });
     test('Given an non empty and with symbols phone number return null', () {
       String result = FormValidation.validatePhone('sadossewsdw');
-      expect(result, 'O número do celular so deve conter dígitos');
+      expect(result, 'O número do celular só deve conter dígitos');
     });
     test('Given an non empty and valid phone number return null', () {
       String result = FormValidation.validatePhone('12345678910');

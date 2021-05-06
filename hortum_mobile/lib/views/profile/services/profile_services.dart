@@ -25,7 +25,7 @@ class ProfileServices {
           phone_number: phone_number_form);
     }
 
-    if (response == 400) {
+    if (response.statusCode == 400) {
       showDialog(
         context: context,
         builder: (context) {
@@ -33,7 +33,7 @@ class ProfileServices {
             key: Key('emailJaExistente'),
             title: Text("Erro!"),
             content: Text(
-              "Email já registrado!",
+              announErrorFormart(response.data.toString()),
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 16,
@@ -72,4 +72,14 @@ class ProfileServices {
       }
     }
   }
+}
+
+String announErrorFormart(String responseMsg) {
+  if (responseMsg ==
+      ("{phone_number: [user with this phone number already exists.]}"))
+    return 'Telefone já cadastrado!';
+  else if (responseMsg == ("{email: [user with this email already exists.]}"))
+    return 'Email já cadastrado!';
+  else
+    return 'Email e telefone já cadastrados!';
 }

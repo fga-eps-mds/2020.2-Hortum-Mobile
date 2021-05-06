@@ -48,7 +48,7 @@ class FormValidation {
     } else if (value.length != 11) {
       return "O celular deve ter 11 dígitos";
     } else if (!regExp.hasMatch(value)) {
-      return "O número do celular so deve conter dígitos";
+      return "O número do celular só deve conter dígitos";
     }
     return null;
   }
