@@ -74,7 +74,7 @@ class _ComplaintBoxState extends State<ComplaintBox> {
               borderRadius: BorderRadius.all(Radius.circular(15)),
               child: Material(
                 child: InkWell(
-                  child: Image.asset(
+                  child: Image.network(
                     widget.image,
                     fit: BoxFit.fill,
                     height: size.height * 0.2,

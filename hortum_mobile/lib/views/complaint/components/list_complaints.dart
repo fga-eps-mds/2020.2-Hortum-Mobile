@@ -23,7 +23,7 @@ class ComplaintsList extends StatelessWidget {
                 return ComplaintBox(
                   author: Complaints[index]['author'],
                   description: Complaints[index]['description'],
-                  image: 'assets/images/perfil.jpg',
+                  image: Complaints[index]['image'],
                 );
               })
           : Container(
