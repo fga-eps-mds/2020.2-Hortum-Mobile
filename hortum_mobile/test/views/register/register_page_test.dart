@@ -24,7 +24,7 @@ main() {
             (_) async => Response(requestOptions: null, statusCode: 201));
     await tester.pumpWidget(makeTestable(false));
     await tester.pump();
-    expect(find.byType(CustomFormField), findsNWidgets(4));
+    expect(find.byType(CustomFormField), findsNWidgets(5));
     expect(find.byType(ConfirmButton), findsOneWidget);
     await tester.pumpAndSettle();
   });
