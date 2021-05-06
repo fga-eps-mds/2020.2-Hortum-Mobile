@@ -13,6 +13,8 @@ main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   TextEditingController email = TextEditingController(text: 'teste@email.com');
   TextEditingController username = TextEditingController(text: 'Nome');
+  TextEditingController phone_number =
+      TextEditingController(text: '12345678910');
   actualUser.email = 'user@user.com';
   actualUser.username = "user";
   actualUser.tokenAccess = 'token';
@@ -21,7 +23,12 @@ main() {
     Widget makeTestable() {
       return MaterialApp(
           home: Scaffold(
-              body: ProfileForm(dio: dio, email: email, username: username)));
+              body: ProfileForm(
+        dio: dio,
+        email: email,
+        username: username,
+        phone_number: phone_number,
+      )));
     }
 
     testWidgets('Show dialog error', (WidgetTester tester) async {

@@ -12,22 +12,28 @@ class ProfileForm extends StatefulWidget {
   final Dio dio;
   final TextEditingController email;
   final TextEditingController username;
+  final TextEditingController phone_number;
 
-  const ProfileForm({this.dio, this.email, this.username, key})
+  const ProfileForm(
+      {this.dio, this.email, this.username, this.phone_number, key})
       : super(key: key);
 
   @override
-  _ProfileFormState createState() =>
-      _ProfileFormState(email: email, username: username);
+  _ProfileFormState createState() => _ProfileFormState(
+      email: email, username: username, phone_number: phone_number);
 }
 
 class _ProfileFormState extends State<ProfileForm> {
   final picker = ImagePicker();
-  final _formKey = GlobalKey<FormState>();
   final TextEditingController email;
   final TextEditingController username;
-  _ProfileFormState({this.email, this.username});
-
+  final TextEditingController phone_number;
+  final _formKey = GlobalKey<FormState>();
+  _ProfileFormState({
+    this.email,
+    this.username,
+    this.phone_number,
+  });
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,7 +41,7 @@ class _ProfileFormState extends State<ProfileForm> {
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.33,
+            height: size.height * 0.4,
             child: Form(
               key: _formKey,
               child: Column(
@@ -63,6 +69,17 @@ class _ProfileFormState extends State<ProfileForm> {
                       validator: FormValidation.validateEmail,
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: size.height * 0.025),
+                    child: CustomFormField(
+                      suffixIcon: false,
+                      obscureText: false,
+                      labelText: 'Telefone',
+                      controller: phone_number,
+                      icon: Icon(Icons.phone, color: Colors.black),
+                      validator: FormValidation.validatePhone,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -71,9 +88,10 @@ class _ProfileFormState extends State<ProfileForm> {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   if (actualUser.username != username.text ||
-                      actualUser.email != email.text) {
-                    ProfileServices.updateUser(
-                        widget.dio, username.text, email.text, context);
+                      actualUser.email != email.text ||
+                      actualUser.phone_number != phone_number.text) {
+                    ProfileServices.updateUser(widget.dio, username.text,
+                        email.text, phone_number.text, context);
                   }
                 }
               },
