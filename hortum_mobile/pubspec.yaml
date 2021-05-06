@@ -45,6 +45,8 @@ dev_dependencies:
   mockito: "4.1.4"
   network_image_mock: "1.1.0"
   test_coverage: ^0.4.2
+  flutter_driver:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
