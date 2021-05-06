@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/login/login_page.dart';
 
 class RegisterApi {
   Dio dio;
@@ -32,18 +31,24 @@ class RegisterApi {
 
     String _body = json.encode(params);
     if (isProductor == false) {
-      response = await this
-          .dio
-          .post(urlCustomer, data: _body, options: Options(headers: header));
+      response = await this.dio.post(urlCustomer,
+          data: _body,
+          options: Options(
+            headers: header,
+            validateStatus: (status) {
+              return status <= 500;
+            },
+          ));
     } else {
       response = await dio.post(urlProductor,
-          data: _body, options: Options(headers: header));
+          data: _body,
+          options: Options(
+            headers: header,
+            validateStatus: (status) {
+              return status <= 500;
+            },
+          ));
     }
-    if (response.statusCode == 201) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return LoginPage();
-      }));
-    }
-    // else {}
+    return response;
   }
 }
