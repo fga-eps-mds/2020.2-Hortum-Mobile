@@ -11,6 +11,7 @@ void main() {
         password: "Senha123",
         username: "Usuário Teste",
         tokenAccess: "TokendeAcesso",
+        profile_picture: "http://localhost:8000/images/perfil.jpg",
         tokenRefresh: "TokendeRefresh");
   });
 
@@ -20,6 +21,7 @@ void main() {
     json['email'] = "emailteste@email.com";
     json['username'] = "Usuário Teste";
     json['password'] = "Senha123";
+    json['profile_picture'] = "http://localhost:8000/images/perfil.jpg";
     json['refresh'] = "TokendeRefresh";
     json['access'] = "TokendeAcesso";
     User result = User.fromJson(json);

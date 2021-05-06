@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -14,12 +15,14 @@ main() {
   List<dynamic> response = [
     {
       "username": "Usuário Teste",
-      "idPictureProductor": null,
+      "pictureProductor": "http://localhost:8000/images/perfil.jpg",
       "name": "Anúncio Teste",
       "type_of_product": "Abelhas",
       "description": "Abelhas",
       "price": 10.0,
-      "idPicture": null
+      "images": [
+        {"picture": "http://localhost:8000/images/perfil.jpg"}
+      ]
     }
   ];
 
@@ -36,9 +39,11 @@ main() {
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      await tester.pump();
-      expect(find.text('Anúncio Teste'), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.pump();
+        expect(find.text('Anúncio Teste'), findsOneWidget);
+      });
     });
 
     testWidgets('Testing the state when response is empty on CustomerHomePage',
@@ -73,7 +78,7 @@ main() {
         {
           "username": "Usuário Teste",
           "email": "email@email.com",
-          "idPicture": null
+          "profile_picture": 'http://localhost:8000/images/perfil.jpg'
         }
       ];
       actualUser.isProductor = false;
@@ -86,11 +91,13 @@ main() {
               options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: productorsResponse, requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.cached));
-      await tester.pump();
-      await tester.pump();
-      expect(find.byKey(Key('Usuário Teste key')), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.byIcon(Icons.cached));
+        await tester.pump();
+        await tester.pump();
+        expect(find.byKey(Key('Usuário Teste key')), findsOneWidget);
+      });
     });
 
     testWidgets('Testing an empty list of productors on CustomerHomePage',

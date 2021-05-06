@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,6 +8,8 @@ import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/register_complaint/services/complaint_services.dart';
 import 'package:mockito/mockito.dart';
 import 'dart:convert';
+
+import 'package:network_image_mock/network_image_mock.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -61,25 +65,30 @@ main() {
               requestOptions: null,
               statusCode: 400));
 
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byKey(Key('botão')));
-      await tester.pump();
-      await tester.tap(find.byKey(Key('okButton')));
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.byKey(Key('botão')));
+        await tester.pump();
+        await tester.tap(find.byKey(Key('okButton')));
 
-      expect(find.byKey(Key('complaintAlreadyExists')), findsOneWidget);
+        expect(find.byKey(Key('complaintAlreadyExists')), findsOneWidget);
+      });
     });
 
     testWidgets('Return to CustomerHomePage', (WidgetTester tester) async {
+      complaint_picture = null;
       String responseMatcher1 = "";
       List<dynamic> responseMatcher2 = [
         {
           "username": "Usuário Teste",
-          "idPictureProductor": null,
+          "pictureProductor": "http://localhost:8000/images/perfil.jpg",
           "name": "Anúncio Teste",
           "type_of_product": "Abelhas",
           "description": "Abelhas",
           "price": 10.0,
-          "idPicture": null
+          "images": [
+            {"picture": "http://localhost:8000/images/perfil.jpg"}
+          ]
         }
       ];
 
@@ -92,11 +101,13 @@ main() {
       when(dio.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: responseMatcher2, requestOptions: null));
 
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byKey(Key('botão')));
-      await tester.pump();
-      await tester.pump();
-      expect(find.byType(CustomerHomePage), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.byKey(Key('botão')));
+        await tester.pump();
+        await tester.pump();
+        expect(find.byKey(Key('categoryCarr')), findsOneWidget);
+      });
     });
   });
 }

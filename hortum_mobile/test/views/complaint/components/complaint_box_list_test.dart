@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/data/complaint_data_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/complaint/components/list_complaints.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,7 @@ main() {
       {
         'author': "user",
         'description': 'description',
+        'image': 'http://localhost:8000/images/perfil.jpg'
       }
     ];
 
@@ -29,8 +31,10 @@ main() {
         );
       }
 
-      await tester.pumpWidget(makeTestable());
-      expect(find.byKey(Key('containerComplaintBox')), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        expect(find.byKey(Key('containerComplaintBox')), findsOneWidget);
+      });
     });
   });
 }

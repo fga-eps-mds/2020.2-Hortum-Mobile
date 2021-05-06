@@ -16,6 +16,7 @@ main() {
   actualUser.email = 'user@user.com';
   actualUser.username = "user";
   actualUser.tokenAccess = 'token';
+  controllerPicture.newPictureNotifier.value = null;
 
   group('Testing ProfileServices:', () {
     Widget makeTestable() {
@@ -36,7 +37,7 @@ main() {
 
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(Key('salvarButton')));
-      await tester.pump();
+      await tester.pumpAndSettle();
       expect(find.byKey(Key('emailJaExistente')), findsOneWidget);
     });
 

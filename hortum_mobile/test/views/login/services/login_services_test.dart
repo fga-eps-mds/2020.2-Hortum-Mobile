@@ -64,6 +64,7 @@ main() {
           'tokenAccess': 'abc',
           'tokenRefresh': 'cba',
           'username': 'teste',
+          'profile_picture': 'http://localhost:8000/images/perfil.jpg',
           'is_productor': false,
         };
 
@@ -85,6 +86,7 @@ main() {
           'tokenAccess': 'abc',
           'tokenRefresh': 'cba',
           'username': 'teste',
+          'profile_picture': 'http://localhost:8000/images/perfil.jpg',
           'is_productor': true,
         };
 

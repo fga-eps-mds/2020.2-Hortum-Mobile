@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/views/productor_details/services/productor_details_services.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 main() {
   dynamic param = [
     {
       "email": "email@gmail.com",
       "username": "Usuário Teste",
-      "idPictureProductor": null,
+      "pictureProductor": './assets/images/profile.jpg',
       "name": "Anúncio Teste",
       "type_of_product": "Alface",
       "description": "Alface da fazenda",
       "price": 15.0,
-      "idPicture": null,
+      "images": [
+        {"picture": "http://localhost:8000/images/perfil.jpg"}
+      ],
       "likes": 0
     }
   ];
@@ -22,8 +25,10 @@ main() {
     Widget result = ProductorDetaislService.completeAnnouncements(
         param, Size(360.0, 692.0));
     Widget pump = MaterialApp(home: result);
-    await tester.pumpWidget(pump);
-    expect(find.byKey(Key('columnAnnoun')), findsOneWidget);
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(pump);
+      expect(find.byKey(Key('columnAnnoun')), findsOneWidget);
+    });
   });
 
   testWidgets(
