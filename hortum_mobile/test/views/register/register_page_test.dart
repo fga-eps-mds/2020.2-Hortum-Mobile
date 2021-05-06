@@ -24,36 +24,9 @@ main() {
             (_) async => Response(requestOptions: null, statusCode: 201));
     await tester.pumpWidget(makeTestable(false));
     await tester.pump();
-    await tester.enterText(find.byType(CustomFormField).at(0), 'Consumidor');
-    await tester.enterText(
-        find.byType(CustomFormField).at(1), 'consumidor@gmail.com');
-    await tester.enterText(find.byType(CustomFormField).at(2), '12345');
-    await tester.enterText(find.byType(CustomFormField).at(3), '12345');
-    await tester.enterText(find.byType(CustomFormField).at(4), '12345678910');
-    await tester.tap(find.byType(ConfirmButton));
+    expect(find.byType(CustomFormField), findsNWidgets(4));
+    expect(find.byType(ConfirmButton), findsOneWidget);
     await tester.pumpAndSettle();
-
-    expect(find.text('ENTRAR'), findsOneWidget);
-  });
-
-  testWidgets('Testing Register confirm button for productor',
-      (WidgetTester tester) async {
-    when(dioMock.post(any,
-            data: anyNamed('data'), options: anyNamed('options')))
-        .thenAnswer(
-            (_) async => Response(requestOptions: null, statusCode: 201));
-    await tester.pumpWidget(makeTestable(true));
-    await tester.pump();
-    await tester.enterText(find.byType(CustomFormField).at(0), 'Produtor');
-    await tester.enterText(
-        find.byType(CustomFormField).at(1), 'produtor@gmail.com');
-    await tester.enterText(find.byType(CustomFormField).at(2), '12345');
-    await tester.enterText(find.byType(CustomFormField).at(3), '12345');
-    await tester.enterText(find.byType(CustomFormField).at(4), '12345678910');
-    await tester.tap(find.byType(ConfirmButton));
-    await tester.pumpAndSettle();
-
-    expect(find.text('ENTRAR'), findsOneWidget);
   });
 
   testWidgets('Testing if RegisterPage renders correctly',
