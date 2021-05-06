@@ -4,7 +4,6 @@ import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/profile/components/advanced_settings_button.dart';
 import 'package:hortum_mobile/views/profile/services/profile_services.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../globals.dart';
 
@@ -22,7 +21,6 @@ class ProfileForm extends StatefulWidget {
 }
 
 class _ProfileFormState extends State<ProfileForm> {
-  final picker = ImagePicker();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController email;
   final TextEditingController username;

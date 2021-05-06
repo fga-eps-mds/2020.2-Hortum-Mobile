@@ -31,7 +31,6 @@ class AnnouncementBox extends StatefulWidget {
 class _AnnouncementBoxState extends State<AnnouncementBox> {
   @override
   Widget build(BuildContext context) {
-    print(widget.productPic);
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),

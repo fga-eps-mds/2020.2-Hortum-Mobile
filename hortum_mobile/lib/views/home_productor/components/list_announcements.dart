@@ -17,7 +17,6 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
   @override
   Widget build(BuildContext context) {
     List announcements = widget.announProd.announcements;
-    print(announcements);
     Size size = MediaQuery.of(context).size;
     return Container(
         alignment: Alignment.topCenter,
