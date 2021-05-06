@@ -78,7 +78,7 @@ String announErrorFormart(String responseMsg) {
   if (responseMsg ==
       ("{phone_number: [user with this phone number already exists.]}"))
     return 'Telefone já cadastrado!';
-  else if (responseMsg == ("{email: [user with this email already exists.]}"))
+  else if (responseMsg == ("{email: [Email ja registrado!]}"))
     return 'Email já cadastrado!';
   else
     return 'Email e telefone já cadastrados!';
