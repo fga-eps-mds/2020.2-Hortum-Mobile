@@ -23,17 +23,22 @@ class UserAPI {
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
-    Map params = {
+    String path = controllerPicture.newPictureNotifier.value.path;
+    var params = {
       "username": username,
       "email": email,
+      "profile_picture":
+          await MultipartFile.fromFile(path, filename: path.split('/').last)
     };
     params.removeWhere((key, value) => value == null);
 
-    String _body = json.encode(params);
+    FormData body = FormData.fromMap(params);
+
     Response response = await dio.patch(url,
-        data: _body,
+        data: body,
         options: Options(
           headers: header,
+          contentType: 'multipart/form-data',
           validateStatus: (status) {
             return status <= 500;
           },

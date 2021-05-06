@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hortum_mobile/globals.dart';
 
 class User {
   String tokenRefresh;
@@ -7,6 +8,7 @@ class User {
   String username;
   String password;
   bool isProductor;
+  String profile_picture;
   final _storage = new FlutterSecureStorage();
 
   User(
@@ -15,7 +17,8 @@ class User {
       this.email,
       this.username,
       this.password,
-      this.isProductor});
+      this.isProductor,
+      this.profile_picture});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -24,6 +27,7 @@ class User {
         email: json['email'],
         username: json['username'],
         password: json['password'],
+        profile_picture: "http://$ip:8000" + json['profile_picture'],
         isProductor: json['is_productor']);
   }
 
@@ -37,6 +41,7 @@ class User {
     username = null;
     password = null;
     isProductor = null;
+    profile_picture = null;
   }
 
   void updateToken(String newToken) {
@@ -47,6 +52,7 @@ class User {
   void initAutoLogin(bool isProductor, String username) async {
     this.isProductor = isProductor;
     this.username = username;
+    this.profile_picture = profile_picture;
     this.email = await this.readSecureData('email');
     this.tokenAccess = await this.readSecureData('token_access');
   }
