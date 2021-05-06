@@ -22,11 +22,10 @@ class ForgetPassword extends StatelessWidget {
               key: Key('dialogForgetPassword'),
               insetPadding: EdgeInsets.only(
                   left: size.width * 0.04, right: size.width * 0.04),
-              contentPadding: EdgeInsets.only(
-                  left: size.width * 0.05,
-                  right: size.width * 0.05,
-                  bottom: size.height * 0.03,
-                  top: size.height * 0.03),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.05,
+                vertical: size.height * 0.03,
+              ),
               content: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
