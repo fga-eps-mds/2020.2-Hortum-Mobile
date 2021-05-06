@@ -17,18 +17,20 @@ class UserAPI {
   Future updateUser({String username, String email}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url = 'http://$ip:8000/users/update/';
+    String path = null;
 
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
-
-    String path = controllerPicture.newPictureNotifier.value.path;
+    if (controllerPicture.newPictureNotifier.value != null)
+      path = controllerPicture.newPictureNotifier.value.path;
     var params = {
       "username": username,
       "email": email,
-      "profile_picture":
-          await MultipartFile.fromFile(path, filename: path.split('/').last)
+      "profile_picture": path != null
+          ? await MultipartFile.fromFile(path, filename: path.split('/').last)
+          : path
     };
     params.removeWhere((key, value) => value == null);
 

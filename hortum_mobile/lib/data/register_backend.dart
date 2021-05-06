@@ -18,16 +18,20 @@ class RegisterApi {
     String urlCustomer = 'http://$ip:8000/signup/customer/';
     String urlProductor = 'http://$ip:8000/signup/productor/';
     Response response;
+    String filename;
 
     var header = {"Content-Type": "application/json"};
 
-    String filename = profile_picture.path.split('/').last;
+    if (profile_picture != null)
+      filename = profile_picture.path.split('/').last;
     var params = FormData.fromMap({
       "user.username": username,
       "user.email": email,
       "user.password": password,
-      "user.profile_picture":
-          await MultipartFile.fromFile(profile_picture.path, filename: filename)
+      "user.profile_picture": profile_picture != null
+          ? await MultipartFile.fromFile(profile_picture.path,
+              filename: filename)
+          : null
     });
 
     if (isProductor == false) {

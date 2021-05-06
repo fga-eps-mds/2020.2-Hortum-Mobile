@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
 
@@ -46,8 +45,10 @@ class ComplaintDataAPI {
       "author": name,
       "description": description,
       "emailProductor": emailProductor,
-      "image": await MultipartFile.fromFile(complaint_picture.path,
-          filename: complaint_picture.path.split('/').last)
+      "image": complaint_picture != null
+          ? await MultipartFile.fromFile(complaint_picture.path,
+              filename: complaint_picture.path.split('/').last)
+          : null
     };
 
     FormData body = FormData.fromMap(params);
