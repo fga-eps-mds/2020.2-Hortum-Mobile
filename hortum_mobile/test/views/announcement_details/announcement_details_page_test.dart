@@ -13,7 +13,7 @@ main() {
   String name = 'Victor';
   String title = 'titulo';
   String productPic = 'assets/images/banana.jpg';
-  List<String> localizations = ['localizacao', 'localizacao dois'];
+  List localizations = ['localizacao', 'localizacao dois'];
   String price = '15.00';
   String description = 'descricao';
   String email = 'victor@gmail.com';
@@ -40,7 +40,7 @@ main() {
       expect(find.byType(PriceContainer), findsOneWidget);
       expect(find.byType(LocalizationContainer), findsOneWidget);
       expect(find.byType(CustomCarrousel), findsOneWidget);
-      expect(find.byType(MaterialButton), findsNWidgets(6));
+      expect(find.byType(MaterialButton), findsNWidgets(7));
     });
     testWidgets('Testing the Return Button', (WidgetTester tester) async {
       actualUser.tokenAccess = 'token';

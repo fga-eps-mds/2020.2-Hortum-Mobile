@@ -21,7 +21,8 @@ main() {
       "type_of_product": "Abelhas",
       "description": "Abelhas",
       "price": 10.0,
-      "idPicture": null
+      "idPicture": null,
+      "localizations": ["Lugar", "Outro Lugar"]
     }
   ];
 
@@ -34,7 +35,8 @@ main() {
         "type_of_product": "Banana",
         "description": "Descrição teste",
         "price": 15.0,
-        "idPicture": null
+        "idPicture": null,
+        "localizations": ["Lugar", "Outro Lugar"]
       };
 
       announcementsApi.announcements.add(element);
@@ -47,7 +49,8 @@ main() {
         "type_of_product": "Banana",
         "description": "Descrição teste",
         "price": "R\$ 15,00",
-        "idPicture": null
+        "idPicture": null,
+        "localizations": ["Lugar", "Outro Lugar"]
       };
       expect(result, announcementsApi.announcements[0]);
     });
@@ -71,7 +74,8 @@ main() {
           "type_of_product": "Abelhas",
           "description": "Abelhas",
           "price": 10.0,
-          "idPicture": null
+          "idPicture": null,
+          "localizations": ["Lugar", "Outro Lugar"]
         }
       ];
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
@@ -142,7 +146,7 @@ main() {
       "description": "Decrição de anúncio teste",
       "price": 15.0,
       "type_of_product": "Alface",
-      "localizations": []
+      "localizations": [TextEditingController(text: "Lugar")]
     };
     test('Testing the method registerAnnoun on RegisterAnnounApi', () async {
       actualUser.tokenAccess = 'token';

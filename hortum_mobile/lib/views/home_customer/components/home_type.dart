@@ -28,6 +28,7 @@ class _HomeTypeState extends State<HomeType> {
         Container(
           width: size.height * 0.14,
           child: OutlinedButton(
+            key: Key('announButton'),
             style: ElevatedButton.styleFrom(
               primary: widget.type == "name"
                   ? Color.fromARGB(0xFF, 189, 225, 183)
@@ -54,6 +55,7 @@ class _HomeTypeState extends State<HomeType> {
         Container(
           width: size.height * 0.14,
           child: OutlinedButton(
+            key: Key('productorButton'),
             style: ElevatedButton.styleFrom(
               primary: widget.type == "Produc"
                   ? Color.fromARGB(0xFF, 189, 225, 183)
@@ -78,6 +80,7 @@ class _HomeTypeState extends State<HomeType> {
         Container(
           width: size.height * 0.14,
           child: OutlinedButton(
+            key: Key('localizationButton'),
             style: ElevatedButton.styleFrom(
               primary: widget.type == "localizations__adress"
                   ? Color.fromARGB(0xFF, 189, 225, 183)

@@ -79,7 +79,8 @@ main() {
           "type_of_product": "Abelhas",
           "description": "Abelhas",
           "price": 10.0,
-          "idPicture": null
+          "idPicture": null,
+          "localizations": ["Lugar", "Outro Lugar"]
         }
       ];
 
