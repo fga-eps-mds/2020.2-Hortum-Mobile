@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/login/login_page.dart';
 
 class RegisterApi {
   Dio dio;
@@ -14,7 +13,7 @@ class RegisterApi {
   }
 
   Future register(String username, String email, String password,
-      bool isProductor, BuildContext context) async {
+      String telefone, bool isProductor, BuildContext context) async {
     String urlCustomer = 'http://$ip:8000/signup/customer/';
     String urlProductor = 'http://$ip:8000/signup/productor/';
     Response response;
@@ -28,6 +27,7 @@ class RegisterApi {
       "user.username": username,
       "user.email": email,
       "user.password": password,
+      "user.phone_number": telefone,
       "user.profile_picture": profile_picture != null
           ? await MultipartFile.fromFile(profile_picture.path,
               filename: filename)
@@ -37,19 +37,22 @@ class RegisterApi {
     if (isProductor == false) {
       response = await this.dio.post(urlCustomer,
           data: params,
-          options:
-              Options(headers: header, contentType: 'multipart/form-data'));
+          options: Options(
+              headers: header,
+              validateStatus: (status) {
+                return status <= 500;
+              },
+              contentType: 'multipart/form-data'));
     } else {
       response = await dio.post(urlProductor,
           data: params,
-          options:
-              Options(headers: header, contentType: 'multipart/form-data'));
+          options: Options(
+              headers: header,
+              validateStatus: (status) {
+                return status <= 500;
+              },
+              contentType: 'multipart/form-data'));
     }
-    if (response.statusCode == 201) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return LoginPage();
-      }));
-    }
-    // else {}
+    return response;
   }
 }

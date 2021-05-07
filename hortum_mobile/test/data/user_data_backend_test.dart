@@ -37,9 +37,10 @@ main() {
               data: jsonEncode(responseMatcher),
               requestOptions: null,
               statusCode: 200));
-      int responseActual = await userAPI.updateUser(email: '', username: '');
+      Response responseActual =
+          await userAPI.updateUser(email: '', username: '');
 
-      expect(responseActual, 200);
+      expect(responseActual.statusCode, 200);
     });
 
     test('Delete User Successful', () async {

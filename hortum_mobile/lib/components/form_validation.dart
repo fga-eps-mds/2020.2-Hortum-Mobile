@@ -40,6 +40,19 @@ class FormValidation {
     return null;
   }
 
+  static String validatePhone(String value) {
+    String patttern = r'(^[0-9]*$)';
+    RegExp regExp = new RegExp(patttern);
+    if (value.length == 0) {
+      return "Informe o celular";
+    } else if (value.length != 11) {
+      return "O celular deve ter 11 dígitos";
+    } else if (!regExp.hasMatch(value)) {
+      return "O número do celular só deve conter dígitos";
+    }
+    return null;
+  }
+
   static String validateDescription(String value) {
     if (value.length == 0) {
       return "Informe a descrição";

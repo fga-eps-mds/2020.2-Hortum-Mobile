@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="hortum_mobile"
+        android:label="Hortum"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
