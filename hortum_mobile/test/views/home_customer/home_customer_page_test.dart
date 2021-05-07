@@ -56,7 +56,8 @@ main() {
           findsOneWidget);
     });
 
-    testWidgets('Testing the change from announcements to productors',
+    testWidgets(
+        'Testing the change from announcements to productors and return to announcements',
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
@@ -68,6 +69,11 @@ main() {
       ));
       await tester.pumpAndSettle();
       expect(find.byKey(Key('productorsBox')), findsOneWidget);
+      await tester.tap(find.byKey(
+        Key('announButton'),
+      ));
+      await tester.pump();
+      expect(find.byKey(Key('spin')), findsOneWidget);
     });
 
     testWidgets('Testing the productors list on CustomerHomePage',
