@@ -8,11 +8,13 @@ class ButtonsRow extends StatefulWidget {
   final List localization;
   final String price;
   final String category;
+  final String image;
 
   const ButtonsRow(
       {@required this.title,
       @required this.description,
       @required this.price,
+      @required this.image,
       @required this.localization,
       @required this.category,
       Key key})
@@ -84,6 +86,7 @@ class _ButtonRowState extends State<ButtonsRow> {
                     description: description,
                     price: price,
                     localization: localization,
+                    image: widget.image,
                     category: category,
                     originaltitle: widget.title,
                   );

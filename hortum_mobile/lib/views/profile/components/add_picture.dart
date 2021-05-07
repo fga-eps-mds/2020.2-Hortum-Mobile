@@ -5,6 +5,10 @@ import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/services/upload_image.dart';
 
 class AddPictureButton extends StatefulWidget {
+  final bool isProfilePicture;
+
+  const AddPictureButton({@required this.isProfilePicture});
+
   @override
   _AddPictureButtonState createState() => _AddPictureButtonState();
 }
@@ -26,9 +30,15 @@ class _AddPictureButtonState extends State<AddPictureButton> {
         child: MaterialButton(
           padding: EdgeInsets.all(0),
           onPressed: () async {
-            images = await UploadImage.uploadImage(1);
-            profile_picture = images[0];
-            controllerPicture.newPictureNotifier.value = profile_picture;
+            if (widget.isProfilePicture) {
+              images = await UploadImage.uploadImage(1);
+              profile_picture = images[0];
+              controllerPicture.newPictureNotifier.value = profile_picture;
+            } else {
+              images = await UploadImage.uploadImage(5);
+              announImages = images;
+              controllerPicture.newPictureAnnounNotifier.value = images[0];
+            }
           },
           child: Icon(
             Icons.add_photo_alternate,
