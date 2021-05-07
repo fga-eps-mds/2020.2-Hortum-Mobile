@@ -19,6 +19,7 @@ class EditPage extends StatefulWidget {
   final TextEditingController price;
   final TextEditingController category;
   final String originaltitle;
+  final String image;
 
   const EditPage(
       {@required this.title,
@@ -27,6 +28,7 @@ class EditPage extends StatefulWidget {
       @required this.localization,
       @required this.category,
       @required this.originaltitle,
+      @required this.image,
       this.dio,
       Key key})
       : super(key: key);
@@ -76,7 +78,7 @@ class _EditPageState extends State<EditPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EditPicture(),
+                    EditPicture(image: widget.image),
                     CustomFormField(
                         suffixIcon: false,
                         labelText: 'Titulo',
@@ -199,7 +201,7 @@ class _EditPageState extends State<EditPage> {
                 ),
               ),
             ),
-            AddPictureButton(),
+            AddPictureButton(isProfilePicture: false),
           ],
         ),
       ),

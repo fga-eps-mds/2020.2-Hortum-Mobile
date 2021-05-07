@@ -33,6 +33,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         title: announcements[index]['name'],
                         localization: announcements[index]['localizations'],
                         price: announcements[index]['price'],
+                        image: announcements[index]['images'][0]['picture'],
                         description: announcements[index]['description'],
                         category: announcements[index]['type_of_product']),
                     AnnouncementBox(
