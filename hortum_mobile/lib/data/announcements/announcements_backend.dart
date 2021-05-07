@@ -110,7 +110,6 @@ class AnnouncementsApi {
     String url = 'http://$ip:8000/announcement/update/$nomeOriginal';
 
     var header = {
-      "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
@@ -122,7 +121,7 @@ class AnnouncementsApi {
       index++;
     });
 
-    Map params = {
+    var map = {
       "name": name,
       "description": description,
       "price": price,
@@ -130,14 +129,23 @@ class AnnouncementsApi {
       "inventory": inventory,
       "localizations": localizacao
     };
-    params.removeWhere((key, value) => value == null);
+    map.removeWhere((key, value) => value == null);
 
-    String _body = json.encode(params);
+    var params = FormData.fromMap(map);
+
+    for (File item in announImages) {
+      String filename = item.path.split('/').last;
+      params.files.addAll([
+        MapEntry("images",
+            await MultipartFile.fromFile(item.path, filename: filename)),
+      ]);
+    }
 
     var response = await dio.patch(url,
-        data: _body,
+        data: params,
         options: Options(
           headers: header,
+          contentType: 'multipart/form-data',
           validateStatus: (status) {
             return status <= 500;
           },
