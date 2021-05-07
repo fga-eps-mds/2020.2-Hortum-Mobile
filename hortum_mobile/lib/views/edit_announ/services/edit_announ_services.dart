@@ -11,6 +11,7 @@ class ChangeServices {
       double precoDouble,
       String category,
       String description,
+      List localizations,
       BuildContext context) async {
     final AnnouncementsApi announcementsApi = AnnouncementsApi(dio);
     if (title == originalTitle) title = null;
@@ -18,7 +19,8 @@ class ChangeServices {
         name: title,
         price: precoDouble,
         category: category,
-        description: description);
+        description: description,
+        localizations: localizations);
     if (response.statusCode != 200) {
       showDialog(
         context: context,
