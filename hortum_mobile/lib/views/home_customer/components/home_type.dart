@@ -29,7 +29,7 @@ class _HomeTypeState extends State<HomeType> {
           width: size.height * 0.14,
           child: OutlinedButton(
             style: ElevatedButton.styleFrom(
-              primary: widget.type == "Announ"
+              primary: widget.type == "name"
                   ? Color.fromARGB(0xFF, 189, 225, 183)
                   : Colors.white,
               side: BorderSide(
@@ -79,7 +79,7 @@ class _HomeTypeState extends State<HomeType> {
           width: size.height * 0.14,
           child: OutlinedButton(
             style: ElevatedButton.styleFrom(
-              primary: widget.type == "Local"
+              primary: widget.type == "localizations__adress"
                   ? Color.fromARGB(0xFF, 189, 225, 183)
                   : Colors.white,
               side: BorderSide(

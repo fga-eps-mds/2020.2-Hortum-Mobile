@@ -14,13 +14,13 @@ class AnnouncementsApi {
       this.dio = client;
   }
 
-  Future getAnnoun(String filter) async {
+  Future getAnnoun(String filter, String type) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url;
     if (filter.isEmpty)
       url = 'http://$ip:8000/announcement/list';
     else
-      url = 'http://$ip:8000/announcement/list/${filter}';
+      url = 'http://$ip:8000/announcement/list/?filter=${type}&value=${filter}';
 
     var header = {
       "Content-Type": "application/json",

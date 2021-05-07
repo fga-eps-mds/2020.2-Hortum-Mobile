@@ -22,7 +22,7 @@ class CustomerHomePage extends StatefulWidget {
 
 class _CustomerHomePageState extends State<CustomerHomePage> {
   final TextEditingController _filter = TextEditingController();
-  String type = "Announ";
+  String type = "name";
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   HomeType(
                     type: type,
                     onPressedAnnoun: () {
-                      this.type = "Announ";
+                      this.type = "name";
                       setState(() {});
                     },
                     onPressedProduc: () {
@@ -69,12 +69,13 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                       setState(() {});
                     },
                     onPressedLocal: () {
-                      this.type = "Local";
+                      this.type = "localizations__adress";
                       setState(() {});
                     },
                   ),
                   snapshot.connectionState == ConnectionState.done
-                      ? (this.type == "Announ" || this.type == "Local")
+                      ? (this.type == "name" ||
+                              this.type == "localizations__adress")
                           ? AnnouncementsList(announData: announcementsApi)
                           : ProductorsList(productorsData: productorsData)
                       : SpinWidget(margin: size.height * 0.25),

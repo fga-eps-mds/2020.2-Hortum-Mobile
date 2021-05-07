@@ -56,7 +56,7 @@ main() {
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await announcementsApi.getAnnoun('');
+      await announcementsApi.getAnnoun('', '');
       expect(announcementsApi.announcements, response);
     });
 
@@ -75,7 +75,7 @@ main() {
       ];
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await announcementsApi.getAnnoun('Banana');
+      await announcementsApi.getAnnoun('Banana', 'name');
       expect(announcementsApi.announcements, response);
     });
 
