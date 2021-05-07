@@ -139,7 +139,7 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                               widget.description,
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 12,
+                                  fontSize: 13.5,
                                   fontFamily: 'Comfortaa-Regular',
                                   letterSpacing: -0.33,
                                   fontWeight: FontWeight.w300),
