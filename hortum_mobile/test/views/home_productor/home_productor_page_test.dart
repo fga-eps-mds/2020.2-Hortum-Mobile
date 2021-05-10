@@ -22,7 +22,7 @@ main() {
       "price": 5.0,
       "idPicture": null,
       "likes": 0,
-      "localizations": []
+      "localizations": ["Lugar", "Outro lugar"]
     },
   ];
 
