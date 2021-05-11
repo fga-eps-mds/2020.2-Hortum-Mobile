@@ -11,6 +11,7 @@ void main() {
         password: "Senha123",
         username: "Usuário Teste",
         tokenAccess: "TokendeAcesso",
+        phone_number: "12345678910",
         profile_picture: "http://localhost:8000/images/perfil.jpg",
         tokenRefresh: "TokendeRefresh");
   });
@@ -24,6 +25,7 @@ void main() {
     json['profile_picture'] = "http://localhost:8000/images/perfil.jpg";
     json['refresh'] = "TokendeRefresh";
     json['access'] = "TokendeAcesso";
+    json['phone_number'] = "12345678910";
     User result = User.fromJson(json);
     expect(result, user);
   });
@@ -31,10 +33,12 @@ void main() {
   test('Testing initAutoLogin method', () {
     user.email = 'consumidor@email.com';
     user.tokenAccess = 'tokenAcesso';
+    user.phone_number = '12345678910';
     user.initAutoLogin(false, 'Consumidor');
     expect(user.isProductor, false);
     expect(user.username, 'Consumidor');
     expect(user.email, 'consumidor@email.com');
     expect(user.tokenAccess, 'tokenAcesso');
+    expect(user.phone_number, '12345678910');
   });
 }
