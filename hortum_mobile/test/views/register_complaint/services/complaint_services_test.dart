@@ -85,7 +85,8 @@ main() {
           "price": 10.0,
           "images": [
             {"picture": "http://localhost:8000/images/perfil.jpg"}
-          ]
+          ],
+          "localizations": ["Lugar", "Outro Lugar"]
         }
       ];
 

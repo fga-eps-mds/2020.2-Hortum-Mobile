@@ -25,7 +25,7 @@ main() {
         {"picture": "http://localhost:8000/images/perfil.jpg"}
       ],
       "likes": 0,
-      "localizations": []
+      "localizations": ["Lugar", "Outro lugar"]
     },
   ];
 

@@ -42,7 +42,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         name: announcements[index]['username'],
                         email: announcements[index]['email'],
                         title: announcements[index]['name'],
-                        localization: 'Asa Norte, 404 Feira Da Tarde',
+                        localizations: announcements[index]['localizations'],
                         price: announcements[index]['price'],
                         productPic: announcements[index]['images'])
                   ]);

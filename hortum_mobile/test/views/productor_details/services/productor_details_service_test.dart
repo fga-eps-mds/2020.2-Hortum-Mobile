@@ -16,7 +16,8 @@ main() {
       "images": [
         {"picture": "http://localhost:8000/images/perfil.jpg"}
       ],
-      "likes": 0
+      "likes": 0,
+      "localizations": ["Lugar", "Outro Lugar"]
     }
   ];
   testWidgets(

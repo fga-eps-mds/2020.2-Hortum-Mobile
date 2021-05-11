@@ -13,7 +13,7 @@ class ProductorDetaislService {
                   description: announcement['description'],
                   name: announcement['username'].toString().split(' ')[0],
                   title: announcement['name'],
-                  localization: 'Asa Norte Feira 404',
+                  localizations: announcement['localizations'],
                   price:
                       "R\$ ${announcement['price'].toStringAsFixed(2).replaceFirst('.', ',')}",
                   productPic: announcement['images']))
