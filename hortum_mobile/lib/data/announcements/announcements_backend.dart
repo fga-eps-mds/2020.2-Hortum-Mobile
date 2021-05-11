@@ -102,14 +102,16 @@ class AnnouncementsApi {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
+    String localizacao = null;
 
-    List<String> localizacao = [];
-
-    int index = 0;
-    localizations.forEach((element) {
-      localizacao.insert(index, element.text);
-      index++;
-    });
+    if (localizations != null) {
+      List<String> localizacao = [];
+      int index = 0;
+      localizations.forEach((element) {
+        localizacao.insert(index, element.text);
+        index++;
+      });
+    }
 
     Map params = {
       "name": name,
