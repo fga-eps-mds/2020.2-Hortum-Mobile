@@ -125,6 +125,7 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
                 labelButton: "SALVAR",
                 colorButton: Color(0xFFF49C00),
                 onClickAction: () {
+                  _preco.text = _preco.text.replaceAll(',', '.');
                   if (_formKey.currentState.validate()) {
                     if (_localizacao.isEmpty) {
                       showDialog(

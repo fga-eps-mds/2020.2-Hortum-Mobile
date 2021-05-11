@@ -161,6 +161,8 @@ class _EditPageState extends State<EditPage> {
                     MaterialButton(
                       key: Key('salvarAnnoun'),
                       onPressed: () {
+                        price.text = price.text.replaceAll('R\$ ', '');
+                        price.text = price.text.replaceAll(',', '.');
                         if (localization.isEmpty) {
                           showDialog(
                               context: context,
