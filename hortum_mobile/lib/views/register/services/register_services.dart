@@ -12,7 +12,7 @@ Future<void> resgisterUser(
     BuildContext context,
     RegisterApi registerApi) async {
   var response = await registerApi.register(
-      username, email, password, telefone, isProductor, context);
+      username, email, password, telefone, isProductor);
   if (response.statusCode != 201) {
     String msgError = announErrorFormart(response.data.toString());
     dialogErroCadastrado(msgError, context);

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
 
 class RegisterApi {
@@ -13,7 +12,7 @@ class RegisterApi {
   }
 
   Future register(String username, String email, String password,
-      String telefone, bool isProductor, BuildContext context) async {
+      String telefone, bool isProductor) async {
     String urlCustomer = 'http://$ip:8000/signup/customer/';
     String urlProductor = 'http://$ip:8000/signup/productor/';
     Response response;
