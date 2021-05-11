@@ -108,7 +108,9 @@ class AnnouncementsApi {
   }
 
   Future categoryAnnoun(String filter) async {
-    String url = 'http://$ip:8000/announcement/category/${filter}';
+    String type = 'type_of_product';
+    String url =
+        'http://$ip:8000/announcement/list/?filter=${type}&value=${filter}';
 
     var header = {
       "Content-Type": "application/json",
