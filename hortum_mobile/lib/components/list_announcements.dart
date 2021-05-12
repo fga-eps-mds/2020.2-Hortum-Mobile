@@ -5,9 +5,10 @@ import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 class AnnouncementsList extends StatefulWidget {
   final AnnouncementsApi announData;
   final String textNotFound;
+  final bool isHomePageCustomer;
 
   const AnnouncementsList(
-      {@required this.announData, @required this.textNotFound, Key key})
+      {@required this.announData, @required this.textNotFound, @required this.isHomePageCustomer,Key key})
       : super(key: key);
 
   @override
@@ -36,7 +37,8 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                       localizations: announcements[index]['localizations'],
                       price: announcements[index]['price'],
                       productPic: 'assets/images/banana.jpg',
-                      description: announcements[index]['description']);
+                      description: announcements[index]['description'],
+                      isHomePageCustomer: widget.isHomePageCustomer);
                 },
               )
             : Container(

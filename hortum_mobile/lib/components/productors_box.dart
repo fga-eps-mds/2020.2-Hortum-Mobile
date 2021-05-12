@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
-import 'package:hortum_mobile/views/favorites/fav_page.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
 class ProductorsBox extends StatefulWidget {
@@ -10,11 +9,13 @@ class ProductorsBox extends StatefulWidget {
   final String imageAsset;
   final String email;
   final Dio dio;
+  final bool isHomePageCustomer;
 
   const ProductorsBox(
       {@required this.name,
       this.imageAsset,
       @required this.email,
+      @required this.isHomePageCustomer,
       this.dio,
       Key key})
       : super(key: key);
@@ -23,6 +24,14 @@ class ProductorsBox extends StatefulWidget {
 }
 
 class _ProductorsBoxState extends State<ProductorsBox> {
+  bool isFavoriteProductor;
+
+  @override
+  // ignore: must_call_super
+  void initState() {
+    isFavoriteProductor = !widget.isHomePageCustomer;
+  }
+
   @override
   Widget build(BuildContext context) {
     ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
@@ -85,17 +94,13 @@ class _ProductorsBoxState extends State<ProductorsBox> {
               child: MaterialButton(
                 child: Icon(
                   Icons.thumb_up_alt_outlined,
-                  color: Colors.black,
+                  color: isFavoriteProductor ? Colors.red : Colors.black,
                 ),
                 onPressed: () async {
                   await favProductor.favProductor(widget.email);
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FavPage(
-                                isAnnouncement: false,
-                              )),
-                      (route) => true);
+                  setState(() {
+                    isFavoriteProductor = !isFavoriteProductor;
+                  });
                 },
               ),
             )

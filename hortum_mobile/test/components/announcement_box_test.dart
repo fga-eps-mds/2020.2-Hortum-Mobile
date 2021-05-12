@@ -26,6 +26,7 @@ main() {
         description: description,
         price: price,
         email: email,
+        isHomePageCustomer: true
       ));
     }
 

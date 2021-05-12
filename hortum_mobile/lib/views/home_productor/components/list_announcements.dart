@@ -43,7 +43,8 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         title: announcements[index]['name'],
                         localizations: announcements[index]['localizations'],
                         price: announcements[index]['price'],
-                        productPic: 'assets/images/banana.jpg')
+                        productPic: 'assets/images/banana.jpg',
+                        isHomePageCustomer: false)
                   ]);
                 },
               )

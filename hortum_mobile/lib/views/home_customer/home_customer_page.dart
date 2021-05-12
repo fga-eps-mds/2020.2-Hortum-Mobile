@@ -76,9 +76,9 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   snapshot.connectionState == ConnectionState.done
                       ? (this.type == "name" ||
                               this.type == "localizations__adress")
-                          ? AnnouncementsList(textNotFound:
+                          ? AnnouncementsList(isHomePageCustomer: true, textNotFound:
                                   "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",announData: announcementsApi)
-                          : ProductorsList(textNotFound:
+                          : ProductorsList(isHomePageCustomer: true,textNotFound:
                                   "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",productorsData: productorsData)
                       : SpinWidget(margin: size.height * 0.25),
                 ],

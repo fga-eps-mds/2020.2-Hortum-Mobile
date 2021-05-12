@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_favorite_backend.dart';
-import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/announcement_details/announcement_details_page.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
@@ -18,6 +16,7 @@ class AnnouncementBox extends StatefulWidget {
   final String email;
   final Dio dio;
   final String description;
+  final bool isHomePageCustomer;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -28,6 +27,7 @@ class AnnouncementBox extends StatefulWidget {
       @required this.productPic,
       @required this.email,
       @required this.description,
+      @required this.isHomePageCustomer,
       this.dio,
       Key key})
       : super(key: key);
@@ -36,6 +36,12 @@ class AnnouncementBox extends StatefulWidget {
 }
 
 class _AnnouncementBoxState extends State<AnnouncementBox> {
+  bool isFavoriteAnounc;
+
+  @override
+  // ignore: must_call_super
+  void initState() => isFavoriteAnounc = !widget.isHomePageCustomer;
+
   @override
   Widget build(BuildContext context) {
     String allLocalizations = widget.localizations[0];
@@ -44,7 +50,6 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
     }
     Size size = MediaQuery.of(context).size;
     AnnounFavAPI changeData = new AnnounFavAPI(widget.dio);
-    ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       width: size.width * 0.9,
@@ -113,6 +118,9 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                                 Material(
                                   child: IconButton(
                                     key: Key('favAnnoun'),
+                                    color: isFavoriteAnounc
+                                        ? Colors.red
+                                        : Colors.black,
                                     padding:
                                         EdgeInsets.all(size.height * 0.0008),
                                     constraints: BoxConstraints(
@@ -124,40 +132,12 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                                     onPressed: () async {
                                       await changeData.favAnnoun(
                                           widget.email, widget.title);
-                                      Fluttertoast.showToast(
-                                          msg: "Anúncio favoritado",
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.CENTER,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0);
+                                      setState(() {
+                                        isFavoriteAnounc = !isFavoriteAnounc;
+                                      });
                                     },
                                   ),
                                 ),
-                                Material(
-                                    child: IconButton(
-                                  key: Key('favProd'),
-                                  padding: EdgeInsets.all(size.height * 0.0008),
-                                  constraints: BoxConstraints(
-                                    minWidth: 0,
-                                    minHeight: 0,
-                                  ),
-                                  icon: Icon(Icons.thumb_up_alt_outlined,
-                                      size: 20),
-                                  onPressed: () async {
-                                    await favProductor
-                                        .favProductor(widget.email);
-                                    Fluttertoast.showToast(
-                                          msg: "Produtor favoritado",
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.CENTER,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0);
-                                  },
-                                ))
                               ],
                             ),
                         ],

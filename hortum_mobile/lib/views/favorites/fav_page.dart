@@ -63,22 +63,24 @@ class _FavPageState extends State<FavPage> {
                     snapshot.connectionState == ConnectionState.done
                         ? this.isAnnouncement
                             ? Container(
-                                height: size.height * 0.75,
+                                height: size.height * 0.7,
                                 margin:
                                     EdgeInsets.only(bottom: size.height * 0.55),
                                 child: AnnouncementsList(
                                   announData: announData,
+                                  isHomePageCustomer: false,
                                   textNotFound:
                                       "Nenhum favorito adicionado.\nAdicione tocando no curtir de alguma postagem!",
                                 ))
                             : Container(
-                                height: size.height * 0.75,
+                                height: size.height * 0.65,
                                 margin:
                                     EdgeInsets.only(bottom: size.height * 0.05),
                                 child: ProductorsList(
                                     textNotFound:
                                         "Nenhum produtor favorito adicionado.\nAdicione tocando no favoritar de alguma postagem!",
-                                    productorsData: productorsData))
+                                    productorsData: productorsData,
+                                    isHomePageCustomer: false))
                         : Container(
                             margin: EdgeInsets.only(top: size.height * 0.25),
                             child: SpinKitCircle(
