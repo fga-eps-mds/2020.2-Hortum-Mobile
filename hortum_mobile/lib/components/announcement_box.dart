@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announ_favorite_backend.dart';
 import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:hortum_mobile/views/favorites/fav_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/announcement_details/announcement_details_page.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
@@ -124,13 +124,14 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                                     onPressed: () async {
                                       await changeData.favAnnoun(
                                           widget.email, widget.title);
-                                      Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => FavPage(
-                                                    isAnnouncement: true,
-                                                  )),
-                                          (route) => true);
+                                      Fluttertoast.showToast(
+                                          msg: "Anúncio favoritado",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
                                     },
                                   ),
                                 ),
@@ -147,13 +148,14 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                                   onPressed: () async {
                                     await favProductor
                                         .favProductor(widget.email);
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => FavPage(
-                                                  isAnnouncement: false,
-                                                )),
-                                        (route) => true);
+                                    Fluttertoast.showToast(
+                                          msg: "Produtor favoritado",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
                                   },
                                 ))
                               ],
