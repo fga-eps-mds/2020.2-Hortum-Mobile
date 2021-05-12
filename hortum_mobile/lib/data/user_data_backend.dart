@@ -69,7 +69,7 @@ class UserAPI {
   }
 
   Future deleteUser(String password) async {
-    String url = 'ip/users/delete/';
+    String url = '$ip/users/delete/';
 
     var header = {
       "Content-Type": "application/json",
