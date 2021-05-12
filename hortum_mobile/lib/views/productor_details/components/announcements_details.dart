@@ -18,7 +18,7 @@ class _AnnouncementsDetailsState extends State<AnnouncementsDetails> {
     Size size = MediaQuery.of(context).size;
     return Container(
         width: size.width,
-        height: size.height * 0.47,
+        height: size.height * 0.5,
         child: ListView(
           children: [
             Column(
