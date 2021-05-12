@@ -16,7 +16,7 @@ class ProdLoggedAnnounDataApi {
 
   Future getAnnounProd() async {
     String encodedEmail = encodeString(actualUser.email);
-    String url = 'http://$ip:8000/announcement/retrieve/${encodedEmail}';
+    String url = '$ip/announcement/retrieve/${encodedEmail}';
 
     var header = {
       "Content-Type": "application/json",

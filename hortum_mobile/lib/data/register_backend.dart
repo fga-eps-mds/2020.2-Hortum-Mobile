@@ -14,8 +14,8 @@ class RegisterApi {
 
   Future register(String username, String email, String password,
       String telefone, bool isProductor, BuildContext context) async {
-    String urlCustomer = 'http://$ip:8000/signup/customer/';
-    String urlProductor = 'http://$ip:8000/signup/productor/';
+    String urlCustomer = '$ip/signup/customer/';
+    String urlProductor = '$ip/signup/productor/';
     Response response;
 
     var header = {"Content-Type": "application/json"};

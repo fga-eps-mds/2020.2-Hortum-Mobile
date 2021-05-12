@@ -17,7 +17,7 @@ class ComplaintDataAPI {
   Future listComplaint({String emailProductor}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
 
-    var url = 'http://$ip:8000/complaint/list/${emailProductor}';
+    var url = '$ip/complaint/list/${emailProductor}';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
@@ -36,7 +36,7 @@ class ComplaintDataAPI {
   Future registerComplaint(
       {String name, String description, String emailProductor}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var url = 'http://$ip:8000/complaint/create/';
+    var url = '$ip/complaint/create/';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,

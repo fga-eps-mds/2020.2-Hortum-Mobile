@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../globals.dart';
 
 class ForgetPassword extends StatelessWidget {
-  final url = 'http://$ip:8000/reset_password/';
+  final url = '$ip/reset_password/';
   ForgetPassword([Key key]) : super(key: key);
 
   @override

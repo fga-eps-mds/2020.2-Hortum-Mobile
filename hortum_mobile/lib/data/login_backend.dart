@@ -16,7 +16,7 @@ class LoginApi {
 
   Future login(String email, String password) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var url = 'http://$ip:8000/login/';
+    var url = '$ip/login/';
     var header = {"Content-Type": "application/json"};
 
     Map params = {
