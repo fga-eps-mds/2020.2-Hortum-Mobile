@@ -22,7 +22,7 @@ main() {
       actualUser.tokenAccess = 'token';
       actualUser.isProductor = true;
       await tester.pumpWidget(makeTestable());
-      expect(find.byType(CustomFormField), findsNWidgets(2));
+      expect(find.byType(CustomFormField), findsNWidgets(3));
       expect(find.byType(MaterialButton), findsNWidgets(2));
     });
   });

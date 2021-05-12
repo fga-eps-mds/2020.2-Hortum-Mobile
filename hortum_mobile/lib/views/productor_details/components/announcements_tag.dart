@@ -12,8 +12,7 @@ class AnnouncementTag extends StatelessWidget {
                   fontFamily: 'Comfortaa-Bold',
                   fontWeight: FontWeight.bold,
                   fontSize: size.height * 0.022))),
-      margin:
-          EdgeInsets.only(top: size.height * 0.05, bottom: size.height * 0.03),
+      margin: EdgeInsets.only(bottom: size.height * 0.03),
       width: size.width * 0.5,
       height: size.height * 0.04,
       decoration: BoxDecoration(

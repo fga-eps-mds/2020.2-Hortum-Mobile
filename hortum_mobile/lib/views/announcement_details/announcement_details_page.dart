@@ -11,7 +11,7 @@ class AnnouncementDetails extends StatefulWidget {
   final String profilePic;
   final String name;
   final String title;
-  final String localization;
+  final List localizations;
   final String price;
   final String productPic;
   final String description;
@@ -21,7 +21,7 @@ class AnnouncementDetails extends StatefulWidget {
       {@required this.profilePic,
       @required this.name,
       @required this.title,
-      @required this.localization,
+      @required this.localizations,
       @required this.price,
       @required this.productPic,
       @required this.description,
@@ -47,7 +47,7 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
               children: [
                 TitleButtonsRow(title: widget.title),
                 PriceContainer(price: widget.price),
-                LocalizationContainer(localization: widget.localization),
+                LocalizationContainer(localizations: widget.localizations),
                 Container(
                   padding: EdgeInsets.only(left: size.width * 0.08),
                   margin: EdgeInsets.only(bottom: size.height * 0.02),
@@ -139,7 +139,7 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                               widget.description,
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 12,
+                                  fontSize: 13.5,
                                   fontFamily: 'Comfortaa-Regular',
                                   letterSpacing: -0.33,
                                   fontWeight: FontWeight.w300),

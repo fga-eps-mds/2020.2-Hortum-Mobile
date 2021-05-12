@@ -28,7 +28,8 @@ main() {
         "description": "Abóbora Japonesa, unidade",
         "price": 6.9,
         "idPicture": null,
-        "likes": 1
+        "likes": 1,
+        "localizations": ["Lugar", "Outro Lugar"]
       },
       {
         "email": "usuario2@example.com",
@@ -39,7 +40,8 @@ main() {
         "description": "Amora Silvestre, dúzia",
         "price": 25.4,
         "idPicture": null,
-        "likes": 1
+        "likes": 1,
+        "localizations": ["Lugar", "Outro Lugar"]
       }
     ]
   };

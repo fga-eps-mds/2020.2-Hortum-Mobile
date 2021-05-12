@@ -14,7 +14,8 @@ main() {
       "description": "Alface da fazenda",
       "price": 15.0,
       "idPicture": null,
-      "likes": 0
+      "likes": 0,
+      "localizations": ["Lugar", "Outro Lugar"]
     }
   ];
   testWidgets(

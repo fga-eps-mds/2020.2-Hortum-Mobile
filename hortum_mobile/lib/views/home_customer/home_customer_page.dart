@@ -22,7 +22,7 @@ class CustomerHomePage extends StatefulWidget {
 
 class _CustomerHomePageState extends State<CustomerHomePage> {
   final TextEditingController _filter = TextEditingController();
-  bool isAnnouncements = true;
+  String type = "name";
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
 
     return FutureBuilder(
       future: HomeCustomerServices.populateData(
-          isAnnouncements, _filter.text, announcementsApi, productorsData),
+          type, _filter.text, announcementsApi, productorsData),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -59,23 +59,27 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                         controller: _filter,
                       )),
                   HomeType(
-                    isAnnouncements: isAnnouncements,
-                    onPressed: () {
-                      this.isAnnouncements = !this.isAnnouncements;
+                    type: type,
+                    onPressedAnnoun: () {
+                      this.type = "name";
+                      setState(() {});
+                    },
+                    onPressedProduc: () {
+                      this.type = "Produc";
+                      setState(() {});
+                    },
+                    onPressedLocal: () {
+                      this.type = "localizations__adress";
                       setState(() {});
                     },
                   ),
                   snapshot.connectionState == ConnectionState.done
-                      ? this.isAnnouncements
-                          ? AnnouncementsList(
-                              announData: announcementsApi,
-                              textNotFound:
-                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
-                            )
-                          : ProductorsList(
-                              textNotFound:
-                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
-                              productorsData: productorsData)
+                      ? (this.type == "name" ||
+                              this.type == "localizations__adress")
+                          ? AnnouncementsList(textNotFound:
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",announData: announcementsApi)
+                          : ProductorsList(textNotFound:
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",productorsData: productorsData)
                       : SpinWidget(margin: size.height * 0.25),
                 ],
               ),

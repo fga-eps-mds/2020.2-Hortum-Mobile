@@ -12,7 +12,7 @@ class AnnouncementBox extends StatefulWidget {
   final String profilePic;
   final String name;
   final String title;
-  final String localization;
+  final List localizations;
   final String price;
   final String productPic;
   final String email;
@@ -23,7 +23,7 @@ class AnnouncementBox extends StatefulWidget {
       {@required this.profilePic,
       @required this.name,
       @required this.title,
-      @required this.localization,
+      @required this.localizations,
       @required this.price,
       @required this.productPic,
       @required this.email,
@@ -38,6 +38,10 @@ class AnnouncementBox extends StatefulWidget {
 class _AnnouncementBoxState extends State<AnnouncementBox> {
   @override
   Widget build(BuildContext context) {
+    String allLocalizations = widget.localizations[0];
+    for (int i = 1; i < widget.localizations.length; i++) {
+      allLocalizations += ', ' + widget.localizations[i];
+    }
     Size size = MediaQuery.of(context).size;
     AnnounFavAPI changeData = new AnnounFavAPI(widget.dio);
     ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
@@ -170,7 +174,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                   return AnnouncementDetails(
                     email: widget.email,
                     description: widget.description,
-                    localization: widget.localization,
+                    localizations: widget.localizations,
                     name: widget.name,
                     price: widget.price,
                     productPic: widget.productPic,
@@ -214,8 +218,10 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                             ),
                             Container(
                               padding: EdgeInsets.all(5),
+                              width: size.width * 0.3,
+                              height: size.height * 0.05,
                               child: Text(
-                                widget.localization,
+                                allLocalizations,
                                 style: TextStyle(
                                     fontSize: 10,
                                     color: Colors.black.withOpacity(0.7)),

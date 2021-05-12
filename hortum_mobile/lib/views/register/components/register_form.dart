@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
-import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/components/form_field.dart';
+import 'package:hortum_mobile/views/register/services/register_services.dart';
 
 class RegisterForm extends StatefulWidget {
   final bool isProductor;
@@ -22,15 +22,15 @@ class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _confirmPassword = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  final TextEditingController _phone_number = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    RegisterApi registerApi = RegisterApi(widget.dio);
     Size size = MediaQuery.of(context).size;
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-          height: size.height * 0.6,
+          height: size.height * 0.65,
           decoration: new BoxDecoration(
               gradient: LinearGradient(
                   begin: FractionalOffset.bottomCenter,
@@ -56,7 +56,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: size.height * 0.42,
+                          height: size.height * 0.5,
                           margin: EdgeInsets.only(bottom: size.height * 0.02),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,6 +97,14 @@ class _RegisterFormState extends State<RegisterForm> {
                                       _password.text, value);
                                 },
                               ),
+                              CustomFormField(
+                                suffixIcon: false,
+                                obscureText: false,
+                                labelText: 'Telefone',
+                                controller: _phone_number,
+                                icon: Icon(Icons.phone, color: Colors.black),
+                                validator: FormValidation.validatePhone,
+                              ),
                             ],
                           ),
                         ),
@@ -105,8 +113,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             colorButton: Color(0xFF81B622),
                             onClickAction: () {
                               if (_formKey.currentState.validate()) {
-                                registerApi.register(_name.text, _email.text,
-                                    _password.text, _isProductor, context);
+                                resgisterUser(
+                                    widget.dio,
+                                    _name.text,
+                                    _email.text,
+                                    _password.text,
+                                    _phone_number.text,
+                                    _isProductor,
+                                    context);
                               }
                             }),
                       ],

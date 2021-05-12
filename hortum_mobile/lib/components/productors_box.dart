@@ -28,6 +28,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
     ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
     Size size = MediaQuery.of(context).size;
     return Container(
+      key: Key('productorsBox'),
       width: size.width * 0.77,
       height: size.height * 0.08,
       margin: EdgeInsets.only(top: size.height * 0.03),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LocalizationContainer extends StatefulWidget {
-  final String localization;
-  const LocalizationContainer({@required this.localization, Key key})
+  final List localizations;
+  const LocalizationContainer({@required this.localizations, Key key})
       : super(key: key);
   @override
   _LocalizationContainerState createState() => _LocalizationContainerState();
@@ -11,14 +11,17 @@ class LocalizationContainer extends StatefulWidget {
 class _LocalizationContainerState extends State<LocalizationContainer> {
   @override
   Widget build(BuildContext context) {
+    String allLocalizations = widget.localizations[0];
+    for (int i = 1; i < widget.localizations.length; i++) {
+      allLocalizations += '\n' + widget.localizations[i];
+    }
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Container(
-          padding: EdgeInsets.only(top: 10),
           margin: EdgeInsets.only(bottom: size.height * 0.03),
+          padding: EdgeInsets.only(top: 10),
           width: size.width * 0.9,
-          height: size.height * 0.2,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -31,6 +34,7 @@ class _LocalizationContainerState extends State<LocalizationContainer> {
                     offset: Offset(0, 4))
               ]),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -62,55 +66,18 @@ class _LocalizationContainerState extends State<LocalizationContainer> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(right: size.width * 0.2),
-                padding: EdgeInsets.only(top: 5),
+                margin: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.08, vertical: 5),
                 child: Text(
-                  widget.localization,
+                  allLocalizations,
                   style: TextStyle(
-                      color: Colors.black.withOpacity(0.7),
+                      color: Colors.black,
+                      height: 1.45,
                       fontSize: 15,
                       fontFamily: 'Comfortaa-Regular',
                       letterSpacing: -0.33,
                       fontWeight: FontWeight.w300),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: size.width * 0.2),
-                padding: EdgeInsets.only(top: 5),
-                child: Text(
-                  widget.localization,
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.7),
-                      fontSize: 15,
-                      fontFamily: 'Comfortaa-Regular',
-                      letterSpacing: -0.33,
-                      fontWeight: FontWeight.w300),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: size.width * 0.2),
-                padding: EdgeInsets.only(top: 5),
-                child: Text(
-                  widget.localization,
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.7),
-                      fontSize: 15,
-                      fontFamily: 'Comfortaa-Regular',
-                      letterSpacing: -0.33,
-                      fontWeight: FontWeight.w300),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: size.width * 0.2),
-                padding: EdgeInsets.only(top: 5),
-                child: Text(
-                  widget.localization,
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.7),
-                      fontSize: 15,
-                      fontFamily: 'Comfortaa-Regular',
-                      letterSpacing: -0.33,
-                      fontWeight: FontWeight.w300),
+                  textAlign: TextAlign.justify,
                 ),
               ),
             ],
