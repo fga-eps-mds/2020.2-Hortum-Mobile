@@ -122,19 +122,17 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
             Container(
               margin: EdgeInsets.only(bottom: size.height * 0.05),
               child: ConfirmButton(
-
-                labelButton: "SALVAR",
-                colorButton: Color(0xFFF49C00),
-                onClickAction: () {
-                  _preco.text = _preco.text.replaceAll(',', '.');
-                  if (_formKey.currentState.validate()) {
-                    if (_localizacao.isEmpty) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => DialogEmptyLocalizations());
-                    } else
-                      registerAnnounServices(
-                          widget.dio,
+                  labelButton: "SALVAR",
+                  colorButton: Color(0xFFF49C00),
+                  onClickAction: () {
+                    _preco.text = _preco.text.replaceAll(',', '.');
+                    if (_formKey.currentState.validate()) {
+                      if (_localizacao.isEmpty) {
+                        showDialog(
+                            context: context,
+                            builder: (context) => DialogEmptyLocalizations());
+                      } else
+                        registerAnnounServices(
                           _titulo.text,
                           _descricao.text,
                           _localizacao,
