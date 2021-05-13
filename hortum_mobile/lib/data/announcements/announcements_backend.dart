@@ -72,7 +72,6 @@ class AnnouncementsApi {
             return status <= 500;
           },
         ));
-    print(_body);
     return response;
   }
 
