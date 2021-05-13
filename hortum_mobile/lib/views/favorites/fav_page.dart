@@ -35,6 +35,7 @@ class _FavPageState extends State<FavPage> {
           return Scaffold(
             body: Stack(children: [
               SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Container(

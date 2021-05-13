@@ -94,7 +94,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
               child: MaterialButton(
                 child: Icon(
                   Icons.thumb_up_alt_outlined,
-                  color: isFavoriteProductor ? Colors.red : Colors.black,
+                  color: isFavoriteProductor ? Colors.blue : Colors.black,
                 ),
                 onPressed: () async {
                   await favProductor.favProductor(widget.email);
