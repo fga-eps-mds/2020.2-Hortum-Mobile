@@ -74,6 +74,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                 border: Border(right: BorderSide(color: Color(0xff57A051))),
               ),
               child: Stack(
+                alignment: AlignmentDirectional.topCenter,
                 children: [
                   MaterialButton(
                     key: Key('productorDetailsButton'),
@@ -104,41 +105,36 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                       child: Column(
                         children: [
                           Flexible(
-                              fit: FlexFit.loose,
-                              child: Text(
-                                widget.name,
-                                style: TextStyle(fontSize: 12),
-                                maxLines: 2,
-                                overflow: TextOverflow.fade,
-                              )),
+                            fit: FlexFit.loose,
+                            child: Text(
+                              widget.name,
+                              style: TextStyle(fontSize: 12),
+                              maxLines: 2,
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
                           if (!actualUser.isProductor)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Material(
-                                  child: IconButton(
-                                    key: Key('favAnnoun'),
-                                    color: isFavoriteAnounc
-                                        ? Colors.red
-                                        : Colors.black,
-                                    padding:
-                                        EdgeInsets.all(size.height * 0.0008),
-                                    constraints: BoxConstraints(
-                                      minWidth: 0,
-                                      minHeight: 0,
-                                    ),
-                                    icon: Icon(Icons.favorite_border_outlined,
-                                        size: 20),
-                                    onPressed: () async {
-                                      await changeData.favAnnoun(
-                                          widget.email, widget.title);
-                                      setState(() {
-                                        isFavoriteAnounc = !isFavoriteAnounc;
-                                      });
-                                    },
-                                  ),
+                            Material(
+                              child: IconButton(
+                                key: Key('favAnnoun'),
+                                color: isFavoriteAnounc
+                                    ? Colors.red
+                                    : Colors.black,
+                                padding: EdgeInsets.all(size.height * 0.0001),
+                                constraints: BoxConstraints(
+                                  minWidth: 0,
+                                  minHeight: 0,
                                 ),
-                              ],
+                                icon: Icon(Icons.favorite_border_outlined,
+                                    size: 20),
+                                onPressed: () async {
+                                  await changeData.favAnnoun(
+                                      widget.email, widget.title);
+                                  setState(() {
+                                    isFavoriteAnounc = !isFavoriteAnounc;
+                                  });
+                                },
+                              ),
                             ),
                         ],
                       ))
