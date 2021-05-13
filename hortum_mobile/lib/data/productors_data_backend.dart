@@ -17,9 +17,9 @@ class ProductorsDataApi {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url;
     if (filter.isEmpty)
-      url = 'http://$ip:8000/productor/list';
+      url = '$ip/productor/list';
     else
-      url = 'http://$ip:8000/productor/list/${filter}';
+      url = '$ip/productor/list/${filter}';
 
     var header = {
       "Content-Type": "application/json",
