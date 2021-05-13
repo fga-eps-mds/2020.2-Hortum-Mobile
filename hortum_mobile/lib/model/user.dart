@@ -29,7 +29,7 @@ class User {
         email: json['email'],
         username: json['username'],
         password: json['password'],
-        profile_picture: "http://$ip:8000" + json['profile_picture'],
+        profile_picture: "$ip" + json['profile_picture'],
         phone_number: json['phone_number'],
         isProductor: json['is_productor']);
   }
