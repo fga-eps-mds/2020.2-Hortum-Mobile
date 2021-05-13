@@ -56,7 +56,7 @@ class User {
   void initAutoLogin(bool isProductor, String username) async {
     this.isProductor = isProductor;
     this.username = username;
-    this.profile_picture = profile_picture;
+    this.profile_picture = await this.readSecureData('profile_picture');
     this.email = await this.readSecureData('email');
     this.tokenAccess = await this.readSecureData('token_access');
     this.phone_number = await this.readSecureData('phone_number');
