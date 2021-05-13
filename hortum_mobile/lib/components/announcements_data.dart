@@ -24,36 +24,3 @@ List<Map> categories = [
   {'name': 'Sorvetes', 'image_path': 'assets/images/sorvetes.jpeg'},
   {'name': 'Outros', 'image_path': 'assets/images/outros.jpg'},
 ];
-
-List<Map> announcements = [
-  {
-    'profilePic': 'assets/images/perfil.jpg',
-    'name': 'Fábio',
-    'title': 'Uma dúzia de banana',
-    'localization': 'Asa Norte, 404 Feira Da Tarde',
-    'price': '15.00',
-    'productPic': 'assets/images/banana.jpg',
-    'description': 'nao aguento mais',
-    'category': 'Banana'
-  },
-  {
-    'profilePic': 'assets/images/perfil.jpg',
-    'name': 'Carlos',
-    'title': 'Brocolis Fresco',
-    'localization': 'Feira de Taguatinga',
-    'price': '25.00',
-    'productPic': 'assets/images/brocolis.jpg',
-    'description': 'nao aguento mais',
-    'category': 'Banana'
-  },
-  {
-    'profilePic': 'assets/images/perfil.jpg',
-    'name': 'Eduardo',
-    'title': 'Cenoura Laranja',
-    'localization': 'SQSR 300, Domingo',
-    'price': '5.00',
-    'productPic': 'assets/images/cenoura.jpeg',
-    'description': 'nao aguento mais',
-    'category': 'Banana'
-  }
-];

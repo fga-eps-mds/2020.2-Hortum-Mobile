@@ -30,24 +30,29 @@ class _FilteredAnnounCategoryPageState
             body: Stack(children: [
               SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                          top: size.height * 0.08, left: size.width * 0.25),
-                      child: Text(
-                        widget.filter,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 40,
-                            fontFamily: 'Comfortaa-Regular',
-                            letterSpacing: -0.33,
-                            fontWeight: FontWeight.w300),
+                      margin: EdgeInsets.only(top: size.height * 0.08),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          widget.filter,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 40,
+                              fontFamily: 'Comfortaa-Regular',
+                              letterSpacing: -0.33,
+                              fontWeight: FontWeight.w300),
+                        ),
                       ),
                     ),
                     snapshot.connectionState == ConnectionState.done
                         ? Container(
                             height: size.height * 0.7,
-                            margin: EdgeInsets.only(bottom: size.height * 0.55),
+                            margin: EdgeInsets.only(
+                              bottom: size.height * 0.55,
+                            ),
                             child: AnnouncementsList(
                               announData: announData,
                             ))
