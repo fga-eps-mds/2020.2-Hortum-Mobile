@@ -42,6 +42,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
             return ProductorDetails(
               email: encodeString(widget.email),
               name: widget.name,
+              productorProfilePicture: widget.imageAsset,
             );
           }));
         },

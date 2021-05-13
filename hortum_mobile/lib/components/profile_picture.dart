@@ -8,12 +8,14 @@ class ProfilePicture extends StatefulWidget {
   final double heigth;
   final double radius;
   final double bottomMargin;
+  final String productorProfile;
 
   const ProfilePicture(
       {@required this.width,
       @required this.heigth,
       @required this.radius,
       @required this.bottomMargin,
+      this.productorProfile,
       Key key})
       : super(key: key);
   @override
@@ -34,16 +36,22 @@ class _ProfilePictureState extends State<ProfilePicture> {
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
           child: Material(
-            child: InkWell(
-                child: controllerPicture.newPictureNotifier.value == null
-                    ? Image.network(
-                        actualUser.profile_picture,
-                        fit: BoxFit.fill,
-                      )
-                    : Image.file(
-                        controllerPicture.newPictureNotifier.value,
-                        fit: BoxFit.fill,
-                      )),
+            child: widget.productorProfile == null
+                ? InkWell(
+                    child: controllerPicture.newPictureNotifier.value == null
+                        ? Image.network(
+                            actualUser.profile_picture,
+                            fit: BoxFit.fill,
+                          )
+                        : Image.file(
+                            controllerPicture.newPictureNotifier.value,
+                            fit: BoxFit.fill,
+                          ))
+                : InkWell(
+                    child: Image.network(
+                    widget.productorProfile,
+                    fit: BoxFit.fill,
+                  )),
           ),
         ),
       ),

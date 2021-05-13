@@ -64,7 +64,10 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ProductorDetails(
-                      email: encodeString(widget.email), name: widget.name);
+                    email: encodeString(widget.email),
+                    name: widget.name,
+                    productorProfilePicture: widget.profilePic,
+                  );
                 }));
               },
               child: Column(

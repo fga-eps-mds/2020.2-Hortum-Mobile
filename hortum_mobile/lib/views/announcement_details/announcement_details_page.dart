@@ -168,6 +168,7 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                           MaterialPageRoute(builder: (context) {
                         return ProductorDetails(
                             email: encodeString(widget.email),
+                            productorProfilePicture: widget.profilePic,
                             name: widget.name);
                       }));
                     },

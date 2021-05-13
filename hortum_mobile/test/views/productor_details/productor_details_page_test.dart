@@ -34,7 +34,11 @@ main() {
   Widget makeTestable() {
     return MaterialApp(
       home: ProductorDetails(
-          email: "emailteste@gmail.com", name: "Produtor", dio: dioMock),
+        email: "emailteste@gmail.com",
+        name: "Produtor",
+        dio: dioMock,
+        productorProfilePicture: 'http://localhost:8000/images/perfil.jpg',
+      ),
     );
   }
 
