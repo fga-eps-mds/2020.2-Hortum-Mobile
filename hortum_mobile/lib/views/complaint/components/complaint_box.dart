@@ -67,23 +67,25 @@ class _ComplaintBoxState extends State<ComplaintBox> {
               ),
             ),
           ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.all(size.height * 0.01),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              child: Material(
-                child: InkWell(
-                  child: Image.network(
-                    widget.image,
-                    fit: BoxFit.fill,
-                    height: size.height * 0.2,
-                    width: size.height * 0.2,
+          widget.image != null
+              ? Container(
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.all(size.height * 0.01),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    child: Material(
+                      child: InkWell(
+                        child: Image.network(
+                          widget.image,
+                          fit: BoxFit.fill,
+                          height: size.height * 0.2,
+                          width: size.height * 0.2,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-          ),
+                )
+              : Container()
         ],
       ),
     );
