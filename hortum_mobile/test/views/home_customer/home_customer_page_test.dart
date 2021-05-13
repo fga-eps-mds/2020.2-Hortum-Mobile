@@ -19,7 +19,8 @@ main() {
       "type_of_product": "Abelhas",
       "description": "Abelhas",
       "price": 10.0,
-      "idPicture": null
+      "idPicture": null,
+      "localizations": ["Lugar"]
     }
   ];
 
@@ -55,16 +56,24 @@ main() {
           findsOneWidget);
     });
 
-    testWidgets('Testing the change from announcements to productors',
+    testWidgets(
+        'Testing the change from announcements to productors and return to announcements',
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
       await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.cached));
+      await tester.tap(find.byKey(
+        Key('productorButton'),
+      ));
+      await tester.pumpAndSettle();
+      expect(find.byKey(Key('productorsBox')), findsOneWidget);
+      await tester.tap(find.byKey(
+        Key('announButton'),
+      ));
       await tester.pump();
-      expect(find.text('Produtores'), findsOneWidget);
+      expect(find.byKey(Key('spin')), findsOneWidget);
     });
 
     testWidgets('Testing the productors list on CustomerHomePage',
@@ -87,9 +96,10 @@ main() {
           .thenAnswer((_) async =>
               Response(data: productorsResponse, requestOptions: null));
       await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.cached));
-      await tester.pump();
-      await tester.pump();
+      await tester.tap(find.byKey(
+        Key('productorButton'),
+      ));
+      await tester.pumpAndSettle();
       expect(find.byKey(Key('Usuário Teste key')), findsOneWidget);
     });
 
@@ -105,7 +115,9 @@ main() {
               options: anyNamed('options')))
           .thenAnswer((_) async => Response(data: [], requestOptions: null));
       await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.cached));
+      await tester.tap(find.byKey(
+        Key('productorButton'),
+      ));
       await tester.pump();
       await tester.pump();
       expect(find.byKey(Key('noProductors')), findsOneWidget);
@@ -123,7 +135,9 @@ main() {
               options: anyNamed('options')))
           .thenAnswer((_) async => Response(data: [{}], requestOptions: null));
       await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.cached));
+      await tester.tap(find.byKey(
+        Key('localizationButton'),
+      ));
       await tester.pump();
       expect(find.byKey(Key('spin')), findsOneWidget);
     });

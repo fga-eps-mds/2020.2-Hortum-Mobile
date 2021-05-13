@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/globals.dart';
@@ -20,7 +21,8 @@ main() {
       "type_of_product": "Abelhas",
       "description": "Abelhas",
       "price": 10.0,
-      "idPicture": null
+      "idPicture": null,
+      "localizations": ["Lugar", "Outro Lugar"]
     }
   ];
 
@@ -33,7 +35,8 @@ main() {
         "type_of_product": "Banana",
         "description": "Descrição teste",
         "price": 15.0,
-        "idPicture": null
+        "idPicture": null,
+        "localizations": ["Lugar", "Outro Lugar"]
       };
 
       announcementsApi.announcements.add(element);
@@ -46,7 +49,8 @@ main() {
         "type_of_product": "Banana",
         "description": "Descrição teste",
         "price": "R\$ 15,00",
-        "idPicture": null
+        "idPicture": null,
+        "localizations": ["Lugar", "Outro Lugar"]
       };
       expect(result, announcementsApi.announcements[0]);
     });
@@ -56,7 +60,7 @@ main() {
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await announcementsApi.getAnnoun('');
+      await announcementsApi.getAnnoun('', '');
       expect(announcementsApi.announcements, response);
     });
 
@@ -70,12 +74,13 @@ main() {
           "type_of_product": "Abelhas",
           "description": "Abelhas",
           "price": 10.0,
-          "idPicture": null
+          "idPicture": null,
+          "localizations": ["Lugar", "Outro Lugar"]
         }
       ];
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await announcementsApi.getAnnoun('Banana');
+      await announcementsApi.getAnnoun('Banana', 'name');
       expect(announcementsApi.announcements, response);
     });
 
@@ -124,8 +129,10 @@ main() {
               data: jsonEncode(responseMatcher),
               requestOptions: null,
               statusCode: 200));
-      var responseActual =
-          await announcementsApi.editAnnoun('Banana', name: name, price: preco);
+      var responseActual = await announcementsApi.editAnnoun('Banana',
+          name: name,
+          price: preco,
+          localizations: [TextEditingController(text: 'brasilia')]);
 
       expect(responseActual.statusCode, 200);
     });
@@ -138,7 +145,8 @@ main() {
       "name": "Teste",
       "description": "Decrição de anúncio teste",
       "price": 15.0,
-      "type_of_product": "Alface"
+      "type_of_product": "Alface",
+      "localizations": [TextEditingController(text: "Lugar")]
     };
     test('Testing the method registerAnnoun on RegisterAnnounApi', () async {
       actualUser.tokenAccess = 'token';
@@ -148,8 +156,12 @@ main() {
               data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: response, requestOptions: null, statusCode: 200));
-      Response result = await announcementsApi.registerAnnoun(request['name'],
-          request['description'], request['price'], request['type_of_product']);
+      Response result = await announcementsApi.registerAnnoun(
+          request['name'],
+          request['description'],
+          request['localizations'],
+          request['price'],
+          request['type_of_product']);
       expect(result.data['msg'], "Announcement created");
     });
   });

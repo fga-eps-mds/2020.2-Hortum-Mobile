@@ -1,13 +1,17 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
-import 'package:http/http.dart' as http;
 
 class AutomaticLoginAPI {
-  static Future<bool> automaticLogin() async {
+  static Dio dio = Dio();
+
+  static Future<bool> automaticLogin(String tokenAccess) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    String userAccessToken = await actualUser.readSecureData('token_access');
-    Uri urlTest = Uri.parse('http://$ip:8000/api/test_token/');
-    Uri urlRefresh = Uri.parse('http://$ip:8000/login/refresh/');
+
+    String userAccessToken = tokenAccess;
+    String urlTest = 'http://$ip:8000/api/test_token/';
+    String urlRefresh = 'http://$ip:8000/login/refresh/';
+
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
@@ -15,18 +19,18 @@ class AutomaticLoginAPI {
 
     Map params = {"access": userAccessToken};
     String _body = json.encode(params);
-    var response = await http.get(urlTest, headers: header);
+    var response = await dio.get(urlTest, options: Options(headers: header));
 
     if (response.statusCode != 200) {
-      response = await http.post(urlRefresh, body: _body);
-      String newToken = json.decode(response.body)['access'];
+      response = await dio.post(urlRefresh, data: _body);
+      String newToken = json.decode(response.data)['access'];
       actualUser.updateToken(newToken);
       header['Authorization'] = "Bearer " + newToken;
-      response = await http.get(urlTest, headers: header);
+      response = await dio.get(urlTest, options: Options(headers: header));
     }
 
-    String username = json.decode(response.body)['user'];
-    bool isProductor = json.decode(response.body)['is_productor'];
+    String username = response.data['user'];
+    bool isProductor = response.data['is_productor'];
     actualUser.initAutoLogin(isProductor, username);
 
     return isProductor;

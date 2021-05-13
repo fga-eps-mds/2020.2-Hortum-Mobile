@@ -39,8 +39,8 @@ class _TitleButtonsRowState extends State<TitleButtonsRow> {
         ),
       ),
       Container(
-        margin:
-            EdgeInsets.only(top: size.height * 0.028, right: size.width * 0.23),
+        margin: EdgeInsets.only(top: size.height * 0.028),
+        width: size.width * 0.85,
         child: Text(
           widget.title,
           style: TextStyle(

@@ -31,7 +31,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                   return Column(children: [
                     ButtonsRow(
                         title: announcements[index]['name'],
-                        localization: announcements[index]['localization'],
+                        localization: announcements[index]['localizations'],
                         price: announcements[index]['price'],
                         description: announcements[index]['description'],
                         category: announcements[index]['type_of_product']),
@@ -41,7 +41,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         name: announcements[index]['username'],
                         email: announcements[index]['email'],
                         title: announcements[index]['name'],
-                        localization: 'Asa Norte, 404 Feira Da Tarde',
+                        localizations: announcements[index]['localizations'],
                         price: announcements[index]['price'],
                         productPic: 'assets/images/banana.jpg')
                   ]);

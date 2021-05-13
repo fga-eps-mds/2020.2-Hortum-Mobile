@@ -21,7 +21,8 @@ main() {
       "idPicture": null,
       "username": "Usuário Teste",
       "email": "usuario@email.com",
-      "idPictureProductor": null
+      "idPictureProductor": null,
+      "localizations": ["Lugar", "Outro Lugar"]
     }
   ];
 

@@ -5,7 +5,7 @@ import 'package:hortum_mobile/views/home_productor/components/dialog_confirm_del
 class ButtonsRow extends StatefulWidget {
   final String title;
   final String description;
-  final String localization;
+  final List localization;
   final String price;
   final String category;
 
@@ -30,7 +30,7 @@ class ButtonsRow extends StatefulWidget {
 class _ButtonRowState extends State<ButtonsRow> {
   final String title;
   final String description;
-  final String localization;
+  final List localization;
   final String price;
   final String category;
 
@@ -47,8 +47,12 @@ class _ButtonRowState extends State<ButtonsRow> {
         TextEditingController(text: widget.title);
     final TextEditingController description =
         TextEditingController(text: widget.description);
-    final TextEditingController localization =
-        TextEditingController(text: widget.localization);
+    final List<TextEditingController> localization = [];
+    int index = 0;
+    widget.localization.forEach((element) {
+      localization.insert(index, new TextEditingController(text: element));
+      index++;
+    });
     final TextEditingController price =
         TextEditingController(text: widget.price);
     final TextEditingController category =

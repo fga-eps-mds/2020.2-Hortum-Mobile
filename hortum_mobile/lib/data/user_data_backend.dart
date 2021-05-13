@@ -14,7 +14,8 @@ class UserAPI {
     }
   }
 
-  Future updateUser({String username, String email}) async {
+  Future updateUser(
+      {String username, String email, String phone_number}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url = 'http://$ip:8000/users/update/';
 
@@ -26,6 +27,7 @@ class UserAPI {
     Map params = {
       "username": username,
       "email": email,
+      "phone_number": phone_number
     };
     params.removeWhere((key, value) => value == null);
 
@@ -38,7 +40,7 @@ class UserAPI {
             return status <= 500;
           },
         ));
-    return response.statusCode;
+    return response;
   }
 
   Future changePassword(String actualPassword, String newPassword) async {

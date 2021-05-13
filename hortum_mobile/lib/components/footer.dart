@@ -15,6 +15,23 @@ class Footer extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
+              height: size.height * 0.17,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      Colors.white.withOpacity(0.01),
+                      Colors.white,
+                    ],
+                    begin: AlignmentGeometry.lerp(
+                        Alignment.topCenter, Alignment.center, 0.2),
+                    end: AlignmentGeometry.lerp(
+                        Alignment.topCenter, Alignment.center, 0.8)),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
                   Color(0xff47CC70).withOpacity(0.7),
