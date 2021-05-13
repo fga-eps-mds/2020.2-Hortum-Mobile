@@ -16,7 +16,7 @@ main() {
       return MaterialApp(
           home: EditPage(
         dio: dio,
-        category: new TextEditingController(text: 'Banana'),
+        category: new TextEditingController(text: 'Outros'),
         description: new TextEditingController(text: 'Banana Prata'),
         localization: [TextEditingController(text: "Brasilia")],
         originaltitle: 'A',

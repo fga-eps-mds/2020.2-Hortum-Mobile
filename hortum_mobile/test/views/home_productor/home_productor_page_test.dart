@@ -17,7 +17,7 @@ main() {
       "username": "Usuário Teste",
       "idPictureProductor": null,
       "name": "Folha Verde",
-      "type_of_product": "Alface",
+      "type_of_product": "Outros",
       "description": "Alface plantado na fazenda",
       "price": 5.0,
       "idPicture": null,
