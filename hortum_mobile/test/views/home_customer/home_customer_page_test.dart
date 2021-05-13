@@ -87,12 +87,10 @@ main() {
       ];
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: productorsResponse, requestOptions: null));
       await tester.pumpWidget(makeTestable());
@@ -107,12 +105,10 @@ main() {
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async => Response(data: [], requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(
@@ -127,12 +123,10 @@ main() {
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async => Response(data: [{}], requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(
