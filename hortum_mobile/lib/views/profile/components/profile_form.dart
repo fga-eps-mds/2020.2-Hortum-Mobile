@@ -91,7 +91,6 @@ class _ProfileFormState extends State<ProfileForm> {
                       controllerPicture.newPictureNotifier.value != null) {
                     ProfileServices.updateUser(widget.dio, username.text,
                         email.text, phone_number.text, context);
-                    controllerPicture.newPictureNotifier.value = null;
                   }
                 }
               },

@@ -52,6 +52,7 @@ class RegisterApi {
               },
               contentType: 'multipart/form-data'));
     }
+    profile_picture = null;
     return response;
   }
 }

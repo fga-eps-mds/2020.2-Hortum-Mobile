@@ -79,7 +79,7 @@ class AnnouncementsApi {
               return status <= 500;
             },
           ));
-
+      announImages = [];
       return response;
     } on DioError catch (err) {
       print(err);
