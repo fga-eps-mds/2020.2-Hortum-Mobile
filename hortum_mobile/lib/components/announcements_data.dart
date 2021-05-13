@@ -5,6 +5,7 @@ List<Map> categories = [
   {'name': 'Café', 'image_path': 'assets/images/cafe.jpeg'},
   {'name': 'Carnes', 'image_path': 'assets/images/carne.jpg'},
   {'name': 'Cogumelos', 'image_path': 'assets/images/cogumelos.jpg'},
+  {'name': 'Defumados', 'image_path': 'assets/images/defumados.jpg'},
   {'name': 'Derivados de trigo', 'image_path': 'assets/images/trigo.jpg'},
   {'name': 'Derivados de mandioca', 'image_path': 'assets/images/mandioca.jpg'},
   {'name': 'Derivados de cana', 'image_path': 'assets/images/cana.jpg'},
