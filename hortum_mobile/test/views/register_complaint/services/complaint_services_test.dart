@@ -45,7 +45,7 @@ main() {
   actualUser.isProductor = false;
 
   group('Testing RegisterComplaintServices:', () {
-    var url = 'http://$ip:8000/complaint/create/';
+    var url = '$ip/complaint/create/';
     Widget makeTestable() {
       return MaterialApp(
         home: Teste(dio: dio),

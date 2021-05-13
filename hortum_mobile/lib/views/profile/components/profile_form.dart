@@ -87,9 +87,11 @@ class _ProfileFormState extends State<ProfileForm> {
                 if (_formKey.currentState.validate()) {
                   if (actualUser.username != username.text ||
                       actualUser.email != email.text ||
-                      actualUser.phone_number != phone_number.text) {
+                      actualUser.phone_number != phone_number.text ||
+                      controllerPicture.newPictureNotifier.value != null) {
                     ProfileServices.updateUser(widget.dio, username.text,
                         email.text, phone_number.text, context);
+                    controllerPicture.newPictureNotifier.value = null;
                   }
                 }
               },

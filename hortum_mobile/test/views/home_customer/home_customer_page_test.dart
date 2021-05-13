@@ -15,13 +15,13 @@ main() {
   List<dynamic> response = [
     {
       "username": "Usuário Teste",
-      "pictureProductor": "http://localhost:8000/images/perfil.jpg",
+      "pictureProductor": "$ip/images/perfil.jpg",
       "name": "Anúncio Teste",
       "type_of_product": "Abelhas",
       "description": "Abelhas",
       "price": 10.0,
       "images": [
-        {"picture": "http://localhost:8000/images/perfil.jpg"}
+        {"picture": "$ip/images/perfil.jpg"}
       ],
       "localizations": ["Lugar"]
     }
@@ -70,15 +70,13 @@ main() {
         {
           "username": "Usuário Teste",
           "email": "email@email.com",
-          "profile_picture": 'http://localhost:8000/images/perfil.jpg'
+          "profile_picture": '$ip/images/perfil.jpg'
         }
       ];
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: productorsResponse, requestOptions: null));
       await mockNetworkImagesFor(() async {
@@ -107,12 +105,10 @@ main() {
       ];
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async =>
               Response(data: productorsResponse, requestOptions: null));
       await mockNetworkImagesFor(() async {
@@ -129,12 +125,10 @@ main() {
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async => Response(data: [], requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(
@@ -149,12 +143,10 @@ main() {
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/announcement/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/announcement/list', options: anyNamed('options')))
           .thenAnswer(
               (_) async => Response(data: response, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/productor/list',
-              options: anyNamed('options')))
+      when(dioMock.get('$ip/productor/list', options: anyNamed('options')))
           .thenAnswer((_) async => Response(data: [{}], requestOptions: null));
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(

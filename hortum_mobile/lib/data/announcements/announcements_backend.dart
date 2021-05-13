@@ -19,9 +19,9 @@ class AnnouncementsApi {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url;
     if (filter.isEmpty)
-      url = 'http://$ip:8000/announcement/list';
+      url = '$ip/announcement/list';
     else
-      url = 'http://$ip:8000/announcement/list/?filter=${type}&value=${filter}';
+      url = '$ip/announcement/list/?filter=${type}&value=${filter}';
 
     var header = {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ class AnnouncementsApi {
       double price, String category) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String userAccessToken = actualUser.tokenAccess;
-    String url = 'http://$ip:8000/announcement/create';
+    String url = '$ip/announcement/create';
     var header = {
       "Authorization": "Bearer " + userAccessToken,
     };
@@ -88,7 +88,7 @@ class AnnouncementsApi {
 
   Future deleteAnnoun(String anuncio) async {
     String userAccessToken = actualUser.tokenAccess;
-    String url = 'http://$ip:8000/announcement/update/$anuncio';
+    String url = '$ip/announcement/update/$anuncio';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
@@ -106,19 +106,21 @@ class AnnouncementsApi {
       String category,
       bool inventory,
       List localizations}) async {
-    String url = 'http://$ip:8000/announcement/update/$nomeOriginal';
+    String url = '$ip/announcement/update/$nomeOriginal';
 
     var header = {
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
+    String localizacao = null;
 
-    List<String> localizacao = [];
-
-    int index = 0;
-    localizations.forEach((element) {
-      localizacao.insert(index, element.text);
-      index++;
-    });
+    if (localizations != null) {
+      List<String> localizacao = [];
+      int index = 0;
+      localizations.forEach((element) {
+        localizacao.insert(index, element.text);
+        index++;
+      });
+    }
 
     var map = {
       "name": name,

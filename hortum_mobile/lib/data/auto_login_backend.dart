@@ -9,8 +9,8 @@ class AutomaticLoginAPI {
     //Trocar o IPLOCAL pelo ip de sua máquina
 
     String userAccessToken = tokenAccess;
-    String urlTest = 'http://$ip:8000/api/test_token/';
-    String urlRefresh = 'http://$ip:8000/login/refresh/';
+    String urlTest = '$ip/api/test_token/';
+    String urlRefresh = '$ip/login/refresh/';
 
     var header = {
       "Content-Type": "application/json",
