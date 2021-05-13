@@ -5,6 +5,7 @@ List<String> announcementsCategories = [
   'Café',
   'Carnes',
   'Cogumelos',
+  'Defumados',
   'Derivados de cana',
   'Derivados de Trigo',
   'Derivados de Mandioca',
