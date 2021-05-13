@@ -49,7 +49,7 @@ class _FilteredAnnounCategoryPageState
                     ),
                     snapshot.connectionState == ConnectionState.done
                         ? Container(
-                            height: size.height * 0.7,
+                            height: size.height * 0.76,
                             margin: EdgeInsets.only(
                               bottom: size.height * 0.55,
                             ),
