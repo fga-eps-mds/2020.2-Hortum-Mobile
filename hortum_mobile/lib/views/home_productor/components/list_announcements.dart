@@ -44,7 +44,7 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                         localizations: announcements[index]['localizations'],
                         price: announcements[index]['price'],
                         productPic: 'assets/images/banana.jpg',
-                        isHomePageCustomer: false)
+                        isFavPage: false)
                   ]);
                 },
               )

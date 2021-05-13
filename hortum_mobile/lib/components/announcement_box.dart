@@ -16,7 +16,7 @@ class AnnouncementBox extends StatefulWidget {
   final String email;
   final Dio dio;
   final String description;
-  final bool isHomePageCustomer;
+  final bool isFavPage;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -27,7 +27,7 @@ class AnnouncementBox extends StatefulWidget {
       @required this.productPic,
       @required this.email,
       @required this.description,
-      @required this.isHomePageCustomer,
+      @required this.isFavPage,
       this.dio,
       Key key})
       : super(key: key);
@@ -40,7 +40,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
 
   @override
   // ignore: must_call_super
-  void initState() => isFavoriteAnounc = !widget.isHomePageCustomer;
+  void initState() => isFavoriteAnounc = widget.isFavPage;
 
   @override
   Widget build(BuildContext context) {

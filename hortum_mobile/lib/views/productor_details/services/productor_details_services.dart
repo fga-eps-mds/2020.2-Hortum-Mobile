@@ -17,7 +17,7 @@ class ProductorDetaislService {
                   price:
                       "R\$ ${announcement['price'].toStringAsFixed(2).replaceFirst('.', ',')}",
                   productPic: 'assets/images/banana.jpg',
-                  isHomePageCustomer: false))
+                  isFavPage: false))
               .toList());
     }
     return Container(

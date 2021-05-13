@@ -69,7 +69,7 @@ class _FavPageState extends State<FavPage> {
                                     EdgeInsets.only(bottom: size.height * 0.55),
                                 child: AnnouncementsList(
                                   announData: announData,
-                                  isHomePageCustomer: false,
+                                  isFavPage: true,
                                   textNotFound:
                                       "Nenhum favorito adicionado.\nAdicione tocando no curtir de alguma postagem!",
                                 ))
@@ -81,7 +81,7 @@ class _FavPageState extends State<FavPage> {
                                     textNotFound:
                                         "Nenhum produtor favorito adicionado.\nAdicione tocando no favoritar de alguma postagem!",
                                     productorsData: productorsData,
-                                    isHomePageCustomer: false))
+                                    isFavPage: true))
                         : Container(
                             margin: EdgeInsets.only(top: size.height * 0.25),
                             child: SpinKitCircle(

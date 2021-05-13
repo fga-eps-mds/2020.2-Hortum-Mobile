@@ -5,10 +5,10 @@ import 'package:hortum_mobile/data/productors_data_backend.dart';
 class ProductorsList extends StatefulWidget {
   final ProductorsDataApi productorsData;
   final String textNotFound;
-  final bool isHomePageCustomer;
+  final bool isFavPage;
 
   const ProductorsList(
-      {@required this.productorsData, @required this.textNotFound, @required this.isHomePageCustomer,Key key})
+      {@required this.productorsData, @required this.textNotFound, @required this.isFavPage,Key key})
       : super(key: key);
   @override
   _ProductorsListState createState() => _ProductorsListState();
@@ -34,7 +34,7 @@ class _ProductorsListState extends State<ProductorsList> {
                       key: Key(productors[index]['username'] + " key"),
                       name: productors[index]['username'],
                       imageAsset: productors[index]['idPicture'],
-                      isHomePageCustomer: widget.isHomePageCustomer,);
+                      isFavPage: widget.isFavPage,);
                 },
               )
             : Container(

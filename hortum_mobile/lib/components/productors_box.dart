@@ -9,13 +9,13 @@ class ProductorsBox extends StatefulWidget {
   final String imageAsset;
   final String email;
   final Dio dio;
-  final bool isHomePageCustomer;
+  final bool isFavPage;
 
   const ProductorsBox(
       {@required this.name,
       this.imageAsset,
       @required this.email,
-      @required this.isHomePageCustomer,
+      @required this.isFavPage,
       this.dio,
       Key key})
       : super(key: key);
@@ -29,7 +29,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
   @override
   // ignore: must_call_super
   void initState() {
-    isFavoriteProductor = !widget.isHomePageCustomer;
+    isFavoriteProductor = widget.isFavPage;
   }
 
   @override
