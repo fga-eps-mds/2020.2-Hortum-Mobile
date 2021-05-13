@@ -45,7 +45,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                       margin: EdgeInsets.only(top: size.height * 0.08),
                       padding: EdgeInsets.only(left: 10),
                       height: size.height * 0.25,
-                      child: Carroussel()),
+                      child: Carroussel(dio: widget.dio)),
                   Container(
                       width: size.width * 0.8,
                       height: size.height * 0.04,
