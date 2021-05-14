@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/categories.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
@@ -6,14 +5,15 @@ import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/dialog_empty_localizations.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/components/localization_field.dart';
 import 'package:hortum_mobile/views/register_announcement/components/select_field.dart';
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 
 class AnnounRegisterForm extends StatefulWidget {
-  final Dio dio;
-
-  const AnnounRegisterForm({Key key, this.dio}) : super(key: key);
+  final AnnouncementsApi announcementsApi;
+  const AnnounRegisterForm({@required this.announcementsApi, Key key})
+      : super(key: key);
   @override
   _AnnounRegisterFormState createState() => _AnnounRegisterFormState();
 }
@@ -122,27 +122,27 @@ class _AnnounRegisterFormState extends State<AnnounRegisterForm> {
             Container(
               margin: EdgeInsets.only(bottom: size.height * 0.05),
               child: ConfirmButton(
-                labelButton: "SALVAR",
-                colorButton: Color(0xFFF49C00),
-                onClickAction: () {
-                  _preco.text = _preco.text.replaceAll(',', '.');
-                  if (_formKey.currentState.validate()) {
-                    if (_localizacao.isEmpty) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => DialogEmptyLocalizations());
-                    } else
-                      registerAnnounServices(
-                          widget.dio,
+                  labelButton: "SALVAR",
+                  colorButton: Color(0xFFF49C00),
+                  onClickAction: () {
+                    _preco.text = _preco.text.replaceAll(',', '.');
+                    if (_formKey.currentState.validate()) {
+                      if (_localizacao.isEmpty) {
+                        showDialog(
+                            context: context,
+                            builder: (context) => DialogEmptyLocalizations());
+                      } else
+                        registerAnnounServices(
                           _titulo.text,
                           _descricao.text,
                           _localizacao,
                           double.parse(_preco.text),
                           _categoria.text,
-                          context);
-                  }
-                },
-              ),
+                          context,
+                          widget.announcementsApi,
+                        );
+                    }
+                  }),
             ),
           ],
         ),

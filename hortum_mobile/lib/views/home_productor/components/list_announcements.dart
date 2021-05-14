@@ -36,19 +36,20 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                       title: announcements[index]['name'],
                       localization: announcements[index]['localizations'],
                       price: announcements[index]['price'],
+                      image: announcements[index]['images'][0],
                       description: announcements[index]['description'],
                       category: announcements[index]['type_of_product'],
                       inventory: announcements[index]['inventory'],
                     ),
                     AnnouncementBox(
+                        profilePic: announcements[index]['pictureProductor'],
                         description: announcements[index]['description'],
-                        profilePic: 'assets/images/perfil.jpg',
                         name: announcements[index]['username'],
                         email: announcements[index]['email'],
                         title: announcements[index]['name'],
                         localizations: announcements[index]['localizations'],
                         price: announcements[index]['price'],
-                        productPic: 'assets/images/banana.jpg')
+                        productPic: announcements[index]['images'])
                   ]);
                 },
               )

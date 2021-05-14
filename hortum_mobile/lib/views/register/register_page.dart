@@ -19,16 +19,20 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: size.height * 0.06),
-          child: Column(
-            key: Key('registerFormPage'),
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              PhotoSelecter(title: 'CADASTRO'),
-              RegisterForm(isProductor: widget.isProductor, dio: widget.dio),
-            ],
-          ),
-        ),
+            margin: EdgeInsets.only(top: size.height * 0.06),
+            child: Column(
+                key: Key('registerFormPage'),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  PhotoSelecter(
+                    title: 'CADASTRO',
+                    isAnnounRegister: false,
+                  ),
+                  RegisterForm(
+                    isProductor: widget.isProductor,
+                    dio: widget.dio,
+                  )
+                ])),
       ),
     );
   }

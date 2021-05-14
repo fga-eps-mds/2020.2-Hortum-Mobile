@@ -11,10 +11,15 @@ import 'package:hortum_mobile/views/productor_details/components/name_actions.da
 class ProductorDetails extends StatefulWidget {
   final String email;
   final String name;
+  final String productorProfilePicture;
   final Dio dio;
 
   const ProductorDetails(
-      {@required this.email, @required this.name, this.dio, Key key})
+      {@required this.email,
+      @required this.name,
+      @required this.productorProfilePicture,
+      this.dio,
+      Key key})
       : super(key: key);
 
   @override
@@ -49,6 +54,8 @@ class _ProductorDetailsState extends State<ProductorDetails> {
                                 heigth: size.height * 0.2,
                                 radius: 70,
                                 bottomMargin: size.height * 0.02,
+                                productorProfile:
+                                    widget.productorProfilePicture,
                               ),
                               NameActionsWidget(
                                 name: widget.name,

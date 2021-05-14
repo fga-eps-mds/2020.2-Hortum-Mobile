@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,7 +39,6 @@ class AnnouncementsApi {
     String userAccessToken = actualUser.tokenAccess;
     String url = '$ip/announcement/create';
     var header = {
-      "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
     };
     List<String> localizacao = [];
@@ -53,27 +52,38 @@ class AnnouncementsApi {
     });
 
     String email = actualUser.email;
-    Map params = {
+    var params = FormData.fromMap({
       "email": email,
       "name": name,
       "description": description,
       "price": price,
       "type_of_product": category,
-      "images": [],
-      "localizations": localizacao
-    };
+      "localizations": localizacao,
+    });
 
-    String _body = json.encode(params);
-    Response response = await this.dio.post(url,
-        data: _body,
-        options: Options(
-          headers: header,
-          validateStatus: (status) {
-            return status <= 500;
-          },
-        ));
+    for (File item in announImages) {
+      String filename = item.path.split('/').last;
+      params.files.addAll([
+        MapEntry("images",
+            await MultipartFile.fromFile(item.path, filename: filename)),
+      ]);
+    }
 
-    return response;
+    try {
+      Response response = await this.dio.post(url,
+          data: params,
+          options: Options(
+            headers: header,
+            contentType: 'multipart/form-data',
+            validateStatus: (status) {
+              return status <= 500;
+            },
+          ));
+      announImages = [];
+      return response;
+    } on DioError catch (err) {
+      print(err);
+    }
   }
 
   Future deleteAnnoun(String anuncio) async {
@@ -99,7 +109,6 @@ class AnnouncementsApi {
     String url = '$ip/announcement/update/$nomeOriginal';
 
     var header = {
-      "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
     String localizacao = null;
@@ -113,7 +122,7 @@ class AnnouncementsApi {
       });
     }
 
-    Map params = {
+    var map = {
       "name": name,
       "description": description,
       "price": price,
@@ -121,14 +130,23 @@ class AnnouncementsApi {
       "inventory": inventory,
       "localizations": localizacao
     };
-    params.removeWhere((key, value) => value == null);
+    map.removeWhere((key, value) => value == null);
 
-    String _body = json.encode(params);
+    var params = FormData.fromMap(map);
+
+    for (File item in announImages) {
+      String filename = item.path.split('/').last;
+      params.files.addAll([
+        MapEntry("images",
+            await MultipartFile.fromFile(item.path, filename: filename)),
+      ]);
+    }
 
     var response = await dio.patch(url,
-        data: _body,
+        data: params,
         options: Options(
           headers: header,
+          contentType: 'multipart/form-data',
           validateStatus: (status) {
             return status <= 500;
           },

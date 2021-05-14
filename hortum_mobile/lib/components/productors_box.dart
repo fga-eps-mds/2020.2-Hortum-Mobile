@@ -42,6 +42,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
             return ProductorDetails(
               email: encodeString(widget.email),
               name: widget.name,
+              productorProfilePicture: widget.imageAsset,
             );
           }));
         },
@@ -56,8 +57,8 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 child: Material(
                   child: InkWell(
-                      child: Image.asset(
-                    'assets/images/perfil.jpg',
+                      child: Image.network(
+                    widget.imageAsset,
                     fit: BoxFit.fill,
                   )),
                 ),

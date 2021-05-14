@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -28,6 +29,8 @@ main() {
 
     test('Update User Successful', () async {
       String responseMatcher = 'Dados alterados';
+      controllerPicture.newPictureNotifier.value =
+          File('./assets/images/perfil.jpg');
       when(dioMock.patch(any,
               data: anyNamed('data'), options: anyNamed('options')))
           .thenAnswer((_) async => Response(

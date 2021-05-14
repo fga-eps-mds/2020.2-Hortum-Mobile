@@ -5,6 +5,7 @@ import 'package:hortum_mobile/components/custom_desc_field.dart';
 import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/views/edit_announ/edit_page.dart';
 import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -15,6 +16,7 @@ main() {
     Widget makeTestable() {
       return MaterialApp(
           home: EditPage(
+        image: 'http://localhost:8000/images/perfil.jpg',
         dio: dio,
         category: new TextEditingController(text: 'Banana'),
         description: new TextEditingController(text: 'Banana Prata'),
@@ -27,12 +29,14 @@ main() {
 
     testWidgets('CustomFormFields, MaterialButton e CustomDescField',
         (WidgetTester tester) async {
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byIcon(Icons.add));
-      await tester.tap(find.byIcon(Icons.remove));
-      expect(find.byType(CustomFormField), findsNWidgets(3));
-      expect(find.byType(CustomDescField), findsOneWidget);
-      expect(find.byType(MaterialButton), findsNWidgets(2));
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.byIcon(Icons.add));
+        await tester.tap(find.byIcon(Icons.remove));
+        expect(find.byType(CustomFormField), findsNWidgets(3));
+        expect(find.byType(CustomDescField), findsOneWidget);
+        expect(find.byType(MaterialButton), findsNWidgets(2));
+      });
     });
   });
 }

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/services/upload_image.dart';
 
 class PhotoSelecterComplaint extends StatefulWidget {
   @override
@@ -9,13 +12,11 @@ class PhotoSelecterComplaint extends StatefulWidget {
 }
 
 class _PhotoSelecterComplaintState extends State<PhotoSelecterComplaint> {
-  //File _image;
-  final picker = ImagePicker();
-
+  String filename = null;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    List<File> images;
     return Container(
       decoration: BoxDecoration(),
       child: Container(
@@ -47,24 +48,20 @@ class _PhotoSelecterComplaintState extends State<PhotoSelecterComplaint> {
                 key: Key("adicionarImagem"),
                 height: size.height * 0.05,
                 minWidth: size.width * 0.82,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.add),
-                    Text('Adicionar imagem'),
-                  ],
-                ),
+                child: filename == null
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add),
+                          Text('Adicionar imagem'),
+                        ],
+                      )
+                    : Text(filename),
                 onPressed: () async {
-                  final pickedFile =
-                      await picker.getImage(source: ImageSource.gallery);
-
-                  setState(() {
-                    if (pickedFile != null) {
-                      //  _image = File(pickedFile.path);
-                    } else {
-                      print('No image selected.');
-                    }
-                  });
+                  images = await UploadImage.uploadImage(1);
+                  complaint_picture = images[0];
+                  filename = complaint_picture.path.split('/').last;
+                  setState(() {});
                 },
               ),
             )

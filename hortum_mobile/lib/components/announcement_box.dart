@@ -9,7 +9,7 @@ class AnnouncementBox extends StatefulWidget {
   final String title;
   final List localizations;
   final String price;
-  final String productPic;
+  final List<dynamic> productPic;
   final String email;
   final String description;
 
@@ -64,7 +64,10 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ProductorDetails(
-                      email: encodeString(widget.email), name: widget.name);
+                    email: encodeString(widget.email),
+                    name: widget.name,
+                    productorProfilePicture: widget.profilePic,
+                  );
                 }));
               },
               child: Column(
@@ -77,7 +80,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                       child: Material(
                         child: InkWell(
-                            child: Image.asset(widget.profilePic,
+                            child: Image.network(widget.profilePic,
                                 fit: BoxFit.fill,
                                 height: size.height * 0.06,
                                 width: size.height * 0.06)),
@@ -190,7 +193,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Material(
                             child: InkWell(
-                                child: Image.asset(widget.productPic,
+                                child: Image.network(widget.productPic[0],
                                     fit: BoxFit.fill,
                                     height: size.height * 0.09,
                                     width: size.width * 0.17)),

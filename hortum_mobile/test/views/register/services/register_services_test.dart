@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hortum_mobile/data/register_backend.dart';
 import 'package:hortum_mobile/views/introScreen_page.dart';
 import 'package:hortum_mobile/views/register/services/register_services.dart';
 import 'package:mockito/mockito.dart';
@@ -20,11 +21,12 @@ class Teste extends StatefulWidget {
 class _TestState extends State<Teste> {
   @override
   Widget build(BuildContext context) {
+    RegisterApi registerApi = RegisterApi(widget.dio);
     return MaterialButton(
         key: Key('botão'),
         onPressed: () async {
-          await resgisterUser(widget.dio, 'User', 'user@user.com', 'password',
-              '61123456789', isProductor, context);
+          await resgisterUser('User', 'user@user.com', 'password',
+              '61123456789', isProductor, context, registerApi);
         });
   }
 }

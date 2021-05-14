@@ -5,6 +5,7 @@ import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/complaint/complaint_page.dart';
 import 'package:hortum_mobile/views/register_complaint/services/complaint_services.dart';
 import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -46,6 +47,7 @@ main() {
     {
       'author': "user",
       'description': 'description',
+      'image': 'http://localhost:8000/images/perfil.jpg'
     }
   ];
   Widget makeTestable() {
@@ -61,11 +63,12 @@ main() {
       when(dio.get(any, options: anyNamed('options'))).thenAnswer((_) async =>
           Response(
               data: responseMatcher, requestOptions: null, statusCode: 200));
-
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byKey(Key('createcomplaintButton')));
-      await tester.pumpAndSettle();
-      expect(find.byKey(Key('ComplaintPage')), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.byKey(Key('createcomplaintButton')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(Key('ComplaintPage')), findsOneWidget);
+      });
     });
   });
 }
