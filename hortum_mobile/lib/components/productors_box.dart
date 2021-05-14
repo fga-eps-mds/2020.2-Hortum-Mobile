@@ -6,9 +6,14 @@ class ProductorsBox extends StatefulWidget {
   final String name;
   final String imageAsset;
   final String email;
+  final String phone_number;
 
   const ProductorsBox(
-      {@required this.name, this.imageAsset, @required this.email, Key key})
+      {@required this.name,
+      this.imageAsset,
+      @required this.email,
+      @required this.phone_number,
+      Key key})
       : super(key: key);
   @override
   _ProductorsBoxState createState() => _ProductorsBoxState();
@@ -43,6 +48,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
               email: encodeString(widget.email),
               name: widget.name,
               productorProfilePicture: widget.imageAsset,
+              phone_number: widget.phone_number,
             );
           }));
         },

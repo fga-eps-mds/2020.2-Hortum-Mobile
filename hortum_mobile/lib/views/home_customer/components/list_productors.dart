@@ -30,7 +30,8 @@ class _ProductorsListState extends State<ProductorsList> {
                       key: Key(productors[index]['username'] + " key"),
                       name: productors[index]['username'],
                       email: productors[index]['email'],
-                      imageAsset: productors[index]['profile_picture']);
+                      imageAsset: productors[index]['profile_picture'],
+                      phone_number: '6112345678');
                 },
               )
             : Container(
