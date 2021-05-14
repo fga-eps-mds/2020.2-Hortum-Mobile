@@ -165,4 +165,43 @@ main() {
       expect(result.data['msg'], "Announcement created");
     });
   });
+
+  group('AnnouncementsApi getFavAnnoun', () {
+    dynamic response = {
+      "idAnunFav": [
+        {
+          "email": "usuario@example.com",
+          "username": "usuario1",
+          "idPictureProductor": null,
+          "name": "Abóbora Japonesa",
+          "type_of_product": "Abóbora",
+          "description": "Abóbora Japonesa, unidade",
+          "price": 6.9,
+          "idPicture": null,
+          "likes": 1,
+          "localizations": ["Lugar", "Outro Lugar"]
+        },
+        {
+          "email": "usuario2@example.com",
+          "username": "usuario2",
+          "idPictureProductor": null,
+          "name": "Amora Silvestre",
+          "type_of_product": "Amora",
+          "description": "Amora Silvestre, dúzia",
+          "price": 25.4,
+          "idPicture": null,
+          "likes": 1,
+          "localizations": ["Lugar", "Outro Lugar"]
+        }
+      ]
+    };
+    test('Testing method getFavAnnoun of AnnounDataApi', () async {
+      actualUser.tokenAccess = 'token';
+      AnnouncementsApi announData = AnnouncementsApi(dioMock);
+      when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
+          (_) async => Response(data: response, requestOptions: null));
+      await announData.getFavAnnoun();
+      expect(announData.announcements, response['idAnunFav']);
+    });
+  });
 }
