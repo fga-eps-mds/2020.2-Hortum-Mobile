@@ -193,8 +193,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Material(
                             child: InkWell(
-                                child: Image.network(
-                                    widget.productPic[0]['picture'],
+                                child: Image.network(widget.productPic[0],
                                     fit: BoxFit.fill,
                                     height: size.height * 0.09,
                                     width: size.width * 0.17)),

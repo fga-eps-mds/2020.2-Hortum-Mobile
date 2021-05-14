@@ -20,9 +20,7 @@ main() {
       "type_of_product": "Abelhas",
       "description": "Abelhas",
       "price": 10.0,
-      "images": [
-        {"picture": "$ip/images/perfil.jpg"}
-      ],
+      "images": ["$ip/images/perfil.jpg"],
       "localizations": ["Lugar"]
     }
   ];

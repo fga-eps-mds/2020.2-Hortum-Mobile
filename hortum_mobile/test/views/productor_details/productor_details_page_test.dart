@@ -24,9 +24,7 @@ main() {
       "pictureProductor": "http://localhost:8000/images/perfil.jpg",
       "username": "Usuário Teste",
       "email": "usuario@email.com",
-      "images": [
-        {"picture": "http://localhost:8000/images/perfil.jpg"}
-      ],
+      "images": ["http://localhost:8000/images/perfil.jpg"],
       "localizations": ["Lugar", "Outro Lugar"]
     }
   ];

@@ -13,9 +13,7 @@ main() {
       "type_of_product": "Alface",
       "description": "Alface da fazenda",
       "price": 15.0,
-      "images": [
-        {"picture": "http://localhost:8000/images/perfil.jpg"}
-      ],
+      "images": ["http://localhost:8000/images/perfil.jpg"],
       "likes": 0,
       "localizations": ["Lugar", "Outro Lugar"]
     }

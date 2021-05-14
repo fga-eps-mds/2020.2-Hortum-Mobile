@@ -13,9 +13,7 @@ main() {
   String profilePic = 'assets/images/perfil.jpg';
   String name = 'Victor';
   String title = 'titulo';
-  List<dynamic> productPic = [
-    {"picture": 'assets/images/banana.jpg'}
-  ];
+  List<dynamic> productPic = ['assets/images/banana.jpg'];
   List localizations = ['localizacao', 'localizacao dois'];
   String price = '15.00';
   String description = 'descricao';

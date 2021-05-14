@@ -43,7 +43,7 @@ class _CustomCarrouselState extends State<CustomCarrousel> {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     child: Material(
                       child: InkWell(
-                          child: Image.network(i['picture'],
+                          child: Image.network(i,
                               fit: BoxFit.fill,
                               height: size.height * 0.25,
                               width: size.width * 0.9)),

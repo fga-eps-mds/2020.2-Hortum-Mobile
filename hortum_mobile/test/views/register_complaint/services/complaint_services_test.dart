@@ -83,9 +83,7 @@ main() {
           "type_of_product": "Abelhas",
           "description": "Abelhas",
           "price": 10.0,
-          "images": [
-            {"picture": "http://localhost:8000/images/perfil.jpg"}
-          ],
+          "images": ["http://localhost:8000/images/perfil.jpg"],
           "localizations": ["Lugar", "Outro Lugar"]
         }
       ];

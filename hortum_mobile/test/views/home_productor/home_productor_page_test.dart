@@ -21,9 +21,7 @@ main() {
       "type_of_product": "Alface",
       "description": "Alface plantado na fazenda",
       "price": 5.0,
-      "images": [
-        {"picture": "$ip/images/perfil.jpg"}
-      ],
+      "images": ["$ip/images/perfil.jpg"],
       "likes": 0,
       "localizations": ["Lugar", "Outro lugar"],
       "inventory": true,
@@ -121,9 +119,7 @@ main() {
             "type_of_product": "Alface",
             "description": "Alface plantado na fazenda",
             "price": 5.0,
-            "images": [
-              {"picture": "$ip/images/perfil.jpg"}
-            ],
+            "images": ["$ip/images/perfil.jpg"],
             "likes": 0,
             "localizations": ["Lugar", "Outro lugar"],
             "inventory": false,
