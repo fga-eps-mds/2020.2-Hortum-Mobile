@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
+import 'package:hortum_mobile/views/favorites/fav_page.dart';
 import 'package:hortum_mobile/views/home_customer/home_customer_page.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 import 'package:hortum_mobile/views/profile/profile_page.dart';
@@ -55,7 +56,14 @@ class Footer extends StatelessWidget {
                               MaterialPageRoute(builder: (context) {
                             return RegisterAnnounPage();
                           }));
-                        } else {}
+                        } else {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return FavPage(
+                              isAnnouncement: true,
+                            );
+                          }));
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.only(right: size.width * 0.2),
