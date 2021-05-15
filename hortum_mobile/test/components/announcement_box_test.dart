@@ -14,6 +14,7 @@ main() {
   String price = '15.00';
   String description = 'descricao';
   String email = 'joao@gmail.com';
+  String phone_number = '12345678912';
   actualUser.isProductor = false;
   group('Testing AnnouncementDetailsPage:', () {
     Widget makeTestable() {
@@ -27,7 +28,8 @@ main() {
         description: description,
         price: price,
         email: email,
-        isFavPage: false
+        isFavPage: false,
+        phone_number: phone_number,
       ));
     }
 

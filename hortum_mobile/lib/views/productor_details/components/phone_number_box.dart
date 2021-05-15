@@ -9,7 +9,7 @@ class PhoneNumberBox extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(bottom: size.height * 0.02),
+      padding: EdgeInsets.only(bottom: size.height * 0.01),
       child: Container(
         width: size.width * 0.4,
         decoration: BoxDecoration(

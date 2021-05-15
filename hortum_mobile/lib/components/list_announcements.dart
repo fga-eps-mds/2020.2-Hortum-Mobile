@@ -8,7 +8,10 @@ class AnnouncementsList extends StatefulWidget {
   final bool isFavPage;
 
   const AnnouncementsList(
-      {@required this.announData, @required this.textNotFound, @required this.isFavPage,Key key})
+      {@required this.announData,
+      @required this.textNotFound,
+      @required this.isFavPage,
+      Key key})
       : super(key: key);
 
   @override
@@ -30,15 +33,17 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return AnnouncementBox(
-                      profilePic: announcements[index]['pictureProductor'],
-                      email: announcements[index]['email'],
-                      name: announcements[index]['username'],
-                      title: announcements[index]['name'],
-                      localizations: announcements[index]['localizations'],
-                      price: announcements[index]['price'],
-                      productPic: announcements[index]['images'],
-                      description: announcements[index]['description'],
-                      isFavPage: widget.isFavPage);
+                    profilePic: announcements[index]['pictureProductor'],
+                    email: announcements[index]['email'],
+                    name: announcements[index]['username'],
+                    title: announcements[index]['name'],
+                    localizations: announcements[index]['localizations'],
+                    price: announcements[index]['price'],
+                    productPic: announcements[index]['images'],
+                    description: announcements[index]['description'],
+                    isFavPage: widget.isFavPage,
+                    phone_number: announcements[index]['phone_number'],
+                  );
                 },
               )
             : Container(

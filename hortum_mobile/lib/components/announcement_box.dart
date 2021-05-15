@@ -17,6 +17,7 @@ class AnnouncementBox extends StatefulWidget {
   final Dio dio;
   final String description;
   final bool isFavPage;
+  final String phone_number;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -28,6 +29,7 @@ class AnnouncementBox extends StatefulWidget {
       @required this.email,
       @required this.description,
       @required this.isFavPage,
+      @required this.phone_number,
       this.dio,
       Key key})
       : super(key: key);
@@ -84,19 +86,21 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                         return ProductorDetails(
                             email: encodeString(widget.email),
                             name: widget.name,
-                            productorProfilePicture: widget.profilePic);
+                            productorProfilePicture: widget.profilePic,
+                            phone_number: widget.phone_number);
                       }));
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: size.height * 0.05, bottom: 3),
+                      padding:
+                          EdgeInsets.only(top: size.height * 0.05, bottom: 3),
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         child: Material(
                           child: InkWell(
                               child: Image.network(widget.profilePic,
-                                fit: BoxFit.fill,
-                                height: size.height * 0.06,
-                                width: size.height * 0.06)),
+                                  fit: BoxFit.fill,
+                                  height: size.height * 0.06,
+                                  width: size.height * 0.06)),
                         ),
                       ),
                     ),
@@ -159,6 +163,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                     productPic: widget.productPic,
                     profilePic: widget.profilePic,
                     title: widget.title,
+                    phone_number: widget.phone_number,
                   );
                 }));
               },
