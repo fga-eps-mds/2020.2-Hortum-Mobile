@@ -16,7 +16,8 @@ class ProductorDetaislService {
                   localizations: announcement['localizations'],
                   price:
                       "R\$ ${announcement['price'].toStringAsFixed(2).replaceFirst('.', ',')}",
-                  productPic: announcement['images']))
+                  productPic: announcement['images'],
+                  isFavPage: false))
               .toList());
     }
     return Container(

@@ -154,6 +154,20 @@ class AnnouncementsApi {
     return response;
   }
 
+  Future getFavAnnoun() async {
+    String url = '$ip/customer/favorites/announcements';
+
+    var header = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + actualUser.tokenAccess
+    };
+
+    Response response =
+        await this.dio.get(url, options: Options(headers: header));
+    this.announcements = response.data['idAnunFav'];
+    manipulateData();
+  }
+
   manipulateData() {
     this.announcements.forEach((element) {
       element['price'] =

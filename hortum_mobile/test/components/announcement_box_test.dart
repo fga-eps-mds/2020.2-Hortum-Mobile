@@ -27,6 +27,7 @@ main() {
         description: description,
         price: price,
         email: email,
+        isFavPage: false
       ));
     }
 

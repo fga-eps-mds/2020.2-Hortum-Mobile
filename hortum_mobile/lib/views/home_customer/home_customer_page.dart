@@ -6,7 +6,7 @@ import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/data/productors_data_backend.dart';
 import 'package:hortum_mobile/views/home_customer/components/carroussel.dart';
 import 'package:hortum_mobile/views/home_customer/components/home_type.dart';
-import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
+import 'package:hortum_mobile/components/list_announcements.dart';
 import 'package:hortum_mobile/views/home_customer/components/list_productors.dart';
 import 'package:hortum_mobile/views/home_customer/services/home_customer_services.dart';
 
@@ -76,8 +76,16 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
                   snapshot.connectionState == ConnectionState.done
                       ? (this.type == "name" ||
                               this.type == "localizations__adress")
-                          ? AnnouncementsList(announData: announcementsApi)
-                          : ProductorsList(productorsData: productorsData)
+                          ? AnnouncementsList(
+                              isFavPage: false,
+                              textNotFound:
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                              announData: announcementsApi)
+                          : ProductorsList(
+                              isFavPage: false,
+                              textNotFound:
+                                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                              productorsData: productorsData)
                       : SpinWidget(margin: size.height * 0.25),
                 ],
               ),

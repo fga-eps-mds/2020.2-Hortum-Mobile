@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
@@ -7,12 +9,16 @@ class ProductorsBox extends StatefulWidget {
   final String imageAsset;
   final String email;
   final String phone_number;
+  final Dio dio;
+  final bool isFavPage;
 
   const ProductorsBox(
       {@required this.name,
       this.imageAsset,
       @required this.email,
       @required this.phone_number,
+      @required this.isFavPage,
+      this.dio,
       Key key})
       : super(key: key);
   @override
@@ -20,8 +26,17 @@ class ProductorsBox extends StatefulWidget {
 }
 
 class _ProductorsBoxState extends State<ProductorsBox> {
+  bool isFavoriteProductor;
+
+  @override
+  // ignore: must_call_super
+  void initState() {
+    isFavoriteProductor = widget.isFavPage;
+  }
+
   @override
   Widget build(BuildContext context) {
+    ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
     Size size = MediaQuery.of(context).size;
     return Container(
       key: Key('productorsBox'),
@@ -53,6 +68,7 @@ class _ProductorsBoxState extends State<ProductorsBox> {
           }));
         },
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               width: size.width * 0.12,
@@ -70,7 +86,28 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                 ),
               ),
             ),
-            Text(widget.name, style: TextStyle(fontSize: 20))
+            Expanded(
+                flex: 4,
+                child: Text(
+                  widget.name,
+                  style: TextStyle(fontSize: 20),
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                )),
+            Expanded(
+              child: MaterialButton(
+                child: Icon(
+                  Icons.thumb_up_alt_outlined,
+                  color: isFavoriteProductor ? Colors.blue : Colors.black,
+                ),
+                onPressed: () async {
+                  await favProductor.favProductor(widget.email);
+                  setState(() {
+                    isFavoriteProductor = !isFavoriteProductor;
+                  });
+                },
+              ),
+            )
           ],
         ),
       ),
