@@ -34,6 +34,7 @@ main() {
       home: ProductorDetails(
         email: "emailteste@gmail.com",
         name: "Produtor",
+        phone_number: "61912345678",
         dio: dioMock,
         productorProfilePicture: 'http://localhost:8000/images/perfil.jpg',
       ),

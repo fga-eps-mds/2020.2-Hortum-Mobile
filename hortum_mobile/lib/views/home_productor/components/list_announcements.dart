@@ -42,15 +42,17 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                       inventory: announcements[index]['inventory'],
                     ),
                     AnnouncementBox(
-                        profilePic: announcements[index]['pictureProductor'],
-                        description: announcements[index]['description'],
-                        name: announcements[index]['username'],
-                        email: announcements[index]['email'],
-                        title: announcements[index]['name'],
-                        localizations: announcements[index]['localizations'],
-                        price: announcements[index]['price'],
-                        productPic: announcements[index]['images'],
-                        isFavPage: false)
+                      profilePic: announcements[index]['pictureProductor'],
+                      description: announcements[index]['description'],
+                      name: announcements[index]['username'],
+                      email: announcements[index]['email'],
+                      title: announcements[index]['name'],
+                      localizations: announcements[index]['localizations'],
+                      price: announcements[index]['price'],
+                      productPic: announcements[index]['images'],
+                      isFavPage: false,
+                      phone_number: announcements[index]['phone_number'],
+                    )
                   ]);
                 },
               )
