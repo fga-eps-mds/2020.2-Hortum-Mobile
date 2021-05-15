@@ -1,10 +1,15 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hortum_mobile/components/footer.dart';
 import 'package:hortum_mobile/components/photo_select.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/views/register_announcement/components/announ_register_form.dart';
 
 class RegisterAnnounPage extends StatefulWidget {
+  final Dio dio;
+
+  const RegisterAnnounPage({this.dio});
   @override
   _RegisterAnnounPageState createState() => _RegisterAnnounPageState();
 }
@@ -12,8 +17,8 @@ class RegisterAnnounPage extends StatefulWidget {
 class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
   @override
   Widget build(BuildContext context) {
+    AnnouncementsApi announcementsApi = AnnouncementsApi(widget.dio);
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -31,8 +36,11 @@ class _RegisterAnnounPageState extends State<RegisterAnnounPage> {
                         child: ListView(children: [
                           PhotoSelecter(
                             title: 'CRIAR ANÚNCIO',
+                            isAnnounRegister: true,
                           ),
-                          AnnounRegisterForm(),
+                          AnnounRegisterForm(
+                            announcementsApi: announcementsApi,
+                          ),
                         ])),
                   ],
                 ),

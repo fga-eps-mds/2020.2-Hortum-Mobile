@@ -33,7 +33,7 @@ class _ProductorsListState extends State<ProductorsList> {
                       email: productors[index]['email'],
                       key: Key(productors[index]['username'] + " key"),
                       name: productors[index]['username'],
-                      imageAsset: productors[index]['idPicture'],
+                      imageAsset: productors[index]['profile_picture'],
                       isFavPage: widget.isFavPage,);
                 },
               )

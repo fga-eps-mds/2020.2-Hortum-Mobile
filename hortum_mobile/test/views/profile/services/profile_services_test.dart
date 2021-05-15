@@ -18,6 +18,7 @@ main() {
   actualUser.email = 'user@user.com';
   actualUser.username = "user";
   actualUser.tokenAccess = 'token';
+  controllerPicture.newPictureNotifier.value = null;
 
   group('Testing ProfileServices:', () {
     Widget makeTestable() {
@@ -43,21 +44,22 @@ main() {
 
       await tester.pumpWidget(makeTestable());
       await tester.tap(find.byKey(Key('salvarButton')));
-      await tester.pump();
+      await tester.pumpAndSettle();
       expect(find.byKey(Key('emailJaExistente')), findsOneWidget);
     });
 
     group('Testing ProfileServices response.status_code 400:', () {
       testWidgets('Return to CustomerHomePage', (WidgetTester tester) async {
         actualUser.isProductor = false;
-        String responseMatcher = "";
+        Map data = {
+          "name": "Usuário Teste",
+          "profile_picture": "http://localhost:8000/images/perfil.jpg"
+        };
 
         when(dio.patch(any,
                 data: anyNamed('data'), options: anyNamed('options')))
-            .thenAnswer((_) async => Response(
-                data: jsonEncode(responseMatcher),
-                requestOptions: null,
-                statusCode: 200));
+            .thenAnswer((_) async =>
+                Response(data: data, requestOptions: null, statusCode: 200));
 
         await tester.pumpWidget(makeTestable());
         await tester.tap(find.byKey(Key('salvarButton')));

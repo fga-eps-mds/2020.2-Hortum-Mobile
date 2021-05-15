@@ -116,7 +116,7 @@ main() {
 
   group('AnnouncementsApi editAnnoun', () {
     test('Testing method editAnnoun from AnnouncementsApi', () async {
-      var url = 'http://$ip:8000/announcement/update/Banana';
+      var url = '$ip/announcement/update/Banana';
 
       actualUser.tokenAccess = 'token';
       String responseMatcher = 'Anuncio editado';

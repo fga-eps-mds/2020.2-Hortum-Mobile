@@ -16,7 +16,7 @@ class ProductorFavAPI {
   }
 
   Future favProductor(String email) async {
-    var url = 'http://$ip:8000/customer/fav-productor';
+    var url = '$ip/customer/fav-productor';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,

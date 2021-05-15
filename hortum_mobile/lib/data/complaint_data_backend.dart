@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
 
@@ -17,7 +16,7 @@ class ComplaintDataAPI {
   Future listComplaint({String emailProductor}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
 
-    var url = 'http://$ip:8000/complaint/list/${emailProductor}';
+    var url = '$ip/complaint/list/${emailProductor}';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
@@ -36,23 +35,29 @@ class ComplaintDataAPI {
   Future registerComplaint(
       {String name, String description, String emailProductor}) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
-    var url = 'http://$ip:8000/complaint/create/';
+    var url = '$ip/complaint/create/';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
-    Map params = {
+    var params = {
       "author": name,
       "description": description,
-      "emailProductor": emailProductor
+      "emailProductor": emailProductor,
+      "image": complaint_picture != null
+          ? await MultipartFile.fromFile(complaint_picture.path,
+              filename: complaint_picture.path.split('/').last)
+          : null
     };
 
-    String _body = json.encode(params);
+    FormData body = FormData.fromMap(params);
+
     Response response = await dio.post(url,
-        data: _body,
+        data: body,
         options: Options(
           headers: header,
+          contentType: 'multipart/form-data',
           validateStatus: (status) {
             return status <= 500;
           },

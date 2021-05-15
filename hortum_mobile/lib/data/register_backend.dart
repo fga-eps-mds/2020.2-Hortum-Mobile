@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:hortum_mobile/globals.dart';
 
 class RegisterApi {
   Dio dio;
+
   RegisterApi([Dio client]) {
     if (client == null)
       this.dio = Dio();
@@ -13,42 +12,47 @@ class RegisterApi {
   }
 
   Future register(String username, String email, String password,
-      String telefone, bool isProductor, BuildContext context) async {
-    String urlCustomer = 'http://$ip:8000/signup/customer/';
-    String urlProductor = 'http://$ip:8000/signup/productor/';
+      String telefone, bool isProductor) async {
+    String urlCustomer = '$ip/signup/customer/';
+    String urlProductor = '$ip/signup/productor/';
     Response response;
+    String filename;
 
     var header = {"Content-Type": "application/json"};
 
-    Map params = {
-      "user": {
-        "username": username,
-        "email": email,
-        "password": password,
-        "phone_number": telefone
-      },
-    };
+    if (profile_picture != null)
+      filename = profile_picture.path.split('/').last;
+    var params = FormData.fromMap({
+      "user.username": username,
+      "user.email": email,
+      "user.password": password,
+      "user.phone_number": telefone,
+      "user.profile_picture": profile_picture != null
+          ? await MultipartFile.fromFile(profile_picture.path,
+              filename: filename)
+          : null
+    });
 
-    String _body = json.encode(params);
     if (isProductor == false) {
       response = await this.dio.post(urlCustomer,
-          data: _body,
+          data: params,
           options: Options(
-            headers: header,
-            validateStatus: (status) {
-              return status <= 500;
-            },
-          ));
+              headers: header,
+              validateStatus: (status) {
+                return status <= 500;
+              },
+              contentType: 'multipart/form-data'));
     } else {
       response = await dio.post(urlProductor,
-          data: _body,
+          data: params,
           options: Options(
-            headers: header,
-            validateStatus: (status) {
-              return status <= 500;
-            },
-          ));
+              headers: header,
+              validateStatus: (status) {
+                return status <= 500;
+              },
+              contentType: 'multipart/form-data'));
     }
+    profile_picture = null;
     return response;
   }
 }

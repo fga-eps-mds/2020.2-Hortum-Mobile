@@ -12,7 +12,7 @@ class AnnouncementBox extends StatefulWidget {
   final String title;
   final List localizations;
   final String price;
-  final String productPic;
+  final List<dynamic> productPic;
   final String email;
   final Dio dio;
   final String description;
@@ -83,19 +83,20 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           MaterialPageRoute(builder: (context) {
                         return ProductorDetails(
                             email: encodeString(widget.email),
-                            name: widget.name);
+                            name: widget.name,
+                            productorProfilePicture: widget.profilePic);
                       }));
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: size.height * 0.05),
+                      padding: EdgeInsets.only(top: size.height * 0.05, bottom: 3),
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         child: Material(
                           child: InkWell(
-                              child: Image.asset(widget.profilePic,
-                                  fit: BoxFit.fill,
-                                  height: size.height * 0.06,
-                                  width: size.height * 0.06)),
+                              child: Image.network(widget.profilePic,
+                                fit: BoxFit.fill,
+                                height: size.height * 0.06,
+                                width: size.height * 0.06)),
                         ),
                       ),
                     ),
@@ -233,7 +234,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Material(
                             child: InkWell(
-                                child: Image.asset(widget.productPic,
+                                child: Image.network(widget.productPic[0],
                                     fit: BoxFit.fill,
                                     height: size.height * 0.09,
                                     width: size.width * 0.17)),

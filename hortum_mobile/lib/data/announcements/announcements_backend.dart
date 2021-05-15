@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,9 +19,9 @@ class AnnouncementsApi {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String url;
     if (filter.isEmpty)
-      url = 'http://$ip:8000/announcement/list';
+      url = '$ip/announcement/list';
     else
-      url = 'http://$ip:8000/announcement/list/?filter=${type}&value=${filter}';
+      url = '$ip/announcement/list/?filter=${type}&value=${filter}';
 
     var header = {
       "Content-Type": "application/json",
@@ -37,9 +37,8 @@ class AnnouncementsApi {
       double price, String category) async {
     //Trocar o IPLOCAL pelo ip de sua máquina
     String userAccessToken = actualUser.tokenAccess;
-    String url = 'http://$ip:8000/announcement/create';
+    String url = '$ip/announcement/create';
     var header = {
-      "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
     };
     List<String> localizacao = [];
@@ -53,32 +52,43 @@ class AnnouncementsApi {
     });
 
     String email = actualUser.email;
-    Map params = {
+    var params = FormData.fromMap({
       "email": email,
       "name": name,
       "description": description,
       "price": price,
       "type_of_product": category,
-      "images": [],
-      "localizations": localizacao
-    };
+      "localizations": localizacao,
+    });
 
-    String _body = json.encode(params);
-    Response response = await this.dio.post(url,
-        data: _body,
-        options: Options(
-          headers: header,
-          validateStatus: (status) {
-            return status <= 500;
-          },
-        ));
+    for (File item in announImages) {
+      String filename = item.path.split('/').last;
+      params.files.addAll([
+        MapEntry("images",
+            await MultipartFile.fromFile(item.path, filename: filename)),
+      ]);
+    }
 
-    return response;
+    try {
+      Response response = await this.dio.post(url,
+          data: params,
+          options: Options(
+            headers: header,
+            contentType: 'multipart/form-data',
+            validateStatus: (status) {
+              return status <= 500;
+            },
+          ));
+      announImages = [];
+      return response;
+    } on DioError catch (err) {
+      print(err);
+    }
   }
 
   Future deleteAnnoun(String anuncio) async {
     String userAccessToken = actualUser.tokenAccess;
-    String url = 'http://$ip:8000/announcement/update/$anuncio';
+    String url = '$ip/announcement/update/$anuncio';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + userAccessToken,
@@ -96,22 +106,23 @@ class AnnouncementsApi {
       String category,
       bool inventory,
       List localizations}) async {
-    String url = 'http://$ip:8000/announcement/update/$nomeOriginal';
+    String url = '$ip/announcement/update/$nomeOriginal';
 
     var header = {
-      "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
+    String localizacao = null;
 
-    List<String> localizacao = [];
+    if (localizations != null) {
+      List<String> localizacao = [];
+      int index = 0;
+      localizations.forEach((element) {
+        localizacao.insert(index, element.text);
+        index++;
+      });
+    }
 
-    int index = 0;
-    localizations.forEach((element) {
-      localizacao.insert(index, element.text);
-      index++;
-    });
-
-    Map params = {
+    var map = {
       "name": name,
       "description": description,
       "price": price,
@@ -119,14 +130,23 @@ class AnnouncementsApi {
       "inventory": inventory,
       "localizations": localizacao
     };
-    params.removeWhere((key, value) => value == null);
+    map.removeWhere((key, value) => value == null);
 
-    String _body = json.encode(params);
+    var params = FormData.fromMap(map);
+
+    for (File item in announImages) {
+      String filename = item.path.split('/').last;
+      params.files.addAll([
+        MapEntry("images",
+            await MultipartFile.fromFile(item.path, filename: filename)),
+      ]);
+    }
 
     var response = await dio.patch(url,
-        data: _body,
+        data: params,
         options: Options(
           headers: header,
+          contentType: 'multipart/form-data',
           validateStatus: (status) {
             return status <= 500;
           },
@@ -135,7 +155,7 @@ class AnnouncementsApi {
   }
 
   Future getFavAnnoun() async {
-    String url = 'http://$ip:8000/customer/favorites/announcements';
+    String url = '$ip/customer/favorites/announcements';
 
     var header = {
       "Content-Type": "application/json",

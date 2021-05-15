@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hortum_mobile/globals.dart';
 
 class User {
   String tokenRefresh;
@@ -7,6 +8,7 @@ class User {
   String username;
   String password;
   bool isProductor;
+  String profile_picture;
   String phone_number;
   final _storage = new FlutterSecureStorage();
 
@@ -17,6 +19,7 @@ class User {
       this.username,
       this.password,
       this.isProductor,
+      this.profile_picture,
       this.phone_number});
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -26,8 +29,9 @@ class User {
         email: json['email'],
         username: json['username'],
         password: json['password'],
-        isProductor: json['is_productor'],
-        phone_number: json['phone_number']);
+        profile_picture: "$ip" + json['profile_picture'],
+        phone_number: json['phone_number'],
+        isProductor: json['is_productor']);
   }
 
   void deleteUser() {
@@ -40,6 +44,7 @@ class User {
     username = null;
     password = null;
     isProductor = null;
+    profile_picture = null;
     phone_number = null;
   }
 
@@ -51,6 +56,7 @@ class User {
   void initAutoLogin(bool isProductor, String username) async {
     this.isProductor = isProductor;
     this.username = username;
+    this.profile_picture = await this.readSecureData('profile_picture');
     this.email = await this.readSecureData('email');
     this.tokenAccess = await this.readSecureData('token_access');
     this.phone_number = await this.readSecureData('phone_number');

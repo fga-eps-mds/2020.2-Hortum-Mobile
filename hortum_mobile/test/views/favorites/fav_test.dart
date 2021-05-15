@@ -5,6 +5,7 @@ import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/favorites/components/select_favorite_button.dart';
 import 'package:hortum_mobile/views/favorites/fav_page.dart';
 import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -15,28 +16,24 @@ main() {
   dynamic response = {
     "idAnunFav": [
       {
-        "email": "usuario@example.com",
-        "username": "usuario1",
-        "idPictureProductor": null,
+        "username": "Usuário Teste",
+        "pictureProductor": "$ip/images/perfil.jpg",
         "name": "Abóbora Japonesa",
-        "type_of_product": "Abóbora",
-        "description": "Abóbora Japonesa, unidade",
-        "price": 6.9,
-        "idPicture": null,
-        "likes": 1,
-        "localizations": ["Lugar", "Outro Lugar"]
+        "type_of_product": "Abóbora Japonesa",
+        "description": "Abelhas",
+        "price": 10.0,
+        "images": ["$ip/images/perfil.jpg"],
+        "localizations": ["Lugar"]
       },
       {
-        "email": "usuario2@example.com",
-        "username": "usuario2",
-        "idPictureProductor": null,
+        "username": "Usuário Teste",
+        "pictureProductor": "$ip/images/perfil.jpg",
         "name": "Amora Silvestre",
-        "type_of_product": "Amora",
-        "description": "Amora Silvestre, dúzia",
-        "price": 25.4,
-        "idPicture": null,
-        "likes": 1,
-        "localizations": ["Lugar", "Outro Lugar"]
+        "type_of_product": "Abelhas",
+        "description": "Abelhas",
+        "price": 10.0,
+        "images": ["$ip/images/perfil.jpg"],
+        "localizations": ["Lugar"]
       }
     ]
   };
@@ -44,9 +41,9 @@ main() {
   dynamic productorsResponse = {
     "idProdFav": [
       {
-        "username": "usuario2",
-        "email": "usuario2@example.com",
-        "idPicture": null
+        "username": "Usuário Teste",
+        "email": "email@email.com",
+        "profile_picture": 'http://localhost:8000/images/perfil.jpg'
       }
     ]
   };
@@ -64,9 +61,11 @@ main() {
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      await tester.pump();
-      expect(find.text('Amora Silvestre'), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.pump();
+        expect(find.text('Amora Silvestre'), findsOneWidget);
+      });
     });
 
     testWidgets('Testing the FavPage rendering', (WidgetTester tester) async {
@@ -74,10 +73,12 @@ main() {
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      expect(find.byType(FavSelectButton), findsOneWidget);
-      await tester.pump();
-      expect(find.text('FAVORITOS'), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        expect(find.byType(FavSelectButton), findsOneWidget);
+        await tester.pump();
+        expect(find.text('FAVORITOS'), findsOneWidget);
+      });
     });
 
     testWidgets(
@@ -85,23 +86,21 @@ main() {
         (WidgetTester tester) async {
       actualUser.isProductor = false;
       actualUser.tokenAccess = 'token';
-      when(dioMock.get('http://$ip:8000/customer/favorites/productors',
-              options: anyNamed('options')))
-          .thenAnswer((_) async =>
+      when(dioMock.get('$ip/customer/favorites/productors', options: anyNamed('options'))).thenAnswer(
+          (_) async =>
               Response(data: productorsResponse, requestOptions: null));
-      when(dioMock.get('http://$ip:8000/customer/favorites/announcements',
-              options: anyNamed('options')))
-          .thenAnswer(
-              (_) async => Response(data: response, requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.text('Produtores'));
-      await tester.pump();
-      await tester.pump();
-      expect(find.text('usuario2'), findsOneWidget);
-      await tester.tap(find.text('Anúncios'));
-      await tester.pump();
-      await tester.pump();
-      expect(find.text('Abóbora Japonesa'), findsOneWidget);
+      when(dioMock.get('$ip/customer/favorites/announcements', options: anyNamed('options'))).thenAnswer(
+          (_) async => Response(data: response, requestOptions: null));
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.text('Produtores'));
+        await tester.pumpAndSettle();
+        expect(find.text('Usuário Teste'), findsOneWidget);
+        await tester.tap(find.text('Anúncios'));
+        await tester.pump();
+        await tester.pump();
+        expect(find.text('Abóbora Japonesa'), findsOneWidget);
+      });
     });
   });
 }

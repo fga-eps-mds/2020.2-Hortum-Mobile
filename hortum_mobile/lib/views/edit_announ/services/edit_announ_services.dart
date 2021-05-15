@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 
 class ChangeServices {
@@ -54,6 +55,7 @@ class ChangeServices {
         },
       );
     } else {
+      controllerPicture.newPictureAnnounNotifier.value = null;
       return Navigator.push(context, MaterialPageRoute(builder: (context) {
         return ProductorHomePage();
       }));

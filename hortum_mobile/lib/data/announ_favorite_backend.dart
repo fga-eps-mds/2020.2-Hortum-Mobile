@@ -14,7 +14,7 @@ class AnnounFavAPI {
   }
 
   Future favAnnoun(String email, String announcementName) async {
-    var url = 'http://$ip:8000/customer/fav-announcement';
+    var url = '$ip/customer/fav-announcement';
     var header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + actualUser.tokenAccess,

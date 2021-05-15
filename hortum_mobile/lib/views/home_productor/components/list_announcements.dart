@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcement_box.dart';
 import 'package:hortum_mobile/views/home_productor/components/buttons_row.dart';
@@ -5,8 +6,9 @@ import 'package:hortum_mobile/data/prod_log_data_backend.dart';
 
 class ListAnnouncement extends StatefulWidget {
   final ProdLoggedAnnounDataApi announProd;
+  final Dio dio;
 
-  const ListAnnouncement({@required this.announProd, Key key})
+  const ListAnnouncement({@required this.announProd, this.dio, Key key})
       : super(key: key);
 
   @override
@@ -30,20 +32,24 @@ class _ListAnnouncementState extends State<ListAnnouncement> {
                 itemBuilder: (context, index) {
                   return Column(children: [
                     ButtonsRow(
-                        title: announcements[index]['name'],
-                        localization: announcements[index]['localizations'],
-                        price: announcements[index]['price'],
-                        description: announcements[index]['description'],
-                        category: announcements[index]['type_of_product']),
+                      dio: widget.dio,
+                      title: announcements[index]['name'],
+                      localization: announcements[index]['localizations'],
+                      price: announcements[index]['price'],
+                      image: announcements[index]['images'][0],
+                      description: announcements[index]['description'],
+                      category: announcements[index]['type_of_product'],
+                      inventory: announcements[index]['inventory'],
+                    ),
                     AnnouncementBox(
+                        profilePic: announcements[index]['pictureProductor'],
                         description: announcements[index]['description'],
-                        profilePic: 'assets/images/perfil.jpg',
                         name: announcements[index]['username'],
                         email: announcements[index]['email'],
                         title: announcements[index]['name'],
                         localizations: announcements[index]['localizations'],
                         price: announcements[index]['price'],
-                        productPic: 'assets/images/banana.jpg',
+                        productPic: announcements[index]['images'],
                         isFavPage: false)
                   ]);
                 },

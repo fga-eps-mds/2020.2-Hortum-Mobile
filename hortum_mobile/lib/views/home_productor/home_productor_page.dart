@@ -45,6 +45,7 @@ class _ProductorHomePageState extends State<ProductorHomePage> {
                             height: size.height * 0.75,
                             margin: EdgeInsets.only(bottom: size.height * 0.05),
                             child: ListAnnouncement(
+                              dio: widget.dio,
                               announProd: announProd,
                             ))
                         : Container(

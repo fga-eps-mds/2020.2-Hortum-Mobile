@@ -30,13 +30,13 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return AnnouncementBox(
-                      profilePic: 'assets/images/perfil.jpg',
+                      profilePic: announcements[index]['pictureProductor'],
                       email: announcements[index]['email'],
                       name: announcements[index]['username'],
                       title: announcements[index]['name'],
                       localizations: announcements[index]['localizations'],
                       price: announcements[index]['price'],
-                      productPic: 'assets/images/banana.jpg',
+                      productPic: announcements[index]['images'],
                       description: announcements[index]['description'],
                       isFavPage: widget.isFavPage);
                 },

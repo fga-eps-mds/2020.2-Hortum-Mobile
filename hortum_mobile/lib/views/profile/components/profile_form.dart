@@ -4,7 +4,6 @@ import 'package:hortum_mobile/components/form_field.dart';
 import 'package:hortum_mobile/components/form_validation.dart';
 import 'package:hortum_mobile/views/profile/components/advanced_settings_button.dart';
 import 'package:hortum_mobile/views/profile/services/profile_services.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../globals.dart';
 
@@ -24,11 +23,10 @@ class ProfileForm extends StatefulWidget {
 }
 
 class _ProfileFormState extends State<ProfileForm> {
-  final picker = ImagePicker();
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController email;
   final TextEditingController username;
   final TextEditingController phone_number;
-  final _formKey = GlobalKey<FormState>();
   _ProfileFormState({
     this.email,
     this.username,
@@ -89,7 +87,8 @@ class _ProfileFormState extends State<ProfileForm> {
                 if (_formKey.currentState.validate()) {
                   if (actualUser.username != username.text ||
                       actualUser.email != email.text ||
-                      actualUser.phone_number != phone_number.text) {
+                      actualUser.phone_number != phone_number.text ||
+                      controllerPicture.newPictureNotifier.value != null) {
                     ProfileServices.updateUser(widget.dio, username.text,
                         email.text, phone_number.text, context);
                   }

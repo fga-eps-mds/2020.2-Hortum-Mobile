@@ -21,6 +21,7 @@ void main() {
       'access': 'abc',
       'refresh': 'cba',
       'username': 'teste',
+      'profile_picture': 'http://localhost:8000/images/perfil.jpg',
       'is_productor': false,
     };
     when(dioMock.post(any,
@@ -35,6 +36,7 @@ void main() {
     expect(actualUser.username, userMatcher.username);
     expect(actualUser.tokenAccess, userMatcher.tokenAccess);
     expect(actualUser.tokenRefresh, userMatcher.tokenRefresh);
+    expect(actualUser.profile_picture, userMatcher.profile_picture);
     expect(actualUser.isProductor, userMatcher.isProductor);
   });
 }

@@ -6,13 +6,14 @@ import 'package:hortum_mobile/views/announcement_details/components/custom_carro
 import 'package:hortum_mobile/views/announcement_details/components/localization_container.dart';
 import 'package:hortum_mobile/views/announcement_details/components/price_container.dart';
 import 'package:hortum_mobile/views/announcement_details/components/title_buttons_row.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   String profilePic = 'assets/images/perfil.jpg';
   String name = 'Victor';
   String title = 'titulo';
-  String productPic = 'assets/images/banana.jpg';
+  List<dynamic> productPic = ['assets/images/banana.jpg'];
   List localizations = ['localizacao', 'localizacao dois'];
   String price = '15.00';
   String description = 'descricao';
@@ -35,21 +36,24 @@ main() {
 
     testWidgets('Testing widgets on AnnouncementDetails',
         (WidgetTester tester) async {
-      await tester.pumpWidget(makeTestable());
-      expect(find.byType(TitleButtonsRow), findsOneWidget);
-      expect(find.byType(PriceContainer), findsOneWidget);
-      expect(find.byType(LocalizationContainer), findsOneWidget);
-      expect(find.byType(CustomCarrousel), findsOneWidget);
-      expect(find.byType(MaterialButton), findsNWidgets(7));
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        expect(find.byType(TitleButtonsRow), findsOneWidget);
+        expect(find.byType(PriceContainer), findsOneWidget);
+        expect(find.byType(LocalizationContainer), findsOneWidget);
+        expect(find.byType(CustomCarrousel), findsOneWidget);
+        expect(find.byType(MaterialButton), findsNWidgets(7));
+      });
     });
     testWidgets('Testing the Return Button', (WidgetTester tester) async {
       actualUser.tokenAccess = 'token';
       actualUser.isProductor = true;
-
-      await tester.pumpWidget(makeTestable());
-      await tester.tap(find.byKey(Key('announcementReturn')));
-      await tester.pumpAndSettle();
-      expect(find.text('MEUS ANÚNCIOS'), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.tap(find.byKey(Key('announcementReturn')));
+        await tester.pumpAndSettle();
+        expect(find.text('MEUS ANÚNCIOS'), findsOneWidget);
+      });
     });
   });
 }
