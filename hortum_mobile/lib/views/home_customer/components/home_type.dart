@@ -45,10 +45,10 @@ class _HomeTypeState extends State<HomeType> {
             child: Text(
               'Anúncios',
               style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'Roboto',
-                fontSize: 14,
-              ),
+                  color: Colors.black, fontFamily: 'Roboto', fontSize: 12),
+              textAlign: TextAlign.start,
+              softWrap: false,
+              textScaleFactor: 0.91,
             ),
           ),
         ),
@@ -70,10 +70,9 @@ class _HomeTypeState extends State<HomeType> {
             child: Text(
               'Produtores',
               style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'Roboto',
-                fontSize: 14,
-              ),
+                  color: Colors.black, fontFamily: 'Roboto', fontSize: 12),
+              textScaleFactor: 0.91,
+              softWrap: false,
             ),
           ),
         ),
@@ -100,8 +99,10 @@ class _HomeTypeState extends State<HomeType> {
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: 'Roboto',
-                fontSize: 14,
+                fontSize: 12,
               ),
+              softWrap: false,
+              textScaleFactor: 0.91,
             ),
           ),
         )
