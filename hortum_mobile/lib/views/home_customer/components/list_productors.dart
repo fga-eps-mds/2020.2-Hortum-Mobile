@@ -8,7 +8,10 @@ class ProductorsList extends StatefulWidget {
   final bool isFavPage;
 
   const ProductorsList(
-      {@required this.productorsData, @required this.textNotFound, @required this.isFavPage,Key key})
+      {@required this.productorsData,
+      @required this.textNotFound,
+      @required this.isFavPage,
+      Key key})
       : super(key: key);
   @override
   _ProductorsListState createState() => _ProductorsListState();
@@ -30,14 +33,13 @@ class _ProductorsListState extends State<ProductorsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ProductorsBox(
-                      email: productors[index]['email'],
-                      key: Key(productors[index]['username'] + " key"),
-                      name: productors[index]['username'],
-                      email: productors[index]['email'],
-                      imageAsset: productors[index]['profile_picture'],
-                      phone_number: productors[index]['phone_number']);
-                      imageAsset: productors[index]['profile_picture'],
-                      isFavPage: widget.isFavPage,);
+                    email: productors[index]['email'],
+                    key: Key(productors[index]['username'] + " key"),
+                    name: productors[index]['username'],
+                    imageAsset: productors[index]['profile_picture'],
+                    phone_number: productors[index]['phone_number'],
+                    isFavPage: widget.isFavPage,
+                  );
                 },
               )
             : Container(
