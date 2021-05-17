@@ -154,6 +154,22 @@ class AnnouncementsApi {
     return response;
   }
 
+  Future categoryAnnoun(String filter) async {
+    String type = 'type_of_product';
+    String url = '$ip/announcement/list/?filter=${type}&value=${filter}';
+
+    var header = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + actualUser.tokenAccess
+    };
+
+    Response response =
+        await this.dio.get(url, options: Options(headers: header));
+    this.announcements = response.data;
+    
+    manipulateData();
+  }
+
   Future getFavAnnoun() async {
     String url = '$ip/customer/favorites/announcements';
 

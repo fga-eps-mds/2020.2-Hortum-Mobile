@@ -18,7 +18,7 @@ main() {
           home: EditPage(
         image: 'http://localhost:8000/images/perfil.jpg',
         dio: dio,
-        category: new TextEditingController(text: 'Banana'),
+        category: new TextEditingController(text: 'Outros'),
         description: new TextEditingController(text: 'Banana Prata'),
         localization: [TextEditingController(text: "Brasilia")],
         originaltitle: 'A',

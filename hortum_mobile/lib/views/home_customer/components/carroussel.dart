@@ -1,7 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/announcements_data.dart';
+import 'package:hortum_mobile/views/filtered_announcements_categories/filtered_announcements_categories_page.dart';
 
-class Carroussel extends StatelessWidget {
+class Carroussel extends StatefulWidget {
+  final Dio dio;
+  const Carroussel({@required this.dio, Key key}) : super(key: key);
+  @override
+  _CarrousselState createState() => _CarrousselState();
+}
+
+class _CarrousselState extends State<Carroussel> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -12,7 +21,14 @@ class Carroussel extends StatelessWidget {
         return Container(
           padding: EdgeInsets.only(right: size.width * 0.01),
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return FilteredAnnounCategoryPage(
+                  filter: categories[index]['name'],
+                  dio: widget.dio,
+                );
+              }));
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

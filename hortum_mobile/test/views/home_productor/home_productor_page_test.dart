@@ -18,7 +18,7 @@ main() {
       "username": "Usuário Teste",
       "pictureProductor": "$ip/images/perfil.jpg",
       "name": "Folha Verde",
-      "type_of_product": "Alface",
+      "type_of_product": "Outros",
       "description": "Alface plantado na fazenda",
       "price": 5.0,
       "images": ["$ip/images/perfil.jpg"],
