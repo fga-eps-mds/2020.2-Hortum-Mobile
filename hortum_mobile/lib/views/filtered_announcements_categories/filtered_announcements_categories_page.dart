@@ -55,7 +55,8 @@ class _FilteredAnnounCategoryPageState
                             ),
                             child: AnnouncementsList(
                               announData: announData,
-                              textNotFound: '',
+                              textNotFound:
+                                  'Não foram encontrados anúncios com esta categoria',
                               isFavPage: false,
                             ))
                         : Container(
