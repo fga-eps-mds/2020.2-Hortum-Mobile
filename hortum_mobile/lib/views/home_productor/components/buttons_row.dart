@@ -13,6 +13,7 @@ class ButtonsRow extends StatefulWidget {
   final List localization;
   final String price;
   final String category;
+  final String image;
   final bool inventory;
 
   const ButtonsRow(
@@ -20,6 +21,7 @@ class ButtonsRow extends StatefulWidget {
       @required this.title,
       @required this.description,
       @required this.price,
+      @required this.image,
       @required this.localization,
       @required this.category,
       @required this.inventory,
@@ -69,7 +71,7 @@ class _ButtonRowState extends State<ButtonsRow> {
     final TextEditingController category =
         TextEditingController(text: widget.category);
     Size size = MediaQuery.of(context).size;
-    AnnouncementsApi announcementsApi = new AnnouncementsApi();
+    AnnouncementsApi announcementsApi = new AnnouncementsApi(widget.dio);
 
     return Container(
       color: Color(0xFFECF87F).withOpacity(0.4),
@@ -96,6 +98,7 @@ class _ButtonRowState extends State<ButtonsRow> {
                     description: description,
                     price: price,
                     localization: localization,
+                    image: widget.image,
                     category: category,
                     originaltitle: widget.title,
                   );

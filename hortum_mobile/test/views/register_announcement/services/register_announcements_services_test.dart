@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/register_announcement/services/register_announcements_services.dart';
 import 'package:mockito/mockito.dart';
@@ -19,17 +20,18 @@ class Teste extends StatefulWidget {
 class _TestState extends State<Teste> {
   @override
   Widget build(BuildContext context) {
+    AnnouncementsApi announcementsApi = AnnouncementsApi(widget.dio);
     return MaterialButton(
         key: Key('botão'),
         onPressed: () async {
           await registerAnnounServices(
-              widget.dio,
               'name',
               'description',
               [TextEditingController(text: 'brasilia')],
               2.8,
               'Banana',
-              context);
+              context,
+              announcementsApi);
         });
   }
 }

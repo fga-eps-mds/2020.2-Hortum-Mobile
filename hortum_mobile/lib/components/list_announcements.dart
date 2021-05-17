@@ -4,8 +4,14 @@ import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 
 class AnnouncementsList extends StatefulWidget {
   final AnnouncementsApi announData;
+  final String textNotFound;
+  final bool isFavPage;
 
-  const AnnouncementsList({@required this.announData, Key key})
+  const AnnouncementsList(
+      {@required this.announData,
+      @required this.textNotFound,
+      @required this.isFavPage,
+      Key key})
       : super(key: key);
 
   @override
@@ -27,21 +33,24 @@ class _AnnouncementsListState extends State<AnnouncementsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return AnnouncementBox(
-                      profilePic: 'assets/images/perfil.jpg',
-                      email: announcements[index]['email'],
-                      name: announcements[index]['username'],
-                      title: announcements[index]['name'],
-                      localizations: announcements[index]['localizations'],
-                      price: announcements[index]['price'],
-                      productPic: 'assets/images/banana.jpg',
-                      description: announcements[index]['description']);
+                    profilePic: announcements[index]['pictureProductor'],
+                    email: announcements[index]['email'],
+                    name: announcements[index]['username'],
+                    title: announcements[index]['name'],
+                    localizations: announcements[index]['localizations'],
+                    price: announcements[index]['price'],
+                    productPic: announcements[index]['images'],
+                    description: announcements[index]['description'],
+                    isFavPage: widget.isFavPage,
+                    phone_number: announcements[index]['phone_number'],
+                  );
                 },
               )
             : Container(
                 margin: EdgeInsets.only(top: size.height * 0.15),
                 width: size.width * 0.6,
                 child: Text(
-                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                  widget.textNotFound,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xff1D8E40), fontSize: 15),
                 ),

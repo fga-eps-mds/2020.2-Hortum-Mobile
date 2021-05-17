@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/data/announ_favorite_backend.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/announcement_details/announcement_details_page.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
@@ -9,9 +12,12 @@ class AnnouncementBox extends StatefulWidget {
   final String title;
   final List localizations;
   final String price;
-  final String productPic;
+  final List<dynamic> productPic;
   final String email;
+  final Dio dio;
   final String description;
+  final bool isFavPage;
+  final String phone_number;
 
   const AnnouncementBox(
       {@required this.profilePic,
@@ -22,6 +28,9 @@ class AnnouncementBox extends StatefulWidget {
       @required this.productPic,
       @required this.email,
       @required this.description,
+      @required this.isFavPage,
+      @required this.phone_number,
+      this.dio,
       Key key})
       : super(key: key);
   @override
@@ -29,6 +38,12 @@ class AnnouncementBox extends StatefulWidget {
 }
 
 class _AnnouncementBoxState extends State<AnnouncementBox> {
+  bool isFavoriteAnounc;
+
+  @override
+  // ignore: must_call_super
+  void initState() => isFavoriteAnounc = widget.isFavPage;
+
   @override
   Widget build(BuildContext context) {
     String allLocalizations = widget.localizations[0];
@@ -36,6 +51,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
       allLocalizations += ', ' + widget.localizations[i];
     }
     Size size = MediaQuery.of(context).size;
+    AnnounFavAPI changeData = new AnnounFavAPI(widget.dio);
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       width: size.width * 0.9,
@@ -54,49 +70,81 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
       child: Row(
         children: [
           Container(
-            width: size.width * 0.2,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border(right: BorderSide(color: Color(0xff57A051))),
-            ),
-            child: MaterialButton(
-              key: Key('productorDetailsButton'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ProductorDetails(
-                      email: encodeString(widget.email), name: widget.name);
-                }));
-              },
-              child: Column(
+              width: size.width * 0.2,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border(right: BorderSide(color: Color(0xff57A051))),
+              ),
+              child: Stack(
+                alignment: AlignmentDirectional.topCenter,
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    padding:
-                        EdgeInsets.only(top: size.height * 0.05, bottom: 3),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      child: Material(
-                        child: InkWell(
-                            child: Image.asset(widget.profilePic,
-                                fit: BoxFit.fill,
-                                height: size.height * 0.06,
-                                width: size.height * 0.06)),
+                  MaterialButton(
+                    key: Key('productorDetailsButton'),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ProductorDetails(
+                            email: encodeString(widget.email),
+                            name: widget.name,
+                            productorProfilePicture: widget.profilePic,
+                            phone_number: widget.phone_number);
+                      }));
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.only(top: size.height * 0.05, bottom: 3),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        child: Material(
+                          child: InkWell(
+                              child: Image.network(widget.profilePic,
+                                  fit: BoxFit.fill,
+                                  height: size.height * 0.06,
+                                  width: size.height * 0.06)),
+                        ),
                       ),
                     ),
                   ),
-                  Text(widget.name, style: TextStyle(fontSize: 12)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.favorite_border_outlined, size: 14),
-                      SizedBox(width: size.width * 0.01),
-                      Icon(Icons.thumb_up_alt_outlined, size: 14)
-                    ],
-                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.12),
+                      child: Column(
+                        children: [
+                          Flexible(
+                            fit: FlexFit.loose,
+                            child: Text(
+                              widget.name,
+                              style: TextStyle(fontSize: 12),
+                              maxLines: 2,
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
+                          if (!actualUser.isProductor)
+                            Material(
+                              child: IconButton(
+                                key: Key('favAnnoun'),
+                                color: isFavoriteAnounc
+                                    ? Colors.red
+                                    : Colors.black,
+                                padding: EdgeInsets.all(size.height * 0.0001),
+                                constraints: BoxConstraints(
+                                  minWidth: 0,
+                                  minHeight: 0,
+                                ),
+                                icon: Icon(Icons.favorite_border_outlined,
+                                    size: 20),
+                                onPressed: () async {
+                                  await changeData.favAnnoun(
+                                      widget.email, widget.title);
+                                  setState(() {
+                                    isFavoriteAnounc = !isFavoriteAnounc;
+                                  });
+                                },
+                              ),
+                            ),
+                        ],
+                      ))
                 ],
-              ),
-            ),
-          ),
+              )),
           Container(
             width: size.width * 0.694,
             decoration: BoxDecoration(
@@ -115,6 +163,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                     productPic: widget.productPic,
                     profilePic: widget.profilePic,
                     title: widget.title,
+                    phone_number: widget.phone_number,
                   );
                 }));
               },
@@ -190,7 +239,7 @@ class _AnnouncementBoxState extends State<AnnouncementBox> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Material(
                             child: InkWell(
-                                child: Image.asset(widget.productPic,
+                                child: Image.network(widget.productPic[0],
                                     fit: BoxFit.fill,
                                     height: size.height * 0.09,
                                     width: size.width * 0.17)),

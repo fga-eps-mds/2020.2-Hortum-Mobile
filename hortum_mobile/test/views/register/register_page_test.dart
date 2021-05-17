@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/components/confirm_button.dart';
 import 'package:hortum_mobile/components/form_field.dart';
+import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/register/register_page.dart';
 import 'package:mockito/mockito.dart';
 
@@ -10,6 +11,7 @@ class DioMock extends Mock implements Dio {}
 
 main() {
   final dioMock = DioMock();
+  profile_picture = null;
   Widget makeTestable(bool isProductor) {
     return MaterialApp(
       home: RegisterPage(isProductor: isProductor, dio: dioMock),

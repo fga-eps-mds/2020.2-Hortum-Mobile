@@ -13,9 +13,10 @@ class AnnouncementDetails extends StatefulWidget {
   final String title;
   final List localizations;
   final String price;
-  final String productPic;
+  final List<dynamic> productPic;
   final String description;
   final String email;
+  final String phone_number;
 
   const AnnouncementDetails(
       {@required this.profilePic,
@@ -26,6 +27,7 @@ class AnnouncementDetails extends StatefulWidget {
       @required this.productPic,
       @required this.description,
       @required this.email,
+      @required this.phone_number,
       Key key})
       : super(key: key);
   @override
@@ -157,7 +159,7 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                       borderRadius: BorderRadius.all(Radius.circular(25)),
                       child: Material(
                         child: InkWell(
-                            child: Image.asset(widget.profilePic,
+                            child: Image.network(widget.profilePic,
                                 fit: BoxFit.fill,
                                 height: size.height * 0.08,
                                 width: size.height * 0.08)),
@@ -167,8 +169,11 @@ class _AnnouncementDetailsState extends State<AnnouncementDetails> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return ProductorDetails(
-                            email: encodeString(widget.email),
-                            name: widget.name);
+                          email: encodeString(widget.email),
+                          productorProfilePicture: widget.profilePic,
+                          name: widget.name,
+                          phone_number: widget.phone_number,
+                        );
                       }));
                     },
                   ),

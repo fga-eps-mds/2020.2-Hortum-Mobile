@@ -9,10 +9,14 @@ import 'package:hortum_mobile/views/home_productor/home_productor_page.dart';
 class ProfileServices {
   static Future updateUser(Dio dio, String nameForm, String emailForm,
       String phone_number_form, BuildContext context) async {
-    var response;
+    Response response;
     UserAPI updateData = new UserAPI(dio);
 
-    if (actualUser.email != emailForm) {
+    if (actualUser.email == emailForm &&
+        actualUser.username == nameForm &&
+        actualUser.phone_number == phone_number_form) {
+      response = await updateData.updateUser();
+    } else if (actualUser.email != emailForm) {
       response = await updateData.updateUser(email: emailForm);
     } else if (actualUser.username != nameForm) {
       response = await updateData.updateUser(username: nameForm);
@@ -26,6 +30,7 @@ class ProfileServices {
     }
 
     if (response.statusCode == 400) {
+      controllerPicture.newPictureNotifier.value = null;
       showDialog(
         context: context,
         builder: (context) {
@@ -61,6 +66,8 @@ class ProfileServices {
       actualUser.email = emailForm;
       actualUser.username = nameForm;
       actualUser.phone_number = phone_number_form;
+      actualUser.profile_picture = response.data['profile_picture'];
+      controllerPicture.newPictureNotifier.value = null;
       if (actualUser.isProductor) {
         return Navigator.push(context, MaterialPageRoute(builder: (context) {
           return ProductorHomePage();

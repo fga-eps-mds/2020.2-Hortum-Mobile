@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hortum_mobile/data/productor_favorite_backend.dart';
 import 'package:hortum_mobile/services/codec_string.dart';
 import 'package:hortum_mobile/views/productor_details/productor_details_page.dart';
 
@@ -6,17 +8,35 @@ class ProductorsBox extends StatefulWidget {
   final String name;
   final String imageAsset;
   final String email;
+  final String phone_number;
+  final Dio dio;
+  final bool isFavPage;
 
   const ProductorsBox(
-      {@required this.name, this.imageAsset, @required this.email, Key key})
+      {@required this.name,
+      this.imageAsset,
+      @required this.email,
+      @required this.phone_number,
+      @required this.isFavPage,
+      this.dio,
+      Key key})
       : super(key: key);
   @override
   _ProductorsBoxState createState() => _ProductorsBoxState();
 }
 
 class _ProductorsBoxState extends State<ProductorsBox> {
+  bool isFavoriteProductor;
+
+  @override
+  // ignore: must_call_super
+  void initState() {
+    isFavoriteProductor = widget.isFavPage;
+  }
+
   @override
   Widget build(BuildContext context) {
+    ProductorFavAPI favProductor = new ProductorFavAPI(widget.dio);
     Size size = MediaQuery.of(context).size;
     return Container(
       key: Key('productorsBox'),
@@ -42,10 +62,13 @@ class _ProductorsBoxState extends State<ProductorsBox> {
             return ProductorDetails(
               email: encodeString(widget.email),
               name: widget.name,
+              productorProfilePicture: widget.imageAsset,
+              phone_number: widget.phone_number,
             );
           }));
         },
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               width: size.width * 0.12,
@@ -56,14 +79,35 @@ class _ProductorsBoxState extends State<ProductorsBox> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 child: Material(
                   child: InkWell(
-                      child: Image.asset(
-                    'assets/images/perfil.jpg',
+                      child: Image.network(
+                    widget.imageAsset,
                     fit: BoxFit.fill,
                   )),
                 ),
               ),
             ),
-            Text(widget.name, style: TextStyle(fontSize: 20))
+            Expanded(
+                flex: 4,
+                child: Text(
+                  widget.name,
+                  style: TextStyle(fontSize: 20),
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                )),
+            Expanded(
+              child: MaterialButton(
+                child: Icon(
+                  Icons.thumb_up_alt_outlined,
+                  color: isFavoriteProductor ? Colors.blue : Colors.black,
+                ),
+                onPressed: () async {
+                  await favProductor.favProductor(widget.email);
+                  setState(() {
+                    isFavoriteProductor = !isFavoriteProductor;
+                  });
+                },
+              ),
+            )
           ],
         ),
       ),

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hortum_mobile/globals.dart';
 
@@ -42,17 +41,23 @@ class ComplaintDataAPI {
       "Authorization": "Bearer " + actualUser.tokenAccess,
     };
 
-    Map params = {
+    var params = {
       "author": name,
       "description": description,
-      "emailProductor": emailProductor
+      "emailProductor": emailProductor,
+      "image": complaint_picture != null
+          ? await MultipartFile.fromFile(complaint_picture.path,
+              filename: complaint_picture.path.split('/').last)
+          : null
     };
 
-    String _body = json.encode(params);
+    FormData body = FormData.fromMap(params);
+
     Response response = await dio.post(url,
-        data: _body,
+        data: body,
         options: Options(
           headers: header,
+          contentType: 'multipart/form-data',
           validateStatus: (status) {
             return status <= 500;
           },

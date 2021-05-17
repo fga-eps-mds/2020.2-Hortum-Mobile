@@ -42,6 +42,7 @@ class LoginApi {
       actualUser.writeSecureData('token_refresh', actualUser.tokenRefresh);
       actualUser.writeSecureData('token_access', actualUser.tokenAccess);
       actualUser.writeSecureData('phone_number', actualUser.phone_number);
+      actualUser.writeSecureData('profile_picture', actualUser.profile_picture);
     } else {
       actualUser = null;
     }

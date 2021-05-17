@@ -8,13 +8,22 @@ import 'package:hortum_mobile/data/productor_details_backend.dart';
 import 'package:hortum_mobile/views/productor_details/components/announcements_details.dart';
 import 'package:hortum_mobile/views/productor_details/components/name_actions.dart';
 
+import 'components/phone_number_box.dart';
+
 class ProductorDetails extends StatefulWidget {
   final String email;
   final String name;
+  final String productorProfilePicture;
+  final String phone_number;
   final Dio dio;
 
   const ProductorDetails(
-      {@required this.email, @required this.name, this.dio, Key key})
+      {@required this.email,
+      @required this.name,
+      @required this.productorProfilePicture,
+      @required this.phone_number,
+      this.dio,
+      Key key})
       : super(key: key);
 
   @override
@@ -49,12 +58,15 @@ class _ProductorDetailsState extends State<ProductorDetails> {
                                 heigth: size.height * 0.2,
                                 radius: 70,
                                 bottomMargin: size.height * 0.02,
+                                productorProfile:
+                                    widget.productorProfilePicture,
                               ),
                               NameActionsWidget(
                                 name: widget.name,
                                 email: widget.email,
                               ),
-                              AnnouncementsDetails(prodData: prodData)
+                              PhoneNumberBox(phone_number: widget.phone_number),
+                              AnnouncementsDetails(prodData: prodData),
                             ],
                           ))
                       : SpinWidget(margin: 0),

@@ -4,8 +4,14 @@ import 'package:hortum_mobile/data/productors_data_backend.dart';
 
 class ProductorsList extends StatefulWidget {
   final ProductorsDataApi productorsData;
+  final String textNotFound;
+  final bool isFavPage;
 
-  const ProductorsList({@required this.productorsData, Key key})
+  const ProductorsList(
+      {@required this.productorsData,
+      @required this.textNotFound,
+      @required this.isFavPage,
+      Key key})
       : super(key: key);
   @override
   _ProductorsListState createState() => _ProductorsListState();
@@ -27,10 +33,13 @@ class _ProductorsListState extends State<ProductorsList> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ProductorsBox(
-                      key: Key(productors[index]['username'] + " key"),
-                      name: productors[index]['username'],
-                      email: productors[index]['email'],
-                      imageAsset: productors[index]['idPicture']);
+                    email: productors[index]['email'],
+                    key: Key(productors[index]['username'] + " key"),
+                    name: productors[index]['username'],
+                    imageAsset: productors[index]['profile_picture'],
+                    phone_number: productors[index]['phone_number'],
+                    isFavPage: widget.isFavPage,
+                  );
                 },
               )
             : Container(
@@ -38,7 +47,7 @@ class _ProductorsListState extends State<ProductorsList> {
                 margin: EdgeInsets.only(top: size.height * 0.15),
                 width: size.width * 0.6,
                 child: Text(
-                  "Infelizmente!!\nNão encontramos nenhum resultado para a sua busca",
+                  widget.textNotFound,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xff1D8E40), fontSize: 15),
                 ),

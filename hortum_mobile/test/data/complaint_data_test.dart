@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hortum_mobile/data/complaint_data_backend.dart';
@@ -17,6 +18,7 @@ main() {
     ComplaintDataAPI complaintDataApi = ComplaintDataAPI(dio);
     actualUser.tokenAccess = 'token';
     actualUser.isProductor = false;
+    complaint_picture = File('./assets/images/perfil.jpg');
 
     test('registerComplaint', () async {
       String responseMatcher = '';

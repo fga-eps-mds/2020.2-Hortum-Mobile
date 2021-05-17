@@ -49,7 +49,7 @@ class _UserProfileState extends State<UserProfile> {
                   ],
                 ),
               ),
-              AddPictureButton(),
+              AddPictureButton(isProfilePicture: true),
               Footer(),
             ],
           ),
