@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hortum_mobile/components/footer.dart';
+import 'package:hortum_mobile/components/list_announcements.dart';
 import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/views/filtered_announcements_categories/services/filtered_announcements_services.dart';
-import 'package:hortum_mobile/views/home_customer/components/list_announcements.dart';
 
 class FilteredAnnounCategoryPage extends StatefulWidget {
   final Dio dio;
@@ -55,6 +55,8 @@ class _FilteredAnnounCategoryPageState
                             ),
                             child: AnnouncementsList(
                               announData: announData,
+                              textNotFound: '',
+                              isFavPage: false,
                             ))
                         : Container(
                             height: size.height * 0.65,

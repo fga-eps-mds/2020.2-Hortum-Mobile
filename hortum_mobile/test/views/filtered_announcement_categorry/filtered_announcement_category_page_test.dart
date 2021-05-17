@@ -5,6 +5,7 @@ import 'package:hortum_mobile/data/announcements/announcements_backend.dart';
 import 'package:hortum_mobile/globals.dart';
 import 'package:hortum_mobile/views/filtered_announcements_categories/filtered_announcements_categories_page.dart';
 import 'package:mockito/mockito.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -29,12 +30,12 @@ main() {
       List<dynamic> response = [
         {
           "username": "Usuário Teste",
-          "idPictureProductor": null,
+          "pictureProductor": "$ip/images/perfil.jpg",
           "name": "Anúncio Teste",
           "type_of_product": "Outros",
           "description": "Abelhas",
           "price": 10.0,
-          "idPicture": null,
+          "images": ["$ip/images/perfil.jpg"],
           "localizations": ["Lugar", "Outro Lugar"]
         }
       ];
@@ -48,12 +49,12 @@ main() {
       List<dynamic> response = [
         {
           "username": "Usuário Teste",
-          "idPictureProductor": null,
+          "pictureProductor": "$ip/images/perfil.jpg",
           "name": "Anúncio Teste",
           "type_of_product": "Outros",
           "description": "Abelhas",
           "price": 10.0,
-          "idPicture": null,
+          "images": ["$ip/images/perfil.jpg"],
           "localizations": ["Lugar", "Outro Lugar"]
         }
       ];
@@ -61,9 +62,11 @@ main() {
       actualUser.tokenAccess = 'token';
       when(dioMock.get(any, options: anyNamed('options'))).thenAnswer(
           (_) async => Response(data: response, requestOptions: null));
-      await tester.pumpWidget(makeTestable());
-      await tester.pump();
-      expect(find.text('Outros'), findsOneWidget);
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(makeTestable());
+        await tester.pump();
+        expect(find.text('Outros'), findsOneWidget);
+      });
     });
   });
 }
