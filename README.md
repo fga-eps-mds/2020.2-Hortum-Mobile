@@ -65,6 +65,10 @@
 |[Git](https://git-scm.com/)|`git` é uma ferramenta de versionamento de código `gratuito` e `open source`, capaz de lidar com tudo desde pequenos até grandes projetos, com `velocidade` e `eficiência`.|
 |[Flutter](https://flutter.dev/docs/get-started/install)| `flutter` é UI toolkit da Google de criação de bonitas aplicações compiladas nativamente, em mobile, web e desktop, de um simples código base, em linguagem `dart`.|
 
+<!-- Play Store -->
+### Baixando da Play Store
+Para baixar e utilizar acesse o app [Hortum](https://play.google.com/store/apps/details?id=com.hortum_mobile.mds) na Play Store.
+
 <!-- Backend -->
 ### Baixando e rodando o Backend
 Para rodar o backend acesse o repositório [API](https://github.com/fga-eps-mds/2020.2-Hortum) e siga o passo a passo da instalação.
